@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  /* Loaded entirely from the Royal Brand Kit CDN — works on any machine with network access. */
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif; }
+  body { width: 8.5in; height: 11in; color: #1E293B; position: relative; background: #FFFFFF; }
+
+  /* Header band (matches MotiveCare reference) */
+  header.band {
+    background: #2f193b;
+    color: #FFFFFF;
+    padding: 0.32in 0.5in;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  header.band .h1 {
+    font-weight: 800;
+    font-size: 17pt;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    line-height: 1.05;
+  }
+  header.band .logo { width: 1.6in; height: auto; }
+  header.band .logo svg { width: 100%; height: auto; display: block; }
+
+  /* Sub-banner */
+  .subbanner {
+    background: #572e72;
+    color: #FFFFFF;
+    padding: 6px 0.5in;
+    font-size: 8.5pt;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+
+  /* Body */
+  .body { padding: 0.22in 0.45in 0.2in 0.45in; }
+
+  /* Trigger / context band */
+  .trigger {
+    background: #faf5fd;
+    border-left: 4px solid #572e72;
+    padding: 9px 12px;
+    margin-bottom: 12px;
+    font-size: 9pt;
+    line-height: 1.4;
+  }
+  .trigger .kicker {
+    font-weight: 800;
+    font-size: 7.5pt;
+    letter-spacing: 2px;
+    color: #572e72;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .trigger .phrase { font-style: italic; color: #1E293B; }
+  .trigger .phone { font-weight: 800; font-style: normal; color: #572e72; }
+
+  /* FLOWCHART — matches MotiveCare visual style */
+  .flow { position: relative; width: 7.6in; height: 4.95in; margin: 0 auto 8px auto; }
+  .flow svg.lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+
+  .node {
+    position: absolute;
+    border-radius: 6px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 7px 12px;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .node-step {
+    background: #3e3e3e;
+    color: #FFFFFF;
+    border: 1px solid #2a2a2a;
+  }
+  .node-step .t1 {
+    font-size: 9pt;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .node-step .t2 {
+    font-size: 7.5pt;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.8);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .node-action {
+    background: #43205b;
+    color: #FFFFFF;
+    border: 1px solid #2f193b;
+  }
+  .node-action .t1 {
+    font-size: 10pt;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .node-action .t2 {
+    font-size: 7.5pt;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .node-decision {
+    background: #4a8e3a;
+    color: #FFFFFF;
+    border: 1px solid #3a7029;
+    border-radius: 999px;
+  }
+  .node-decision .t1 {
+    font-size: 9.5pt;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .branchbox {
+    background: #FFFFFF;
+    border: 1.5px solid #3e3e3e;
+    color: #1E293B;
+    border-radius: 6px;
+    font-size: 8.5pt;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    text-align: center;
+  }
+
+  .callout {
+    background: #f57c00;
+    color: #FFFFFF;
+    border: 1px solid #cc6600;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 7.5pt;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  /* Contacts */
+  .contacts { border: 1px solid #E2E8F0; border-radius: 6px; overflow: hidden; }
+  .contacts h3 {
+    background: #2f193b; color: #FFFFFF;
+    font-size: 9pt; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+    padding: 6px 12px;
+  }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 4px 12px; font-size: 8.5pt; text-align: left; border-bottom: 1px solid #E2E8F0; vertical-align: middle; }
+  th { background: #faf5fd; font-weight: 800; font-size: 7pt; letter-spacing: 1.5px; text-transform: uppercase; color: #572e72; }
+  td.num { width: 28px; font-weight: 800; color: #572e72; font-size: 10pt; }
+  td.phone { font-weight: 700; color: #1E293B; white-space: nowrap; text-align: right; width: 1.4in; }
+  td.name .ttl { display: block; font-size: 7.5pt; color: #64748B; font-weight: 500; margin-top: 1px; }
+  tr:last-child td { border-bottom: none; }
+
+  .esc-note { margin-top: 6px; font-size: 8pt; color: #64748B; font-style: italic; text-align: center; }
+
+  footer {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 6px 0.5in;
+    font-size: 8pt; color: #64748B;
+    display: flex; justify-content: space-between; align-items: center;
+    background: #FFFFFF;
+    border-top: 1px solid #E2E8F0;
+  }
+  footer .right { font-weight: 700; letter-spacing: 1.5px; color: #572e72; font-size: 8pt; }
+</style>
+</head>
+<body>
+
+<header class="band">
+  <div class="h1">ECLG to ECMV Cath Lab<br/>Call Workflow</div>
+  <div class="logo">
+    <!-- Royal Ambulance horizontal logo (white) -->
+    <img src="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-white.svg" alt="Royal Ambulance" style="width:100%; height:auto; display:block;">
+  </div>
+</header>
+
+<div class="subbanner">CRITICAL CARE TRANSPORT · EL CAMINO HEALTH LOS GATOS → MOUNTAIN VIEW</div>
+
+<div class="body">
+
+  <div class="trigger">
+    <span class="kicker">Trigger Phrase · Comm Center Dispatch <span class="phone">(877) 995-6161</span></span>
+    <span class="phrase">"Hi, this is [Name] from El Camino Los Gatos requesting a dedicated CCT for a Cath Lab standby."</span>
+  </div>
+
+  <!-- FLOWCHART -->
+  <div class="flow">
+    <!-- 1 SVG unit = 0.01in (760 wide = 7.6in, 495 tall = 4.95in) -->
+    <svg class="lines" viewBox="0 0 760 495" preserveAspectRatio="none">
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#3e3e3e"/>
+        </marker>
+      </defs>
+      <!-- Step1 bottom y=50, Step2 top y=60 -->
+      <line x1="380" y1="50" x2="380" y2="58" stroke="#3e3e3e" stroke-width="1.8" marker-end="url(#ar)"/>
+      <!-- Step2 bottom y=110, Step3 top y=118 -->
+      <line x1="380" y1="110" x2="380" y2="116" stroke="#3e3e3e" stroke-width="1.8" marker-end="url(#ar)"/>
+      <!-- Step3 bottom y=168, Decision top y=178 -->
+      <line x1="380" y1="168" x2="380" y2="176" stroke="#3e3e3e" stroke-width="1.8" marker-end="url(#ar)"/>
+      <!-- Decision bottom y=228; split to YES (left) and NO (right) branch labels at y=255-285 -->
+      <!-- Center horizontal split line from decision bottom -->
+      <line x1="380" y1="228" x2="380" y2="240" stroke="#3e3e3e" stroke-width="1.8"/>
+      <line x1="200" y1="240" x2="560" y2="240" stroke="#3e3e3e" stroke-width="1.8"/>
+      <!-- YES drop down to label box top (label at y=255) -->
+      <line x1="200" y1="240" x2="200" y2="253" stroke="#3e3e3e" stroke-width="1.8" marker-end="url(#ar)"/>
+      <!-- NO drop down to label box top -->
+      <line x1="560" y1="240" x2="560" y2="253" stroke="#3e3e3e" stroke-width="1.8" marker-end="url(#ar)"/>
+
+      <!-- YES label bottom y=283, YES step1 top y=295 -->
+      <line x1="200" y1="283" x2="200" y2="293" stroke="#3e3e3e" stroke-width="1.8" marker-end="url(#ar)"/>
+      <!-- YES step1 bottom y=350, YES step2 top y=365 -->
+      <line x1="200" y1="350" x2="200" y2="363" stroke="#3e3e3e" stroke-width="1.8" marker-end="url(#ar)"/>
+      <!-- YES step2 bottom y=420, YES terminal top y=432 -->
+      <line x1="200" y1="420" x2="200" y2="430" stroke="#3e3e3e" stroke-width="1.8" marker-end="url(#ar)"/>
+
+      <!-- NO label bottom y=283, NO step1 top y=295 -->
+      <line x1="560" y1="283" x2="560" y2="293" stroke="#3e3e3e" stroke-width="1.8" marker-end="url(#ar)"/>
+      <!-- NO step1 bottom y=350, NO callout top y=365 -->
+      <line x1="560" y1="350" x2="560" y2="363" stroke="#3e3e3e" stroke-width="1.8" marker-end="url(#ar)"/>
+    </svg>
+
+    <!-- STEP 1: CONTACT DISPATCH (purple action - main highlight) -->
+    <div class="node node-action" style="left: 1.6in; top: 0.0in; width: 4.4in; height: 0.5in;">
+      <div class="t1">ECLG Staff Contact Royal Dispatch</div>
+      <div class="t2">via (877) 995-6161</div>
+    </div>
+
+    <!-- STEP 2: schedule CCT -->
+    <div class="node node-step" style="left: 1.3in; top: 0.6in; width: 5.0in; height: 0.5in;">
+      <div class="t1">Royal Dispatch Schedules Dedicated CCT</div>
+      <div class="t2">Crew staged at ECLG</div>
+    </div>
+
+    <!-- STEP 3: standby active -->
+    <div class="node node-step" style="left: 1.3in; top: 1.18in; width: 5.0in; height: 0.5in;">
+      <div class="t1">Cath Lab Standby — Transport Activated</div>
+      <div class="t2">Crew on site, awaiting transport decision</div>
+    </div>
+
+    <!-- DECISION (green pill) -->
+    <div class="node node-decision" style="left: 2.55in; top: 1.78in; width: 2.5in; height: 0.5in;">
+      <div class="t1">Patient Transport?</div>
+    </div>
+
+    <!-- YES branch label -->
+    <div class="branchbox" style="position:absolute; left: 1.45in; top: 2.55in; width: 1.1in; color: #3a7029; border-color: #4a8e3a;">YES</div>
+    <!-- NO branch label -->
+    <div class="branchbox" style="position:absolute; left: 5.05in; top: 2.55in; width: 1.1in; color: #cc6600; border-color: #f57c00;">NO</div>
+
+    <!-- YES path nodes (left column) -->
+    <div class="node node-step" style="left: 0.15in; top: 2.95in; width: 3.7in; height: 0.55in;">
+      <div class="t1">ECLG RN Calls CCT Crew Directly</div>
+      <div class="t2">Crew enters procedure room to pick up patient</div>
+    </div>
+    <div class="node node-step" style="left: 0.15in; top: 3.65in; width: 3.7in; height: 0.55in;">
+      <div class="t1">Royal Team Secures Patient &amp; Equipment</div>
+      <div class="t2">ECLG RN travels if IABP is in use</div>
+    </div>
+
+    <!-- NO path nodes (right column — center at x=560 / 5.6in) -->
+    <div class="node node-step" style="left: 3.75in; top: 2.95in; width: 3.7in; height: 0.55in;">
+      <div class="t1">ECLG Calls Royal to Cancel Standby</div>
+      <div class="t2">No patient transport required</div>
+    </div>
+    <div class="callout" style="position:absolute; left: 3.75in; top: 3.65in; width: 3.7in; height: 0.55in; display:flex; align-items:center; justify-content:center; flex-direction:column;">
+      <div>ECLG Notifies Royal Dispatch of Cancellation</div>
+      <div style="font-weight:500; font-size:7pt; margin-top:2px; opacity:0.95;">CRITICAL — DO NOT SKIP THIS STEP</div>
+    </div>
+
+    <!-- YES final (purple action — terminal) -->
+    <div class="node node-action" style="left: 0.15in; top: 4.32in; width: 3.7in; height: 0.5in;">
+      <div class="t1">Royal Crew Rings Down to ECMV</div>
+      <div class="t2">With ETA &amp; Patient Status</div>
+    </div>
+  </div>
+
+  <!-- CONTACTS -->
+  <div class="contacts">
+    <h3>Royal Escalation Points of Contact</h3>
+    <table>
+      <thead>
+        <tr><th style="width:28px;">#</th><th>Contact</th><th style="text-align:right;">Phone</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">1</td><td class="name">Royal Dispatch Lead</td><td class="phone">(510) 301-0350</td></tr>
+        <tr><td class="num">2</td><td class="name">Jennifer Morgan<span class="ttl">Director of Comm Center</span></td><td class="phone">(916) 402-1812</td></tr>
+        <tr><td class="num">3</td><td class="name">Samantha Barakat<span class="ttl">Director of Operations</span></td><td class="phone">(510) 359-3615</td></tr>
+        <tr><td class="num">4</td><td class="name">Leizl Joy Stromgren<span class="ttl">Customer Success Manager</span></td><td class="phone">(510) 292-6484</td></tr>
+        <tr><td class="num">5</td><td class="name">Hasieb Lemar<span class="ttl">President</span></td><td class="phone">(510) 432-1889</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="esc-note">For other challenges, complex needs, or escalations, please follow the Royal escalation pathway above.</div>
+
+</div>
+
+<footer>
+  <div>Royal Ambulance &nbsp;|&nbsp; ECLG → ECMV Cath Lab Standby Workflow</div>
+  <div class="right">Rev. 06.26</div>
+</footer>
+
+</body>
+</html>

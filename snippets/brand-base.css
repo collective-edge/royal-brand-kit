@@ -1,0 +1,47 @@
+/* Royal Ambulance Brand — drop-in base CSS
+   Loads Montserrat + brand color variables from the public CDN.
+   Pull into any HTML output with:
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/brand-base.css">
+*/
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+:root {
+  /* Brand */
+  --royal-dark-purple:  #2f193b;
+  --royal-purple:       #572e72;
+  --royal-light-purple: #8260a2;
+  --royal-royal-purple: #43205b;
+  --royal-black:        #000000;
+  --royal-white:        #FFFFFF;
+
+  /* Neutrals */
+  --royal-charcoal: #1E293B;
+  --royal-muted:    #64748B;
+  --royal-hairline: #E2E8F0;
+  --royal-surface:  #faf5fd;
+
+  /* Diagram extended */
+  --royal-decision: #4a8e3a;
+  --royal-decision-border: #3a7029;
+  --royal-warning: #f57c00;
+  --royal-warning-border: #cc6600;
+  --royal-info: #3e3e3e;
+  --royal-info-border: #2a2a2a;
+}
+
+body, html {
+  font-family: 'Montserrat', Calibri, Arial, sans-serif;
+  color: var(--royal-charcoal);
+}
