@@ -23,7 +23,7 @@ royal-brand-kit/
 ├── snippets/
 │   ├── brand-base.css       # Drop-in CSS with @font-face + variables
 │   └── header-band.html     # Drop-in header markup
-└── examples/
+└── Examples/
     └── eclg-ecmv-one-pager.html  # Working example using only CDN URLs
 ```
 
