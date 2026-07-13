@@ -40,12 +40,7 @@ https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/
 @font-face {
   font-family: 'Montserrat';
   src: url('https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
-  font-weight: normal;
-}
-@font-face {
-  font-family: 'Montserrat';
-  src: url('https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
-  font-weight: bold;
+  font-weight: 100 900;
 }
 body { font-family: 'Montserrat', Calibri, Arial, sans-serif; }
 ```

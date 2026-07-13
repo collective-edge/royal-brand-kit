@@ -7,13 +7,8 @@
 @font-face {
   font-family: 'Montserrat';
   src: url('https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Montserrat';
-  src: url('https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
-  font-weight: bold;
+  /* one variable font serves every weight (400/500/700/800) via the 100-900 range */
+  font-weight: 100 900;
   font-style: normal;
 }
 
