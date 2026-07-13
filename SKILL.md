@@ -209,6 +209,14 @@ Pinning to `@main` always serves the latest version. To pin to a stable release,
 
 ---
 
-## 7. Confirm before shipping
+## 7. Verify before you ship
 
-When you finish a Royal deliverable, state which brand choices you applied (which logo variant, primary accent, font embedding method) so the user can verify at a glance.
+A brand deliverable fails on details a spell-check can't catch — overlapping text, a clipped logo, an accent you can't read, a font that quietly fell back to Arial. Before you call any Royal deliverable done, verify the **rendered** result, not the source:
+
+1. **Render it and look.** Render the output to an image or PDF (or open the HTML in a browser) and visually inspect what actually renders — text overlap, clipping, and overflow are invisible in the source and only show up in pixels. If your environment can't render, say so plainly instead of claiming it looks clean.
+2. **No collisions.** Nothing overlapping, colliding, clipped, or overflowing — no text running past its container, off the page, or into the logo.
+3. **Legibility.** Contrast holds — light purple `#8260a2` is never body text (too washed out at text sizes); body copy stays black or purple `#572e72`. Light text only on dark backgrounds.
+4. **Logo integrity.** Correct variant for the background (the white variant on dark), never stretched, skewed, or recolored; clear space respected; never on a busy area without a solid backing.
+5. **Type.** Montserrat actually rendered, not a system fallback — and for PDFs, actually *embedded* in the file. Confirm it before you call the job done.
+6. **On-brand.** Every color is drawn from the palette above, no off-brand hues; margins and alignment consistent; page breaks clean for print.
+7. **State what you applied.** When you hand it back, name the brand choices you made (which logo variant, which accent, how the font embedded) so the user can verify at a glance.
