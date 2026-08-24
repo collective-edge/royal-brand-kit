@@ -123,7 +123,7 @@ These five roles are the whole contract. `brands.json` maps exactly these five f
 | Horizontal viewBox | `0 0 735.76 179.54` |
 | Crown viewBox | `0 0 692.1 692.1` |
 | Stacked viewBox | `0 0 526.66 418.93` |
-| Fill on light | `#43205b` in every lockup. **`assets/logos/crown-purple.svg` declares `#3c2157` instead. Unresolved: the mark has not been recolored, because that is an owner decision.** |
+| Fill on light | `#43205b` in every lockup, crown included |
 | Fill on dark | `#FFFFFF` |
 | Clear space | Padding on all four sides equal to the height of the crown mark |
 | Minimum size, horizontal | 110px on screen, 1 inch in print |

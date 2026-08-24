@@ -158,21 +158,30 @@
     }
   },
   "diagramRoles": {
-    "_comment": "Functional colors for flowcharts, status and dashboards. Identical across every brand so a diagram reads the same regardless of whose document it sits in. Never invent new hues for these roles. A brand accent is never a status color.",
+    "_comment": "Functional colors for flowcharts, status and dashboards. Identical across every brand so a diagram reads the same regardless of whose document it sits in. Never invent new hues for these roles. A brand accent is never a status color. Each role names the text color that clears contrast on it; measured, do not substitute.",
     "decision": {
       "fill": "#4a8e3a",
       "border": "#3a7029",
-      "use": "decision boxes, questions, branch points"
+      "use": "decision boxes, questions, branch points",
+      "text": "#FFFFFF",
+      "contrast": "4.02:1",
+      "textRule": "large or bold only, which is what a node label is. Never body copy on this fill."
     },
     "warning": {
       "fill": "#f57c00",
       "border": "#cc6600",
-      "use": "warnings, advisories"
+      "use": "warnings, advisories",
+      "text": "#111111",
+      "contrast": "6.98:1",
+      "textRule": "near-black, not white. White on this amber measures 2.70:1 and fails at every size."
     },
     "process": {
       "fill": "#3e3e3e",
       "border": "#2a2a2a",
-      "use": "neutral process steps, context boxes"
+      "use": "neutral process steps, context boxes",
+      "text": "#FFFFFF",
+      "contrast": "10.37:1",
+      "textRule": "any size"
     },
     "shape": "rectangles, 6px radius. Role is communicated by fill color, never by shape.",
     "connector": {
