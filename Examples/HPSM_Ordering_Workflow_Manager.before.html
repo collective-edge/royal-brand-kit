@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HPSM Ordering Workflow — Manager Version</title>
+<style>
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('file:///Users/jacob.sarasohn/Desktop/Royal Brand Kit/Fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: 11in 8.5in; margin: 0; }
+  html, body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background: #fff;
+  }
+  .page {
+    width: 11in; height: 8.5in;
+    overflow: hidden;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: #2f193b;
+    padding: 12px 24px;
+    display: flex; align-items: center;
+    flex-shrink: 0;
+  }
+  .header .logo-wrap { width: 130px; flex-shrink: 0; }
+  .header .logo-wrap svg { width: 130px; height: auto; filter: brightness(0) invert(1); }
+  .header .title-wrap { flex: 1; text-align: center; }
+  .header .title { color: #fff; font-size: 14pt; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; }
+  .header .subtitle { color: rgba(255,255,255,.7); font-size: 7.5pt; font-weight: 500; letter-spacing: 1px; margin-top: 3px; }
+  .header .version-wrap { width: 130px; flex-shrink: 0; text-align: right; color: rgba(255,255,255,.6); font-size: 6.5pt; font-weight: 500; }
+
+  /* ── SWIM LANES ── */
+  .lanes {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+  }
+  .lane {
+    display: flex;
+    flex-direction: column;
+  }
+  .lane-left { width: 38%; border-right: 3px solid #2f193b; }
+  .lane-right { width: 62%; }
+
+  /* Lane headers */
+  .lane-header {
+    padding: 14px 16px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .lane-left .lane-header { background: #2f193b; color: #fff; }
+  .lane-right .lane-header { background: #572e72; color: #fff; }
+  .lane-header .lane-title { font-size: 11pt; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; }
+  .lane-header .lane-sub { font-size: 7pt; font-weight: 500; opacity: 0.8; margin-top: 3px; }
+
+  /* Lane body */
+  .lane-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 14px 20px;
+    gap: 0;
+  }
+  .lane-left .lane-body { background: #faf7fc; }
+  .lane-right .lane-body { background: #fff; }
+
+  /* ── FLOW ELEMENTS ── */
+
+  /* Start instruction (left lane only) */
+  .flow-start-instruction {
+    width: 100%;
+    background: #f0ebf4;
+    border: 1.5px solid #ddd3e8;
+    border-radius: 20px;
+    padding: 12px 18px;
+    text-align: center;
+    font-size: 8.5pt; font-weight: 600; color: #2a2a2a;
+    line-height: 1.4;
+  }
+  .flow-start-instruction strong { font-weight: 800; color: #2f193b; }
+
+  /* Arrow connector */
+  .arrow {
+    display: flex; flex-direction: column; align-items: center;
+    flex-shrink: 0; padding: 5px 0;
+  }
+  .arrow .shaft { width: 3px; height: 16px; background: #572e72; }
+  .arrow .head { width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 10px solid #572e72; }
+  .arrow.dark .shaft { background: #2f193b; }
+  .arrow.dark .head { border-top-color: #2f193b; }
+  .arrow.green .shaft { background: #2e7d32; }
+  .arrow.green .head { border-top-color: #2e7d32; }
+  .arrow.red .shaft { background: #c62828; }
+  .arrow.red .head { border-top-color: #c62828; }
+  .arrow.sm .shaft { width: 2px; height: 8px; }
+  .arrow.sm .head { border-left-width: 5px; border-right-width: 5px; border-top-width: 7px; }
+  .arrow.sm { padding: 2px 0; }
+
+  /* Action box */
+  .flow-action {
+    width: 100%;
+    background: #fff;
+    border: 2.5px solid #572e72;
+    border-radius: 10px;
+    padding: 12px 16px;
+    text-align: center;
+  }
+  .lane-left .flow-action { border-color: #2f193b; }
+  .flow-action .fa-label { font-size: 10pt; font-weight: 700; color: #2f193b; margin-bottom: 4px; }
+  .flow-action .fa-phone { font-size: 14pt; font-weight: 800; color: #572e72; letter-spacing: 0.5px; }
+  .lane-left .flow-action .fa-phone { color: #2f193b; }
+  .flow-action .fa-phone-alt { font-size: 10pt; font-weight: 600; color: #572e72; margin-top: 2px; }
+  .flow-action .fa-note { font-size: 7pt; font-weight: 500; color: #888; margin-top: 6px; font-style: italic; line-height: 1.3; }
+
+  /* Outcome box */
+  .flow-outcome {
+    width: 100%;
+    background: #f8f4fc;
+    border: 2px solid #ddd3e8;
+    border-radius: 10px;
+    padding: 10px 12px;
+    text-align: center;
+    font-size: 9pt; font-weight: 600; color: #2a2a2a;
+  }
+  .flow-outcome strong { font-weight: 800; color: #2f193b; }
+
+  /* Decision box */
+  .flow-decision {
+    width: 100%;
+    background: linear-gradient(135deg, #f8f4fc, #efe8f5);
+    border: 2.5px solid #572e72;
+    border-radius: 10px;
+    padding: 10px 14px;
+    text-align: center;
+    font-size: 9.5pt; font-weight: 700; color: #572e72;
+  }
+
+  /* Billing badge */
+  .flow-billing {
+    display: inline-block;
+    background: #2f193b;
+    color: #fff;
+    font-size: 7.5pt; font-weight: 700;
+    padding: 6px 20px;
+    border-radius: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-top: 6px;
+  }
+
+  /* YES/NO pills */
+  .yn-pill {
+    display: inline-block;
+    padding: 5px 18px;
+    border-radius: 14px;
+    font-size: 8pt; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 1px; color: #fff;
+  }
+  .yn-pill.yes { background: #2e7d32; }
+  .yn-pill.no { background: #c62828; }
+  .yn-pill.sm { font-size: 7pt; padding: 4px 14px; }
+
+  /* Split row for YES/NO branches */
+  .split-row { display: flex; width: 100%; gap: 8px; }
+  .split-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0; }
+
+  /* Smaller variants for nested */
+  .flow-outcome.sm { font-size: 7.5pt; padding: 7px 8px; min-height: 52px; display: flex; align-items: center; justify-content: center; text-align: center; }
+  .flow-action.sm { padding: 8px 10px; border-width: 2px; }
+  .flow-action.sm .fa-label { font-size: 7.5pt; }
+  .flow-action.sm .fa-phone { font-size: 10pt; }
+  .flow-action.sm .fa-note { font-size: 5.5pt; }
+  .flow-billing.sm { font-size: 6pt; padding: 3px 10px; margin-top: 3px; }
+  .flow-decision.sm { font-size: 7.5pt; padding: 6px 8px; }
+
+  /* Spacer */
+  .flex-grow { flex: 1; }
+
+  /* ── CONTACT FOOTER ── */
+  .contact-footer {
+    flex-shrink: 0;
+    border-top: 2px solid #572e72;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  /* HPSM contact - separate color */
+  .contact-hpsm {
+    background: #e0f2f1;
+    border-bottom: 1px solid #b2dfdb;
+    padding: 6px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .contact-hpsm .ch-badge {
+    background: #00796b;
+    color: #fff;
+    font-size: 6pt; font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+  .contact-hpsm .ch-detail {
+    font-size: 7.5pt; font-weight: 600; color: #004d40;
+  }
+  .contact-hpsm .ch-detail span { font-weight: 400; color: #555; }
+
+  /* Royal escalation strip */
+  .contact-escalation {
+    background: #f8f4fc;
+    padding: 8px 24px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .ce-label {
+    font-size: 6pt; font-weight: 800; color: #2f193b;
+    text-transform: uppercase; letter-spacing: 1px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+  .ce-steps {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 0;
+  }
+  .ce-step {
+    flex: 1;
+    text-align: center;
+    padding: 0 8px;
+    position: relative;
+  }
+  .ce-step:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14pt;
+    color: #572e72;
+    font-weight: 700;
+  }
+  .ce-step .ce-num {
+    display: inline-block;
+    background: #2f193b;
+    color: #fff;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    font-size: 7pt; font-weight: 800;
+    line-height: 18px;
+    text-align: center;
+    margin-bottom: 2px;
+  }
+  .ce-step .ce-title {
+    font-size: 6.5pt; font-weight: 700; color: #2f193b;
+    display: block;
+  }
+  .ce-step .ce-phone {
+    font-size: 8pt; font-weight: 800; color: #572e72;
+    display: block;
+  }
+
+  /* ═══ PAGE 2 ═══ */
+  .page2-content { flex: 1; padding: 16px 24px 12px; display: flex; flex-direction: column; gap: 10px; }
+  .loc-intro { text-align: center; font-size: 8.5pt; font-weight: 500; color: #2a2a2a; line-height: 1.5; padding: 2px 30px; }
+  .loc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; flex: 1; }
+  .loc-card { border: 1.5px solid #ddd3e8; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+  .loc-card-header { background: #572e72; color: #fff; padding: 10px 18px; display: flex; align-items: center; gap: 14px; }
+  .loc-card-header .loc-abbr { font-size: 18pt; font-weight: 800; letter-spacing: 1px; }
+  .loc-card-header .loc-full { font-size: 9pt; font-weight: 600; opacity: 0.9; }
+  .loc-card-header.dark { background: #2f193b; }
+  .loc-card-body { padding: 14px 18px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .loc-card-body p { font-size: 8.5pt; font-weight: 400; color: #2a2a2a; line-height: 1.5; }
+  .loc-card-body .loc-examples { font-size: 7.5pt; color: #666; font-weight: 500; margin-top: auto; padding-top: 6px; border-top: 1px solid #eee; line-height: 1.45; }
+  .loc-card-body .loc-highlight { font-weight: 700; color: #572e72; }
+  .loc-card-body .loc-highlight-teal { font-weight: 700; color: #00796b; }
+  .loc-card-body ul { list-style: none; padding: 0; margin: 0; }
+  .loc-card-body ul li { font-size: 8.5pt; font-weight: 400; color: #2a2a2a; line-height: 1.55; padding: 2px 0 2px 14px; position: relative; }
+  .loc-card-body ul li::before { content: "\2022"; position: absolute; left: 0; color: #8260a2; font-weight: 800; }
+  .loc-card.teal ul li::before { color: #00897b; }
+  .nemt-note { background: #e0f2f1; border: 1.5px solid #b2dfdb; border-left: 4px solid #00796b; border-radius: 5px; padding: 10px 18px; flex-shrink: 0; }
+  .nemt-note .nemt-title { font-size: 7.5pt; font-weight: 800; color: #00796b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .nemt-note p { font-size: 7.5pt; font-weight: 400; color: #2a2a2a; line-height: 1.45; }
+  .page2-footer { flex-shrink: 0; text-align: center; padding: 8px 24px; border-top: 1.5px solid #ddd3e8; font-size: 6.5pt; color: #666; font-weight: 400; }
+</style>
+</head>
+<body>
+
+<!-- ═══ PAGE 1: WORKFLOW ═══ -->
+<div class="page">
+  <div class="header">
+    <div class="logo-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 735.76 179.54"><defs><style>.cls-1{fill:#43205b;stroke-width:0px;}</style></defs><g><path class="cls-1" d="m212.79,20.12h25.91c7.18,0,12.68,1.92,16.52,5.75,3.24,3.24,4.86,7.56,4.86,12.95v.16c0,4.59-1.12,8.33-3.36,11.21-2.24,2.89-5.17,5.01-8.78,6.36l13.84,20.24h-14.57l-12.14-18.14h-9.8v18.14h-12.47V20.12Zm25.1,27.53c3.08,0,5.44-.73,7.08-2.19,1.65-1.46,2.47-3.4,2.47-5.83v-.16c0-2.7-.86-4.72-2.59-6.07-1.73-1.35-4.13-2.02-7.21-2.02h-12.39v16.27h12.63Z"/><path class="cls-1" d="m297.24,77.76c-4.37,0-8.39-.77-12.06-2.31-3.67-1.54-6.84-3.62-9.51-6.23-2.67-2.62-4.75-5.69-6.23-9.23-1.49-3.53-2.23-7.33-2.23-11.38v-.16c0-4.05.76-7.84,2.27-11.38,1.51-3.53,3.6-6.64,6.27-9.31s5.86-4.78,9.55-6.32c3.7-1.54,7.73-2.31,12.1-2.31s8.39.77,12.06,2.31c3.67,1.54,6.84,3.62,9.51,6.23,2.67,2.62,4.75,5.7,6.23,9.23,1.48,3.54,2.23,7.33,2.23,11.38v.16c0,4.05-.76,7.84-2.27,11.38-1.51,3.54-3.6,6.64-6.27,9.31-2.67,2.67-5.86,4.78-9.55,6.32-3.7,1.54-7.73,2.31-12.1,2.31Zm.16-11.5c2.48,0,4.78-.46,6.88-1.38,2.11-.92,3.9-2.19,5.38-3.81,1.48-1.62,2.64-3.49,3.48-5.63.84-2.13,1.25-4.41,1.25-6.84v-.16c0-2.43-.42-4.72-1.25-6.88-.84-2.16-2.02-4.05-3.56-5.67s-3.36-2.9-5.46-3.85-4.4-1.42-6.88-1.42-4.85.46-6.92,1.38c-2.08.92-3.86,2.19-5.34,3.81-1.49,1.62-2.65,3.5-3.48,5.63-.84,2.13-1.25,4.41-1.25,6.84v.16c0,2.43.42,4.72,1.25,6.88.84,2.16,2.02,4.05,3.56,5.67,1.54,1.62,3.35,2.9,5.42,3.85,2.08.95,4.38,1.42,6.92,1.42Z"/><path class="cls-1" d="m350.43,54.45l-21.78-34.33h14.57l13.52,22.75,13.76-22.75h14.17l-21.78,34.08v22.59h-12.47v-22.35Z"/><path class="cls-1" d="m402.97,19.71h11.5l24.29,57.08h-13.04l-5.18-12.71h-23.96l-5.18,12.71h-12.71l24.29-57.08Zm13.12,33.36l-7.53-18.38-7.53,18.38h15.06Z"/><path class="cls-1" d="m447.5,20.12h12.47v45.42h28.26v11.25h-40.72V20.12Z"/><path class="cls-1" d="m233.4,91.88h11.5l24.29,57.08h-13.03l-5.18-12.71h-23.96l-5.18,12.71h-12.71l24.29-57.08Zm13.12,33.36l-7.53-18.38-7.53,18.38h15.06Z"/><path class="cls-1" d="m276.31,92.28h13.44l14.9,23.96,14.9-23.96h13.44v56.67h-12.31v-37l-15.95,24.21h-.32l-15.79-23.96v36.76h-12.31v-56.67Z"/><path class="cls-1" d="m344.96,92.28h26.27c6.52,0,11.45,1.67,14.79,5.02,2.59,2.59,3.88,5.8,3.88,9.63v.16c0,1.62-.2,3.05-.6,4.29-.4,1.24-.94,2.36-1.61,3.36-.67,1-1.45,1.88-2.33,2.63-.89.76-1.84,1.4-2.86,1.94,3.28,1.24,5.86,2.93,7.74,5.06,1.88,2.13,2.82,5.09,2.82,8.87v.16c0,2.59-.5,4.86-1.5,6.8-1,1.94-2.43,3.56-4.28,4.86-1.86,1.29-4.1,2.27-6.71,2.91-2.61.65-5.51.97-8.69.97h-26.92v-56.67Zm23.64,22.91c2.75,0,4.94-.47,6.56-1.42,1.62-.94,2.43-2.47,2.43-4.58v-.16c0-1.89-.7-3.33-2.1-4.33-1.4-1-3.43-1.5-6.07-1.5h-12.31v11.98h11.5Zm3.32,22.83c2.75,0,4.91-.5,6.48-1.5,1.56-1,2.35-2.55,2.35-4.66v-.16c0-1.89-.73-3.39-2.19-4.49-1.46-1.11-3.81-1.66-7.04-1.66h-14.41v12.47h14.82Z"/><path class="cls-1" d="m425.44,149.84c-7.61,0-13.6-2.11-17.97-6.32s-6.56-10.5-6.56-18.86v-32.38h12.47v32.06c0,4.64,1.08,8.14,3.24,10.48,2.16,2.35,5.15,3.52,8.99,3.52s6.83-1.13,8.99-3.4c2.16-2.27,3.24-5.67,3.24-10.2v-32.47h12.47v31.98c0,4.32-.58,8.07-1.74,11.25-1.16,3.18-2.82,5.84-4.98,7.97-2.16,2.13-4.78,3.72-7.85,4.78-3.08,1.05-6.5,1.58-10.28,1.58Z"/><path class="cls-1" d="m461.38,92.28h12.47v45.42h28.26v11.25h-40.72v-56.67Z"/><path class="cls-1" d="m530.12,91.88h11.5l24.29,57.08h-13.04l-5.18-12.71h-23.96l-5.18,12.71h-12.71l24.29-57.08Zm13.12,33.36l-7.53-18.38-7.53,18.38h15.06Z"/><path class="cls-1" d="m573.03,92.28h11.5l26.56,34.89v-34.89h12.31v56.67h-10.61l-27.45-36.03v36.03h-12.31v-56.67Z"/><path class="cls-1" d="m661.12,149.93c-4.16,0-8.02-.76-11.58-2.27-3.56-1.51-6.64-3.58-9.23-6.19-2.59-2.62-4.61-5.71-6.07-9.27-1.46-3.56-2.19-7.37-2.19-11.42v-.16c0-4.05.73-7.84,2.19-11.38,1.46-3.53,3.48-6.64,6.07-9.31s5.69-4.78,9.31-6.32,7.61-2.31,11.98-2.31c2.64,0,5.06.22,7.25.65,2.19.43,4.17,1.03,5.95,1.78,1.78.76,3.43,1.67,4.94,2.75,1.51,1.08,2.92,2.27,4.21,3.56l-7.93,9.15c-2.21-2-4.47-3.56-6.76-4.7-2.29-1.13-4.87-1.7-7.73-1.7-2.38,0-4.58.46-6.6,1.38-2.02.92-3.76,2.19-5.22,3.81-1.46,1.62-2.59,3.5-3.4,5.63-.81,2.13-1.21,4.41-1.21,6.84v.16c0,2.43.4,4.72,1.21,6.88.81,2.16,1.93,4.05,3.36,5.67,1.43,1.62,3.16,2.9,5.18,3.85,2.02.95,4.25,1.42,6.68,1.42,3.24,0,5.98-.59,8.22-1.78,2.24-1.19,4.46-2.81,6.68-4.86l7.93,8.02c-1.46,1.57-2.97,2.97-4.53,4.21-1.57,1.24-3.28,2.31-5.14,3.2-1.86.89-3.9,1.57-6.11,2.02-2.21.46-4.7.69-7.45.69Z"/><path class="cls-1" d="m692.69,92.28h42.67v11.09h-30.36v11.5h26.72v11.09h-26.72v11.9h30.77v11.09h-43.07v-56.67Z"/><polygon class="cls-1" points="88.55 86.83 88.57 86.83 88.57 86.83 88.57 86.83 88.55 86.83"/><path class="cls-1" d="m0,89.77c0,49.5,40.27,89.77,89.77,89.77s89.77-40.27,89.77-89.77S139.27,0,89.77,0,0,40.27,0,89.77Zm12.38,0C12.38,47.1,47.1,12.38,89.77,12.38s77.39,34.72,77.39,77.39-34.72,77.39-77.39,77.39S12.38,132.45,12.38,89.77Z"/><path class="cls-1" d="m151.01,58.34c-3.53,0-6.38,2.86-6.38,6.39,0,2.19,1.1,4.11,2.78,5.26-14.04,10.4-26.14,1.76-26.5-14.16,2.97-.55,5.22-3.14,5.22-6.27,0-3.53-2.86-6.39-6.39-6.39s-6.38,2.86-6.38,6.39c0,2.89,1.93,5.3,4.56,6.09.02,0,0,.08,0,.1-5.15,15.47-24.26,10.77-26.42-10.37,0,0,0-.03,0-.03,2.82-.66,4.93-3.18,4.93-6.2,0-3.53-2.86-6.39-6.38-6.39h0s0,0,0,0c-3.53,0-6.38,2.86-6.38,6.39,0,3.02,2.11,5.54,4.93,6.2,0,0,0,.02,0,.03-2.16,21.13-21.27,25.84-26.42,10.37,0-.02-.03-.09,0-.1,2.63-.79,4.56-3.2,4.56-6.09,0-3.53-2.86-6.39-6.38-6.39s-6.39,2.86-6.39,6.39c0,3.13,2.25,5.72,5.22,6.27-.36,15.92-12.46,24.56-26.5,14.16,1.67-1.15,2.78-3.08,2.78-5.26,0-3.53-2.86-6.39-6.38-6.39s-6.39,2.86-6.39,6.39,2.63,6.11,5.95,6.34c11.22,13.5,7.97,49.37,5.28,57.97-1.27.69-1.14,2.97-.43,3.81,4.6,5.46,30.6,8.11,56.57,8.09h0c25.97.02,51.97-2.63,56.57-8.09.71-.84.83-3.12-.43-3.81-2.7-8.6-5.94-44.47,5.28-57.97,3.32-.23,5.95-2.96,5.95-6.34s-2.86-6.39-6.39-6.39Zm-48.17,43.51l14.34,9.44-7.76,11.79-12.36-8.14v14.8h-14.11v-14.8l-12.36,8.14-7.76-11.79,14.34-9.44-14.34-9.44,7.76-11.79,12.36,8.14v-14.8h14.11v14.8l12.36-8.14,7.76,11.79-14.34,9.44Z"/><path class="cls-1" d="m32.62,69.97c-.08-.06-.04-.03,0,0h0Z"/></g></svg>
+    </div>
+    <div class="title-wrap">
+      <div class="title">Ordering Workflow for HPSM Members</div>
+      <div class="subtitle">Use for both primary and secondary coverage &mdash; Manager Version</div>
+    </div>
+    <div class="version-wrap">V1 &bull; Rev. 04/2026</div>
+  </div>
+
+  <!-- SWIM LANES -->
+  <div class="lanes">
+
+    <!-- ══ LEFT LANE: AMBULANCE ══ -->
+    <div class="lane lane-left">
+      <div class="lane-header">
+        <div>
+          <div class="lane-title">BLS, ALS, or CCT</div>
+          <div class="lane-sub">Ambulance Transport</div>
+        </div>
+      </div>
+      <div class="lane-body">
+
+        <div class="flow-start-instruction">
+          At call intake, clearly communicate the <strong>required level of care: BLS, ALS, or CCT</strong><br>(see back for details)
+        </div>
+
+        <div class="arrow dark"><div class="shaft"></div><div class="head"></div></div>
+
+        <div class="flow-action">
+          <div class="fa-label">Call Royal Dispatch</div>
+          <div class="fa-phone">(877) 995-6161</div>
+          <div class="fa-note">*Royal PCS form is required with MD signature</div>
+        </div>
+
+        <div class="arrow dark"><div class="shaft"></div><div class="head"></div></div>
+
+        <div class="flow-outcome">
+          <strong>Royal will run transport.</strong>
+        </div>
+
+        <div class="arrow dark"><div class="shaft"></div><div class="head"></div></div>
+
+        <div class="flow-billing">Royal bills HPSM</div>
+
+      </div>
+    </div>
+
+    <!-- ══ RIGHT LANE: NEMT ══ -->
+    <div class="lane lane-right">
+      <div class="lane-header">
+        <div>
+          <div class="lane-title">Wheelchair or Stretcher Van / Gurney</div>
+          <div class="lane-sub">Non-Emergency Medical Transport (NEMT)</div>
+        </div>
+      </div>
+      <div class="lane-body">
+
+        <div class="flow-action">
+          <div class="fa-label">Call HPSM to arrange transport</div>
+          <div class="fa-phone">1 (800) 750-4776</div>
+          <div class="fa-phone-alt">(650) 616-2133</div>
+          <div class="fa-note">*HPSM requires PA-PCS form. Fax completed form to (650) 829-2079</div>
+        </div>
+
+        <div class="arrow"><div class="shaft"></div><div class="head"></div></div>
+
+        <!-- DECISION 1: Was HPSM able to fulfill? -->
+        <div class="flow-decision">Was HPSM able to fulfill the transport?</div>
+
+        <!-- YES / NO SPLIT -->
+        <div class="split-row" style="margin-top: 3px;">
+
+          <!-- ── YES PATH ── -->
+          <div class="split-col">
+            <div class="arrow green sm"><div class="shaft"></div><div class="head"></div></div>
+            <div class="yn-pill yes">Yes</div>
+            <div class="arrow green sm"><div class="shaft"></div><div class="head"></div></div>
+            <div class="flow-outcome">
+              <strong>NEMT provider will run the transport.</strong>
+            </div>
+            <div style="margin-top: 4px;"><span class="flow-billing">NEMT Provider bills HPSM</span></div>
+          </div>
+
+          <!-- ── NO PATH ── -->
+          <div class="split-col">
+            <div class="arrow red sm"><div class="shaft"></div><div class="head"></div></div>
+            <div class="yn-pill no">No</div>
+            <div class="arrow red sm"><div class="shaft"></div><div class="head"></div></div>
+
+            <!-- MISSING STEP: Call Royal Dispatch -->
+            <div class="flow-action sm">
+              <div class="fa-label">Call Royal Dispatch</div>
+              <div class="fa-phone">(877) 995-6161</div>
+              <div class="fa-note">Inform dispatch HPSM could not fulfill the ride.</div>
+            </div>
+
+            <div class="arrow sm"><div class="shaft"></div><div class="head"></div></div>
+
+            <!-- DECISION 2: Was non-HPSM provider available? -->
+            <div class="flow-decision sm">Was a non-HPSM provider available?</div>
+
+            <!-- NESTED YES / NO -->
+            <div class="split-row" style="margin-top: 3px;">
+
+              <!-- NESTED YES -->
+              <div class="split-col">
+                <div class="arrow green sm"><div class="shaft"></div><div class="head"></div></div>
+                <div class="yn-pill yes sm">Yes</div>
+                <div class="arrow green sm"><div class="shaft"></div><div class="head"></div></div>
+                <div class="flow-outcome sm">
+                  <div><strong>Non-HPSM provider found.</strong><br>
+                  Provider will run transport.</div>
+                </div>
+                <span class="flow-billing sm">Royal bills SMMC</span>
+              </div>
+
+              <!-- NESTED NO -->
+              <div class="split-col">
+                <div class="arrow red sm"><div class="shaft"></div><div class="head"></div></div>
+                <div class="yn-pill no sm">No</div>
+                <div class="arrow red sm"><div class="shaft"></div><div class="head"></div></div>
+                <div class="flow-outcome sm">
+                  <div><strong>Royal will run transport.</strong></div>
+                </div>
+                <span class="flow-billing sm">Royal bills HPSM</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /lanes -->
+
+  <!-- CONTACT FOOTER -->
+  <div class="contact-footer">
+    <!-- HPSM - separate color -->
+    <div class="contact-hpsm">
+      <span class="ch-badge">HPSM Health Services</span>
+      <span class="ch-detail">Authorization Questions &nbsp;&nbsp; Phone: (650) 616-2070 &nbsp;|&nbsp; Fax: (650) 829-2079</span>
+    </div>
+    <!-- Royal Escalation - numbered order -->
+    <div class="contact-escalation">
+      <span class="ce-label">Royal Escalation</span>
+      <div class="ce-steps">
+        <div class="ce-step">
+          <span class="ce-num">1</span>
+          <span class="ce-title">Royal Dispatch</span>
+          <span class="ce-phone">(877) 995-6161</span>
+        </div>
+        <div class="ce-step">
+          <span class="ce-num">2</span>
+          <span class="ce-title">Dispatch Lead</span>
+          <span class="ce-phone">(510) 301-0350</span>
+        </div>
+        <div class="ce-step">
+          <span class="ce-num">3</span>
+          <span class="ce-title">Dir of Comm Center</span>
+          <span class="ce-phone">(916) 402-1812</span>
+        </div>
+        <div class="ce-step">
+          <span class="ce-num">4</span>
+          <span class="ce-title">Dir of Operations</span>
+          <span class="ce-phone">(510) 342-0927</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE 2: LEVEL OF CARE ═══ -->
+<div class="page">
+  <div class="header">
+    <div class="logo-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 735.76 179.54"><defs><style>.cls-1{fill:#43205b;stroke-width:0px;}</style></defs><g><path class="cls-1" d="m212.79,20.12h25.91c7.18,0,12.68,1.92,16.52,5.75,3.24,3.24,4.86,7.56,4.86,12.95v.16c0,4.59-1.12,8.33-3.36,11.21-2.24,2.89-5.17,5.01-8.78,6.36l13.84,20.24h-14.57l-12.14-18.14h-9.8v18.14h-12.47V20.12Zm25.1,27.53c3.08,0,5.44-.73,7.08-2.19,1.65-1.46,2.47-3.4,2.47-5.83v-.16c0-2.7-.86-4.72-2.59-6.07-1.73-1.35-4.13-2.02-7.21-2.02h-12.39v16.27h12.63Z"/><path class="cls-1" d="m297.24,77.76c-4.37,0-8.39-.77-12.06-2.31-3.67-1.54-6.84-3.62-9.51-6.23-2.67-2.62-4.75-5.69-6.23-9.23-1.49-3.53-2.23-7.33-2.23-11.38v-.16c0-4.05.76-7.84,2.27-11.38,1.51-3.53,3.6-6.64,6.27-9.31s5.86-4.78,9.55-6.32c3.7-1.54,7.73-2.31,12.1-2.31s8.39.77,12.06,2.31c3.67,1.54,6.84,3.62,9.51,6.23,2.67,2.62,4.75,5.7,6.23,9.23,1.48,3.54,2.23,7.33,2.23,11.38v.16c0,4.05-.76,7.84-2.27,11.38-1.51,3.54-3.6,6.64-6.27,9.31-2.67,2.67-5.86,4.78-9.55,6.32-3.7,1.54-7.73,2.31-12.1,2.31Zm.16-11.5c2.48,0,4.78-.46,6.88-1.38,2.11-.92,3.9-2.19,5.38-3.81,1.48-1.62,2.64-3.49,3.48-5.63.84-2.13,1.25-4.41,1.25-6.84v-.16c0-2.43-.42-4.72-1.25-6.88-.84-2.16-2.02-4.05-3.56-5.67s-3.36-2.9-5.46-3.85-4.4-1.42-6.88-1.42-4.85.46-6.92,1.38c-2.08.92-3.86,2.19-5.34,3.81-1.49,1.62-2.65,3.5-3.48,5.63-.84,2.13-1.25,4.41-1.25,6.84v.16c0,2.43.42,4.72,1.25,6.88.84,2.16,2.02,4.05,3.56,5.67,1.54,1.62,3.35,2.9,5.42,3.85,2.08.95,4.38,1.42,6.92,1.42Z"/><path class="cls-1" d="m350.43,54.45l-21.78-34.33h14.57l13.52,22.75,13.76-22.75h14.17l-21.78,34.08v22.59h-12.47v-22.35Z"/><path class="cls-1" d="m402.97,19.71h11.5l24.29,57.08h-13.04l-5.18-12.71h-23.96l-5.18,12.71h-12.71l24.29-57.08Zm13.12,33.36l-7.53-18.38-7.53,18.38h15.06Z"/><path class="cls-1" d="m447.5,20.12h12.47v45.42h28.26v11.25h-40.72V20.12Z"/><path class="cls-1" d="m233.4,91.88h11.5l24.29,57.08h-13.03l-5.18-12.71h-23.96l-5.18,12.71h-12.71l24.29-57.08Zm13.12,33.36l-7.53-18.38-7.53,18.38h15.06Z"/><path class="cls-1" d="m276.31,92.28h13.44l14.9,23.96,14.9-23.96h13.44v56.67h-12.31v-37l-15.95,24.21h-.32l-15.79-23.96v36.76h-12.31v-56.67Z"/><path class="cls-1" d="m344.96,92.28h26.27c6.52,0,11.45,1.67,14.79,5.02,2.59,2.59,3.88,5.8,3.88,9.63v.16c0,1.62-.2,3.05-.6,4.29-.4,1.24-.94,2.36-1.61,3.36-.67,1-1.45,1.88-2.33,2.63-.89.76-1.84,1.4-2.86,1.94,3.28,1.24,5.86,2.93,7.74,5.06,1.88,2.13,2.82,5.09,2.82,8.87v.16c0,2.59-.5,4.86-1.5,6.8-1,1.94-2.43,3.56-4.28,4.86-1.86,1.29-4.1,2.27-6.71,2.91-2.61.65-5.51.97-8.69.97h-26.92v-56.67Zm23.64,22.91c2.75,0,4.94-.47,6.56-1.42,1.62-.94,2.43-2.47,2.43-4.58v-.16c0-1.89-.7-3.33-2.1-4.33-1.4-1-3.43-1.5-6.07-1.5h-12.31v11.98h11.5Zm3.32,22.83c2.75,0,4.91-.5,6.48-1.5,1.56-1,2.35-2.55,2.35-4.66v-.16c0-1.89-.73-3.39-2.19-4.49-1.46-1.11-3.81-1.66-7.04-1.66h-14.41v12.47h14.82Z"/><path class="cls-1" d="m425.44,149.84c-7.61,0-13.6-2.11-17.97-6.32s-6.56-10.5-6.56-18.86v-32.38h12.47v32.06c0,4.64,1.08,8.14,3.24,10.48,2.16,2.35,5.15,3.52,8.99,3.52s6.83-1.13,8.99-3.4c2.16-2.27,3.24-5.67,3.24-10.2v-32.47h12.47v31.98c0,4.32-.58,8.07-1.74,11.25-1.16,3.18-2.82,5.84-4.98,7.97-2.16,2.13-4.78,3.72-7.85,4.78-3.08,1.05-6.5,1.58-10.28,1.58Z"/><path class="cls-1" d="m461.38,92.28h12.47v45.42h28.26v11.25h-40.72v-56.67Z"/><path class="cls-1" d="m530.12,91.88h11.5l24.29,57.08h-13.04l-5.18-12.71h-23.96l-5.18,12.71h-12.71l24.29-57.08Zm13.12,33.36l-7.53-18.38-7.53,18.38h15.06Z"/><path class="cls-1" d="m573.03,92.28h11.5l26.56,34.89v-34.89h12.31v56.67h-10.61l-27.45-36.03v36.03h-12.31v-56.67Z"/><path class="cls-1" d="m661.12,149.93c-4.16,0-8.02-.76-11.58-2.27-3.56-1.51-6.64-3.58-9.23-6.19-2.59-2.62-4.61-5.71-6.07-9.27-1.46-3.56-2.19-7.37-2.19-11.42v-.16c0-4.05.73-7.84,2.19-11.38,1.46-3.53,3.48-6.64,6.07-9.31s5.69-4.78,9.31-6.32,7.61-2.31,11.98-2.31c2.64,0,5.06.22,7.25.65,2.19.43,4.17,1.03,5.95,1.78,1.78.76,3.43,1.67,4.94,2.75,1.51,1.08,2.92,2.27,4.21,3.56l-7.93,9.15c-2.21-2-4.47-3.56-6.76-4.7-2.29-1.13-4.87-1.7-7.73-1.7-2.38,0-4.58.46-6.6,1.38-2.02.92-3.76,2.19-5.22,3.81-1.46,1.62-2.59,3.5-3.4,5.63-.81,2.13-1.21,4.41-1.21,6.84v.16c0,2.43.4,4.72,1.21,6.88.81,2.16,1.93,4.05,3.36,5.67,1.43,1.62,3.16,2.9,5.18,3.85,2.02.95,4.25,1.42,6.68,1.42,3.24,0,5.98-.59,8.22-1.78,2.24-1.19,4.46-2.81,6.68-4.86l7.93,8.02c-1.46,1.57-2.97,2.97-4.53,4.21-1.57,1.24-3.28,2.31-5.14,3.2-1.86.89-3.9,1.57-6.11,2.02-2.21.46-4.7.69-7.45.69Z"/><path class="cls-1" d="m692.69,92.28h42.67v11.09h-30.36v11.5h26.72v11.09h-26.72v11.9h30.77v11.09h-43.07v-56.67Z"/><polygon class="cls-1" points="88.55 86.83 88.57 86.83 88.57 86.83 88.57 86.83 88.55 86.83"/><path class="cls-1" d="m0,89.77c0,49.5,40.27,89.77,89.77,89.77s89.77-40.27,89.77-89.77S139.27,0,89.77,0,0,40.27,0,89.77Zm12.38,0C12.38,47.1,47.1,12.38,89.77,12.38s77.39,34.72,77.39,77.39-34.72,77.39-77.39,77.39S12.38,132.45,12.38,89.77Z"/><path class="cls-1" d="m151.01,58.34c-3.53,0-6.38,2.86-6.38,6.39,0,2.19,1.1,4.11,2.78,5.26-14.04,10.4-26.14,1.76-26.5-14.16,2.97-.55,5.22-3.14,5.22-6.27,0-3.53-2.86-6.39-6.39-6.39s-6.38,2.86-6.38,6.39c0,2.89,1.93,5.3,4.56,6.09.02,0,0,.08,0,.1-5.15,15.47-24.26,10.77-26.42-10.37,0,0,0-.03,0-.03,2.82-.66,4.93-3.18,4.93-6.2,0-3.53-2.86-6.39-6.38-6.39h0s0,0,0,0c-3.53,0-6.38,2.86-6.38,6.39,0,3.02,2.11,5.54,4.93,6.2,0,0,0,.02,0,.03-2.16,21.13-21.27,25.84-26.42,10.37,0-.02-.03-.09,0-.1,2.63-.79,4.56-3.2,4.56-6.09,0-3.53-2.86-6.39-6.38-6.39s-6.39,2.86-6.39,6.39c0,3.13,2.25,5.72,5.22,6.27-.36,15.92-12.46,24.56-26.5,14.16,1.67-1.15,2.78-3.08,2.78-5.26,0-3.53-2.86-6.39-6.38-6.39s-6.39,2.86-6.39,6.39,2.63,6.11,5.95,6.34c11.22,13.5,7.97,49.37,5.28,57.97-1.27.69-1.14,2.97-.43,3.81,4.6,5.46,30.6,8.11,56.57,8.09h0c25.97.02,51.97-2.63,56.57-8.09.71-.84.83-3.12-.43-3.81-2.7-8.6-5.94-44.47,5.28-57.97,3.32-.23,5.95-2.96,5.95-6.34s-2.86-6.39-6.39-6.39Zm-48.17,43.51l14.34,9.44-7.76,11.79-12.36-8.14v14.8h-14.11v-14.8l-12.36,8.14-7.76-11.79,14.34-9.44-14.34-9.44,7.76-11.79,12.36,8.14v-14.8h14.11v14.8l12.36-8.14,7.76,11.79-14.34,9.44Z"/><path class="cls-1" d="m32.62,69.97c-.08-.06-.04-.03,0,0h0Z"/></g></svg>
+    </div>
+    <div class="title-wrap">
+      <div class="title">Level of Care Reference</div>
+      <div class="subtitle">Determining the appropriate transport level for HPSM members</div>
+    </div>
+    <div class="version-wrap">V1 &bull; Rev. 04/2026</div>
+  </div>
+  <div class="page2-content">
+    <div class="loc-intro">Use this reference to determine the correct level of care <strong>before</strong> calling for transport. The level of care dictates whether you call Royal Dispatch directly or go through HPSM.</div>
+    <div class="loc-grid">
+      <div class="loc-card">
+        <div class="loc-card-header"><span class="loc-abbr">BLS</span><span class="loc-full">Basic Life Support</span></div>
+        <div class="loc-card-body">
+          <p><span class="loc-highlight">Call Royal Dispatch directly.</span> Patient requires basic medical monitoring during transport.</p>
+          <ul><li>Stable patients needing stretcher transport</li><li>Oxygen administration (nasal cannula, simple mask)</li><li>Basic vitals monitoring (BP, pulse, SpO2)</li><li>IV maintenance (no new starts or medication pushes)</li><li>Non-emergency transfers between facilities</li></ul>
+          <p class="loc-examples"><strong>Common examples:</strong> Dialysis transfers, SNF to hospital for routine appointments, stable post-surgical patients, discharge transports requiring a stretcher.</p>
+        </div>
+      </div>
+      <div class="loc-card">
+        <div class="loc-card-header"><span class="loc-abbr">ALS</span><span class="loc-full">Advanced Life Support</span></div>
+        <div class="loc-card-body">
+          <p><span class="loc-highlight">Call Royal Dispatch directly.</span> Patient requires advanced interventions beyond BLS capabilities.</p>
+          <ul><li>Cardiac monitoring (12-lead ECG interpretation)</li><li>IV medication administration</li><li>Advanced airway management</li><li>Blood glucose monitoring and treatment</li><li>Patients with unstable vitals or risk of deterioration</li></ul>
+          <p class="loc-examples"><strong>Common examples:</strong> Chest pain patients, acute stroke transfers, patients on IV drips (non-vasopressor), sepsis patients needing higher-level monitoring.</p>
+        </div>
+      </div>
+      <div class="loc-card">
+        <div class="loc-card-header dark"><span class="loc-abbr">CCT</span><span class="loc-full">Critical Care Transport</span></div>
+        <div class="loc-card-body">
+          <p><span class="loc-highlight">Call Royal Dispatch directly.</span> Patient requires ICU-level care and monitoring during transport.</p>
+          <ul><li>Ventilator management (mechanical ventilation)</li><li>Vasopressor / vasoactive drip management</li><li>Invasive hemodynamic monitoring (arterial lines)</li><li>Chest tube management</li><li>Patients requiring 1:1 RN or RT attendance</li></ul>
+          <p class="loc-examples"><strong>Common examples:</strong> ICU-to-ICU transfers, patients on multiple pressors, ventilated patients, ECMO transports, post-cardiac arrest stabilization transfers.</p>
+        </div>
+      </div>
+      <!-- TEAL for HPSM-related -->
+      <div class="loc-card teal">
+        <div class="loc-card-header" style="background:#00796b;"><span class="loc-abbr" style="font-size:12pt;">WC / SV</span><span class="loc-full">Wheelchair &amp; Stretcher Van / Gurney</span></div>
+        <div class="loc-card-body">
+          <p><span class="loc-highlight-teal">Call HPSM first to arrange transport.</span> Patient does NOT require medical monitoring during transport.</p>
+          <ul><li>Patient can sit upright in a wheelchair for transport</li><li>Patient needs a stretcher/gurney but no medical care en route</li><li>No oxygen, IV, cardiac monitoring, or medication needs</li><li>Non-emergency, routine appointments and discharges</li></ul>
+          <p class="loc-examples"><strong>Common examples:</strong> Doctor appointments, dialysis (ambulatory), routine discharges of stable patients who cannot use personal vehicles, SNF transfers without medical needs.</p>
+        </div>
+      </div>
+    </div>
+    <div class="nemt-note">
+      <div class="nemt-title">Important: HPSM NEMT Authorization</div>
+      <p>For <strong>Wheelchair and Stretcher Van</strong> transports, SMMC must order through HPSM so that HPSM covers the cost. Only if HPSM cannot fulfill the transport should you escalate to Royal Dispatch. Refer to the front-side workflow for the complete decision tree and billing designations.</p>
+    </div>
+  </div>
+  <div class="page2-footer">For authorization questions, contact HPSM Health Services: Phone (650) 616-2070 &bull; Fax (650) 829-2079 &bull; Royal Ambulance &copy; 2026</div>
+</div>
+
+</body>
+</html>

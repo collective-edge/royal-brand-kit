@@ -1,0 +1,358 @@
+{
+  "_comment": "HOUSE TYPE SYSTEM v1.0. Identical in every brand kit. Machine-readable mirror of type-system.css, for generators that cannot parse CSS: python-pptx, python-docx, matplotlib, reportlab, weasyprint pipelines. Run scripts/check-sync.py to assert this file and type-system.css still agree.",
+  "version": "1.0",
+  "appliesTo": "every brand in brands.json",
+  "source": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css",
+  "family": {
+    "sans": {
+      "name": "Montserrat",
+      "stack": [
+        "Montserrat",
+        "Helvetica Neue",
+        "Helvetica",
+        "Arial",
+        "sans-serif"
+      ],
+      "variable": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf",
+      "variableWoff2": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.woff2",
+      "italic": null,
+      "italicPolicy": "There is no italic in this system at any weight. Do not synthesize one. The Collective Edge heavy-italic signature exists only in the drawn wordmark SVG."
+    },
+    "mono": {
+      "usage": "codes only: authorization numbers, unit IDs, run numbers, policy numbers, MRNs, anything retyped or read aloud",
+      "reason": "Montserrat capital I, lowercase l and figure 1 are three identical stems; zero and capital O are the same circle",
+      "stack": [
+        "ui-monospace",
+        "SF Mono",
+        "SFMono-Regular",
+        "Menlo",
+        "Consolas",
+        "Liberation Mono",
+        "monospace"
+      ],
+      "office": "Consolas"
+    }
+  },
+  "metrics": {
+    "_comment": "Measured from the shipping Montserrat variable font AT WGHT 400. The file's variable default instance is wght 100, whose Thin metrics are narrower than the Regular that sets body copy. Instance to 400 before measuring.",
+    "unitsPerEm": 1000,
+    "capHeight": 0.7,
+    "xHeight": 0.525,
+    "xOverCap": 0.75,
+    "ascender": 0.968,
+    "descender": -0.251,
+    "naturalLineBox": 1.219,
+    "digitZeroAdvance": 0.662,
+    "avgLetterAdvance": 0.5567,
+    "avgRunningCharAdvance": 0.5084,
+    "realCharsPerCh": 1.302,
+    "widthVsHelvetica": "+16.7%",
+    "minLeadingForWrappingText": 1.05,
+    "measuredAtWeight": 400
+  },
+  "weight": {
+    "regular": {
+      "value": 400,
+      "name": "Regular",
+      "use": "body, captions, footers, table cells"
+    },
+    "semibold": {
+      "value": 600,
+      "name": "SemiBold",
+      "use": "h3, h4, eyebrows, uppercase labels, table headers"
+    },
+    "bold": {
+      "value": 700,
+      "name": "Bold",
+      "use": "h1, h2, emphasis in body, stat numerals"
+    },
+    "extrabold": {
+      "value": 800,
+      "name": "ExtraBold",
+      "use": "hero and title bands only"
+    },
+    "reserved": [
+      100,
+      200,
+      300,
+      900
+    ],
+    "maxPerPiece": 3,
+    "onDark": {
+      "trackingBonusEm": 0.005,
+      "appliesTrackingTo": "every step",
+      "dropsWeightWhen": "the step is 700 or heavier",
+      "weightFloor": 600,
+      "displayWeight": 700,
+      "reason": "light letterforms on a dark ground bloom optically; the same weight reads heavier and the counters close. 500 is not in the ladder, so 600 is the floor and only gains the tracking."
+    }
+  },
+  "scale": [
+    {
+      "token": "display-xl",
+      "px": 96,
+      "pt": 72,
+      "cssClamp": "clamp(44px, 7.6vw, 96px)",
+      "weight": 800,
+      "leading": 1.05,
+      "tracking": -0.02,
+      "capsTracking": 0.02
+    },
+    {
+      "token": "display-lg",
+      "px": 72,
+      "pt": 54,
+      "cssClamp": "clamp(38px, 6.0vw, 72px)",
+      "weight": 800,
+      "leading": 1.08,
+      "tracking": -0.018,
+      "capsTracking": 0.02
+    },
+    {
+      "token": "display-md",
+      "px": 56,
+      "pt": 42,
+      "cssClamp": "clamp(32px, 4.6vw, 56px)",
+      "weight": 800,
+      "leading": 1.1,
+      "tracking": -0.015,
+      "capsTracking": 0.025
+    },
+    {
+      "token": "h1",
+      "px": 40,
+      "pt": 30,
+      "cssClamp": "clamp(28px, 3.2vw, 40px)",
+      "weight": 700,
+      "leading": 1.18,
+      "tracking": -0.012,
+      "capsTracking": 0.03
+    },
+    {
+      "token": "h2",
+      "px": 32,
+      "pt": 24,
+      "cssClamp": "clamp(24px, 2.4vw, 32px)",
+      "weight": 700,
+      "leading": 1.25,
+      "tracking": -0.008,
+      "capsTracking": 0.04
+    },
+    {
+      "token": "h3",
+      "px": 24,
+      "pt": 18,
+      "cssClamp": null,
+      "weight": 600,
+      "leading": 1.35,
+      "tracking": -0.004,
+      "capsTracking": 0.05
+    },
+    {
+      "token": "h4",
+      "px": 20,
+      "pt": 15,
+      "cssClamp": null,
+      "weight": 600,
+      "leading": 1.45,
+      "tracking": 0,
+      "capsTracking": 0.06
+    },
+    {
+      "token": "body-lg",
+      "px": 20,
+      "pt": 15,
+      "cssClamp": null,
+      "weight": 400,
+      "leading": 1.55,
+      "tracking": 0,
+      "capsTracking": 0.06
+    },
+    {
+      "token": "body",
+      "px": 16,
+      "pt": 12,
+      "cssClamp": null,
+      "weight": 400,
+      "leading": 1.6,
+      "tracking": 0,
+      "capsTracking": 0.07
+    },
+    {
+      "token": "body-sm",
+      "px": 14,
+      "pt": 10.5,
+      "cssClamp": null,
+      "weight": 400,
+      "leading": 1.55,
+      "tracking": 0.005,
+      "capsTracking": 0.08
+    },
+    {
+      "token": "caption",
+      "px": 12,
+      "pt": 9,
+      "cssClamp": null,
+      "weight": 400,
+      "leading": 1.45,
+      "tracking": 0.01,
+      "capsTracking": 0.08
+    },
+    {
+      "token": "eyebrow",
+      "px": 12,
+      "pt": 9,
+      "cssClamp": null,
+      "weight": 600,
+      "leading": 1.45,
+      "tracking": null,
+      "capsTracking": 0.08
+    }
+  ],
+  "measure": {
+    "_comment": "1ch is the digit zero advance, 0.662em at wght 400, so 1ch = 1.302 Montserrat characters. These ch values are smaller than the character counts they produce.",
+    "body": {
+      "ch": 54,
+      "realChars": 70,
+      "pxAt16": 572
+    },
+    "lead": {
+      "ch": 54,
+      "realChars": 70,
+      "pxAt16": 572
+    },
+    "caption": {
+      "ch": 40,
+      "realChars": 52,
+      "pxAt16": 424
+    },
+    "heading": {
+      "ch": 28,
+      "realChars": 36,
+      "pxAt16": 297
+    },
+    "display": {
+      "ch": 16,
+      "realChars": 21,
+      "pxAt16": 169
+    }
+  },
+  "space": {
+    "base": 4,
+    "steps": [
+      4,
+      8,
+      12,
+      16,
+      24,
+      32,
+      48,
+      64,
+      96,
+      128
+    ],
+    "aboveHeading": 48,
+    "belowHeading": 16,
+    "headingAttachmentRatio": 3
+  },
+  "office": {
+    "_comment": "PowerPoint and Word have no weight axis. They render whatever static files are installed. An 800 headline silently falls back to Bold when Montserrat ExtraBold is absent.",
+    "requiredStaticFonts": [
+      {
+        "weight": 400,
+        "file": "Montserrat-Regular.ttf",
+        "menuName": "Montserrat",
+        "fallsBackTo": null
+      },
+      {
+        "weight": 600,
+        "file": "Montserrat-SemiBold.ttf",
+        "menuName": "Montserrat SemiBold",
+        "fallsBackTo": "Montserrat"
+      },
+      {
+        "weight": 700,
+        "file": "Montserrat-Bold.ttf",
+        "menuName": "Montserrat",
+        "fallsBackTo": null
+      },
+      {
+        "weight": 800,
+        "file": "Montserrat-ExtraBold.ttf",
+        "menuName": "Montserrat ExtraBold",
+        "fallsBackTo": "Montserrat Bold"
+      }
+    ],
+    "minBodyPt": 10.5,
+    "minAnyPt": 9
+  },
+  "composition": {
+    "alignment": "flush left, ragged right",
+    "justify": "never",
+    "centerMaxLines": 3,
+    "textWrapHeading": "balance",
+    "textWrapParagraph": "pretty",
+    "orphans": 3,
+    "widows": 3,
+    "capsMaxWords": 4,
+    "headingCase": "sentence case inside a document",
+    "labelCase": "uppercase, always tracked",
+    "displayCase": "uppercase permitted on a title, band or divider surface"
+  },
+  "micro": {
+    "quotes": {
+      "wrong": "\"x\" 'y'",
+      "right": "“x” ‘y’"
+    },
+    "apostrophe": {
+      "wrong": "crew's",
+      "right": "crew’s"
+    },
+    "range": {
+      "wrong": "2024-2026",
+      "right": "2024–2026",
+      "char": "en dash"
+    },
+    "ellipsis": {
+      "wrong": "...",
+      "right": "…"
+    },
+    "numberUnit": {
+      "wrong": "12 min",
+      "right": "12 min",
+      "char": "non-breaking space"
+    },
+    "separator": {
+      "wrong": "|",
+      "right": "·"
+    },
+    "emDash": {
+      "policy": "never; use a period, a comma or a middot"
+    },
+    "figures": {
+      "columns": "tabular-nums lining",
+      "prose": "proportional"
+    },
+    "smallCaps": {
+      "policy": "Montserrat has none; never synthesize. Use 600 uppercase at body size with 0.08em tracking."
+    },
+    "fontSynthesis": "none"
+  },
+  "rules": [
+    "Montserrat everywhere. No italic, ever, at any weight.",
+    "Weights: 400 body, 600 subheads and caps labels, 700 headings and emphasis, 800 hero only. Nothing else.",
+    "Three weights maximum in one piece. Three sizes above body maximum.",
+    "On any dark ground, add 0.005em tracking at every step, and drop one weight where the step is 700 or heavier. 600 is the floor, because 500 is not in the ladder.",
+    "Tracking in em, never px. Large type negative, small caps positive.",
+    "Uppercase is always tracked and never longer than four words.",
+    "Sentence case for headings inside a document. Uppercase for display statements on a title, band or divider surface, and for labels. Always tracked, never past four words.",
+    "Flush left, ragged right. Never justify. Never center past three lines.",
+    "Body measure max-width 54ch = 70 characters. Captions 40ch. Headings 28ch.",
+    "text-wrap: balance on every heading. text-wrap: pretty on every paragraph. orphans: 3; widows: 3 in print.",
+    "Space above a heading is three times the space below it.",
+    "Every vertical value is a multiple of 4.",
+    "Codes, IDs and unit numbers set in the mono face. Never Montserrat.",
+    "Columns of numbers get tabular-nums. Curly quotes, en dashes, non-breaking spaces in units. No em dashes.",
+    "A label, a value, and nothing between them. No helper text under a field, no caption restating a number, no parenthetical after a heading."
+  ]
+}

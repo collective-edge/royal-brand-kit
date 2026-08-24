@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Royal Ambulance · Deck template</title>
+
+<!-- HOUSE TYPE SYSTEM v1.0 · five slides at 16:9, one landscape page each.
+     Load order is fixed: the shared type layer first, the brand palette second.
+     type-system.css is identical in every kit. palette.css is the only file
+     that differs between Apex, Royal and Collective Edge. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/palette.css">
+
+<style>
+/* ---------- FONT ------------------------------------------------
+   Declared here, and the family is selected on html, body below, so
+   Montserrat still loads and still embeds when this file is printed
+   or converted to PDF and the CDN stylesheet does not resolve. The
+   declaration alone selects nothing. */
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.woff2") format("woff2-variations"),
+       url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf")   format("truetype-variations");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ---------- BRAND ------------------------------------------------
+   The only per-brand lines in this file. Everything below resolves
+   through the semantic layer and is identical in every kit. */
+
+:root {
+  --tpl-subbanner:   var(--royal-purple);
+  --tpl-stat-kicker: var(--royal-purple);
+  --slide-pad: var(--space-8);
+}
+
+
+/* ---------- DECK -------------------------------------------------
+   13.333in by 7.5in is 16:9 and is one landscape page at print. On
+   screen it renders at 1280 by 720. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--bg-surface);
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+}
+
+.deck {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-6) 0;
+}
+
+.slide {
+  position: relative;
+  width: 13.333in;
+  height: 7.5in;
+  padding: var(--slide-pad);
+  background: var(--bg-canvas);
+  box-shadow: var(--shadow-3);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dark slides carry the header band treatment: Dark Purple ground.
+   .bk-on-dark drops display from 800 to 700 and opens the tracking.
+   Never set that by hand. */
+.slide.bk-on-dark { background: var(--bg-band); }
+
+.slide .slide-logo { width: 2.2in; height: auto; display: block; align-self: flex-start; }
+.slide .slide-mark { width: 0.9in; height: auto; display: block; align-self: flex-start; }
+
+
+/* ---------- 1. TITLE SLIDE --------------------------------------- */
+
+.slide-title { justify-content: center; gap: var(--space-7); }
+
+.slide-title .slide-headline { margin: 0; }
+
+/* No color on the meta lines. .bk-on-dark .bk-body-lg already resolves to
+   --fg-on-dark-2 on the same element. */
+.slide-title .slide-meta { margin: 0; }
+
+
+/* ---------- 2. SECTION DIVIDER ----------------------------------- */
+
+.slide-divider { justify-content: flex-end; gap: var(--space-4); padding-bottom: var(--space-9); }
+
+.slide-divider .slide-mark { position: absolute; top: var(--slide-pad); left: var(--slide-pad); }
+.slide-divider .slide-number   { margin: 0; }
+.slide-divider .slide-headline { margin: 0; }
+.slide-divider .slide-meta     { margin: var(--space-4) 0 0; }
+
+
+/* ---------- 3 and 4. LIGHT SLIDES --------------------------------- */
+
+.slide-head { padding-bottom: var(--space-5); border-bottom: 1px solid var(--border-1); }
+.slide-head .slide-eyebrow { margin: 0 0 var(--space-2); color: var(--fg-accent); }
+.slide-head .slide-h2      { margin: 0; }
+
+.slide-body { margin-top: var(--space-7); }
+
+/* No max-width here. .bk-body-lg already carries --measure-lead on the same
+   element, the same 54ch. */
+.slide-body p {
+  margin: 0 0 var(--space-4);
+  text-wrap: pretty;
+  orphans: 3;
+  widows: 3;
+}
+
+
+/* ---------- 4. DATA SLIDE ----------------------------------------
+   Cell type is set once on the table, never on every cell, so no
+   cell has to have its measure cleared afterwards. Cells carry
+   tabular figures, so a number column needs nothing but text-align. */
+
+.slide-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  color: var(--fg-1);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--tr-body);
+}
+
+.slide-table thead tr { background: var(--bg-inverse); }
+
+.slide-table th {
+  padding: var(--space-3) var(--space-4);
+  color: var(--fg-on-dark-1);
+}
+
+.slide-table td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border-1);
+}
+
+.slide-table tbody tr:nth-child(even) { background: var(--bg-surface); }
+
+.slide-table .num { text-align: right; white-space: nowrap; }
+
+
+/* ---------- 5. CLOSING SLIDE ------------------------------------- */
+
+.slide-closing { justify-content: center; gap: var(--space-7); }
+
+.slide-closing .slide-headline { margin: 0; }
+.slide-closing .slide-meta     { margin: 0; }
+
+
+/* ---------- SLIDE FOOTER ----------------------------------------- */
+
+.slide-footer {
+  position: absolute;
+  left: var(--slide-pad);
+  right: var(--slide-pad);
+  bottom: var(--space-6);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-5);
+}
+
+/* No letter-spacing here. .bk-caption already resolves to --tr-caption plus the
+   dark bonus, and restating the token alone strips rule 4 off the dark slides. */
+.slide-footer .slide-page {
+  font-weight: 700;
+  color: var(--fg-accent);
+  font-variant-numeric: tabular-nums lining;
+}
+
+/* Rule 4, the weight half. The shared CSS steps down .bk-display-* and
+   .bk-h1/.bk-h2 only, so the hand-set 700 above needs this override on the
+   dark slides. */
+.bk-on-dark .slide-footer .slide-page { color: var(--fg-on-dark-1); font-weight: 600; }
+
+
+/* ---------- PRINT ------------------------------------------------
+   One slide per landscape page. The print block from the shared type
+   layer is repeated so this file sets point sizes on paper on its own. */
+
+@page { size: 13.333in 7.5in; margin: 0; }
+
+@media print {
+  /* This block exists for the case where the CDN stylesheet does not resolve.
+     Without this every dark slide prints white and its reversed type disappears. */
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  html, body { background: var(--bg-canvas); font-size: 12pt; line-height: var(--lh-body); }
+
+  .deck { gap: 0; padding: 0; }
+  .slide { box-shadow: none; break-after: page; page-break-after: always; }
+  .slide:last-child { break-after: auto; page-break-after: auto; }
+
+  .bk-display-xl { font-size: 72pt; }
+  .bk-display-lg { font-size: 54pt; }
+  .bk-display-md { font-size: 42pt; }
+  .bk-h1         { font-size: 30pt; }
+  .bk-h2         { font-size: 24pt; }
+  .bk-h3         { font-size: 18pt; }
+  .bk-h4         { font-size: 15pt; }
+  .bk-body-lg    { font-size: 15pt; }
+  .bk-body       { font-size: 12pt; }
+  .bk-body-sm    { font-size: 10.5pt; }
+  .bk-caption,
+  .bk-eyebrow    { font-size: 9pt; }
+  .bk-stat       { font-size: 42pt; }
+  .slide-table   { font-size: 12pt; }
+
+  p, li, dd, blockquote { orphans: 3; widows: 3; max-width: var(--measure-body); text-wrap: pretty; }
+  h1, h2, h3, h4 { break-after: avoid; page-break-after: avoid; text-wrap: balance; }
+  table, figure, .bk-keep { break-inside: avoid; page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- 1. TITLE -->
+  <section class="slide slide-title bk-on-dark">
+    <img class="slide-logo"
+         src="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-white.svg"
+         alt="Royal Ambulance">
+    <div class="bk-display-md bk-caps slide-headline">Interfacility transport</div>
+    <p class="bk-body-lg slide-meta">Hospital partner review · Q3 2026</p>
+  </section>
+
+  <!-- 2. SECTION DIVIDER -->
+  <section class="slide slide-divider bk-on-dark">
+    <img class="slide-mark"
+         src="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/crown-white.svg"
+         alt="Royal Ambulance">
+    <p class="bk-eyebrow slide-number">Section 02</p>
+    <h1 class="bk-display-md slide-headline">Where the minutes go.</h1>
+    <p class="bk-body-lg slide-meta">Bed to wheels, origin mix, and the slowest quartile</p>
+    <div class="slide-footer">
+      <span class="bk-caption slide-brand">Royal Ambulance · Interfacility transport</span>
+      <span class="bk-caption slide-page">02</span>
+    </div>
+  </section>
+
+  <!-- 3. CONTENT -->
+  <section class="slide slide-content">
+    <div class="slide-head">
+      <p class="bk-eyebrow slide-eyebrow">Q3 · nine partners</p>
+      <h2 class="bk-h2 slide-h2">Bed to wheels is the number partners feel.</h2>
+    </div>
+    <div class="slide-body">
+      <p class="bk-body-lg">The clock runs from discharge order release to departure at the
+        origin door. It is the only interval a charge nurse watches, and it is the one Royal
+        controls end to end. The median held at 38.6&nbsp;minutes across nine partners in Q3.</p>
+      <p class="bk-body-lg">The slowest quartile sat at 71&nbsp;minutes. Every case in it traced
+        to paperwork not ready on the floor, no gurney inside the county, or a receiving bed
+        nobody had confirmed. Two of the three are fixed at the origin, not in the rig.</p>
+    </div>
+    <div class="slide-footer">
+      <span class="bk-caption slide-brand">Royal Ambulance · Interfacility transport</span>
+      <span class="bk-caption slide-page">03</span>
+    </div>
+  </section>
+
+  <!-- 4. DATA -->
+  <section class="slide slide-data">
+    <div class="slide-head">
+      <p class="bk-eyebrow slide-eyebrow">Origin mix</p>
+      <h2 class="bk-h2 slide-h2">Four accounts carry the volume.</h2>
+    </div>
+    <div class="slide-body">
+      <table class="bk-table slide-table">
+        <thead>
+          <tr class="bk-on-dark">
+            <th>Account</th>
+            <th>Origin</th>
+            <th>Level of care</th>
+            <th class="num">Bed to wheels</th>
+            <th class="num">Transports</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="bk-code">RA-2291</span></td>
+            <td>UCSF Parnassus</td>
+            <td>BLS discharge</td>
+            <td class="num">34&nbsp;min</td>
+            <td class="num">1,284</td>
+          </tr>
+          <tr>
+            <td><span class="bk-code">RA-3140</span></td>
+            <td>Alameda Health System</td>
+            <td>Critical care</td>
+            <td class="num">46&nbsp;min</td>
+            <td class="num">612</td>
+          </tr>
+          <tr>
+            <td><span class="bk-code">RA-2867</span></td>
+            <td>Eden Medical Center</td>
+            <td>ALS</td>
+            <td class="num">38&nbsp;min</td>
+            <td class="num">508</td>
+          </tr>
+          <tr>
+            <td><span class="bk-code">RA-3025</span></td>
+            <td>John Muir Concord</td>
+            <td>Wheelchair van</td>
+            <td class="num">29&nbsp;min</td>
+            <td class="num">441</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="slide-footer">
+      <span class="bk-caption slide-brand">Royal Ambulance · Interfacility transport</span>
+      <span class="bk-caption slide-page">04</span>
+    </div>
+  </section>
+
+  <!-- 5. CLOSING -->
+  <section class="slide slide-closing bk-on-dark">
+    <img class="slide-logo"
+         src="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-white.svg"
+         alt="Royal Ambulance">
+    <h1 class="bk-display-md slide-headline">Fix the origin, not the rig.</h1>
+    <p class="bk-body-lg slide-meta">Next review · October, with the paperwork pilot in place</p>
+    <div class="slide-footer">
+      <span class="bk-caption slide-brand">Royal Ambulance · Interfacility transport</span>
+      <span class="bk-caption slide-page">05</span>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>

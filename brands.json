@@ -1,0 +1,189 @@
+{
+  "_comment": "BRAND REGISTRY v1.0. Identical in every brand kit. One place that knows every brand in the house. An agent reads this to resolve a brand name to its CDN root, palette, tokens and logo files without knowing per-brand filenames. Adding a brand means adding one entry here plus the files it points at. See NEW-BRAND.md.",
+  "version": "1.0",
+  "typeSystemVersion": "1.0",
+  "shared": {
+    "_comment": "Identical in every kit. Served from the parent brand because the type layer belongs to Collective Edge and is inherited down.",
+    "typeSystemCss": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css",
+    "typeTokensJson": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-tokens.json",
+    "fontVariableTtf": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf",
+    "fontVariableWoff2": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.woff2"
+  },
+  "logoRoles": {
+    "_comment": "Every brand maps these five roles. Ask for a role, never for a filename. `-on-light` means the version to place ON a light background; `-on-dark` the version to place ON a dark background.",
+    "horizontal-on-light": "primary lockup, light backgrounds",
+    "horizontal-on-dark": "primary lockup, dark backgrounds",
+    "mark-on-light": "icon only, light backgrounds",
+    "mark-on-dark": "icon only, dark backgrounds",
+    "stacked-on-dark": "optional vertical lockup; null when the brand has none"
+  },
+  "brands": {
+    "collective-edge": {
+      "name": "Collective Edge",
+      "role": "parent",
+      "skill": "collective-edge-brand-guidelines",
+      "repo": "collective-edge/collective-edge-brand-kit",
+      "cdnRoot": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/",
+      "paletteCss": "snippets/palette.css",
+      "tokensJson": "tokens.json",
+      "prefix": "ce",
+      "hasColor": false,
+      "colorNote": "Collective Edge has no hue of its own. It runs on a grey ramp. On a co-brand surface the Edge wedge takes the PARTNER's hue.",
+      "color": {
+        "primary": "#111111",
+        "primaryDeep": "#000000",
+        "accent": "#C8C8C8",
+        "accentDeep": "#6E6E6E",
+        "bandBackground": "#000000",
+        "surfaceTint": "#F4F4F4"
+      },
+      "logos": {
+        "horizontal-on-light": "assets/logos/horizontal-black.svg",
+        "horizontal-on-dark": "assets/logos/horizontal-white.svg",
+        "mark-on-light": "assets/logos/mark-black.svg",
+        "mark-on-dark": "assets/logos/mark-white.svg",
+        "stacked-on-dark": null
+      },
+      "cobrandMarks": {
+        "_comment": "The Edge wedge carries the partner's hue. Every combination ships as a file. Never hand-recolor a mark.",
+        "apex": {
+          "on-light": "assets/logos/mark-black-apex.svg",
+          "on-dark": "assets/logos/mark-white-apex.svg"
+        },
+        "royal": {
+          "on-light": "assets/logos/mark-black-royal.svg",
+          "on-dark": "assets/logos/mark-white-royal.svg"
+        }
+      },
+      "heroTreatment": {
+        "_comment": "Collective Edge signature. Apex and Royal do not use it; their dark bands are flat brand color. Title slides, section dividers and the marketing hero only, once per surface. Never behind body copy, never on an internal document.",
+        "css": "snippets/hero-dark.css",
+        "class": "bk-hero-dark",
+        "master": "assets/imagery/CE_Background.jpeg",
+        "web": {
+          "1x": "assets/imagery/CE_Background_1920.jpg",
+          "2x": "assets/imagery/CE_Background_3840.jpg",
+          "scrim": "applied by CSS"
+        },
+        "slideBackground": {
+          "_comment": "Scrim already composited. Drop straight onto a PowerPoint or Keynote slide as a picture background. No CSS, no further work.",
+          "1920x1080": "assets/imagery/CE_Title_Card_1920x1080.jpg",
+          "3840x2160": "assets/imagery/CE_Title_Card_3840x2160.jpg"
+        },
+        "safeZonesForReversedType": {
+          "_comment": "Worst-pixel contrast against #FFFFFF, measured on the shipped asset. The wave puts its light upper-left.",
+          "bottom-centre": "15.3:1",
+          "bottom-left": "14.4:1",
+          "top-right": "8.6:1",
+          "top-centre": "6.8:1",
+          "bottom-right": "5.9:1",
+          "middle-right": "5.6:1",
+          "centred": "2.9:1 · never",
+          "middle-left": "2.0:1 · never",
+          "top-left": "1.8:1 · never"
+        },
+        "displayWeightOnHero": 700
+      }
+    },
+    "apex": {
+      "name": "Apex Paramedics",
+      "role": "operating company",
+      "parent": "collective-edge",
+      "skill": "apex-brand-guidelines",
+      "repo": "collective-edge/apex-brand-kit",
+      "cdnRoot": "https://cdn.jsdelivr.net/gh/collective-edge/apex-brand-kit@main/",
+      "paletteCss": "snippets/palette.css",
+      "tokensJson": "tokens.json",
+      "prefix": "apex",
+      "hasColor": true,
+      "color": {
+        "primary": "#2c338e",
+        "primaryDeep": "#1D225E",
+        "primaryLight": "#9699C7",
+        "accent": "#f9ad16",
+        "accentDeep": "#B77808",
+        "bandBackground": "#1D225E",
+        "bandRule": "#f9ad16",
+        "surfaceTint": "#f3f3fb"
+      },
+      "colorNote": "Blue is the structure, gold is the spark. Bright gold #f9ad16 fails contrast as text on white; use #B77808 and only at bold or large sizes. Gold is a brand accent, never a status color.",
+      "wedgeHue": "#f9ad16",
+      "logos": {
+        "horizontal-on-light": "assets/logos/horizontal-color.svg",
+        "horizontal-on-dark": "assets/logos/horizontal-white.svg",
+        "mark-on-light": "assets/logos/mark-color.svg",
+        "mark-on-dark": "assets/logos/mark-white.svg",
+        "stacked-on-dark": null
+      },
+      "logoSource": "assets/logos/source/apex-paramedics.eps",
+      "minWidth": {
+        "horizontal": "110px",
+        "mark": "32px"
+      }
+    },
+    "royal": {
+      "name": "Royal Ambulance",
+      "role": "operating company",
+      "parent": "collective-edge",
+      "skill": "royal-brand-guidelines",
+      "repo": "collective-edge/royal-brand-kit",
+      "cdnRoot": "https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/",
+      "paletteCss": "snippets/palette.css",
+      "tokensJson": "tokens.json",
+      "prefix": "royal",
+      "hasColor": true,
+      "color": {
+        "primary": "#572e72",
+        "primaryDeep": "#2f193b",
+        "primaryLight": "#8260a2",
+        "accent": "#43205b",
+        "accentDeep": "#2f193b",
+        "bandBackground": "#2f193b",
+        "bandRule": null,
+        "surfaceTint": "#faf5fd"
+      },
+      "colorNote": "Purple is the whole palette. #43205b is the logo fill. Light purple #8260a2 is for tertiary accents and hover only, never text on white.",
+      "wedgeHue": "#572E72",
+      "logos": {
+        "horizontal-on-light": "assets/logos/horizontal-purple.svg",
+        "horizontal-on-dark": "assets/logos/horizontal-white.svg",
+        "mark-on-light": "assets/logos/crown-purple.svg",
+        "mark-on-dark": "assets/logos/crown-white.svg",
+        "stacked-on-dark": "assets/logos/stacked-white.svg"
+      },
+      "minWidth": {
+        "horizontal": "110px",
+        "mark": "32px"
+      }
+    }
+  },
+  "diagramRoles": {
+    "_comment": "Functional colors for flowcharts, status and dashboards. Identical across every brand so a diagram reads the same regardless of whose document it sits in. Never invent new hues for these roles. A brand accent is never a status color.",
+    "decision": {
+      "fill": "#4a8e3a",
+      "border": "#3a7029",
+      "use": "decision boxes, questions, branch points"
+    },
+    "warning": {
+      "fill": "#f57c00",
+      "border": "#cc6600",
+      "use": "warnings, advisories"
+    },
+    "process": {
+      "fill": "#3e3e3e",
+      "border": "#2a2a2a",
+      "use": "neutral process steps, context boxes"
+    },
+    "shape": "rectangles, 6px radius. Role is communicated by fill color, never by shape.",
+    "connector": {
+      "stroke": "#3e3e3e",
+      "width": "1.8pt"
+    }
+  },
+  "unreconciled": {
+    "_comment": "No brand kit exists for these. Inherited from an original design export and NOT verified against a source of truth. Confirm before use in anything shipping.",
+    "stadium-red": "#E0143C",
+    "stadium-blue": "#1E4FA3",
+    "lifewest": "#1E3A8A"
+  }
+}

@@ -1,0 +1,97 @@
+/* ============================================================
+   ROYAL AMBULANCE · PALETTE  ·  type system v1.0
+   ------------------------------------------------------------
+   The ONLY file that differs between brands. Load it after
+   type-system.css, which is identical everywhere:
+
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/palette.css">
+
+   Two layers:
+     --royal-*   the raw brand palette. Brand-specific names.
+     --fg-* --bg-* --border-*   the semantic layer. IDENTICAL
+                 NAMES in every brand, so a component written for
+                 one brand renders correctly in another with only
+                 this file swapped.
+
+   Always style through the semantic layer. Reach for a raw
+   --royal-* value only where the brand color is the point:
+   a logo band, an accent rule, a chart series.
+   ============================================================ */
+
+:root {
+
+  /* ---- BRAND ----
+     Purple is the whole palette. royal-royal-purple is the logo
+     fill. Light purple is for tertiary accents and hover only,
+     never text on white. */
+  --royal-purple:        #572e72;
+  --royal-dark-purple:   #2f193b;
+  --royal-light-purple:  #8260a2;
+  --royal-royal-purple:  #43205b;
+  --royal-black:         #000000;
+  --royal-white:         #FFFFFF;
+
+  /* ---- NEUTRALS ---- */
+  --royal-charcoal:  #1E293B;
+  --royal-muted:     #64748B;
+  --royal-hairline:  #E2E8F0;
+  --royal-surface:   #faf5fd;
+
+  /* ---- SEMANTIC FOREGROUND ---------------------------------
+     type-system.css styles through these. Same names everywhere. */
+  --fg-1: var(--royal-charcoal);   /* primary text on light   */
+  --fg-2: var(--royal-muted);   /* secondary text          */
+  --fg-3: var(--royal-muted);   /* tertiary, metadata      */
+  --fg-4: #94A3B8;   /* labels, dimmed          */
+  --fg-accent: var(--royal-purple);   /* brand-colored text  */
+  --fg-on-dark-1: #FFFFFF;
+  --fg-on-dark-2: #E0D6E8;
+  --fg-on-dark-3: #B0A2BC;
+
+  /* ---- SEMANTIC BACKGROUND --------------------------------- */
+  --bg-canvas:   #FFFFFF;
+  --bg-surface:  var(--royal-surface);
+  --bg-elevated: #FFFFFF;
+  --bg-inverse:  var(--royal-dark-purple);
+  --bg-band:     var(--royal-dark-purple);
+
+  /* ---- BORDERS --------------------------------------------- */
+  --border-1: var(--royal-hairline);
+  --border-2: #CBD5E1;
+  --border-on-dark: rgba(255,255,255,0.12);
+  --border-band-rule: transparent;
+
+  /* ---- STATUS ----------------------------------------------
+     Identical in every brand so an operational signal never
+     changes meaning between documents. A brand accent is never
+     a status color. */
+  --status-go:   #1E7A4D;
+  --status-warn: #B5821A;
+  --status-stop: #B0322B;
+  --status-info: #2A5A8C;
+
+  /* ---- DIAGRAM ROLES ---------------------------------------
+     Identical in every brand. Rectangles, 6px radius. Role is
+     communicated by fill, never by shape. */
+  --diagram-decision:        #4a8e3a;
+  --diagram-decision-border: #3a7029;
+  --diagram-warning:         #f57c00;
+  --diagram-warning-border:  #cc6600;
+  --diagram-process:         #3e3e3e;
+  --diagram-process-border:  #2a2a2a;
+  --diagram-connector:       #3e3e3e;
+
+  /* ---- RADII / ELEVATION -----------------------------------
+     The house is flat. Shadow signals elevation, never decoration. */
+  --radius-none: 0;   --radius-sm: 2px;  --radius-md: 6px;
+  --radius-lg: 12px;  --radius-pill: 999px;
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-2: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-3: 0 12px 32px rgba(0,0,0,0.12);
+
+  /* ---- MOTION ---------------------------------------------- */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 120ms; --dur-base: 200ms; --dur-slow: 360ms;
+}

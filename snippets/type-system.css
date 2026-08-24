@@ -1,0 +1,456 @@
+/* ============================================================
+   HOUSE TYPE SYSTEM  ·  v1.0
+   ------------------------------------------------------------
+   Shared by apex-brand-kit, royal-brand-kit and
+   collective-edge-brand-kit. This file is IDENTICAL in all
+   three repos, byte for byte. Do not fork it per brand.
+
+   Apex and Royal are sub-brands of Collective Edge. Two things
+   vary between them: palette and logo. Type is the shared layer
+   and is what makes the three read as one house.
+
+   Load order:
+     1. type-system.css   (this file, identical everywhere)
+     2. palette.css       (per brand, defines --brand-* and the
+                           semantic --fg-* / --bg-* / --border-*)
+
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/apex-brand-kit@main/snippets/palette.css">
+
+   Every value below is derived from measured metrics of the
+   Montserrat variable font shipping in these kits:
+     measured at wght 400, NOT at the file’s variable default
+     instance, which is wght 100 and measures narrower
+     unitsPerEm    1000
+     cap height    0.700em
+     x-height      0.525em     (ordinary, close to Helvetica)
+     ascender      0.968em
+     descender     0.251em
+     natural line box  1.219em  <- no leading may go below this
+                                   for text that wraps
+     digit zero    0.662em     <- the CSS `ch` unit
+     avg letter    0.5567em    <- 16.7% wider than Helvetica
+     avg running char  0.5084em
+
+   Consequence: 1ch buys 1.302 real characters. A measure written
+   in ch runs a third longer than it reads. All measure tokens
+   below are already corrected for this.
+   ============================================================ */
+
+
+/* ---------- 1. FONT ----------------------------------------
+   One variable font serves 400-800. The type layer belongs to
+   the parent brand, so all three kits load the same file from
+   the Collective Edge kit. woff2 first for the web, TTF second
+   so print engines (weasyprint, wkhtmltopdf, Chrome print) can
+   embed it.
+
+   NO ITALIC. There is no italic face in this system at any
+   weight. The Collective Edge heavy-italic signature lives in
+   the drawn wordmark SVG, where the letterforms are correct.
+   font-synthesis is disabled below so nothing can fake one.
+   ----------------------------------------------------------- */
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.woff2") format("woff2-variations"),
+       url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf")   format("truetype-variations");
+  /* Clamped to the ladder, not the font's full 100 900 axis. A request for a
+     banned weight then renders at the nearest permitted one instead of
+     silently shipping Thin or Black. */
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+:root {
+
+  /* ---------- 2. FAMILIES ---------------------------------- */
+
+  --font-sans: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* Codes only. Montserrat’s capital I, lowercase l and figure 1
+     are three identical stems, and its zero and capital O are the
+     same circle. Anything a person retypes, dictates or reads
+     aloud goes in the mono face: authorization numbers, unit IDs,
+     run numbers, policy numbers, MRNs. Everything else is sans. */
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo,
+               Consolas, "Liberation Mono", monospace;
+
+
+  /* ---------- 3. WEIGHT -----------------------------------
+     Five weights. Each has exactly one job. 100/200/300/900 are
+     reserved and must not appear at document sizes.            */
+
+  --weight-regular:  400;   /* body, captions, footers, table cells   */
+  --weight-semibold: 600;   /* h3, h4, eyebrows, caps labels, th      */
+  --weight-bold:     700;   /* h1, h2, emphasis, stat numerals        */
+  --weight-extrabold:800;   /* hero and title bands, nothing else     */
+
+  /* Reversed type. Light letterforms on a dark ground bloom
+     optically: the same weight reads heavier and the counters
+     close. On any dark surface drop one step and open tracking. */
+  --weight-display-on-dark: 700;
+  --tr-bonus-on-dark: 0.005em;
+
+
+  /* ---------- 4. SIZE -------------------------------------
+     One ladder. Display steps are fluid so a single token serves
+     phone and desktop. Every desktop value converts to a whole
+     point size for PowerPoint and Word. The top of the ladder is
+     72pt, the largest standard PowerPoint title size.           */
+
+  --fs-display-xl: clamp(44px, 7.6vw, 96px);   /* 72pt   */
+  --fs-display-lg: clamp(38px, 6.0vw, 72px);   /* 54pt   */
+  --fs-display-md: clamp(32px, 4.6vw, 56px);   /* 42pt   */
+  --fs-h1:         clamp(28px, 3.2vw, 40px);   /* 30pt   */
+  --fs-h2:         clamp(24px, 2.4vw, 32px);   /* 24pt   */
+  --fs-h3:         24px;                       /* 18pt   */
+  --fs-h4:         20px;                       /* 15pt   */
+  --fs-body-lg:    20px;                       /* 15pt   */
+  --fs-body:       16px;                       /* 12pt   */
+  --fs-body-sm:    14px;                       /* 10.5pt */
+  --fs-caption:    12px;                       /*  9pt   */
+  --fs-eyebrow:    12px;                       /*  9pt   */
+
+
+  /* ---------- 5. LEADING ----------------------------------
+     A function of size, not one value reused. Nothing that wraps
+     may sit below 1.05: the font’s own ascender plus descender
+     occupies 1.219em, so tighter leading drops a descender into
+     the cap beneath it.                                         */
+
+  --lh-display-xl: 1.05;
+  --lh-display-lg: 1.08;
+  --lh-display-md: 1.10;
+  --lh-h1:         1.18;
+  --lh-h2:         1.25;
+  --lh-h3:         1.35;
+  --lh-h4:         1.45;
+  --lh-body-lg:    1.55;
+  --lh-body:       1.60;
+  --lh-body-sm:    1.55;
+  --lh-caption:    1.45;
+
+
+  /* ---------- 6. TRACKING ---------------------------------
+     Always em, never px. A px value is a different optical
+     amount at every size, which is why the same title rule
+     cannot serve a one-pager and a slide.
+
+     Roman tightens as it grows. Uppercase opens as it shrinks.  */
+
+  --tr-display-xl: -0.020em;
+  --tr-display-lg: -0.018em;
+  --tr-display-md: -0.015em;
+  --tr-h1:         -0.012em;
+  --tr-h2:         -0.008em;
+  --tr-h3:         -0.004em;
+  --tr-h4: 0em;
+  --tr-body: 0em;
+  --tr-body-sm:     0.005em;
+  --tr-caption:     0.010em;
+
+  --tr-caps-display-xl: 0.020em;
+  --tr-caps-display-lg: 0.020em;
+  --tr-caps-display-md: 0.025em;
+  --tr-caps-h1:         0.030em;
+  --tr-caps-h2:         0.040em;
+  --tr-caps-h3:         0.050em;
+  --tr-caps-h4:         0.060em;
+  --tr-caps-body-lg:    0.060em;
+  --tr-caps-body:       0.070em;
+  --tr-caps-small:      0.080em;
+
+
+  /* ---------- 7. MEASURE ----------------------------------
+     Corrected for Montserrat’s width. 1ch = 1.32 real
+     characters, so these ch values are smaller than the
+     character counts they produce.                             */
+
+  --measure-body:    54ch;   /* ~70 characters. 572px at 16px */
+  --measure-lead:    54ch;   /* ~70 characters                */
+  --measure-caption: 40ch;   /* ~52 characters                */
+  --measure-heading: 28ch;   /* ~36 characters                */
+  --measure-display: 16ch;   /* ~21 characters                */
+
+
+  /* ---------- 8. SPACE ------------------------------------
+     4px base. Every vertical value is a multiple of 4.         */
+
+  --space-1:  4px;  --space-2:  8px;  --space-3: 12px;
+  --space-4: 16px;  --space-5: 24px;  --space-6: 32px;
+  --space-7: 48px;  --space-8: 64px;  --space-9: 96px;
+  --space-10:128px;
+
+  /* Heading attachment. Space above a heading runs roughly three
+     times the space below it, so the heading visibly belongs to
+     the text it introduces rather than floating between blocks. */
+  --space-above-heading: var(--space-7);
+  --space-below-heading: var(--space-4);
+}
+
+
+/* ---------- 9. BASE ----------------------------------------
+   font-synthesis is off everywhere. If a weight or a slant is
+   not in the file, it must not be faked.
+   ----------------------------------------------------------- */
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+html, body {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-regular);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-style: normal;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Flush left, ragged right. Never justified: Montserrat’s wide
+   even letterforms open rivers of white through a justified
+   column faster than a narrower face would. */
+body, p, li, dd, td, th, blockquote, figcaption {
+  text-align: left;
+}
+
+p, li, dd, blockquote {
+  text-wrap: pretty;   /* protects against a one-word last line */
+  orphans: 3;
+  widows: 3;
+  max-width: var(--measure-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;  /* no heading ends on a stranded word */
+  max-width: var(--measure-heading);
+  margin-top: var(--space-above-heading);
+  margin-bottom: var(--space-below-heading);
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+h1:first-child, h2:first-child, h3:first-child, h4:first-child {
+  margin-top: 0;
+}
+
+i, em, cite, var, address, dfn {
+  font-style: normal;   /* no italic in this system */
+}
+
+em, strong, b {
+  font-weight: var(--weight-bold);
+}
+
+
+/* ---------- 10. SEMANTIC CLASSES ---------------------------
+   .bk-* is the shared grammar. A component written for one
+   brand drops into another unchanged.
+   ----------------------------------------------------------- */
+
+.bk-display-xl, .bk-display-lg, .bk-display-md {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-extrabold);
+  font-style: normal;
+  color: var(--fg-1);
+  max-width: var(--measure-display);
+  text-wrap: balance;
+}
+/* Each step declares its own roman and caps tracking as custom properties.
+   Two rules then apply them, and --tr-dark is inherited from .bk-on-dark, so
+   rule 4 reaches every descendant at every size without a rule per combination. */
+.bk-display-xl { font-size: var(--fs-display-xl); line-height: var(--lh-display-xl); --tr: var(--tr-display-xl); --tr-caps: var(--tr-caps-display-xl); }
+.bk-display-lg { font-size: var(--fs-display-lg); line-height: var(--lh-display-lg); --tr: var(--tr-display-lg); --tr-caps: var(--tr-caps-display-lg); }
+.bk-display-md { font-size: var(--fs-display-md); line-height: var(--lh-display-md); --tr: var(--tr-display-md); --tr-caps: var(--tr-caps-display-md); }
+
+.bk-h1, .bk-h2, .bk-h3, .bk-h4 {
+  font-family: var(--font-sans);
+  font-style: normal;
+  color: var(--fg-1);
+  max-width: var(--measure-heading);
+  text-wrap: balance;
+}
+.bk-h1 { font-size: var(--fs-h1); line-height: var(--lh-h1); --tr: var(--tr-h1); --tr-caps: var(--tr-caps-h1); font-weight: var(--weight-bold); }
+.bk-h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); --tr: var(--tr-h2); --tr-caps: var(--tr-caps-h2); font-weight: var(--weight-bold); }
+.bk-h3 { font-size: var(--fs-h3); line-height: var(--lh-h3); --tr: var(--tr-h3); --tr-caps: var(--tr-caps-h3); font-weight: var(--weight-semibold); }
+.bk-h4 { font-size: var(--fs-h4); line-height: var(--lh-h4); --tr: var(--tr-h4); --tr-caps: var(--tr-caps-h4); font-weight: var(--weight-semibold); }
+
+.bk-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--weight-semibold);
+  line-height: var(--lh-caption);
+  text-transform: uppercase;
+  --tr: var(--tr-caps-small);
+  --tr-caps: var(--tr-caps-small);
+  color: var(--fg-3);
+  margin: 0 0 var(--space-2);
+}
+
+.bk-body-lg { font-size: var(--fs-body-lg); line-height: var(--lh-body-lg); --tr: var(--tr-body);    --tr-caps: var(--tr-caps-body-lg); font-weight: var(--weight-regular); color: var(--fg-1); max-width: var(--measure-lead); }
+.bk-body    { font-size: var(--fs-body);    line-height: var(--lh-body);    --tr: var(--tr-body);    --tr-caps: var(--tr-caps-body);  font-weight: var(--weight-regular); color: var(--fg-1); max-width: var(--measure-body); }
+.bk-body-sm { font-size: var(--fs-body-sm); line-height: var(--lh-body-sm); --tr: var(--tr-body-sm); --tr-caps: var(--tr-caps-small); font-weight: var(--weight-regular); color: var(--fg-2); max-width: var(--measure-body); }
+.bk-caption { font-size: var(--fs-caption); line-height: var(--lh-caption); --tr: var(--tr-caption); --tr-caps: var(--tr-caps-small); font-weight: var(--weight-regular); color: var(--fg-3); max-width: var(--measure-caption); }
+
+/* The two rules that turn the declarations above into tracking.
+   .bk-caps must stay after this block so it wins on source order. */
+.bk-display-xl, .bk-display-lg, .bk-display-md,
+.bk-h1, .bk-h2, .bk-h3, .bk-h4,
+.bk-body-lg, .bk-body, .bk-body-sm, .bk-caption, .bk-eyebrow, .bk-stat {
+  letter-spacing: calc(var(--tr, 0em) + var(--tr-dark, 0em));
+}
+
+/* Uppercase at any step. Caps are short against the lowercase in Montserrat,
+   so an all-caps line reads smaller than its size suggests and every step
+   opens by a different amount. Never set uppercase without this class. */
+.bk-caps {
+  text-transform: uppercase;
+  letter-spacing: calc(var(--tr-caps, 0em) + var(--tr-dark, 0em));
+}
+
+.bk-emphasis { font-weight: var(--weight-bold); color: var(--fg-1); }
+
+/* Stat numeral. 700, not 800: at 48px and up ExtraBold reads as
+   a slab rather than a number. */
+.bk-stat {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-bold);
+  font-size: var(--fs-display-md);
+  line-height: var(--lh-display-md);
+  --tr: var(--tr-display-md);
+  --tr-caps: var(--tr-caps-display-md);
+  font-variant-numeric: tabular-nums lining;
+  color: var(--fg-1);
+}
+
+
+/* ---------- 11. REVERSED TYPE ------------------------------
+   Put .bk-on-dark on any dark surface: header bands, hero
+   panels, section dividers, table header rows. All three brands
+   open every document with a dark band, so without this every
+   document is currently one weight too heavy at the top.
+   ----------------------------------------------------------- */
+
+.bk-on-dark { color: var(--fg-on-dark-1); }
+
+.bk-on-dark .bk-display-xl,
+.bk-on-dark .bk-display-lg,
+.bk-on-dark .bk-display-md,
+.bk-on-dark.bk-display-xl,
+.bk-on-dark.bk-display-lg,
+.bk-on-dark.bk-display-md {
+  font-weight: var(--weight-display-on-dark);
+  color: var(--fg-on-dark-1);
+}
+
+/* Rule 4, the tracking half. One inherited property reaches every descendant
+   at every size, caps or roman. Nest .bk-on-light to opt an island back out. */
+.bk-on-dark  { --tr-dark: var(--tr-bonus-on-dark); }
+.bk-on-light { --tr-dark: 0em; }
+
+.bk-on-dark .bk-h1, .bk-on-dark .bk-h2 { color: var(--fg-on-dark-1); font-weight: var(--weight-semibold); }
+/* h3 and h4 already sit at 600, which is the floor: 500 is not in the ladder.
+   They gain the tracking half of rule 4 and keep their weight. */
+.bk-on-dark .bk-h3, .bk-on-dark .bk-h4 { color: var(--fg-on-dark-1); }
+.bk-on-dark .bk-body, .bk-on-dark .bk-body-lg { color: var(--fg-on-dark-2); }
+.bk-on-dark .bk-body-sm, .bk-on-dark .bk-caption, .bk-on-dark .bk-eyebrow { color: var(--fg-on-dark-3); }
+
+
+/* ---------- 12. UTILITIES ---------------------------------- */
+
+/* Codes, IDs, unit numbers. Never Montserrat.
+   NEST it, never stack it. .bk-code sets 0.94em so the mono matches the sans
+   optically at the same nominal size. Put it on the same element as a size
+   class and it wins on source order, losing that size:
+     wrong  <span class="bk-code bk-caption">
+     right  <span class="bk-caption"><span class="bk-code"> */
+.bk-code {
+  font-family: var(--font-mono);
+  font-size: 0.94em;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums lining slashed-zero;
+  white-space: nowrap;
+}
+
+/* Any column of numbers, so digits align down the column. */
+.bk-tnum, table.bk-table td, table.bk-table th {
+  font-variant-numeric: tabular-nums lining;
+}
+
+.bk-measure-body    { max-width: var(--measure-body); }
+.bk-measure-caption { max-width: var(--measure-caption); }
+.bk-measure-heading { max-width: var(--measure-heading); }
+.bk-measure-none    { max-width: none; }
+
+/* Table header row: 600 uppercase, not 800. */
+.bk-table th {
+  font-weight: var(--weight-semibold);
+  font-size: var(--fs-caption);
+  text-transform: uppercase;
+  --tr: var(--tr-caps-small);
+  --tr-caps: var(--tr-caps-small);
+  letter-spacing: calc(var(--tr-caps-small) + var(--tr-dark, 0em));
+  text-align: left;
+}
+.bk-table { border-collapse: collapse; }
+.bk-table caption { text-align: left; }
+.bk-table thead { break-inside: avoid; page-break-inside: avoid; }
+
+figure, table, .bk-keep { break-inside: avoid; page-break-inside: avoid; }
+
+
+/* ---------- 13. PRINT -------------------------------------
+   Point sizes for paper. Nothing a person reads at length drops
+   below 10.5pt, nothing at all below 9pt.
+   ----------------------------------------------------------- */
+
+@media print {
+  /* Without this every dark band prints white and its reversed type disappears.
+     Every brand in the house opens documents with a dark band. */
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  html, body { font-size: 12pt; line-height: var(--lh-body); }
+
+  .bk-display-xl { font-size: 72pt; }
+  .bk-display-lg { font-size: 54pt; }
+  .bk-display-md { font-size: 42pt; }
+  .bk-h1         { font-size: 30pt; }
+  .bk-h2         { font-size: 24pt; }
+  .bk-h3         { font-size: 18pt; }
+  .bk-h4         { font-size: 15pt; }
+  .bk-body-lg    { font-size: 15pt; }
+  .bk-body       { font-size: 12pt; }
+  .bk-body-sm    { font-size: 10.5pt; }
+  .bk-caption,
+  .bk-eyebrow    { font-size: 9pt; }
+  /* .bk-code runs 0.94em, which inside a 9pt caption lands at 8.5pt, under the
+     9pt floor in section 9. Hold it at the floor rather than let it shrink. */
+  .bk-caption .bk-code,
+  .bk-eyebrow .bk-code,
+  .bk-code       { font-size: 9pt; }
+  .bk-stat       { font-size: 42pt; }
+
+  p, li, dd, blockquote { orphans: 3; widows: 3; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; page-break-after: avoid; }
+}
+
+
+/* ---------- 14. MOTION ------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

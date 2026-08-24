@@ -1,89 +1,121 @@
-# Royal Ambulance Brand Kit
+# Royal Ambulance brand kit
 
-Cloud-hosted brand assets and Claude skill for Royal Ambulance — purple-centric color palette, Montserrat typography, crown + wordmark logos, plus a `SKILL.md` that teaches Claude to apply the brand consistently to any document, slide, flowchart, or one-pager.
+House type system v1.0. Cloud-hosted brand assets plus the `royal-brand-guidelines` skill Claude reads before it produces anything for Royal Ambulance.
 
-Anyone with this repo URL or the CDN links below can produce on-brand Royal materials from any machine, with no local setup beyond a working Claude session.
+Royal is an operating company under Collective Edge. It inherits the house type system unchanged and supplies two things of its own: a purple palette and the crown wordmark. Apex Paramedics and Collective Edge run the same type layer from their own kits.
 
-## What's in here
+Everything is served from a public jsDelivr CDN, so a document generated on one machine renders the same on every other one with no local setup.
+
+## What is in here
 
 ```
 royal-brand-kit/
-├── SKILL.md                 # The brand skill Claude reads
-├── assets/
-│   ├── colors.json          # Source of truth for hex codes
-│   ├── fonts/
-│   │   └── Montserrat-VariableFont_wght.ttf
-│   └── logos/
-│       ├── horizontal-purple.svg
-│       ├── horizontal-white.svg
-│       ├── crown-purple.svg
-│       ├── crown-white.svg
-│       ├── stacked-purple.svg
-│       └── stacked-white.svg
+├── SKILL.md                  # The skill Claude reads. Assets, color, type, layout, the pre-ship check
+├── NEW-BRAND.md              # How to add a fourth brand to the house. Shared, byte-identical across kits
+├── brands.json               # Registry of every brand, logo role and diagram role. Shared
+├── tokens.json               # Color tokens for python-pptx, python-docx, matplotlib, reportlab
+├── reference/
+│   ├── brand.md              # Full color table, contrast traps, logo specifications, voice, sources
+│   ├── layout.md             # Header band, sub-banner, flowchart nodes, stat callout, table, footer
+│   └── type-system.md        # The type standard and the fifteen rules. Shared
 ├── snippets/
-│   ├── brand-base.css       # Drop-in CSS with @font-face + variables
-│   └── header-band.html     # Drop-in header markup
-└── Examples/
-    └── eclg-ecmv-one-pager.html  # Working example using only CDN URLs
+│   ├── palette.css           # The only file that differs between brands
+│   ├── type-system.css       # The shared type layer. Shared
+│   ├── type-tokens.json      # Type values for the same generators. Shared
+│   ├── header-band.html      # Drop-in header band
+│   └── brand-base.css        # Deprecated. A shim that forwards to the two files above it
+├── templates/
+│   ├── document.html         # Print-ready one-pager and report letterhead
+│   └── deck.html             # Five slides at 16:9, one landscape page each
+├── scripts/
+│   ├── check-sync.py         # Asserts the seven shared files have not forked. Shared
+│   └── validate.py           # Checks generated HTML against the mechanical rules. Shared
+├── assets/
+│   ├── colors.json           # Deprecated. Read tokens.json
+│   ├── fonts/                # Montserrat variable TTF, kept for documents already pointing at it
+│   └── logos/                # Horizontal, crown and stacked, purple and white
+└── Examples/                 # Shipped work, with the pre-v1.0 version of each beside it
 ```
 
-## CDN base URL
+Shared files are byte-identical in all three kits. `scripts/check-sync.py` fails if one drifts. Never edit a shared file in this repo alone.
 
-All assets are served via [jsDelivr](https://www.jsdelivr.com/) from the `main` branch — fast, free, and globally cached:
+In `Examples/`, `NAME.html` is the shipped v1.0 file and `NAME.before.html` is the pre-v1.0 original kept beside it as the record of what changed. A `*.before.html` file is expected to fail `validate.py`: it predates the rules the validator checks. Never run the validator over it and never correct it. `Examples/HPSM_Ordering_Workflow_Manager.before.html` returns 29 violations across 7 rules, which is the point of keeping it.
+
+## Load the assets
+
+Two stylesheets, in this order. `type-system.css` is served from the Collective Edge kit. `palette.css` is the only file that differs.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/palette.css">
+```
+
+Style through the `.bk-*` classes and the `--fg-*`, `--bg-*` and `--border-*` variables. Reach for a raw `--royal-*` value only where the brand color is the point.
+
+For anything printed or converted to PDF, inline the `@font-face` block from `SKILL.md` and select the family on `html, body`. The declaration alone selects nothing. Do this even when Montserrat is installed on the rendering machine: a local copy makes the file render correctly on that one machine and wrong everywhere else.
+
+## CDN base URL
 
 ```
 https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/
 ```
 
-Append the path inside this repo to fetch any file. Example for the white horizontal logo:
+Append the path inside this repo to fetch any file:
 
 ```
 https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-white.svg
 ```
 
-## Quick start — using the brand in any HTML
-
-Add this to the top of any HTML document and you have Montserrat plus all the brand color variables:
-
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/brand-base.css">
-```
-
-For embedding Montserrat into a printed PDF (weasyprint, wkhtmltopdf, Chrome print-to-PDF), include the `@font-face` declaration inline so the font travels with the file. See `SKILL.md` for the snippet.
-
-## Quick start — installing the Claude skill
-
-So Claude automatically applies the brand whenever you ask for Royal materials, install the skill into your local Claude skills folder:
+## Install the skill
 
 ```bash
 git clone https://github.com/collective-edge/royal-brand-kit ~/.claude/skills/royal-brand-guidelines
 ```
 
-That's it. Claude will pick up `SKILL.md` and apply the brand standards automatically. To update, run:
+Claude picks up `SKILL.md` and applies the brand from then on. To update:
 
 ```bash
 cd ~/.claude/skills/royal-brand-guidelines && git pull
 ```
 
-## Sharing with teammates
+Recipients do not need the skill. Generated HTML pulls the assets from the CDN at render time, and a PDF carries the font embedded.
 
-Send them this repo URL or paste the install command above. The CDN means generated documents (HTML, PDFs with embedded fonts) work for recipients who don't have the skill installed — the assets are fetched at render time.
+## Verify before shipping
 
-## Color reference
+```bash
+python3 scripts/check-sync.py
+python3 scripts/validate.py path/to/output.html
+```
 
-See `assets/colors.json` for the machine-readable source of truth, or `SKILL.md` for human-readable usage rules.
+Over the whole kit, skip the pre-v1.0 originals:
 
-| Name | Hex | Use |
-|---|---|---|
-| Dark Purple | `#2f193b` | Hero headers, dominant brand color |
-| Purple | `#572e72` | Workhorse accent — sub-banners, callouts, buttons |
-| Royal Purple | `#43205b` | Logo fill, action highlights in flowcharts |
-| Light Purple | `#8260a2` | Tertiary accents only |
-| Surface | `#faf5fd` | Very light background tint |
+```bash
+python3 scripts/validate.py snippets/*.html templates/*.html \
+  $(ls Examples/*.html | grep -v '\.before\.html$')
+```
+
+`check-sync.py` proves the shared files have not forked and that `palette.css` still satisfies the semantic contract. `validate.py` checks rules 1, 2, 5, 9, 10, 13 and 14 mechanically and exits non-zero on a violation. Neither can see overlap, clipping or a fallback font. Open the rendered file and look. If your environment cannot render, say so plainly instead of claiming it looks clean.
+
+## Color
+
+`snippets/palette.css` is authoritative. `tokens.json` is the machine-readable copy. Full table, contrast traps and usage rules are in `reference/brand.md`.
+
+| Name | CSS | Hex | Use |
+|---|---|---|---|
+| Dark Purple | `--royal-dark-purple` | `#2f193b` | Header bands, hero grounds, table header fill |
+| Purple | `--royal-purple` | `#572e72` | Accent bars, callout borders, links, brand-colored text |
+| Royal Purple | `--royal-royal-purple` | `#43205b` | Logo fill on light, stat numerals, flowchart action nodes |
+| Light Purple | `--royal-light-purple` | `#8260a2` | Tertiary accents and hover only. Never text, never a large ground |
+| Charcoal | `--royal-charcoal` | `#1E293B` | Body text on light. This is `--fg-1` |
+| Surface | `--royal-surface` | `#faf5fd` | Tinted rows and callout fills |
+
+## Deprecated, still served
+
+`snippets/brand-base.css` and `assets/colors.json` predate v1.0 and stay on the CDN because documents already point at them. `brand-base.css` now forwards to `type-system.css` and `palette.css` and keeps the old `--royal-*` names resolving, so an old document picks up the corrected type without being edited. New work loads the two stylesheets above and reads `tokens.json`.
 
 ## Versioning
 
-`@main` always serves the latest version. To pin to a stable release in production HTML, use a tag instead: `@v1.0`.
+`@main` serves the latest. Pin to a tag for stability: replace `@main` with `@v1.0`. Bump the major version when a palette value or a mark changes.
 
 ## License
 

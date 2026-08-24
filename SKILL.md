@@ -1,217 +1,139 @@
 ---
 name: royal-brand-guidelines
-description: Applies Royal Ambulance's brand standards — purple-centric color palette, Montserrat typography, and logo usage — to ANY output representing Royal Ambulance. Use whenever generating Royal Ambulance materials of any kind: emails, social posts, slides, documents, web content, marketing collateral, internal comms, training materials, flyers, letters, one-pagers, tables, or any visual artifact. Also use when reviewing existing materials for brand compliance.
+description: Applies Royal Ambulance’s brand standards to any output representing Royal Ambulance: the purple palette, the crown wordmark, and the shared Collective Edge house type system set in Montserrat. Use when producing or reviewing a Royal Ambulance email, slide, deck, one-pager, report, letterhead, flyer, document, web page, table, chart, diagram, flowchart, case study, proposal, or PDF, and when checking existing Royal material for brand compliance. Covers asset CDN URLs, logo role selection, color and contrast rules, the fifteen type rules, the house layout patterns, and the validator to run before shipping.
 ---
 
-# Royal Ambulance — Brand Guidelines
+# Royal Ambulance · brand guidelines
 
-**When to apply:** Whenever creating or reviewing any material that represents Royal Ambulance, in any medium (digital or print, formal or casual). This skill defines the look-and-feel; specific layouts and templates are intentionally not prescribed here so the brand can apply across many formats.
+House type system v1.0.
 
-## CRITICAL: Asset loading
+Royal Ambulance is a Bay Area medical transportation company and an operating company under Collective Edge. It inherits the house type system unchanged and supplies two things of its own: a purple palette and the crown wordmark.
 
-**This brand kit is cloud-hosted.** All fonts and logos live on a public CDN (jsDelivr, backed by GitHub) so any Claude session anywhere can pull them down. **Do not look for local files.** Use the URLs below directly in generated HTML, CSS, or markdown.
+Reference, read on demand:
 
-**Base CDN URL:**
-```
-https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/
-```
+- [reference/brand.md](reference/brand.md) · full color table, contrast traps, logo specifications, voice
+- [reference/type-system.md](reference/type-system.md) · the type standard and the fifteen rules
+- [reference/layout.md](reference/layout.md) · header band, sub-banner, flowchart nodes, stat callout, table, footer
+- `tokens.json` · colors for python-pptx, python-docx, matplotlib, reportlab
+- `snippets/type-tokens.json` · type values for the same generators
 
-**Specific asset URLs (copy these into outputs):**
+---
 
-| Asset | URL |
-|---|---|
-| Montserrat (variable TTF) | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf` |
-| Horizontal logo (purple) | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-purple.svg` |
-| Horizontal logo (white) | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-white.svg` |
-| Crown only (purple) | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/crown-purple.svg` |
-| Crown only (white) | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/crown-white.svg` |
-| Stacked logo (purple) | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/stacked-purple.svg` |
-| Stacked logo (white) | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/stacked-white.svg` |
-| Brand colors (JSON) | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/colors.json` |
+## 1. Load the assets
 
-**Drop-in base CSS** (includes @font-face for Montserrat + brand CSS variables):
+Two stylesheets, in this order. `type-system.css` is identical in every kit and is served from the Collective Edge kit. `palette.css` is the only file that differs.
+
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/brand-base.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/palette.css">
 ```
 
-**For PDF rendering (weasyprint, wkhtmltopdf, Chrome print):** always include the @font-face declaration so the font is embedded in the output PDF. Use this minimal block at the top of any HTML you intend to print:
+Inline this block at the top of every HTML file you generate, even when Montserrat is installed on the rendering machine. A local copy makes the file render correctly on that one machine and wrong everywhere else, and only the declaration embeds the font in a downstream PDF (weasyprint, wkhtmltopdf, Chrome print). The `font-family` line is not optional: without it nothing selects Montserrat when the CDN stylesheet fails to resolve.
 
 ```css
 @font-face {
-  font-family: 'Montserrat';
-  src: url('https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
-  font-weight: 100 900;
+  font-family: "Montserrat";
+  src: url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.woff2") format("woff2-variations"),
+       url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf")   format("truetype-variations");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
 }
-body { font-family: 'Montserrat', Calibri, Arial, sans-serif; }
+html, body { font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif; font-synthesis: none; }
 ```
 
----
+The range is `400 800`. 100, 200, 300 and 900 are forbidden at document sizes, so never open the axis to `100 900`.
 
-## 1. Brand Colors
+### Logo roles
 
-Royal Ambulance uses a purple-centric palette. Every piece of collateral should draw from these colors exclusively — never introduce off-brand hues.
+Ask for a role, never a filename. `-on-light` is the version you place **on** a light background.
 
-| Name          | Hex       | RGB              | Usage                                                        |
-|---------------|-----------|------------------|--------------------------------------------------------------|
-| Dark Purple   | `#2f193b` | 47, 25, 59       | Primary headers, hero backgrounds, section dividers          |
-| Purple        | `#572e72` | 87, 46, 114      | Column headers, accent bars, contact labels, category badges |
-| Light Purple  | `#8260a2` | 130, 96, 162     | Tertiary accents, hover states, lighter highlights           |
-| Royal Purple  | `#43205b` | 67, 32, 91       | Logo fill color, alternate dark accent                       |
-| Black         | `#000000` | 0, 0, 0          | Body text, high-contrast headings on light backgrounds       |
-| White         | `#FFFFFF` | 255, 255, 255    | Text on dark backgrounds, page background                    |
+| Role | URL |
+|---|---|
+| horizontal-on-light | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-purple.svg` |
+| horizontal-on-dark | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-white.svg` |
+| mark-on-light | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/crown-purple.svg` |
+| mark-on-dark | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/crown-white.svg` |
+| stacked-on-dark | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/stacked-white.svg` |
 
-### Color usage rules
-
-- **Dark Purple (#2f193b)** is the dominant brand color. Use for page headers, hero/title bars, section dividers, full-width bands.
-- **Purple (#572e72)** is the workhorse accent. Use for column headers, accent bars, callout borders, label chips, buttons, links.
-- **Light Purple (#8260a2)** is used sparingly for tertiary accents only. Never as a background for large areas — too washed out at scale.
-- **Backgrounds:** White is primary. For subtle alternating rows, callouts, or backgrounds, use a very light purple tint such as `#faf5fd` or `#f8f4fc` — never anything stronger.
-- **Text contrast:** White text on Dark Purple. Black text on white. Never light purple text on dark purple — insufficient contrast.
-- **No off-brand colors for decorative purposes.** Functional/data colors (e.g., chart series, status indicators) should stay within or harmonize with the purple palette wherever possible.
-
-### Extended palette (functional roles in diagrams, status, dashboards)
-
-These are NOT primary brand colors but are official conventions for diagrams (flowcharts, dashboards, process docs) where additional roles are needed beyond the purple palette. Apply consistently — do not invent new hues for these roles.
-
-| Role             | Hex       | Border    | Use                                                 |
-|------------------|-----------|-----------|-----------------------------------------------------|
-| Decision / query | `#4a8e3a` | `#3a7029` | Decision boxes, questions, branch points            |
-| Warning / callout| `#f57c00` | `#cc6600` | Warning boxes, advisories, "watch out" pills        |
-| Info / process   | `#3e3e3e` | `#2a2a2a` | Neutral process steps, context boxes                |
-
-Color does the differentiation work — all diagram shapes should be **rectangles with small rounded corners (radius ~6px)**. Role is communicated by fill color, not by shape.
+Horizontal is the default anywhere with horizontal room. Minimum width 110px for horizontal, 32px for the mark. Never recolor a mark with a filter. Pick the file for the ground. Full specifications in [reference/brand.md](reference/brand.md).
 
 ---
 
-## 2. Logo
+## 2. Color
 
-### Logo files (CDN URLs above)
+| Name | CSS | Hex | Usage |
+|---|---|---|---|
+| Dark Purple | `--royal-dark-purple` | `#2f193b` | Header bands, hero grounds, section dividers, table header fill |
+| Purple | `--royal-purple` | `#572e72` | Accent bars, callout borders, links, buttons, brand-colored text |
+| Royal Purple | `--royal-royal-purple` | `#43205b` | Logo fill on light, stat numerals, flowchart action nodes |
+| Light Purple | `--royal-light-purple` | `#8260a2` | Tertiary accents and hover only |
+| Charcoal | `--royal-charcoal` | `#1E293B` | Body text on light. This is `--fg-1` |
+| Surface | `--royal-surface` | `#faf5fd` | Tinted rows and callout fills |
 
-- **Horizontal logo** — primary lockup, default for most contexts with horizontal room
-- **Crown** — icon-only mark, for compact contexts (favicons, badges, social avatars, table corners)
-- **Stacked** — square-ish lockup for portrait orientations or tight squares
+Style through `--fg-*`, `--bg-*` and `--border-*`. Reach for a raw `--royal-*` value only where the brand color is the point.
 
-Each comes in `purple` (for white/light backgrounds) and `white` (for dark backgrounds).
+Three rules that get broken most:
 
-### Logo specifications
+1. **Light Purple `#8260a2` is never body text and never a large background.** It measures 5.07:1 on `#FFFFFF`, so it clears AA at text sizes and fails AAA, and it washes out at scale. It is the tertiary accent, not a text color. Body text is `--fg-1` `#1E293B`, 14.63:1. Brand-colored text is `--fg-accent` `#572e72`, 10.30:1.
+2. **Never put `#8260a2` on `#2f193b`.** On a dark ground use `--fg-on-dark-2` `#E0D6E8` or `--fg-on-dark-3` `#B0A2BC`.
+3. **A brand purple is never a status color.** Status is `--status-go` `#1E7A4D`, `--status-warn` `#B5821A`, `--status-stop` `#B0322B`, `--status-info` `#2A5A8C`, identical in every brand.
 
-- **Horizontal viewBox:** `0 0 735.76 179.54`
-- **Crown viewBox:** `0 0 179.54 179.54`
-- **Default fill:** `#43205b` (Royal Purple) on light, `#FFFFFF` on dark.
-
-### Usage rules
-
-1. **Default to the horizontal logo** for any context with horizontal room. Use the crown-only mark only where space requires it (small icons, badges).
-2. **Minimum clear space:** Maintain padding around the logo equal to at least the height of the crown icon on all sides.
-3. **On dark backgrounds:** Use the `*-white.svg` variant. Do not apply CSS filters to recolor — use the correct file.
-4. **On white/light backgrounds:** Use the `*-purple.svg` variant.
-5. **Minimum size:** Never render the horizontal logo smaller than ~100px wide on screen or 1 inch in print. The crown-only mark can go down to ~32px.
-6. **Do NOT:**
-   - Stretch, skew, or rotate the logo
-   - Place the logo on busy photographic backgrounds without a solid backing
-   - Change the logo colors to anything other than Royal Purple or white
-   - Add drop shadows, glows, outlines, or gradients to the logo
-   - Separate the crown icon from the wordmark in the horizontal lockup
-7. **Embedding:** Reference the logo SVG URL directly with `<img src="...">` — it's a public CDN, no auth needed.
+Diagram roles come from `brands.json` and are identical across the house: decision `#4a8e3a`, warning `#f57c00`, process `#3e3e3e`. Everything else is in [reference/brand.md](reference/brand.md).
 
 ---
 
-## 3. Typography
+## 3. Type
 
-**Montserrat is the brand font for every output.** No exceptions.
+Type is shared with Apex Paramedics and Collective Edge and is never forked for Royal. Read [reference/type-system.md](reference/type-system.md) for the scale, the measure, the micro-typography and the fifteen rules. Style through the `.bk-*` classes. Do not restate the scale from memory.
 
-- Title bands / hero headlines: **800 weight, ALL CAPS, +1.5 letter-spacing**
-- Section headers: **700 weight**, normal case or all caps
-- Body: **500 weight** (Medium) on light backgrounds, **400** (Regular) for long-form
-- Tiny labels / kickers: **800 weight, ALL CAPS, +2 letter-spacing**, often in muted purple
+Three things to never do:
 
-**Always include the @font-face declaration** at the top of any generated HTML, even if Montserrat is installed on the rendering machine. This guarantees consistent rendering and embeds the font in any downstream PDF. See the asset-loading section above for the snippet.
+1. **No italic**, at any weight, in any brand. Never synthesize an oblique.
+2. **No weight outside 400, 600, 700, 800.** 400 body, 600 subheads and caps labels, 700 headings and emphasis and stat numerals, 800 hero only.
+3. **No tracking in px or pt.** Tracking is always em, from the tracking tokens.
 
----
-
-## 4. Layout conventions (Royal house style)
-
-These patterns are lifted from the Royal house style (MotiveCare flowchart, UCSF/AHS case studies, ECH one-pager). Pattern-match these visually for new collateral.
-
-### Header band
-- Full-width strip across the very top of the page.
-- Background: Dark Purple `#2f193b`. Optional gradient to Purple `#572e72` on the right side.
-- White Royal horizontal logo top-right (~1.4–1.8in wide).
-- Title text top-left: white, Montserrat 800, ALL CAPS, 18–22pt for one-pagers / 32–44pt for slides.
-
-### Sub-banner (optional)
-- Thin Purple `#572e72` strip just below the header band.
-- White Montserrat 600, 8–9pt, ALL CAPS, +2.5 letter-spacing.
-- Used for kicker / partner / category line.
-
-### Flowchart nodes
-- All node shapes are rounded rectangles (radius 6px).
-- **Standard step:** Dark gray `#3e3e3e`, white ALL-CAPS Montserrat 800, optional muted subtitle below.
-- **Action / highlight step:** Royal Purple `#43205b`, same text treatment.
-- **Decision:** Green `#4a8e3a` pill (border-radius 999px), white ALL-CAPS Montserrat 800.
-- **Warning / critical:** Orange `#f57c00`, white ALL-CAPS Montserrat 800.
-- **Branch labels (YES / NO):** White box with colored border matching the branch outcome.
-- Connector lines: `#3e3e3e`, 1.8pt stroke, with arrow markers.
-
-### Stat / metric callouts
-- Big number: Montserrat 800, 36–60pt, Royal Purple.
-- Unit label: Montserrat 500, 10pt, Muted.
-- Kicker above: Montserrat 800, 8pt, ALL CAPS, Purple, +2 letter-spacing.
-
-### Tables
-- Header row: `#2f193b` (Dark Purple) fill, white Montserrat 800 ALL CAPS 9pt.
-- Body rows: white, alternating with `#faf5fd` if alternation helps readability.
-- Hairline borders: `#E2E8F0`.
-
-### Footer
-- Slim full-width footer.
-- Top border: `#E2E8F0` hairline.
-- Left: "Royal Ambulance | {Document Title}" in `#64748B` Muted.
-- Right: revision marker (e.g., "Rev. 06.26") in Purple `#572e72`, Montserrat 700.
+On any dark ground put `.bk-on-dark` on the container. It adds 0.005em tracking at every step and drops one weight where the step is 700 or heavier. 600 is the floor, so `.bk-h3`, `.bk-h4`, `.bk-eyebrow` and `.bk-table th` hold 600 and gain the tracking alone. Every Royal document opens on a dark band, so every Royal document needs it.
 
 ---
 
-## 5. Quick-reference snippets
+## 4. Layout
 
-**Header band (drop-in HTML):**
+Header band, sub-banner, flowchart nodes, stat callout, table and footer are in [reference/layout.md](reference/layout.md) as copy-pasteable blocks. Start every one-pager, report and letterhead with the band:
+
 ```html
-<header style="background:#2f193b; color:#FFFFFF; padding:0.32in 0.5in; display:flex; align-items:center; justify-content:space-between; font-family:'Montserrat',sans-serif;">
-  <div style="font-weight:800; font-size:18pt; letter-spacing:1.5px; text-transform:uppercase;">YOUR TITLE</div>
-  <img src="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-white.svg" style="width:1.6in;" alt="Royal Ambulance">
+<header class="bk-on-dark" style="background:var(--bg-band); display:flex; align-items:center; justify-content:space-between; gap:var(--space-6); padding:var(--space-6) 0.5in;">
+  <div class="bk-h2 bk-caps" style="margin:0;">
+    Document title
+  </div>
+  <img src="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-white.svg"
+       alt="Royal Ambulance" style="width:1.6in; height:auto; display:block; flex:none;">
 </header>
 ```
 
-**Sub-banner:**
-```html
-<div style="background:#572e72; color:#FFFFFF; padding:6px 0.5in; font:600 8.5pt 'Montserrat'; letter-spacing:2.5px; text-transform:uppercase;">
-  KICKER / PARTNER / CATEGORY
-</div>
-```
-
-**Footer:**
-```html
-<footer style="border-top:1px solid #E2E8F0; padding:6px 0.5in; font:400 8pt 'Montserrat'; color:#64748B; display:flex; justify-content:space-between;">
-  <span>Royal Ambulance &nbsp;|&nbsp; Document Title</span>
-  <span style="font-weight:700; letter-spacing:1.5px; color:#572e72;">Rev. MM.YY</span>
-</footer>
-```
+`.bk-caps` resolves the uppercase and the caps tracking at whatever step it sits on, and `.bk-on-dark` adds the 0.005em bonus. Never type either value. Slides swap `.bk-h2` for `.bk-display-md`.
 
 ---
 
-## 6. Versioning
+## 5. Verify before shipping
 
-Pinning to `@main` always serves the latest version. To pin to a stable release, replace `@main` with a tag, e.g. `@v1.0`. Bump tags when you make breaking changes (logo redesign, color shifts).
+```bash
+python3 scripts/validate.py path/to/output.html
+```
 
----
+It checks rules 1, 2, 5, 9, 10, 13 and 14 mechanically and exits non-zero on a violation. It cannot see the rest, so also look:
 
-## 7. Verify before you ship
+- [ ] Rendered, not just written. Open it. Overlap, clipping and overflow are invisible in source. If your environment cannot render, say so plainly instead of claiming it looks clean.
+- [ ] No collisions. Nothing overlapping, clipped or overflowing. No text running past its container, off the page, or into the logo.
+- [ ] Montserrat actually rendered, not a fallback. For PDF, actually embedded.
+- [ ] No italic anywhere.
+- [ ] The dark band is one weight lighter than the light-surface equivalent.
+- [ ] Correct logo role for the ground, clear space respected, never stretched or recolored.
+- [ ] Body text holds its 54ch measure and does not run the full container width.
+- [ ] Every color comes from the palette. No off-brand hue.
+- [ ] Margins and alignment consistent across every page and every rail.
+- [ ] Page breaks clean for print. No table, card or stat block split across a page.
+- [ ] No helper text, no caption restating the thing above it, no parenthetical after a heading, no em dash.
+- [ ] Nothing under 9pt on paper. A `.bk-code` span inside a 9pt caption or eyebrow needs `font-size:1em`, because 0.94em of 9pt is 8.46pt.
 
-A brand deliverable fails on details a spell-check can't catch — overlapping text, a clipped logo, an accent you can't read, a font that quietly fell back to Arial. Before you call any Royal deliverable done, verify the **rendered** result, not the source:
-
-1. **Render it and look.** Render the output to an image or PDF (or open the HTML in a browser) and visually inspect what actually renders — text overlap, clipping, and overflow are invisible in the source and only show up in pixels. If your environment can't render, say so plainly instead of claiming it looks clean.
-2. **No collisions.** Nothing overlapping, colliding, clipped, or overflowing — no text running past its container, off the page, or into the logo.
-3. **Legibility.** Contrast holds — light purple `#8260a2` is never body text (too washed out at text sizes); body copy stays black or purple `#572e72`. Light text only on dark backgrounds.
-4. **Logo integrity.** Correct variant for the background (the white variant on dark), never stretched, skewed, or recolored; clear space respected; never on a busy area without a solid backing.
-5. **Type.** Montserrat actually rendered, not a system fallback — and for PDFs, actually *embedded* in the file. Confirm it before you call the job done.
-6. **On-brand.** Every color is drawn from the palette above, no off-brand hues; margins and alignment consistent; page breaks clean for print.
-7. **State what you applied.** When you hand it back, name the brand choices you made (which logo variant, which accent, how the font embedded) so the user can verify at a glance.
+State which brand choices you applied when you hand the work back: logo role, accent, how the font embedded.

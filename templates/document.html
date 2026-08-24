@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Royal Ambulance · Document template</title>
+
+<!-- HOUSE TYPE SYSTEM v1.0 · print-ready one-pager and report letterhead.
+     Load order is fixed: the shared type layer first, the brand palette second.
+     type-system.css is identical in every kit. palette.css is the only file
+     that differs between Apex, Royal and Collective Edge. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/palette.css">
+
+<style>
+/* ---------- FONT ------------------------------------------------
+   Declared here, and the family is selected on html, body below, so
+   Montserrat still loads and still embeds when this file is printed
+   or converted to PDF and the CDN stylesheet does not resolve. The
+   declaration alone selects nothing. woff2 for screen, TTF so print
+   engines can embed. No italic face exists at any weight. */
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.woff2") format("woff2-variations"),
+       url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf")   format("truetype-variations");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ---------- BRAND ------------------------------------------------
+   The only per-brand lines in this file. Everything below resolves
+   through the semantic layer and is identical in every kit. */
+
+:root {
+  --tpl-subbanner:   var(--royal-purple);
+  --tpl-stat-kicker: var(--royal-purple);
+}
+
+
+/* ---------- PAGE ------------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--bg-surface);
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+}
+
+/* No horizontal padding on the page: the band bleeds to the edge on
+   screen exactly as it bleeds to the trim on paper. Every block below
+   carries its own 0.5in inset. */
+.doc-page {
+  width: 8.5in;
+  margin: var(--space-6) auto;
+  padding: 0 0 var(--space-7);
+  background: var(--bg-canvas);
+  box-shadow: var(--shadow-2);
+}
+
+
+/* ---------- HEADER BAND ------------------------------------------
+   Dark Purple ground, white horizontal logo at the right, title at
+   the left. .bk-on-dark drops the heading weight and opens the
+   tracking. .bk-caps carries the uppercase and the caps tracking for
+   the h2 step. Never set either by hand. */
+
+.doc-band {
+  background: var(--bg-band);
+  padding: var(--space-6) 0.5in;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+.doc-band .band-title { margin: 0; }
+
+.doc-band .band-logo {
+  width: 1.6in;
+  height: auto;
+  display: block;
+  flex: 0 0 auto;
+}
+
+
+/* ---------- SUB-BANNER -------------------------------------------
+   Optional. Delete the element to drop it. Never past four words.
+   The explicit on-dark color overrides the dimmed eyebrow, which
+   does not hold contrast on Purple. */
+
+.doc-subbanner { background: var(--tpl-subbanner); padding: var(--space-2) 0.5in; }
+.doc-subbanner .bk-eyebrow { margin: 0; color: var(--fg-on-dark-1); }
+
+
+/* ---------- BODY -------------------------------------------------- */
+
+.doc-body { padding: var(--space-7) 0.5in 0; }
+
+.doc-body .doc-eyebrow { margin: 0 0 var(--space-2); color: var(--fg-accent); }
+
+.doc-body .doc-h1 { margin: 0 0 var(--space-4); }
+
+.doc-body .doc-h2 { margin: var(--space-7) 0 var(--space-4); }
+
+/* No max-width here. .bk-body already carries --measure-body on the same
+   element, and .bk-caption carries --measure-caption on the stat unit. */
+.doc-body p {
+  margin: 0 0 var(--space-4);
+  text-wrap: pretty;
+  orphans: 3;
+  widows: 3;
+}
+
+
+/* ---------- TABLE ------------------------------------------------
+   Header row is 600 uppercase at 9pt, set by .bk-table. Cell type is
+   set once on the table, never on every cell, so no cell has to have
+   its measure cleared afterwards. Cells carry tabular figures, so a
+   number column needs nothing but text-align. */
+
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  color: var(--fg-1);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body-sm);
+  letter-spacing: var(--tr-body-sm);
+}
+
+.doc-table thead tr { background: var(--bg-inverse); }
+
+.doc-table th {
+  padding: var(--space-2) var(--space-3);
+  color: var(--fg-on-dark-1);
+}
+
+.doc-table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border-1);
+}
+
+.doc-table tbody tr:nth-child(even) { background: var(--bg-surface); }
+
+.doc-table .num { text-align: right; white-space: nowrap; }
+
+
+/* ---------- STAT CALLOUT -----------------------------------------
+   Numerals are 700, not 800. At 42pt ExtraBold reads as a slab
+   rather than a number. .bk-stat sets tabular figures. */
+
+.doc-stats {
+  display: flex;
+  gap: var(--space-6);
+  margin: var(--space-5) 0 0;
+}
+
+.doc-stats > div { flex: 1 1 0; min-width: 0; }
+
+.doc-stats .stat-kicker { margin: 0 0 var(--space-1); color: var(--tpl-stat-kicker); }
+.doc-stats .stat-value  { color: var(--fg-accent); }
+.doc-stats .stat-unit   { margin: var(--space-1) 0 0; text-wrap: pretty; }
+
+
+/* ---------- FOOTER ----------------------------------------------- */
+
+.doc-footer {
+  margin: var(--space-5) 0.5in 0;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border-1);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-5);
+}
+
+.doc-footer .doc-rev {
+  color: var(--royal-purple);
+  font-weight: 600;
+}
+
+/* 9pt is the floor of the standard. .bk-code is 0.94em, which would set the
+   revision numeral at 8.46pt on paper, so a code string at the floor holds 1em. */
+.bk-caption .bk-code,
+.bk-eyebrow .bk-code { font-size: 1em; }
+
+
+/* ---------- PRINT ------------------------------------------------
+   The print block from the shared type layer, repeated so this file
+   sets point sizes on paper on its own. Nothing a person reads at
+   length drops below 10.5pt. Nothing at all drops below 9pt. */
+
+/* No @page margin: the dark band bleeds to the trim on all four
+   sides. Every block below carries its own 0.5in horizontal inset,
+   and .doc-page adds the foot margin back in print. */
+@page { size: letter; margin: 0; }
+
+@media print {
+  /* This block exists for the case where the CDN stylesheet does not resolve.
+     Without this every dark band prints white and its reversed type disappears. */
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  html, body { background: var(--bg-canvas); font-size: 12pt; line-height: var(--lh-body); }
+
+  .doc-page { width: auto; margin: 0; padding: 0 0 var(--space-7); box-shadow: none; }
+
+  .bk-display-xl { font-size: 72pt; }
+  .bk-display-lg { font-size: 54pt; }
+  .bk-display-md { font-size: 42pt; }
+  .bk-h1         { font-size: 30pt; }
+  .bk-h2         { font-size: 24pt; }
+  .bk-h3         { font-size: 18pt; }
+  .bk-h4         { font-size: 15pt; }
+  .bk-body-lg    { font-size: 15pt; }
+  .bk-body       { font-size: 12pt; }
+  .bk-body-sm    { font-size: 10.5pt; }
+  .bk-caption,
+  .bk-eyebrow    { font-size: 9pt; }
+  .bk-stat       { font-size: 42pt; }
+  .doc-table     { font-size: 10.5pt; }
+
+  p, li, dd, blockquote { orphans: 3; widows: 3; max-width: var(--measure-body); text-wrap: pretty; }
+  h1, h2, h3, h4 { break-after: avoid; page-break-after: avoid; text-wrap: balance; }
+  table, figure, .bk-keep { break-inside: avoid; page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<article class="doc-page">
+
+  <!-- HEADER BAND -->
+  <header class="doc-band bk-on-dark">
+    <div class="bk-h2 bk-caps band-title">Discharge transport</div>
+    <img class="band-logo"
+         src="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-white.svg"
+         alt="Royal Ambulance">
+  </header>
+
+  <!-- SUB-BANNER -->
+  <div class="doc-subbanner bk-on-dark">
+    <p class="bk-eyebrow">Hospital partners · Q3 2026</p>
+  </div>
+
+  <!-- BODY -->
+  <main class="doc-body">
+
+    <p class="bk-eyebrow doc-eyebrow">Operations report</p>
+
+    <h1 class="bk-h1 doc-h1">The delay sits in one quartile.</h1>
+
+    <p class="bk-body">Two thirds of Q3 interfacility volume carried a patient from an acute
+      floor to a skilled nursing bed. Imaging appointments and dialysis split the rest.</p>
+
+    <p class="bk-body">Bed to wheels is the number partners feel. It runs from discharge
+      order release to departure at the origin door. The slowest quartile ran
+      71&nbsp;minutes, almost twice the median.</p>
+
+    <h2 class="bk-h2 doc-h2">Where the minutes go</h2>
+
+    <table class="bk-table doc-table">
+      <thead>
+        <tr class="bk-on-dark">
+          <th>Account</th>
+          <th>Origin</th>
+          <th>Level</th>
+          <th class="num">Bed to wheels</th>
+          <th class="num">Transports</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="bk-code">RA-2291</span></td>
+          <td>UCSF Parnassus</td>
+          <td>BLS</td>
+          <td class="num">34&nbsp;min</td>
+          <td class="num">1,284</td>
+        </tr>
+        <tr>
+          <td><span class="bk-code">RA-3140</span></td>
+          <td>Alameda Health System</td>
+          <td>CCT</td>
+          <td class="num">46&nbsp;min</td>
+          <td class="num">612</td>
+        </tr>
+        <tr>
+          <td><span class="bk-code">RA-2867</span></td>
+          <td>Eden Medical Center</td>
+          <td>ALS</td>
+          <td class="num">38&nbsp;min</td>
+          <td class="num">508</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- STAT CALLOUT -->
+    <div class="doc-stats">
+      <div>
+        <p class="bk-eyebrow stat-kicker">Transports</p>
+        <div class="bk-stat stat-value">4,182</div>
+        <p class="bk-caption stat-unit">interfacility, nine partners</p>
+      </div>
+      <div>
+        <p class="bk-eyebrow stat-kicker">Median bed to wheels</p>
+        <div class="bk-stat stat-value">38.6</div>
+        <p class="bk-caption stat-unit">minutes, order to departure</p>
+      </div>
+      <div>
+        <p class="bk-eyebrow stat-kicker">Window met</p>
+        <div class="bk-stat stat-value">94.1%</div>
+        <p class="bk-caption stat-unit">of confirmed pickups</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="doc-footer">
+    <span class="bk-caption">Royal Ambulance · Interfacility transport</span>
+    <span class="bk-caption bk-caps doc-rev">Rev.&nbsp;<span class="bk-code">08.26</span></span>
+  </footer>
+
+</article>
+
+</body>
+</html>

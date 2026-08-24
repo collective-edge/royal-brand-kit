@@ -1,4 +1,13 @@
 {
+  "_deprecated": {
+    "status": "Deprecated. Superseded by house type system v1.0.",
+    "replacedBy": "tokens.json",
+    "replacementUrl": "https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/tokens.json",
+    "authoritativePalette": "snippets/palette.css",
+    "why": "This file has no semantic layer, no status colors and no type values, and it names #000000 as body text. Running body text is #1E293B.",
+    "kept": "Live documents already point at this URL. Read tokens.json for anything new."
+  },
+
   "brand": {
     "darkPurple":  { "hex": "#2f193b", "rgb": [47, 25, 59],    "role": "Primary headers, hero backgrounds, section dividers" },
     "purple":      { "hex": "#572e72", "rgb": [87, 46, 114],   "role": "Column headers, accent bars, contact labels, category badges" },
