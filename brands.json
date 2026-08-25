@@ -187,7 +187,7 @@
         "mark-on-dark": "assets/logos/mark-white.svg",
         "stacked-on-dark": null
       },
-      "logoNote": "The main logo is APEX PARAMEDICS, the horizontal lockup. The compact lockup is APEX alone, for smaller places, decks, or a corner. The delivered compact files carried #000F9F and #FFB71B; both are normalised to the primary lockup so the house ships one blue and one gold, and the delivered originals are kept in assets/logos/_superseded/.",
+      "logoNote": "The main logo is APEX PARAMEDICS, the horizontal lockup. The compact lockup is APEX alone, for smaller places, decks, or a corner. The delivered compact files carried #000F9F and #FFB71B; both are normalised to the primary lockup so the house ships one blue and one gold. The delivered originals are in the git history, at the commit that adopted the set.",
       "logoSource": "assets/logos/source/apex-paramedics-PMS123-PMS072.eps",
       "minWidth": {
         "horizontal": "110px",
