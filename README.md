@@ -115,7 +115,7 @@ python3 scripts/validate.py snippets/*.html templates/*.html \
 
 ## Versioning
 
-`@main` serves the latest. Pin to a tag for stability: replace `@main` with `@v1.0`. Bump the major version when a palette value or a mark changes.
+`@main` serves the latest. Pin to a tag for stability: replace `@main` with `@v1.1`. Bump the major version when a palette value or a mark changes.
 
 ## License
 

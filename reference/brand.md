@@ -170,7 +170,7 @@ The shipping SVGs in `assets/logos/` are the working masters. Any future vector 
 | Type values, machine-readable | `snippets/type-tokens.json` |
 | Registry of every brand | `brands.json` |
 
-`@main` serves the latest. Pin to a tag for stability: replace `@main` with `@v1.0`. Bump the major version when a palette value or a mark changes.
+`@main` serves the latest. Pin to a tag for stability: replace `@main` with `@v1.1`. Bump the major version when a palette value or a mark changes.
 
 ### Deprecated, still served
 

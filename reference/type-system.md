@@ -251,4 +251,4 @@ See `NEW-BRAND.md`. A brand is a palette and a set of marks. Everything in this 
 
 ## 13. Versioning
 
-`@main` serves the latest. Pin to a tag for stability: replace `@main` with `@v1.0`. Bump the minor version for additive changes, the major version when a value in section 3, 4 or 5 changes.
+`@main` serves the latest. Pin to a tag for stability: replace `@main` with `@v1.1`. Bump the minor version for additive changes, the major version when a value in section 3, 4 or 5 changes.

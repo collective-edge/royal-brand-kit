@@ -37,7 +37,7 @@
         "accent": "#C8C8C8",
         "accentDeep": "#6E6E6E",
         "bandBackground": "#000000",
-        "surfaceTint": "#F4F4F4"
+        "surfaceTint": "#FAFAFA"
       },
       "logos": {
         "horizontal-on-light": "assets/logos/horizontal-black.svg",

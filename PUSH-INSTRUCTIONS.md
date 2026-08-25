@@ -68,7 +68,7 @@ git tag v1.0
 git push --tags
 ```
 
-Production materials pin by replacing `@main` with `@v1.0` in the CDN URL.
+Production materials pin by replacing `@main` with `@v1.1` in the CDN URL.
 
 ## Step 6. Tell the team
 
