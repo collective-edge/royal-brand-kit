@@ -19,8 +19,69 @@
       "italicPolicy": "There is no italic in this system at any weight. Do not synthesize one. The Collective Edge heavy-italic signature exists only in the drawn wordmark SVG."
     },
     "mono": {
-      "usage": "codes only: authorization numbers, unit IDs, run numbers, policy numbers, MRNs, anything retyped or read aloud",
+      "usage": "a whitelist of four kinds of string and nothing else, however technical it looks. A string qualifies only when a machine reads it back: somebody retypes it into a file, a URL bar or a form field, or dictates it so somebody else can enter it, and one wrong character produces a wrong result rather than a visible mistake",
       "reason": "Montserrat capital I, lowercase l and figure 1 are three identical stems; zero and capital O are the same circle",
+      "class": ".bk-code",
+      "whitelist": [
+        {
+          "kind": "colour value",
+          "examples": [
+            "#1D225E",
+            "43 51 141"
+          ],
+          "why": "retyped into a stylesheet or a picker; 0 and O are its alphabet"
+        },
+        {
+          "kind": "path, filename, package",
+          "examples": [
+            "snippets/palette.css",
+            "horizontal-color.svg",
+            "apex-brand-kit@v1.1"
+          ],
+          "why": "pasted into an href; a wrong character is a 404, not a wrong look",
+          "test": "carries a slash, a dot extension or an @version"
+        },
+        {
+          "kind": "code shown as code",
+          "examples": [
+            ".bk-code",
+            "text-wrap: balance",
+            "<link rel=\"stylesheet\">"
+          ],
+          "why": "retyped into source, straight quotes and all",
+          "test": "a leading dot, or a colon with a property name to its left"
+        },
+        {
+          "kind": "record identifier",
+          "examples": [
+            "IFT-114",
+            "Rev. 08.26",
+            "an auth number",
+            "an MRN"
+          ],
+          "why": "dictated over a radio into a system of record"
+        }
+      ],
+      "excluded": [
+        "ordinals and section numbers",
+        "counts",
+        "measurements and their units",
+        "ratios and percentages",
+        "weight numbers",
+        "status and verdict words",
+        "asset role keys",
+        "column headers",
+        "row labels",
+        "captions and all prose"
+      ],
+      "tieBreakers": [
+        "A colon with a property name to its left is a declaration and is mono. A bare value in a spec column is a measurement and is not. text-wrap: balance is mono; 54ch is not.",
+        "A leading dot makes an identifier mono. Printed without one, a token name is the name of a thing and is Montserrat. .bk-code is mono; display-xl is not."
+      ],
+      "testTheClass": "Never test a single instance for whether it happens to contain I, l, 1, 0 or O. Ask whether a member of the class can carry them and whether a member gets transcribed, or one column sets in two faces.",
+      "mixedStrings": "A mixed string splits at the element, never at the line. 158 px apex-brand-kit horizontal-white.svg sets the width in Montserrat and the repo and the filename in .bk-code.",
+      "neverByContainer": "Never apply the face by container selector. Painting a whole value column is how the second face escapes its rule. Wrap the qualifying string.",
+      "onLeavingTheFace": "Every string that leaves the mono face and sits in a column or a stack gains font-variant-numeric: tabular-nums lining-nums in the same edit. .bk-code carries it; Montserrat does not.",
       "stack": [
         "ui-monospace",
         "SF Mono",
@@ -330,8 +391,10 @@
       "policy": "never; use a period, a comma or a middot"
     },
     "figures": {
-      "columns": "tabular-nums lining",
-      "prose": "proportional"
+      "columns": "tabular-nums lining-nums, in whichever face the column is set",
+      "prose": "proportional",
+      "class": ".bk-tnum",
+      "note": ".bk-code already carries tabular-nums lining-nums, so a column that leaves the mono face loses its alignment the moment the face changes. Add .bk-tnum in the same edit."
     },
     "smallCaps": {
       "policy": "Montserrat has none; never synthesize. Use 600 uppercase at body size with 0.08em tracking."
@@ -351,7 +414,7 @@
     "text-wrap: balance on every heading. text-wrap: pretty on every paragraph. orphans: 3; widows: 3 in print.",
     "Space above a heading is three times the space below it.",
     "Every vertical value is a multiple of 4.",
-    "Codes, IDs and unit numbers set in the mono face. Never Montserrat.",
+    "The mono face is a whitelist of four: colour values, paths and filenames, code shown as code, and record identifiers a person dictates. Measurements, ratios, counts, ordinals, weight numbers, verdict words and labels are Montserrat.",
     "Columns of numbers get tabular-nums. Curly quotes, en dashes, non-breaking spaces in units. No em dashes.",
     "A label, a value, and nothing between them. No helper text under a field, no caption restating a number, no parenthetical after a heading."
   ]

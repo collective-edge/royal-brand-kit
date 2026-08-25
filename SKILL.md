@@ -141,6 +141,6 @@ It checks rules 1, 2, 5, 9, 10, 13 and 14 mechanically and exits non-zero on a v
 - [ ] Margins and alignment consistent across every page and every rail.
 - [ ] Page breaks clean for print. No table, card or stat block split across a page.
 - [ ] No helper text, no caption restating the thing above it, no parenthetical after a heading, no em dash.
-- [ ] Nothing under 9pt on paper. A `.bk-code` span inside a 9pt caption or eyebrow needs `font-size:1em`, because 0.94em of 9pt is 8.46pt.
+- [ ] Nothing under 9pt on paper. `.bk-code` sets no size of its own, so a code string inside a 9pt caption sets at 9pt.
 
 State which brand choices you applied when you hand the work back: logo role, accent, how the font embedded.

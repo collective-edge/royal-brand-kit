@@ -154,7 +154,7 @@ The shipping SVGs in `assets/logos/` are the working masters. Any future vector 
 - A label, a value, and nothing between them. No helper text under a field, no caption restating the number above it, no parenthetical after a heading.
 - Sentence case for headings inside a document. Uppercase for display statements on a title, band or divider surface, and for labels. Always tracked, never past four words.
 - Name partners and facilities exactly as they write themselves.
-- Unit IDs, run numbers, authorization numbers, policy numbers and MRNs go in the mono face with `.bk-code`.
+- The mono face is a whitelist of four: colour values, paths and filenames, code shown as code, and record identifiers a person dictates. Use `.bk-code`. Measurements, ratios, counts, ordinals, weight numbers, verdict words and labels are Montserrat.
 - When you hand work back, state which brand choices you applied: logo role, accent, how the font embedded.
 
 ---

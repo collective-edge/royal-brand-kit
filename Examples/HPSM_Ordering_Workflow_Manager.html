@@ -381,19 +381,6 @@
   .nemt-note p strong { font-weight: 700; }
   .page2-footer { flex-shrink: 0; text-align: center; padding: var(--space-1) var(--space-5); border-top: 1.5px solid var(--border-1); font-size: 9pt; color: var(--fg-2); font-weight: 400; line-height: var(--lh-caption); letter-spacing: var(--tr-caption); }
 
-  /* ── CODE AT THE FLOOR ──
-     9pt is the floor of the standard. .bk-code is 0.94em on the shared layer,
-     which would set a code string inside a 9pt line at 8.46pt. Every code
-     string below sits at the floor and holds 1em. .fa-phone is 15pt and keeps
-     the optical reduction, except in the .sm variant, which is also 9pt. */
-  .version-wrap .bk-code,
-  .fa-phone-alt .bk-code,
-  .fa-note .bk-code,
-  .flow-action.sm .fa-phone .bk-code,
-  .ch-detail .bk-code,
-  .ce-phone .bk-code,
-  .page2-footer .bk-code { font-size: 1em; }
-
   /* ── PRINT ── */
   @media print {
     p, li { orphans: 3; widows: 3; }

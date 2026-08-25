@@ -70,11 +70,17 @@
 
   --font-sans: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  /* Codes only. Montserrat’s capital I, lowercase l and figure 1
-     are three identical stems, and its zero and capital O are the
-     same circle. Anything a person retypes, dictates or reads
-     aloud goes in the mono face: authorization numbers, unit IDs,
-     run numbers, policy numbers, MRNs. Everything else is sans. */
+  /* A whitelist of four, and nothing else however technical it
+     looks. Montserrat’s capital I, lowercase l and figure 1 are
+     three identical stems, and its zero and capital O are the same
+     circle, so a string a machine reads back goes in the mono face:
+       1. colour values, and the RGB triplet that restates one
+       2. paths, filenames and package names
+       3. code shown as code, a selector or a declaration or a block
+       4. record identifiers a person dictates
+     Measurements, ratios, counts, ordinals, weight numbers, verdict
+     words and labels are sans. Never paint a whole column with this:
+     wrap the qualifying string. See type-system.md section 7. */
   --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo,
                Consolas, "Liberation Mono", monospace;
 
@@ -325,7 +331,7 @@ em, strong, b {
   line-height: var(--lh-display-md);
   --tr: var(--tr-display-md);
   --tr-caps: var(--tr-caps-display-md);
-  font-variant-numeric: tabular-nums lining;
+  font-variant-numeric: tabular-nums lining-nums;
   color: var(--fg-1);
 }
 
@@ -364,23 +370,28 @@ em, strong, b {
 
 /* ---------- 12. UTILITIES ---------------------------------- */
 
-/* Codes, IDs, unit numbers. Never Montserrat.
-   NEST it, never stack it. .bk-code sets 0.94em so the mono matches the sans
-   optically at the same nominal size. Put it on the same element as a size
-   class and it wins on source order, losing that size:
+/* The four whitelisted kinds, and nothing else. 1em, so a code string takes the
+   size of the step it sits in and lands on the ladder. The old 0.94em optical
+   reduction put a code inside a 12px caption at 11.28px, under the 12px screen
+   floor, and forced a font-size:1em override at every call site. Declared, not
+   omitted, so it also overrides an older copy of this sheet loaded ahead of it.
+   NEST it, never stack it. On the same element as a size class it wins on source
+   order, and 1em then resolves against the parent rather than that step:
      wrong  <span class="bk-code bk-caption">
      right  <span class="bk-caption"><span class="bk-code"> */
 .bk-code {
   font-family: var(--font-mono);
-  font-size: 0.94em;
+  font-size: 1em;
   letter-spacing: 0.01em;
-  font-variant-numeric: tabular-nums lining slashed-zero;
+  font-variant-numeric: tabular-nums lining-nums slashed-zero;
   white-space: nowrap;
 }
 
-/* Any column of numbers, so digits align down the column. */
+/* Any column of numbers, so digits align down the column, in whichever face it
+   is set. .bk-code already carries it, so a column leaving the mono face takes
+   .bk-tnum in the same edit or it loses its alignment. */
 .bk-tnum, table.bk-table td, table.bk-table th {
-  font-variant-numeric: tabular-nums lining;
+  font-variant-numeric: tabular-nums lining-nums;
 }
 
 .bk-measure-body    { max-width: var(--measure-body); }
@@ -432,11 +443,6 @@ figure, table, .bk-keep { break-inside: avoid; page-break-inside: avoid; }
   .bk-body-sm    { font-size: 10.5pt; }
   .bk-caption,
   .bk-eyebrow    { font-size: 9pt; }
-  /* .bk-code runs 0.94em, which inside a 9pt caption lands at 8.5pt, under the
-     9pt floor in section 9. Hold it at the floor rather than let it shrink. */
-  .bk-caption .bk-code,
-  .bk-eyebrow .bk-code,
-  .bk-code       { font-size: 9pt; }
   .bk-stat       { font-size: 42pt; }
 
   p, li, dd, blockquote { orphans: 3; widows: 3; }

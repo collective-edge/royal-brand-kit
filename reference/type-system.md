@@ -29,7 +29,7 @@ For non-CSS output (PowerPoint, Word, matplotlib, reportlab) read `type-tokens.j
 
 **There is no italic in this system, at any weight, in any brand.** Do not set italic. Do not synthesize an oblique. `font-synthesis: none` is set in the CSS so nothing can fake one. The Collective Edge heavy-italic signature exists only in the drawn wordmark SVG, where the letterforms are correct.
 
-A second face appears in one place only. Montserrat’s capital I, lowercase l and figure 1 are three identical stems, and its zero and capital O are the same circle. **Any string a person retypes, dictates or reads aloud goes in the mono face:** authorization numbers, unit IDs, run numbers, policy numbers, MRNs. Use `.bk-code`. Everything else is Montserrat.
+A second face carries four kinds of string and nothing else. Montserrat’s capital I, lowercase l and figure 1 are three identical stems, and its zero and capital O are the same circle, so **a string a machine reads back goes in the mono face:** colour values, paths and filenames, code shown as code, and record identifiers a person dictates. Use `.bk-code`. Measurements, ratios, counts, ordinals, weight numbers, verdict words and labels are Montserrat. Section 7.
 
 ### Measured metrics
 
@@ -157,7 +157,28 @@ Paragraphs get space between them or a first-line indent. Never both.
 | Separator | `Facility \| Payer` | `Facility · Payer` |
 | Em dash | any use | Never. Use a period, a comma or `·` |
 
-**Figures.** Any column of numbers gets `font-variant-numeric: tabular-nums lining` so digits align down the column. Running prose keeps proportional figures.
+### The second face
+
+The mono face is a whitelist of four kinds of string. Nothing else in the system may take it, however technical it looks. A string qualifies only when a machine reads it back: somebody retypes it into a file, a URL bar or a form field, or dictates it so somebody else can enter it, and one wrong character produces a wrong result rather than a visible mistake.
+
+| Kind | Examples | Why it qualifies |
+|---|---|---|
+| Colour value | `#1D225E`, `43 51 141` | Retyped into a stylesheet. `0` and `O` are its alphabet |
+| Path, filename, package | `snippets/palette.css`, `apex-brand-kit@v1.1` | Pasted into an `href`. A wrong character is a 404, not a wrong look |
+| Code shown as code | `.bk-code`, `text-wrap: balance`, a `<link>` block | Retyped into source, straight quotes and all |
+| Record identifier | `IFT-114`, `Rev.&nbsp;08.26`, an auth number, an MRN | Dictated over a radio into a system of record |
+
+Everything else is Montserrat. Named, because this is where the face spreads: ordinals and section numbers, counts, measurements and their units (`96px`, `0.968em`, `54ch`), ratios and percentages (`10.70:1`, `+16.7%`), weight numbers, status and verdict words (`AA any size`, `fails`), asset role keys (`horizontal-on-dark`), column headers, row labels and every caption.
+
+Two tie-breakers, so no instance needs judgement. A colon with a property name to its left is a declaration and takes the mono; a bare value in a spec column is a measurement and does not. A leading dot makes an identifier and takes the mono; the same token printed without one is the name of a thing and does not.
+
+Test the class of string, never the instance. Ask whether a member of the class can carry `I`, `l`, `1`, `0` or `O`, and whether a member gets transcribed. An instance that happens to hold none of them still sets in the face its class takes, or one column ends up in two faces.
+
+A mixed string splits at the element, never at the line. `158 px apex-brand-kit horizontal-white.svg` sets the width in Montserrat and the repo and the filename in `.bk-code`. Never apply the face by container selector: painting a whole value column is how the second face escapes its rule.
+
+### Figures
+
+**Any column of numbers gets `font-variant-numeric: tabular-nums lining-nums`, in whichever face it is set.** `.bk-code` already carries it, so a column that leaves the mono face loses its alignment the moment the face changes. Add `.bk-tnum` in the same edit. Running prose keeps proportional figures.
 
 **Never synthesize.** Montserrat has no small caps and no oldstyle figures. A small-caps look is 600 uppercase at body size with 0.08em tracking. Never fake bold, never fake italic. Call a real weight.
 
@@ -216,7 +237,7 @@ Copy these into any brief. Following them literally produces correct work.
 10. `text-wrap: balance` on every heading. `text-wrap: pretty` on every paragraph. `orphans: 3; widows: 3` in print.
 11. Space above a heading is three times the space below it.
 12. Every vertical value is a multiple of 4.
-13. Codes, IDs and unit numbers set in the mono face. Never Montserrat.
+13. The mono face is a whitelist of four: colour values, paths and filenames, code shown as code, and record identifiers a person dictates. Measurements, ratios, counts, ordinals, weight numbers, verdict words and labels are Montserrat. Section 7.
 14. Columns of numbers get `tabular-nums`. Curly quotes, en dashes, non-breaking spaces in units. No em dashes.
 15. A label, a value, and nothing between them.
 

@@ -64,7 +64,7 @@ Every node is a rectangle at `--radius-md` 6px. Role is communicated by fill, ne
 <!-- Standard process step -->
 <div class="bk-on-dark" style="background:var(--diagram-process); border:1px solid var(--diagram-process-border); border-radius:var(--radius-md); padding:var(--space-3) var(--space-4);">
   <div class="bk-eyebrow" style="color:var(--fg-on-dark-1); margin:0;">Dispatch confirms</div>
-  <div class="bk-caption" style="margin:var(--space-1) 0 0;">Unit <span class="bk-code" style="font-size:1em;">R-114</span> assigned</div>
+  <div class="bk-caption" style="margin:var(--space-1) 0 0;">Unit <span class="bk-code">R-114</span> assigned</div>
 </div>
 
 <!-- Royal action or highlight step -->
@@ -108,7 +108,7 @@ Kicker, numeral, unit. Nothing between them, no caption restating the number.
 </div>
 ```
 
-`.bk-stat` is 700 at 42pt with `tabular-nums lining` already applied. Do not raise it to 800. At display sizes ExtraBold reads as a slab, not a number.
+`.bk-stat` is 700 at 42pt with `tabular-nums lining-nums` already applied. Do not raise it to 800. At display sizes ExtraBold reads as a slab, not a number.
 
 ---
 
@@ -140,7 +140,7 @@ Dark Purple header row, white body, hairline rules, `--bg-surface` alternation o
 </table>
 ```
 
-`.bk-table th` is already 600 uppercase at 9pt, carrying `--tr-caps-small` plus the dark bonus, 0.085em on the header row above, one step below the 10.5pt cells it heads. That is deliberate and it is the one place the caps label sits below its body. A column header names a column; it is not a kicker stacked above a block of copy, which is what the never-smaller rule governs. Never restate the header inline and never push it back to 800. Set cell type once on the `<table>`, as above, rather than putting a body class on every cell and then clearing its measure. `.bk-table` cells already carry `tabular-nums lining`, so number columns only need `text-align:right`. Unit IDs and authorization numbers in a cell go in `.bk-code`.
+`.bk-table th` is already 600 uppercase at 9pt, carrying `--tr-caps-small` plus the dark bonus, 0.085em on the header row above, one step below the 10.5pt cells it heads. That is deliberate and it is the one place the caps label sits below its body. A column header names a column; it is not a kicker stacked above a block of copy, which is what the never-smaller rule governs. Never restate the header inline and never push it back to 800. Set cell type once on the `<table>`, as above, rather than putting a body class on every cell and then clearing its measure. `.bk-table` cells already carry `tabular-nums lining-nums`, so number columns only need `text-align:right`. Unit IDs and authorization numbers in a cell go in `.bk-code`. A count, a duration and a median are measurements and stay Montserrat.
 
 ---
 
@@ -151,13 +151,13 @@ Slim full-width rail. Hairline above, muted caption left, revision marker in Pur
 ```html
 <footer style="border-top:1px solid var(--border-1); display:flex; justify-content:space-between; align-items:baseline; gap:var(--space-4); padding:var(--space-2) 0.5in;">
   <span class="bk-caption">Royal Ambulance · Document title</span>
-  <span class="bk-caption bk-caps" style="color:var(--royal-purple); font-weight:600;">Rev.&nbsp;<span class="bk-code" style="font-size:1em;">08.26</span></span>
+  <span class="bk-caption bk-caps" style="color:var(--royal-purple); font-weight:600;">Rev.&nbsp;<span class="bk-code">08.26</span></span>
 </footer>
 ```
 
 The revision marker is a caps label, so it is 600, not 700. 700 belongs to headings, emphasis and stat numerals. `.bk-caps` carries the uppercase and the 0.080em tracking, so never type either one.
 
-The `font-size:1em` on the code span is not optional. `.bk-code` is 0.94em, and 0.94 of a 9pt caption is 8.46pt, under the 9pt floor in section 9 of the type standard. Clear it wherever a code string sits inside a caption or an eyebrow. Never shrink the caption instead.
+The code span needs no size of its own. `.bk-code` sets no font size, so it takes the size of the step it sits in and a revision marker inside a 9pt caption sets at 9pt, on the floor. The old 0.94em reduction landed it at 8.46pt and had to be cleared by hand at every call site.
 
 ---
 
@@ -228,8 +228,8 @@ The light lockup goes on `--bg-canvas`, not on `--royal-surface` `#faf5fd`. The 
 - Space above a heading is three times the space below it. `--space-above-heading` is 48px, `--space-below-heading` is 16px.
 - Every vertical value is a multiple of 4. Use the `--space-*` tokens.
 - Body copy keeps its `54ch` measure. Never let it run the full width of a wide container, and never clear `max-width` on a `.bk-body*` or `.bk-caption` element to make a cell or a rail fit. Set the type on the container instead, as the table above does.
-- The revision marker, unit IDs, run numbers and authorization numbers go in `.bk-code`. Everything else is Montserrat.
-- `.bk-code` is 0.94em. Inside a 9pt caption or eyebrow that lands at 8.46pt, under the floor, so set `font-size:1em` on the code span there. At 10.5pt and above it keeps the reduction.
+- The mono face is a whitelist of four: colour values, paths and filenames, code shown as code, and record identifiers a person dictates, the revision marker among them. Measurements, ratios, counts, ordinals, weight numbers, verdict words and labels are Montserrat.
+- `.bk-code` sets no font size. It takes the size of the step it sits in, so every code string lands on the ladder and none needs a size cleared by hand.
 - `.bk-code` resolves to `--font-mono`, a system stack. No kit embeds a mono face, so a `.bk-code` string falls back to whatever monospace the render host carries and does not embed in a PDF. Keep those strings short, and read them in the rendered file before you ship.
 - Maximum three weights and three sizes above body in one piece.
 - Content order in a one-pager: header band, optional sub-banner, body, footer. The band is not optional.
