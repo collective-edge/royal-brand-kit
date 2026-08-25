@@ -10,9 +10,11 @@
     "fontVariableWoff2": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.woff2"
   },
   "logoRoles": {
-    "_comment": "Every brand maps these five roles. Ask for a role, never for a filename. `-on-light` means the version to place ON a light background; `-on-dark` the version to place ON a dark background.",
+    "_comment": "Every brand maps the first five roles. Ask for a role, never for a filename. `-on-light` means the version to place ON a light background; `-on-dark` the version to place ON a dark background. The compact pair is optional and present only where a brand ships a short lockup; absent when it does not.",
     "horizontal-on-light": "primary lockup, light backgrounds",
     "horizontal-on-dark": "primary lockup, dark backgrounds",
+    "compact-on-light": "the short lockup, for smaller places, decks, or a corner, light backgrounds",
+    "compact-on-dark": "the short lockup, for smaller places, decks, or a corner, dark backgrounds",
     "mark-on-light": "icon only, light backgrounds",
     "mark-on-dark": "icon only, dark backgrounds",
     "stacked-on-dark": "optional vertical lockup; null when the brand has none"
@@ -97,27 +99,31 @@
       "prefix": "apex",
       "hasColor": true,
       "color": {
-        "primary": "#2c338e",
+        "primary": "#2B338D",
         "primaryDeep": "#1D225E",
         "primaryLight": "#9699C7",
-        "accent": "#f9ad16",
+        "accent": "#FDB61C",
         "accentDeep": "#B77808",
         "bandBackground": "#1D225E",
-        "bandRule": "#f9ad16",
+        "bandRule": "#FDB61C",
         "surfaceTint": "#f3f3fb"
       },
-      "colorNote": "Blue is the structure, gold is the spark. Bright gold #f9ad16 fails contrast as text on white; use #B77808 and only at bold or large sizes. Gold is a brand accent, never a status color.",
-      "wedgeHue": "#f9ad16",
+      "colorNote": "Blue is the structure, gold is the spark. Bright gold #FDB61C measures 1.77:1 on white and fails contrast as text there. Use #B77808, and only at bold or large sizes. Gold is a brand accent, never a status colour.",
+      "wedgeHue": "#FDB61C",
       "logos": {
         "horizontal-on-light": "assets/logos/horizontal-color.svg",
         "horizontal-on-dark": "assets/logos/horizontal-white.svg",
+        "compact-on-light": "assets/logos/compact-on-light.svg",
+        "compact-on-dark": "assets/logos/compact-on-dark.svg",
         "mark-on-light": "assets/logos/mark-color.svg",
         "mark-on-dark": "assets/logos/mark-white.svg",
         "stacked-on-dark": null
       },
-      "logoSource": "assets/logos/source/apex-paramedics.eps",
+      "logoNote": "The main logo is APEX PARAMEDICS, the horizontal lockup. The compact lockup is APEX alone, for smaller places, decks, or a corner. The delivered compact files carried #000F9F and #FFB71B; both are normalised to the primary lockup so the house ships one blue and one gold, and the delivered originals are kept in assets/logos/_superseded/.",
+      "logoSource": "assets/logos/source/apex-paramedics-PMS123-PMS072.eps",
       "minWidth": {
         "horizontal": "110px",
+        "compact": "80px",
         "mark": "32px"
       }
     },
@@ -180,7 +186,7 @@
       "border": "#2a2a2a",
       "use": "neutral process steps, context boxes",
       "text": "#FFFFFF",
-      "contrast": "10.37:1",
+      "contrast": "10.70:1",
       "textRule": "any size"
     },
     "shape": "rectangles, 6px radius. Role is communicated by fill color, never by shape.",

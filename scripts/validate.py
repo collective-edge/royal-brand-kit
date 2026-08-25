@@ -18,6 +18,8 @@ Rules checked:
     R10  text-wrap balance on headings, pretty on paragraphs
     R13  codes, IDs and unit numbers in the mono face
     R14  micro-typography: no em dash, curly quotes, en dash ranges, real ellipsis
+         (the curly-quote check skips mono context, where a straight quote is
+          the character a reader has to be able to paste)
 
 Exit codes:
     0  clean
@@ -531,9 +533,14 @@ def check_file(path, tokens, weights, reserved, mono_re, italic_family_re):
         for m in EMDASH_RE.finditer(text):
             rep.add("R14", line_of(starts, base + m.start()), context(text, m),
                     "em dash · use a period, a comma or ·")
-        for m in STRAIGHT_QUOTE_RE.finditer(text):
-            rep.add("R14", line_of(starts, base + m.start()), context(text, m),
-                    "straight quote · use “ ” ’")
+        # Curly quotes are a prose rule. Inside a code specimen the straight
+        # quote is the correct character: a snippet a reader retypes has to be
+        # the string that works when they paste it. Mono context is the only
+        # place in the system where that is true.
+        if not mono:
+            for m in STRAIGHT_QUOTE_RE.finditer(text):
+                rep.add("R14", line_of(starts, base + m.start()), context(text, m),
+                        "straight quote · use “ ” ’")
         for m in YEAR_HYPHEN_RE.finditer(text):
             rep.add("R14", line_of(starts, base + m.start()), m.group(0),
                     "year range on a hyphen · use an en dash –")
