@@ -47,6 +47,7 @@ TYPE-SYSTEM.md
 brands.json
 snippets/type-system.css
 snippets/type-tokens.json
+snippets/cobrand.css
 NEW-BRAND.md
 tools/check-sync.py
 ```

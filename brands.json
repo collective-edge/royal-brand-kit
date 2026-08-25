@@ -9,6 +9,74 @@
     "fontVariableTtf": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf",
     "fontVariableWoff2": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.woff2"
   },
+  "cobrand": {
+    "_comment": "POWERED BY COLLECTIVE EDGE. Identical in every kit. The shipped co-brand lockup, captured from apex-website/src/components/Footer.astro, web-apex-internal-dashboard/src/components/Sidebar.astro and apex-customer-dashboard/src/components/Sidebar.astro. An agent resolves the lockup, the width and the placement rules from here rather than reinventing a treatment. CSS: snippets/cobrand.css, identical in every kit and served from the parent brand.",
+    "label": "Powered by",
+    "phrase": "Powered by Collective Edge",
+    "css": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css",
+    "classes": {
+      "dark": "ce-powered",
+      "light": "ce-powered ce-powered-light",
+      "textOnly": "ce-powered-text"
+    },
+    "lockup": {
+      "on-dark": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg",
+      "on-light": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg",
+      "width": "204px",
+      "height": "34px",
+      "aspect": "450 x 75, 6:1, so 204px wide renders 34px tall",
+      "widthNote": "204px is the shipped width in both the Apex website footer and the Apex internal dashboard sidebar. It is sized to read at a glance rather than sit quietly in a corner, which is why it runs wider than the partner mark above it. The 120px minimum in the Collective Edge kit is a floor, not a target. max-width:100% is the only thing that takes it below 204px, and only where the rail is narrower.",
+      "fileRule": "Match the file to the background. White on dark, black on light. Never CSS-filter a logo to invert it."
+    },
+    "hairline": {
+      "rule": "The CE lockup rides beside the partner brand, never inside it, so a hairline keeps the two marks distinct. The two read as two brands rather than one combined mark.",
+      "on-dark": "1px solid var(--border-on-dark)",
+      "on-light": "1px solid var(--border-1)",
+      "geometry": "margin-top and padding-top --space-5 (24px), label to lockup gap --space-3 (12px)"
+    },
+    "labelType": {
+      "fontSize": "--fs-caption, 12px web and 9pt print",
+      "fontWeight": 600,
+      "tracking": "--tr-caps-small, 0.080em",
+      "case": "uppercase",
+      "colorOnDark": "--fg-on-dark-3",
+      "colorOnLight": "--fg-3",
+      "contrastOnDark": {
+        "collective-edge": "7.84:1 · #9E9E9E on #000000",
+        "apex": "5.98:1 · #9EA5C4 on #1D225E",
+        "royal": "6.61:1 · #B0A2BC on #2f193b"
+      },
+      "contrastOnLight": {
+        "collective-edge": "5.10:1 · #6E6E6E on #FFFFFF",
+        "apex": "4.76:1 · #64748B on #FFFFFF",
+        "royal": "4.76:1 · #64748B on #FFFFFF"
+      },
+      "surfaceNote": "The light lockup belongs on --bg-canvas, not on --bg-surface. On the tinted surface the same grey measures 4.89:1 for Collective Edge, 4.43:1 for Royal and 4.31:1 for Apex, and the last two fall under 4.5:1."
+    },
+    "placement": [
+      "The footer of any site or printed document",
+      "The sidebar header of any dashboard",
+      "The closing slide of any deck",
+      "The foot of a report",
+      "A data page or a methodology page",
+      "Anywhere a number was computed rather than typed"
+    ],
+    "doNot": [
+      "Put it on the partner's own mark or inside their lockup",
+      "Merge, nest or recolor either mark to match the other",
+      "Put it on a clinical instruction",
+      "Put it on a patient-facing consent or safety document",
+      "Use it twice on one surface",
+      "Set the phrase as type where the mark fits",
+      "Design the lockup down to the 120px floor"
+    ],
+    "shippedIn": [
+      "apex-website/src/components/Footer.astro",
+      "apex-website/src/pages/partner.astro",
+      "web-apex-internal-dashboard/src/components/Sidebar.astro",
+      "apex-customer-dashboard/src/components/Sidebar.astro · text-only variant"
+    ]
+  },
   "logoRoles": {
     "_comment": "Every brand maps the first five roles. Ask for a role, never for a filename. `-on-light` means the version to place ON a light background; `-on-dark` the version to place ON a dark background. The compact pair is optional and present only where a brand ships a short lockup; absent when it does not.",
     "horizontal-on-light": "primary lockup, light backgrounds",

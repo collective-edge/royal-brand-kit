@@ -13,7 +13,7 @@ Reference, read on demand:
 
 - [reference/brand.md](reference/brand.md) · full color table, contrast traps, logo specifications, voice
 - [reference/type-system.md](reference/type-system.md) · the type standard and the fifteen rules
-- [reference/layout.md](reference/layout.md) · header band, sub-banner, flowchart nodes, stat callout, table, footer
+- [reference/layout.md](reference/layout.md) · header band, sub-banner, flowchart nodes, stat callout, table, footer, the Collective Edge co-brand lockup
 - `tokens.json` · colors for python-pptx, python-docx, matplotlib, reportlab
 - `snippets/type-tokens.json` · type values for the same generators
 
@@ -21,11 +21,12 @@ Reference, read on demand:
 
 ## 1. Load the assets
 
-Two stylesheets, in this order. `type-system.css` is identical in every kit and is served from the Collective Edge kit. `palette.css` is the only file that differs.
+Three stylesheets, in this order. `type-system.css` is identical in every kit and is served from the Collective Edge kit. `palette.css` is the only file that differs. `cobrand.css` is the co-brand lockup, also identical everywhere, and it reads the palette, so it loads last.
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/palette.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css">
 ```
 
 Inline this block at the top of every HTML file you generate, even when Montserrat is installed on the rendering machine. A local copy makes the file render correctly on that one machine and wrong everywhere else, and only the declaration embeds the font in a downstream PDF (weasyprint, wkhtmltopdf, Chrome print). The `font-family` line is not optional: without it nothing selects Montserrat when the CDN stylesheet fails to resolve.
@@ -113,6 +114,8 @@ Header band, sub-banner, flowchart nodes, stat callout, table and footer are in 
 
 `.bk-caps` resolves the uppercase and the caps tracking at whatever step it sits on, and `.bk-on-dark` adds the 0.005em bonus. Never type either value. Slides swap `.bk-h2` for `.bk-display-md`.
 
+**Powered by Collective Edge.** Royal is an operating company under Collective Edge, and the reader should be able to see it. The lockup rides beside the Royal mark, never inside it, with a hairline between them, at 204px, which is wider than the Royal mark above it on purpose. `.ce-powered` on a dark band, `.ce-powered ce-powered-light` on white, `.ce-powered-text` where no mark fits. It belongs on footers, dashboard sidebars, closing slides, data pages, anywhere a number was computed rather than typed. Never on the Royal mark itself, never on a clinical instruction or a patient-facing consent, never twice on one surface. Both grounds, the measured contrast and copy-pasteable blocks are in [reference/layout.md](reference/layout.md).
+
 ---
 
 ## 5. Verify before shipping
@@ -130,6 +133,7 @@ It checks rules 1, 2, 5, 9, 10, 13 and 14 mechanically and exits non-zero on a v
 - [ ] The dark band is one weight lighter than the light-surface equivalent.
 - [ ] Correct logo role for the ground, clear space respected, never stretched or recolored.
 - [ ] Body text holds its 54ch measure and does not run the full container width.
+- [ ] “Powered by Collective Edge” on the footer, the sidebar or the closing slide. Once, beside the Royal mark and never inside it.
 - [ ] Every color comes from the palette. No off-brand hue.
 - [ ] Margins and alignment consistent across every page and every rail.
 - [ ] Page breaks clean for print. No table, card or stat block split across a page.

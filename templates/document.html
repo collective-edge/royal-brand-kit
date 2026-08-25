@@ -11,6 +11,7 @@
      that differs between Apex, Royal and Collective Edge. -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/palette.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css">
 
 <style>
 /* ---------- FONT ------------------------------------------------
@@ -184,6 +185,20 @@ html, body {
   font-weight: 600;
 }
 
+
+/* ---------- CO-BRAND ---------------------------------------------
+   Powered by Collective Edge. The CE lockup rides beside the Royal
+   brand, never inside it, so the hairline keeps the two marks
+   distinct and they read as two brands rather than one combined
+   mark. cobrand.css owns the geometry, the 204px width and the
+   label. This rule only puts it on the page rail. */
+
+.doc-cobrand {
+  margin-left: 0.5in;
+  margin-right: 0.5in;
+  margin-bottom: var(--space-7);
+}
+
 /* 9pt is the floor of the standard. .bk-code is 0.94em, which would set the
    revision numeral at 8.46pt on paper, so a code string at the floor holds 1em. */
 .bk-caption .bk-code,
@@ -230,6 +245,9 @@ html, body {
   p, li, dd, blockquote { orphans: 3; widows: 3; max-width: var(--measure-body); text-wrap: pretty; }
   h1, h2, h3, h4 { break-after: avoid; page-break-after: avoid; text-wrap: balance; }
   table, figure, .bk-keep { break-inside: avoid; page-break-inside: avoid; }
+  /* The co-brand lockup is a mark, not decoration. It does not split. */
+  .ce-powered { break-inside: avoid; page-break-inside: avoid; }
+  .ce-powered span { font-size: 9pt; }
 }
 </style>
 </head>
@@ -327,6 +345,14 @@ html, body {
     <span class="bk-caption">Royal Ambulance · Interfacility transport</span>
     <span class="bk-caption bk-caps doc-rev">Rev.&nbsp;<span class="bk-code">08.26</span></span>
   </footer>
+
+  <!-- CO-BRAND · light ground, so the black lockup and the --border-1
+       hairline. Label is --fg-3 #64748B on #FFFFFF, 4.76:1. -->
+  <div class="ce-powered ce-powered-light doc-cobrand">
+    <span>Powered by</span>
+    <img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg"
+         alt="CE · Collective Edge" width="204" height="34">
+  </div>
 
 </article>
 

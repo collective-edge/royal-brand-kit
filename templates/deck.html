@@ -11,6 +11,7 @@
      that differs between Apex, Royal and Collective Edge. -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/palette.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css">
 
 <style>
 /* ---------- FONT ------------------------------------------------
@@ -159,6 +160,16 @@ html, body {
 
 .slide-closing .slide-headline { margin: 0; }
 .slide-closing .slide-meta     { margin: 0; }
+
+/* Powered by Collective Edge, on the closing slide. The CE lockup rides
+   beside the Royal mark, never inside it, so the hairline keeps the two
+   marks distinct and they read as two brands rather than one combined
+   mark. cobrand.css owns the geometry, the 204px width and the label,
+   which sits at --fg-on-dark-3 #B0A2BC on --bg-band #2f193b, 6.61:1.
+   align-self holds the hairline to the width of the lockup instead of
+   letting it stretch across the slide. The flex gap above it is already
+   --space-7, so the block's own margin-top comes off. */
+.slide-closing .ce-powered { align-self: flex-start; margin-top: 0; }
 
 
 /* ---------- SLIDE FOOTER ----------------------------------------- */
@@ -338,6 +349,11 @@ html, body {
          alt="Royal Ambulance">
     <h1 class="bk-display-md slide-headline">Fix the origin, not the rig.</h1>
     <p class="bk-body-lg slide-meta">Next review · October, with the paperwork pilot in place</p>
+    <div class="ce-powered">
+      <span>Powered by</span>
+      <img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg"
+           alt="CE · Collective Edge" width="204" height="34">
+    </div>
     <div class="slide-footer">
       <span class="bk-caption slide-brand">Royal Ambulance · Interfacility transport</span>
       <span class="bk-caption slide-page">05</span>

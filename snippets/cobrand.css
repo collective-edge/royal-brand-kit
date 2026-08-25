@@ -1,0 +1,161 @@
+/* ============================================================
+   POWERED BY COLLECTIVE EDGE  ·  co-brand lockup  ·  v1.0
+   ------------------------------------------------------------
+   Shared by apex-brand-kit, royal-brand-kit and
+   collective-edge-brand-kit. This file is IDENTICAL in all
+   three repos, byte for byte. Do not fork it per brand.
+
+   Load it after the palette, which is what supplies
+   --fg-on-dark-3, --fg-3, --border-on-dark and --border-1:
+
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/apex-brand-kit@main/snippets/palette.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css">
+
+
+   ---- THE RULE ----------------------------------------------
+
+   The CE lockup rides beside the partner brand, never inside
+   it, so a hairline keeps the two marks distinct. The two read
+   as two brands rather than one combined mark.
+
+   The partner mark owns the space. The CE lockup sits beneath
+   it, behind the hairline, and never shares a baseline, a box
+   or a bounding rule with it. Nothing is merged, nested or
+   recolored to match the other side.
+
+
+   ---- WHY 204px ---------------------------------------------
+
+   204px is the shipped width in both the Apex website footer
+   and the Apex internal dashboard sidebar. It is deliberate.
+   The lockup is sized to read at a glance rather than sit
+   quietly in a corner, which is why it runs wider than the
+   partner mark above it: 204px of CE under 158px of Apex in
+   the sidebar, 204px under a 1.6in Apex mark in the footer.
+
+   The CE kit's 120px minimum is a floor, not a target. Do not
+   design down to it. max-width:100% is the only thing that
+   takes the lockup below 204px, and only where the rail it
+   sits in is itself narrower.
+
+   The artwork is 450 x 75, a 6:1 ratio, so 204px wide renders
+   34px tall. That is the height attribute to write.
+
+
+   ---- LABEL CONTRAST, MEASURED ------------------------------
+
+   The label sets at --fs-caption, 12px web and 9pt print, so
+   it is small text and owes 4.5:1.
+
+   Dark ground, --fg-on-dark-3 on that brand's --bg-band:
+     Collective Edge  #9E9E9E on #000000   7.84:1
+     Apex Paramedics  #9EA5C4 on #1D225E   5.98:1
+     Royal Ambulance  #B0A2BC on #2f193b   6.61:1
+
+   Light ground, --fg-3 on --bg-canvas #FFFFFF:
+     Collective Edge  #6E6E6E              5.10:1
+     Apex Paramedics  #64748B              4.76:1
+     Royal Ambulance  #64748B              4.76:1
+
+   All six clear 4.5:1. The light variant belongs on the white
+   canvas and not on a tinted surface: --fg-3 on --bg-surface
+   measures 4.89:1 for Collective Edge, 4.43:1 for Royal and
+   4.31:1 for Apex, and the last two fall under the threshold.
+   Put the light lockup on --bg-canvas.
+   ============================================================ */
+
+
+/* ---------- 1. DARK GROUND, THE SHIPPED DEFAULT -------------
+   The white CE lockup on a partner's dark band, footer rail or
+   sidebar header. Match the file to the background. Never
+   CSS-filter a logo to invert it.
+   ----------------------------------------------------------- */
+
+.ce-powered {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-on-dark);
+}
+
+.ce-powered span {
+  font-family: var(--font-sans);
+  font-size: var(--fs-caption);
+  font-weight: var(--weight-semibold);
+  line-height: var(--lh-caption);
+  letter-spacing: var(--tr-caps-small);
+  text-transform: uppercase;
+  color: var(--fg-on-dark-3);
+}
+
+.ce-powered img {
+  width: 204px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+/* ---------- 2. LIGHT GROUND --------------------------------
+   The shipped lockup only ever ran on dark. A white one-pager
+   footer needs the other half: the black CE lockup, the label
+   in --fg-3, the hairline in --border-1. Same geometry, same
+   204px, same rule about riding beside rather than inside.
+
+   Add it to .ce-powered:  class="ce-powered ce-powered-light"
+   and swap horizontal-white.svg for horizontal-black.svg.
+   ----------------------------------------------------------- */
+
+.ce-powered-light {
+  border-top-color: var(--border-1);
+}
+
+.ce-powered-light span {
+  color: var(--fg-3);
+}
+
+
+/* ---------- 3. TEXT-ONLY FALLBACK --------------------------
+   Where no lockup fits, the phrase sets as type. The Apex
+   customer dashboard ships this at 9px / 700 / 0.16em, which
+   is below the 9pt floor and heavier than the caps-label step.
+   Under house type system v1.0 it takes .bk-eyebrow values:
+   --fs-eyebrow 12px, --weight-semibold 600, --tr-caps-small
+   0.080em. Use the class where one is available; this rule
+   exists so the fallback is correct even where it is not.
+
+   Text only. Never set the phrase as type on a surface that
+   has room for the mark.
+   ----------------------------------------------------------- */
+
+.ce-powered-text {
+  font-family: var(--font-sans);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--weight-semibold);
+  line-height: var(--lh-caption);
+  letter-spacing: var(--tr-caps-small);
+  text-transform: uppercase;
+  color: var(--fg-3);
+  margin: 0;
+}
+
+.bk-on-dark .ce-powered-text,
+.ce-powered-text.bk-on-dark {
+  color: var(--fg-on-dark-3);
+}
+
+
+/* ---------- 4. PRINT ---------------------------------------
+   The lockup is a mark, not decoration, so it survives to
+   paper and does not break across a page. The band behind it
+   needs print-color-adjust, which the shared type layer sets.
+   ----------------------------------------------------------- */
+
+@media print {
+  .ce-powered { break-inside: avoid; page-break-inside: avoid; }
+  .ce-powered span,
+  .ce-powered-text { font-size: 9pt; }
+}
