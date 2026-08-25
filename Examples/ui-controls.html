@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collective Edge · House UI controls</title>
+
+<!-- WORKED EXAMPLE · house UI standard v1.0.
+     Every control the shared layer ships, in every state it has, on
+     the page ground and on a band.
+
+     Load order is type-system.css, then palette.css, then ui.css.
+     In production the three are CDN urls under
+     cdn.jsdelivr.net/gh/collective-edge/. They are relative here so
+     the page renders from a clone and audits deterministically.
+     This file is byte-identical in all three kits: palette.css is
+     the only file that differs, so the same markup is Collective
+     Edge here, Apex in the Apex kit and Royal in the Royal kit.
+
+     Copy the markup below, never the <style> block: that block is
+     specimen furniture and page layout is not shared.
+
+     Verify:
+       python3 scripts/ui-audit.py Examples/ui-controls.html
+       python3 scripts/validate.py Examples/ui-controls.html
+     The audit runs 375, 768 and 1440 by default and this page is
+     clean at all three. Examples/_audit-fixture.html is the same
+     page's opposite: one planted defect per check. -->
+<link rel="stylesheet" href="../snippets/type-system.css">
+<link rel="stylesheet" href="../snippets/palette.css">
+<link rel="stylesheet" href="../snippets/ui.css">
+
+<style>
+/* ---- PAGE SCAFFOLDING ------------------------------------------
+   Specimen furniture only. Nothing below belongs in ui.css, and a
+   project copying from this file copies the markup, not this. */
+
+body { margin: 0; background: var(--bg-canvas); }
+
+/* The kit caps body copy at 54ch, which Montserrat renders as
+   about 79 characters. scripts/ui-audit.py draws its line at 70,
+   so the specimen prose on this page runs a little narrower. */
+.pg p { max-width: 46ch; }
+
+.pg    { max-width: 900px; margin: 0 auto; padding: var(--space-8) var(--space-5); }
+.sec   { margin-top: var(--space-9); }
+.sub   { margin-top: var(--space-7); }
+.row   { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--space-5); }
+.spec  { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+.stack { display: flex; flex-direction: column; gap: var(--space-5); max-width: 420px; }
+.band  { background: var(--bg-band); padding: var(--space-7) var(--space-5); margin-top: var(--space-6); }
+.note  { margin-top: var(--space-5); }
+.lede  { margin-bottom: var(--space-6); }
+
+/* Hover, active and focus cannot be triggered in a still render, so
+   each is re-declared here exactly as ui.css declares it, under a
+   class the specimen carries. Any drift between these rules and the
+   ones in ui.css is a defect in this page. The focus mirror is
+   wrapped in :where() to hold it at zero specificity, as ui.css
+   holds the real rule: at any weight above zero it would square the
+   corners of a radio, which the real ring does not do. */
+.is-hover.ui-btn--primary   { background: var(--ui-accent-deep); border-color: var(--ui-accent-deep); }
+.is-hover.ui-btn--secondary { background: var(--ui-tint); border-color: var(--ui-ink); }
+.is-hover.ui-btn--danger    { background: var(--ui-danger-deep); border-color: var(--ui-danger-deep); }
+.is-hover.ui-link, .is-hover.ui-link-action { text-decoration-thickness: 2px; }
+.is-hover.ui-input, .is-hover.ui-select, .is-hover.ui-textarea { border-color: var(--fg-1); }
+.is-active { box-shadow: var(--shadow-1) inset; }
+:where(.is-focus) {
+  outline: var(--ui-focus-width) solid var(--ui-focus-ring);
+  outline-offset: var(--ui-focus-offset);
+  border-radius: var(--ui-radius);
+}
+</style>
+</head>
+
+<body>
+<main class="pg">
+
+  <p class="bk-eyebrow">House UI standard v1.0</p>
+  <h1 class="bk-h1">Controls</h1>
+  <p class="bk-body-lg lede">Everything the shared layer owns, in every state it has.
+    Buttons, links, form controls, status badges, focus, disabled and loading. Nothing
+    else is shared: layout, cards, tables, shells and heroes are where each site earns
+    its character, and they are built on these tokens rather than handed down.</p>
+  <p class="bk-body">Every control appears twice, once on the page ground and once on a
+    band, because a control that is only ever drawn on white breaks the first time a
+    designer puts a dark section behind it. Where a state has no dark form, the band
+    below says so and says why.</p>
+
+  <!-- ============================================ BUTTONS -->
+  <section class="sec">
+    <h2 class="bk-h2">Buttons</h2>
+    <p class="bk-body">Three variants, three sizes. Only the filled variants carry colour,
+      so a screen holds one loud action. Labels are sentence case at 600 in every brand.
+      There is no text-only button: without a fill or a border it has no boundary, and a
+      page’s quiet action is the standalone action link below.</p>
+
+    <div class="row">
+      <div class="spec"><button class="ui-btn ui-btn--primary">Save changes</button>
+        <span class="bk-caption">Primary · rest</span></div>
+      <div class="spec"><button class="ui-btn ui-btn--secondary">Preview</button>
+        <span class="bk-caption">Secondary · rest</span></div>
+      <div class="spec"><button class="ui-btn ui-btn--danger">Delete unit</button>
+        <span class="bk-caption">Destructive · rest</span></div>
+    </div>
+
+    <div class="row note">
+      <div class="spec"><button class="ui-btn ui-btn--primary is-hover">Save changes</button>
+        <span class="bk-caption">Primary · hover</span></div>
+      <div class="spec"><button class="ui-btn ui-btn--secondary is-hover">Preview</button>
+        <span class="bk-caption">Secondary · hover</span></div>
+      <div class="spec"><button class="ui-btn ui-btn--danger is-hover">Delete unit</button>
+        <span class="bk-caption">Destructive · hover</span></div>
+    </div>
+
+    <div class="row note">
+      <div class="spec"><button class="ui-btn ui-btn--primary is-hover is-active">Save changes</button>
+        <span class="bk-caption">Primary · pressed</span></div>
+      <div class="spec"><button class="ui-btn ui-btn--secondary is-hover is-active">Preview</button>
+        <span class="bk-caption">Secondary · pressed</span></div>
+      <div class="spec"><button class="ui-btn ui-btn--danger is-hover is-active">Delete unit</button>
+        <span class="bk-caption">Destructive · pressed</span></div>
+    </div>
+
+    <div class="row note">
+      <div class="spec"><button class="ui-btn ui-btn--primary is-focus">Save changes</button>
+        <span class="bk-caption">Primary · focus visible</span></div>
+      <div class="spec"><button class="ui-btn ui-btn--secondary is-focus">Preview</button>
+        <span class="bk-caption">Secondary · focus visible</span></div>
+      <div class="spec"><button class="ui-btn ui-btn--danger is-focus">Delete unit</button>
+        <span class="bk-caption">Destructive · focus visible</span></div>
+    </div>
+
+    <div class="row note">
+      <div class="spec"><button class="ui-btn ui-btn--primary" disabled>Save changes</button>
+        <span class="bk-caption">Primary · disabled</span></div>
+      <div class="spec"><button class="ui-btn ui-btn--secondary" disabled>Preview</button>
+        <span class="bk-caption">Secondary · disabled</span></div>
+      <div class="spec"><button class="ui-btn ui-btn--danger" disabled>Delete unit</button>
+        <span class="bk-caption">Destructive · disabled</span></div>
+      <div class="spec"><a class="ui-btn ui-btn--primary" role="button" aria-disabled="true">Save changes</a>
+        <span class="bk-caption">Disabled link · aria-disabled</span></div>
+    </div>
+
+    <div class="row note">
+      <div class="spec"><button class="ui-btn ui-btn--primary" aria-busy="true">Saving</button>
+        <span class="bk-caption">Primary · loading</span></div>
+      <div class="spec"><button class="ui-btn ui-btn--secondary" aria-busy="true">Checking</button>
+        <span class="bk-caption">Secondary · loading</span></div>
+    </div>
+
+    <h3 class="bk-h3 sub">Sizes and shapes</h3>
+    <p class="bk-body">Heights are 44, 48 and 56, so the small step is still a target a
+      finger hits. An icon-only button is the same height squared, and carries a name a
+      screen reader can read.</p>
+
+    <div class="row">
+      <div class="spec"><button class="ui-btn ui-btn--primary ui-btn--sm">Small</button>
+        <span class="bk-caption">Small · 44px · dense toolbar</span></div>
+      <div class="spec"><button class="ui-btn ui-btn--primary">Medium</button>
+        <span class="bk-caption">Medium · 48px · the default</span></div>
+      <div class="spec"><button class="ui-btn ui-btn--primary ui-btn--lg">Large</button>
+        <span class="bk-caption">Large · 56px · a page’s one action</span></div>
+    </div>
+
+    <div class="row note">
+      <div class="spec"><button class="ui-btn ui-btn--secondary ui-btn--icon ui-btn--sm" aria-label="Add a note">+</button>
+        <span class="bk-caption">Icon · small</span></div>
+      <div class="spec"><button class="ui-btn ui-btn--secondary ui-btn--icon" aria-label="Add a note">+</button>
+        <span class="bk-caption">Icon · medium</span></div>
+      <div class="spec"><button class="ui-btn ui-btn--secondary ui-btn--icon ui-btn--lg" aria-label="Add a note">+</button>
+        <span class="bk-caption">Icon · large</span></div>
+    </div>
+
+    <div class="row note">
+      <div class="spec stack"><button class="ui-btn ui-btn--primary ui-btn--full">Full width</button>
+        <span class="bk-caption">Full width · a form’s submit, and nothing else</span></div>
+    </div>
+  </section>
+
+  <!-- ============================================ LINKS -->
+  <section class="sec">
+    <h2 class="bk-h2">Links</h2>
+    <p class="bk-body">In running copy a link is the accent with a real underline, and
+      <a class="ui-link" href="#links">this is what one looks like</a> in the middle of a
+      sentence. On Collective Edge the accent is the ink the copy is already set in, so the
+      underline is the whole signal. Hover thickens the underline to 2px, which is a change
+      a person sees without a colour to read.</p>
+    <div class="row">
+      <div class="spec"><p class="bk-body-sm" style="margin:0">A sentence with <a class="ui-link" href="#links">an inline link</a> in it.</p>
+        <span class="bk-caption">Inline · rest</span></div>
+      <div class="spec"><p class="bk-body-sm" style="margin:0">A sentence with <a class="ui-link is-hover" href="#links">an inline link</a> in it.</p>
+        <span class="bk-caption">Inline · hover</span></div>
+      <div class="spec"><p class="bk-body-sm" style="margin:0">A sentence with <a class="ui-link is-focus" href="#links">an inline link</a> in it.</p>
+        <span class="bk-caption">Inline · focus visible</span></div>
+    </div>
+    <div class="row note">
+      <div class="spec"><a class="ui-link-action" href="#links">Download the quarter summary</a>
+        <span class="bk-caption">Action link · rest · the quiet action</span></div>
+      <div class="spec"><a class="ui-link-action is-hover" href="#links">Download the quarter summary</a>
+        <span class="bk-caption">Action link · hover</span></div>
+    </div>
+    <div class="row note">
+      <div class="spec"><a class="ui-link-action is-focus" href="#links">Download the quarter summary</a>
+        <span class="bk-caption">Action link · focus visible</span></div>
+    </div>
+  </section>
+
+  <!-- ============================================ FORM -->
+  <section class="sec">
+    <h2 class="bk-h2">Form controls</h2>
+    <p class="bk-body">Label above the field, left flush, sentence case. One message per field,
+      below the field, never a tooltip and never a placeholder. Mark the optional field rather
+      than the required one, because a red asterisk cannot be told from an error. Fields are
+      16px type: below 16 iOS Safari zooms the page on focus and does not zoom back out.</p>
+
+    <div class="ui-form stack">
+      <div class="ui-field">
+        <label class="ui-label" for="f-name">Crew lead</label>
+        <input class="ui-input" id="f-name" type="text" placeholder="Family name">
+        <span class="ui-help">The name that appears on the run sheet.</span>
+      </div>
+
+      <div class="ui-field">
+        <label class="ui-label" for="f-hover">Hover</label>
+        <input class="ui-input is-hover" id="f-hover" type="text" value="Edge darkens to full ink">
+      </div>
+
+      <div class="ui-field">
+        <label class="ui-label" for="f-focus">Focus visible</label>
+        <input class="ui-input is-focus" id="f-focus" type="text" value="One ring, everywhere">
+      </div>
+
+      <div class="ui-field">
+        <label class="ui-label" for="f-note">Handover note <span class="ui-optional">Optional</span></label>
+        <textarea class="ui-textarea" id="f-note" rows="3" placeholder="What the next crew needs"></textarea>
+      </div>
+
+      <div class="ui-field">
+        <label class="ui-label" for="f-base">Home base</label>
+        <select class="ui-select" id="f-base">
+          <option>San Leandro</option>
+          <option>Milpitas</option>
+          <option>Sacramento</option>
+        </select>
+      </div>
+
+      <div class="ui-field">
+        <label class="ui-label" for="f-unit">Vehicle number</label>
+        <input class="ui-input" id="f-unit" type="text" value="not a number" aria-invalid="true"
+               aria-describedby="f-unit-err">
+        <span class="ui-error" id="f-unit-err">Enter a vehicle number, digits only.</span>
+      </div>
+
+      <div class="ui-field">
+        <label class="ui-label" for="f-reason">Reason for the change</label>
+        <textarea class="ui-textarea" id="f-reason" rows="2" aria-invalid="true"
+                  aria-describedby="f-reason-err">ok</textarea>
+        <span class="ui-error" id="f-reason-err">Give the reason in a sentence, not a word.</span>
+      </div>
+
+      <div class="ui-field">
+        <label class="ui-label" for="f-locked">Payer</label>
+        <input class="ui-input" id="f-locked" type="text" value="Set by dispatch" disabled>
+        <span class="ui-help">Disabled keeps the box, so nothing on the page reflows.</span>
+      </div>
+
+      <div class="ui-field">
+        <label class="ui-label" for="f-region">Region</label>
+        <select class="ui-select" id="f-region" disabled>
+          <option>East Bay</option>
+        </select>
+        <span class="ui-help">A disabled select keeps its arrow, so it still reads as a menu.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ CHECKBOX AND RADIO -->
+  <section class="sec">
+    <h2 class="bk-h2">Checkbox and radio</h2>
+    <p class="bk-body">The native input, restyled. Wrapping it in the label is what gives a
+      20px box a 44px target, and what lets a person hit the words as well as the box.</p>
+
+    <div class="ui-form stack">
+      <div class="ui-field">
+        <span class="ui-label">Shift</span>
+        <label class="ui-check"><input class="ui-radio" type="radio" name="shift" checked> Day</label>
+        <label class="ui-check"><input class="ui-radio" type="radio" name="shift"> Night</label>
+        <label class="ui-check"><input class="ui-radio is-focus" type="radio" name="shift"> Swing, focus visible</label>
+        <label class="ui-check"><input class="ui-radio" type="radio" name="shift" disabled> Relief, unavailable</label>
+      </div>
+
+      <div class="ui-field">
+        <span class="ui-label">Notify</span>
+        <label class="ui-check"><input class="ui-checkbox" type="checkbox" checked> Send the daily digest</label>
+        <label class="ui-check"><input class="ui-checkbox" type="checkbox"> Page me on a late crew</label>
+        <label class="ui-check"><input class="ui-checkbox is-focus" type="checkbox"> Copy the shift lead, focus visible</label>
+        <label class="ui-check"><input class="ui-checkbox" type="checkbox" disabled> Text me, not yet available</label>
+        <label class="ui-check"><input class="ui-checkbox" type="checkbox" checked disabled> Email me, fixed on</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ BADGES -->
+  <section class="sec">
+    <h2 class="bk-h2">Status badges</h2>
+    <p class="bk-body">One shape, four states, no colourway invented per project. The status
+      colour rides on the dot and the label is set in ink, so the badge means the same thing in
+      every brand and the warning state stays legible.</p>
+    <div class="row">
+      <span class="ui-badge ui-badge--go">On scene</span>
+      <span class="ui-badge ui-badge--warn">Late</span>
+      <span class="ui-badge ui-badge--stop">Cancelled</span>
+      <span class="ui-badge ui-badge--info">Scheduled</span>
+      <span class="ui-badge">Unset</span>
+    </div>
+  </section>
+
+  <!-- ============================================ ON DARK -->
+  <section class="sec">
+    <h2 class="bk-h2">On a dark band</h2>
+    <p class="bk-body">Put <span class="bk-code">.ui-on-dark</span> on the band. One ring colour
+      cannot serve both grounds, so the dark scope names the other and the filled button inverts
+      with it. A field keeps its light surface: its label and its help text flip, the box does
+      not. The destructive button has no dark form, because the stop colour has no boundary
+      against any of the three bands, so a destructive action belongs in a dialog on the page
+      surface.</p>
+
+    <div class="band bk-on-dark ui-on-dark">
+
+      <h3 class="bk-h3">Buttons</h3>
+      <div class="row">
+        <div class="spec"><button class="ui-btn ui-btn--primary">Dispatch now</button>
+          <span class="bk-caption">Primary · inverted fill</span></div>
+        <div class="spec"><button class="ui-btn ui-btn--primary is-hover">Dispatch now</button>
+          <span class="bk-caption">Primary · hover</span></div>
+        <div class="spec"><button class="ui-btn ui-btn--primary is-hover is-active">Dispatch now</button>
+          <span class="bk-caption">Primary · pressed</span></div>
+      </div>
+      <div class="row note">
+        <div class="spec"><button class="ui-btn ui-btn--secondary">See the board</button>
+          <span class="bk-caption">Secondary · rest</span></div>
+        <div class="spec"><button class="ui-btn ui-btn--secondary is-hover">See the board</button>
+          <span class="bk-caption">Secondary · hover</span></div>
+        <div class="spec"><button class="ui-btn ui-btn--secondary is-hover is-active">See the board</button>
+          <span class="bk-caption">Secondary · pressed</span></div>
+      </div>
+      <div class="row note">
+        <div class="spec"><button class="ui-btn ui-btn--primary is-focus">Dispatch now</button>
+          <span class="bk-caption">Focus ring · white on the band</span></div>
+        <div class="spec"><button class="ui-btn ui-btn--secondary is-focus">See the board</button>
+          <span class="bk-caption">Secondary · focus visible</span></div>
+        <div class="spec"><button class="ui-btn ui-btn--primary" disabled>Dispatch now</button>
+          <span class="bk-caption">Primary · disabled</span></div>
+        <div class="spec"><button class="ui-btn ui-btn--primary" aria-busy="true">Dispatching</button>
+          <span class="bk-caption">Primary · loading</span></div>
+      </div>
+      <div class="row note">
+        <div class="spec"><button class="ui-btn ui-btn--primary ui-btn--sm">Small</button>
+          <span class="bk-caption">Small · 44px</span></div>
+        <div class="spec"><button class="ui-btn ui-btn--primary ui-btn--lg">Large</button>
+          <span class="bk-caption">Large · 56px</span></div>
+        <div class="spec"><button class="ui-btn ui-btn--secondary ui-btn--icon" aria-label="Add a note">+</button>
+          <span class="bk-caption">Icon · needs a name</span></div>
+      </div>
+
+      <h3 class="bk-h3 sub">Links</h3>
+      <div class="row">
+        <div class="spec"><p class="bk-body-sm" style="margin:0">A sentence with <a class="ui-link" href="#links">an inline link</a> in it.</p>
+          <span class="bk-caption">Inline · the accent flips with the scope</span></div>
+        <div class="spec"><a class="ui-link-action" href="#links">Read the handover</a>
+          <span class="bk-caption">Action link · on the band</span></div>
+      </div>
+
+      <h3 class="bk-h3 sub">A field on the band</h3>
+      <div class="ui-form stack">
+        <div class="ui-field">
+          <label class="ui-label" for="f-dark">Unit</label>
+          <input class="ui-input" id="f-dark" type="text" placeholder="Unit number">
+          <span class="ui-help">The label and the help text flip. The field does not.</span>
+        </div>
+        <div class="ui-field">
+          <span class="ui-label">Notify</span>
+          <label class="ui-check"><input class="ui-checkbox" type="checkbox" checked> Send the daily digest</label>
+          <label class="ui-check"><input class="ui-checkbox" type="checkbox"> Page me on a late crew</label>
+        </div>
+      </div>
+
+      <h3 class="bk-h3 sub">Badges</h3>
+      <div class="row">
+        <span class="ui-badge ui-badge--go">On scene</span>
+        <span class="ui-badge ui-badge--warn">Late</span>
+        <span class="ui-badge ui-badge--stop">Cancelled</span>
+        <span class="ui-badge ui-badge--info">Scheduled</span>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+</body>
+</html>

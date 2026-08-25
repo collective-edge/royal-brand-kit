@@ -1,0 +1,419 @@
+/* ============================================================
+   HOUSE UI STANDARD v1.0  ·  ui.css
+   ------------------------------------------------------------
+   Byte-identical in every kit. Load third, after
+   type-system.css and palette.css.
+
+   OWNS interactive control structure and nothing else: buttons,
+   links, form controls, status badges, the focus ring, disabled
+   and loading. No colour literal, no type value: colour resolves
+   through palette.css and size through type-system.css, so one
+   button looks the same across sister companies.
+
+   DOES NOT OWN page layout, heroes, cards, marketing sections,
+   dashboard shells, tables, stat tiles, navigation, empty and
+   loading screens. That is where a site earns its character:
+   build those on these tokens.
+
+   A FLOOR, not a ceiling: every --ui-* token is overridable on
+   :root by the project that loads it.
+   ============================================================ */
+
+:root {
+
+  /* ---- CONTROL SIZE ----------------------------------------
+     Three steps, every one a multiple of 4, and every one over
+     the target floor: WCAG 2.2 SC 2.5.5 asks 44 x 44 CSS px and
+     scripts/ui-audit.py fails anything smaller, so a 32px
+     button is not a house control however dense the screen.
+     Height is fixed by min-height and a short line box, never
+     by body leading: a control riding on 1.60 leaves the grid
+     the moment its label size changes. */
+  --ui-target-min: 44px;
+  --ui-h-sm: var(--ui-target-min);  --ui-h-md: 48px;  --ui-h-lg: 56px;
+
+  --ui-pad-sm: var(--space-3);   /* 12px */
+  --ui-pad-md: var(--space-4);   /* 16px */
+  --ui-pad-lg: var(--space-5);   /* 24px */
+  --ui-gap:    var(--space-2);   /*  8px · icon to label, dot to label */
+
+  --ui-radius: var(--radius-md); /* 6px */  --ui-line: 1.2;
+
+  /* ---- CONTROL EDGE ---------------------------------------
+     SC 1.4.11 asks a boundary for 3:1 against its ground.
+     --border-1 is a document hairline: 1.30:1 on Collective
+     Edge white, 1.23:1 on Apex and Royal, so it cannot draw a
+     control. --fg-3 measures 5.10:1 and 4.76:1, and does. */
+  --ui-border: 1px;  --ui-border-color: var(--fg-3);
+
+  /* ---- FOCUS ----------------------------------------------
+     One ring on :focus-visible, offset so a band of page ground
+     sits between ring and fill. That offset is what lets an ink
+     ring serve a filled button: ink on the primary fill is
+     1.00:1 Collective Edge, 1.37:1 Apex, 1.42:1 Royal; on the
+     ground behind it, 18.88:1 and 14.63:1. */
+  --ui-focus-width: 2px;  --ui-focus-offset: 2px;
+  --ui-focus-ring:  var(--fg-1);
+
+  /* ---- CONTROL COLOUR · names, not values ------------------ */
+  --ui-accent:      var(--fg-accent);
+  --ui-accent-deep: var(--bg-inverse);
+  --ui-on-accent:   var(--fg-on-dark-1);
+  --ui-ink:         var(--fg-1);
+  --ui-ink-help:    var(--fg-3);
+
+  /* Hover tint for an unfilled control. --bg-surface measures
+     1.04:1 on Collective Edge white and is too weak to read as
+     a cue; --border-1 measures 1.30:1 and does. */
+  --ui-tint: var(--border-1);
+
+  /* --status-stop ships one value and no deeper step, so the
+     pressed step is mixed toward the brand dark ground. */
+  --ui-danger:      var(--status-stop);
+  --ui-danger-deep: color-mix(in srgb, var(--status-stop) 85%, var(--bg-inverse));
+
+  /* ---- DISABLED · no opacity token, on purpose -------------
+     Opacity multiplies against whatever sits behind a control,
+     so the result is unknowable to an auditor. A disabled
+     control keeps its box and swaps two colours. */
+  --ui-disabled-fill: var(--border-1);  --ui-disabled-ink: var(--fg-3);
+
+  --ui-motion: var(--dur-fast) var(--ease-standard);   /* 120ms */
+}
+/* An ink ring on a dark ground measures 1.11:1 Collective Edge,
+   1.00:1 Apex, 1.08:1 Royal, and is invisible. White on the same
+   three measures 21.00:1, 14.56:1, 15.87:1. One ring colour
+   cannot serve both grounds, so the dark scope names the other,
+   and the filled button inverts with it: the accent fill would
+   sit at 1.11:1 against Collective Edge black. The inverted fill
+   measures 21.00:1, 14.56:1, 15.87:1 against its band and its
+   ink measures the same against the fill; the hover fill,
+   14.45:1, 10.47:1, 11.30:1. The secondary edge measures 7.84:1,
+   5.98:1, 6.61:1. --ui-btn--danger has no dark form: --status-stop
+   against the three bands measures 3.34:1, 2.31:1 and 2.52:1, so
+   a destructive action belongs in a dialog on the page surface. */
+.ui-on-dark {
+  --ui-focus-ring:   var(--fg-on-dark-1);
+  --ui-ink:          var(--fg-on-dark-1);
+  --ui-ink-help:     var(--fg-on-dark-2);
+  --ui-border-color: var(--fg-on-dark-3);
+  --ui-tint:         var(--border-on-dark);
+  --ui-accent:       var(--fg-on-dark-1);
+  --ui-accent-deep:  var(--fg-on-dark-2);
+  --ui-on-accent:    var(--bg-inverse);
+}
+
+/* ---------- FOCUS RING · declared once ---------------------
+   :focus-visible, never :focus. Bound to :focus the ring paints
+   on a mouse click too, reads as a bug, and gets deleted. Zero
+   specificity, so a component extends it without a fight. */
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: var(--ui-focus-width) solid var(--ui-focus-ring);
+  outline-offset: var(--ui-focus-offset);
+  border-radius: var(--ui-radius);
+}
+
+/* ---------- BUTTON ------------------------------------------
+   Three variants, three sizes. Only the filled variants carry
+   colour, so a screen holds exactly one loud action. Labels are
+   sentence case at 600: a shared control that shouts in one
+   brand and murmurs in the next is the drift this file stops.
+   There is no text-only button. A button with no fill and no
+   border has no boundary that can reach the 3:1 SC 1.4.11 asks,
+   and scripts/ui-audit.py says so at every width. A page's quiet
+   action is .ui-link-action, which is a link and is identified
+   by its underline. */
+
+.ui-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--ui-gap);
+  min-height: var(--ui-h-md);
+  padding: 0 var(--ui-pad-md);
+  box-sizing: border-box;
+  border: var(--ui-border) solid transparent;
+  border-radius: var(--ui-radius);
+  background: none;
+  font-family: inherit; font-size: var(--fs-body-sm);
+  font-weight: var(--weight-semibold); line-height: var(--ui-line);
+  /* Rule 4: a label on a dark fill gains 0.005em. --tr-dark is
+     also what .bk-on-dark inherits down, so a button standing on
+     a band picks the bonus up without naming it. */
+  letter-spacing: calc(var(--tr-body) + var(--tr-dark, 0em));
+  text-align: center; text-decoration: none;
+  color: var(--ui-ink); cursor: pointer;
+  transition: background-color var(--ui-motion), border-color var(--ui-motion),
+              color var(--ui-motion);
+}
+
+.ui-btn--sm { min-height: var(--ui-h-sm); padding: 0 var(--ui-pad-sm); }
+.ui-btn--lg { min-height: var(--ui-h-lg); padding: 0 var(--ui-pad-lg); font-size: var(--fs-body); }
+
+/* An icon-only button is a square on the same ladder, and still
+   needs a name a screen reader can read. */
+.ui-btn--icon { padding: 0; width: var(--ui-h-md); }
+.ui-btn--icon.ui-btn--sm { width: var(--ui-h-sm); } .ui-btn--icon.ui-btn--lg { width: var(--ui-h-lg); }
+.ui-btn--full { display: flex; width: 100%; }
+
+/* Primary. White on the accent fill measures 18.88:1 on
+   Collective Edge, 10.71:1 on Apex, 10.30:1 on Royal; on the
+   hover fill 21.00:1, 14.56:1 and 15.87:1. */
+.ui-btn--primary {
+  background: var(--ui-accent); border-color: var(--ui-accent);
+  color: var(--ui-on-accent); --tr-dark: var(--tr-bonus-on-dark);
+}
+.ui-btn--primary:hover { background: var(--ui-accent-deep); border-color: var(--ui-accent-deep); }
+/* On a band the primary fill inverts to white, so the ground
+   under its label is light again and the bonus comes back off. */
+.ui-on-dark .ui-btn--primary { --tr-dark: 0em; }
+
+/* Secondary. Edge 5.10:1 on Collective Edge, 4.76:1 on Apex and
+   Royal. Label on the hover tint 14.58:1 and 11.87:1. */
+.ui-btn--secondary { border-color: var(--ui-border-color); }
+.ui-btn--secondary:hover { background: var(--ui-tint); border-color: var(--ui-ink); }
+
+/* Destructive. White on --status-stop measures 6.29:1; on the
+   hover fill 7.91:1 on Collective Edge, 7.38:1 on Apex, 7.34:1
+   on Royal. Filled only inside a confirmation. In a settings
+   row it is .ui-btn--secondary carrying this ink. */
+.ui-btn--danger {
+  background: var(--ui-danger); border-color: var(--ui-danger);
+  color: var(--ui-on-accent); --tr-dark: var(--tr-bonus-on-dark);
+}
+.ui-btn--danger:hover { background: var(--ui-danger-deep); border-color: var(--ui-danger-deep); }
+
+/* Pressed is one deeper step of the same kind, never a
+   transform and never a shadow bloom: shadow signals elevation
+   in this house, never decoration. */
+.ui-btn:active { box-shadow: var(--shadow-1) inset; }
+
+/* Disabled keeps the box so nothing reflows. Ink on the fill
+   measures 3.94:1 Collective Edge, 3.86:1 Apex and Royal, under
+   the 4.5:1 live text owes. SC 1.4.3 exempts a disabled
+   control, and this is the one exemption the house takes: the
+   alternative is a dead button that looks live. */
+.ui-btn:disabled, .ui-btn[aria-disabled="true"] {
+  --tr-dark: 0em;
+  background: var(--ui-disabled-fill);
+  border-color: var(--ui-disabled-fill);
+  color: var(--ui-disabled-ink);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Loading. The label stays put so the button does not change
+   width mid-request. aria-busy announces it, the ring shows it. */
+.ui-btn[aria-busy="true"] { cursor: progress; pointer-events: none; }
+.ui-btn[aria-busy="true"]::before {
+  content: ""; width: 1em; height: 1em;
+  border: 2px solid currentColor; border-top-color: transparent;
+  border-radius: var(--radius-pill);
+  animation: ui-spin 640ms linear infinite;
+}
+@keyframes ui-spin { to { transform: rotate(360deg); } }
+
+/* ---------- LINK --------------------------------------------
+   In body copy a link is the accent with a real underline.
+   Collective Edge sets --fg-accent to the ink body copy already
+   uses, so there the underline is the whole signal, which is
+   correct for a house with no hue of its own. */
+
+.ui-link {
+  color: var(--fg-accent);
+  text-decoration: underline; text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: text-decoration-thickness var(--ui-motion);
+}
+.ui-link:hover { text-decoration-thickness: 2px; }
+
+/* The standalone action link is a page's quiet action: a link,
+   not a button, so it carries the 44px target, not a boundary. */
+.ui-link-action {
+  display: inline-flex; align-items: center; gap: var(--ui-gap);
+  min-height: var(--ui-target-min);
+  font-size: var(--fs-body-sm); font-weight: var(--weight-semibold);
+  color: var(--fg-accent);
+  text-decoration: underline; text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.ui-link-action:hover { text-decoration-thickness: 2px; }
+
+/* On a band both links take the dark scope's accent, which is
+   white: 21.00:1 Collective Edge, 14.56:1 Apex, 15.87:1 Royal.
+   --fg-accent does not flip, and on Collective Edge it is the ink
+   the copy is set in, so a link left unflipped measures 1.11:1 on
+   the band and only the underline survives. */
+.ui-on-dark .ui-link, .ui-on-dark .ui-link-action { color: var(--ui-accent); }
+
+/* ---------- FIELD -------------------------------------------
+   Label above the field, left flush, sentence case. Tracked
+   caps belong on a band or a divider; a form asking a person's
+   name in tracked caps reads as a legal document. The 24px gap
+   between fields against the 8px gap inside one is the
+   three-to-one attachment the type standard gives a heading. */
+
+.ui-form  { display: flex; flex-direction: column; gap: var(--space-5); }
+.ui-field { display: flex; flex-direction: column; gap: var(--space-2); }
+.ui-label {
+  font-size: var(--fs-body-sm); font-weight: var(--weight-semibold);
+  line-height: var(--lh-body-sm); color: var(--ui-ink);
+}
+
+/* Mark the optional field, not the required one. A red asterisk
+   is indistinguishable from an error, so a pristine form looks
+   broken, and --status-stop keeps one meaning: something is
+   wrong right now. */
+.ui-optional {
+  font-size: var(--fs-caption); font-weight: var(--weight-regular);
+  color: var(--ui-ink-help); margin-left: var(--space-2);
+}
+
+.ui-input, .ui-select, .ui-textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--ui-h-md);
+  padding: var(--space-3) var(--ui-pad-md);
+  /* A field keeps its light surface on a dark band, so it names
+     the light tokens, not the ones .ui-on-dark flips. */
+  border: var(--ui-border) solid var(--fg-3);
+  border-radius: var(--ui-radius);
+  background: var(--bg-canvas);
+  color: var(--fg-1);
+  font-family: inherit;
+  /* 16px, not 14: below 16px iOS Safari zooms the page on focus
+     and does not zoom back out. */
+  font-size: var(--fs-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--lh-body-sm);
+  transition: border-color var(--ui-motion);
+}
+.ui-textarea { min-height: var(--space-10); resize: vertical; }
+.ui-input:hover, .ui-select:hover, .ui-textarea:hover { border-color: var(--fg-1); }
+.ui-input::placeholder, .ui-textarea::placeholder { color: var(--fg-3); }
+
+.ui-input:disabled, .ui-select:disabled, .ui-textarea:disabled {
+  background: var(--ui-disabled-fill); color: var(--ui-disabled-ink);
+  cursor: not-allowed;
+}
+
+/* One message per field, below it, never a tooltip and never a
+   placeholder. The label stays neutral: reddening label, border,
+   icon and message at once turns a dialog with three bad fields
+   entirely red, and nothing in it then reads as urgent. */
+.ui-input[aria-invalid="true"],
+.ui-select[aria-invalid="true"],
+.ui-textarea[aria-invalid="true"] { border-color: var(--ui-danger); }
+
+.ui-help, .ui-error {
+  font-size: var(--fs-body-sm); font-weight: var(--weight-regular);
+  line-height: var(--lh-body-sm); max-width: var(--measure-caption);
+}
+/* 5.10:1 on Collective Edge white, 4.76:1 on Apex and Royal. On
+   --bg-surface the Apex value falls to 4.31:1, so a field on a
+   tinted panel overrides --ui-ink-help to --fg-1. */
+.ui-help  { color: var(--ui-ink-help); }
+.ui-error { color: var(--ui-danger); }   /* 6.29:1 on white */
+
+/* ---------- CHECKBOX AND RADIO ------------------------------
+   The native input, restyled. Wrapping it in the label is what
+   gives a 20px box a 44px target, and what lets a person hit the
+   words as well as the box. */
+
+.ui-check {
+  display: flex; align-items: center; gap: var(--space-3);
+  min-height: var(--ui-target-min);
+  font-size: var(--fs-body-sm); line-height: var(--lh-body-sm);
+  color: var(--ui-ink); cursor: pointer;
+}
+
+.ui-checkbox, .ui-radio {
+  appearance: none; flex: none; display: grid; place-content: center;
+  width: 20px; height: 20px; margin: 0;
+  border: var(--ui-border) solid var(--fg-3);
+  background: var(--bg-canvas);
+  cursor: pointer;
+  transition: background-color var(--ui-motion), border-color var(--ui-motion);
+}
+.ui-checkbox { border-radius: var(--radius-sm); }
+.ui-radio    { border-radius: var(--radius-pill); }
+.ui-checkbox::after, .ui-radio::after { content: ""; opacity: 0; }
+.ui-checkbox::after {
+  width: 10px; height: 6px; transform: translateY(-1px) rotate(-45deg);
+  border-left: 2px solid var(--ui-on-accent);
+  border-bottom: 2px solid var(--ui-on-accent);
+}
+.ui-radio::after {
+  width: 8px; height: 8px;
+  border-radius: var(--radius-pill); background: var(--ui-on-accent);
+}
+/* Mark on fill: 18.88:1 Collective Edge, 10.71:1 Apex, 10.30:1
+   Royal. */
+.ui-checkbox:checked, .ui-radio:checked {
+  background: var(--ui-accent);
+  border-color: var(--ui-accent);
+}
+.ui-checkbox:checked::after, .ui-radio:checked::after { opacity: 1; }
+
+.ui-checkbox:disabled, .ui-radio:disabled {
+  background: var(--ui-disabled-fill); border-color: var(--fg-3);
+  cursor: not-allowed;
+}
+.ui-check:has(:disabled) { color: var(--ui-disabled-ink); cursor: not-allowed; }
+
+/* ---------- STATUS BADGE ------------------------------------
+   Four states, one shape, no colourway invented per project.
+   The status colour rides on the dot and the label is set in
+   ink, because --status-warn measures 3.40:1 on white and
+   cannot legally set 12px text; a badge that works in three
+   colours out of four is not a system. The dot clears the 3:1
+   SC 1.4.11 asks of a meaningful graphic. A brand may switch
+   the shape off: Royal does, and prefers a dot and a sentence.
+   That is a position, not drift. */
+
+.ui-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-gap);
+  min-height: 24px; padding: 0 var(--space-2);
+  border-radius: var(--radius-sm); background: var(--ui-badge-tint);
+  font-size: var(--fs-caption); font-weight: var(--weight-semibold);
+  line-height: var(--lh-caption); text-transform: uppercase;
+  letter-spacing: calc(var(--tr-caps-small) + var(--tr-dark, 0em));
+  color: var(--ui-ink);
+  --ui-badge-dot: var(--fg-3);  --ui-badge-tint: var(--bg-surface);
+}
+.ui-badge::before {
+  content: ""; flex: none; width: 8px; height: 8px;
+  border-radius: var(--radius-pill); background: var(--ui-badge-dot);
+}
+/* One tint under all four, so a badge cannot drift into four
+   coloured boxes. Dot against --bg-surface on Collective Edge:
+   go 5.10:1, warn 3.26:1, stop 6.03:1, info 6.84:1; the lowest
+   of the twelve values across the three brands is the Apex warn
+   dot at 3.08:1, still over the 3:1 a graphic owes. Ink on that
+   tint measures 18.09:1, 13.25:1, 13.61:1. */
+.ui-badge--go   { --ui-badge-dot: var(--status-go); }
+.ui-badge--warn { --ui-badge-dot: var(--status-warn); }
+.ui-badge--stop { --ui-badge-dot: var(--status-stop); }
+.ui-badge--info { --ui-badge-dot: var(--status-info); }
+
+/* On a band the badge stays a light chip, the way a field stays a
+   light box. The status colours are identical in every brand and
+   are mixed for a light ground: on the three bands the go dot
+   measures 3.95:1, 2.74:1 and 2.98:1 and the info dot 2.94:1,
+   2.04:1 and 2.22:1, under the 3:1 a meaningful graphic owes, so
+   a dark badge would carry two dots out of four that cannot be
+   read. Left to the dark scope alone the chip would also set
+   white ink on --bg-surface: 1.04:1, 1.10:1 and 1.07:1. The chip
+   is a light ground, so rule 4's tracking bonus comes back off. */
+.ui-on-dark .ui-badge {
+  color: var(--fg-1); --ui-badge-tint: var(--bg-surface); --tr-dark: 0em;
+}
+
+/* ---------- MOTION ------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-btn, .ui-link, .ui-input, .ui-select, .ui-textarea,
+  .ui-checkbox, .ui-radio { transition: none; }
+  .ui-btn[aria-busy="true"]::before { animation: none; }
+}

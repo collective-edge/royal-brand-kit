@@ -116,12 +116,15 @@ Header band, sub-banner, flowchart nodes, stat callout, table and footer are in 
 
 **Powered by Collective Edge.** Royal is an operating company under Collective Edge, and the reader should be able to see it. The lockup rides beside the Royal mark, never inside it, with a hairline between them, at 204px, which is wider than the Royal mark above it on purpose. `.ce-powered` on a dark band, `.ce-powered ce-powered-light` on white, `.ce-powered-text` where no mark fits. It belongs on footers, dashboard sidebars, closing slides, data pages, anywhere a number was computed rather than typed. Never on the Royal mark itself, never on a clinical instruction or a patient-facing consent, never twice on one surface. Both grounds, the measured contrast and copy-pasteable blocks are in [reference/layout.md](reference/layout.md).
 
+**UI controls.** Buttons, links, form controls, status badges and the focus ring are shared and identical in all three brands: [`snippets/ui.css`](snippets/ui.css), loaded third after `palette.css`, with the standard in [reference/ui.md](reference/ui.md). Cards, tables, dashboard shells, navigation and heroes are not shared; each site builds its own on those tokens. `Examples/ui-controls.html` renders every control in every state.
+
 ---
 
 ## 5. Verify before shipping
 
 ```bash
 python3 scripts/validate.py path/to/output.html
+python3 scripts/ui-audit.py path/to/page.html --width 375 --width 768 --width 1440
 ```
 
 It checks rules 1, 2, 5, 9, 10, 13 and 14 mechanically and exits non-zero on a violation. It cannot see the rest, so also look:

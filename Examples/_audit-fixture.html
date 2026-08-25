@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Audit fixture · deliberately broken</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- ============================================================
+     THE AUDITOR'S REGRESSION TEST. Every fault here is planted.
+
+     scripts/ui-audit.py claims twenty checks. A checker nobody can
+     verify is worse than no checker, because it is trusted. This
+     page carries one clear instance of each fault the auditor says
+     it catches, each marked with the check id it must trip.
+
+       python3 scripts/ui-audit.py Examples/_audit-fixture.html
+
+     Every id listed below must appear in the report. If one stops
+     appearing, the auditor has gone blind and the auditor is what
+     needs fixing, never this file.
+
+     Excluded from validate.py the way *.before.html is: it is a
+     counterexample, not a specimen. Never copy from it.
+     ============================================================ -->
+
+<link rel="stylesheet" href="../snippets/type-system.css">
+<link rel="stylesheet" href="../snippets/palette.css">
+<link rel="stylesheet" href="../snippets/ui.css">
+
+<style>
+  body { margin: 0; background: var(--bg-canvas); }
+  .pg { padding: 32px; }
+  .case {
+    position: relative;
+    margin: 0 0 32px;
+    padding: 16px;
+    border: 1px solid var(--border-1);
+  }
+  .case > h2 {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin: 0 0 12px;
+    max-width: none;
+  }
+
+  /* line-box-collision · two text lines painted on top of each other */
+  .fx-collide { position: relative; height: 60px; }
+  .fx-collide span {
+    position: absolute; left: 0; top: 18px;
+    font-size: 20px; font-weight: 400; color: var(--fg-1);
+  }
+  .fx-collide span + span { top: 26px; color: var(--fg-2); }
+
+  /* ink-occlusion · a filled panel painted over live text */
+  .fx-occlude { position: relative; height: 72px; }
+  .fx-occlude p { margin: 0; font-size: 18px; max-width: none; }
+  .fx-occlude i {
+    position: absolute; left: 40px; top: 4px;
+    width: 260px; height: 34px;
+    background: var(--brand-primary, #572e72);
+  }
+
+  /* hairline-crosses-text · a rule running through the type */
+  .fx-hairline .wrap { position: relative; }
+  .fx-hairline p { margin: 0; font-size: 22px; max-width: none; }
+  /* A different colour from the text on purpose: the auditor skips a rule
+     painted in the text's own colour, because that is a deliberate underline.
+     That exemption is correct, so the planted fault must not trip it. */
+  .fx-hairline hr {
+    position: absolute; left: 0; right: 0; top: 50%;
+    margin: 0; border: 0; border-top: 2px solid var(--status-stop);
+  }
+
+  /* flow-box-overlap · two in-flow siblings whose boxes intersect */
+  .fx-flow { display: block; height: 80px; }
+  .fx-flow div { width: 240px; height: 40px; background: var(--bg-surface);
+                 border: 1px solid var(--border-1); }
+  .fx-flow div + div { margin-top: -22px; margin-left: 60px; }
+
+  /* text-clipped · text cut off by its own box */
+  .fx-clip {
+    width: 220px; height: 22px; overflow: hidden; white-space: nowrap;
+    font-size: 18px;
+  }
+
+  /* past-frame · content escaping the box meant to hold it */
+  /* max-height is what makes this a frame. A bare height is not a promise to
+     hold anything in, and the auditor is right not to treat it as one. */
+  .fx-frame { position: relative; max-height: 70px; overflow: visible;
+              border: 1px dashed var(--border-2); }
+  .fx-frame p { position: absolute; left: 0; top: 40px; width: 420px;
+                margin: 0; font-size: 16px; max-width: none; }
+
+  /* spacing-off-4 · a gap that is not a multiple of four */
+  .fx-grid > div { height: 20px; background: var(--bg-surface); }
+  .fx-grid > div + div { margin-top: 13px; }
+
+  /* contrast-solid · text far below 4.5:1 on a solid ground */
+  .fx-contrast { background: #ffffff; padding: 8px; }
+  .fx-contrast span { color: #b9b9b9; font-size: 16px; }
+
+  /* contrast-nontext · a control boundary below 3:1 */
+  .fx-nontext input {
+    width: 200px; height: 44px; padding: 0 12px;
+    border: 1px solid #ededed; background: #fff; border-radius: 6px;
+  }
+
+  /* touch-target · an interactive box under 44px */
+  .fx-target button {
+    height: 26px; padding: 0 10px; font-size: 12px;
+    border: 1px solid var(--border-2); background: var(--bg-surface);
+  }
+
+  /* measure-over-75 · a line too long to track back to */
+  .fx-measure p { max-width: none; font-size: 16px; }
+
+  /* type-scale · a size that is not on the ladder */
+  .fx-scale span { font-size: 17px; }
+
+  /* type-floor · type below the 12px screen floor */
+  .fx-floor span { font-size: 9px; }
+
+  /* weight-ladder · a weight outside 400/600/700/800 */
+  .fx-weight span { font-size: 16px; font-weight: 500; }
+
+  /* near-align · edges that miss by two pixels. default off */
+  .fx-near div { width: 200px; height: 18px; background: var(--bg-surface); }
+  .fx-near div + div { margin-left: 2px; }
+
+  /* rhythm-gaps · one gap out of step in a sequence. default off */
+  .fx-rhythm > div { height: 16px; background: var(--bg-surface); }
+  .fx-rhythm > div + div { margin-top: 16px; }
+  .fx-rhythm > div:nth-child(4) { margin-top: 28px; }
+</style>
+</head>
+<body>
+<main class="pg">
+
+  <h1 class="bk-h2" style="max-width:none">Audit fixture</h1>
+  <p class="bk-body-sm" style="max-width:54ch">Every fault on this page is deliberate. Each block
+  names the check it must trip. If a check stops reporting, fix the auditor, never this file.</p>
+
+  <section class="case fx-collide">
+    <h2>line-box-collision</h2>
+    <span>Two lines painted on the same eight pixels</span>
+    <span>Two lines painted on the same eight pixels</span>
+  </section>
+
+  <section class="case fx-occlude">
+    <h2>ink-occlusion</h2>
+    <p>A filled panel sits over the middle of this sentence.</p>
+    <i></i>
+  </section>
+
+  <section class="case fx-hairline">
+    <h2>hairline-crosses-text</h2>
+    <div class="wrap">
+      <p>A rule runs straight through this line</p>
+      <hr>
+    </div>
+  </section>
+
+  <section class="case fx-flow">
+    <h2>flow-box-overlap</h2>
+    <div></div>
+    <div></div>
+  </section>
+
+  <section class="case">
+    <h2>text-clipped</h2>
+    <div class="fx-clip">This sentence is wider than the box that holds it and is cut off</div>
+  </section>
+
+  <section class="case fx-frame">
+    <h2>past-frame</h2>
+    <p>This paragraph is positioned past the bottom edge of its dashed frame.</p>
+  </section>
+
+  <section class="case fx-grid">
+    <h2>spacing-off-4</h2>
+    <div></div>
+    <div></div>
+  </section>
+
+  <section class="case fx-contrast">
+    <h2>contrast-solid</h2>
+    <span>Grey #B9B9B9 on white measures 1.94:1</span>
+  </section>
+
+  <section class="case fx-nontext">
+    <h2>contrast-nontext</h2>
+    <label class="bk-caption" for="fx-i" style="display:block;max-width:none">Field</label>
+    <input id="fx-i" type="text" value="Border #EDEDED on white is 1.13:1">
+  </section>
+
+  <section class="case fx-target">
+    <h2>touch-target</h2>
+    <button type="button">26px tall</button>
+  </section>
+
+  <section class="case fx-measure">
+    <h2>measure-over-75</h2>
+    <p>This paragraph carries no measure at all, so on a wide viewport it runs the full width of the
+    page and the eye cannot reliably find the start of the next line when it sweeps back, which is
+    the whole reason the house caps body copy at fifty-four characters of the digit zero.</p>
+  </section>
+
+  <section class="case fx-scale">
+    <h2>type-scale</h2>
+    <span>Seventeen pixels is not a step on the ladder</span>
+  </section>
+
+  <section class="case fx-floor">
+    <h2>type-floor</h2>
+    <span>Nine pixels is under the twelve pixel screen floor</span>
+  </section>
+
+  <section class="case fx-weight">
+    <h2>weight-ladder</h2>
+    <span>Weight 500 is not in the ladder</span>
+  </section>
+
+  <section class="case fx-near">
+    <h2>near-align · default off</h2>
+    <div></div>
+    <div></div>
+  </section>
+
+  <section class="case fx-rhythm">
+    <h2>rhythm-gaps · default off</h2>
+    <div></div><div></div><div></div><div></div>
+  </section>
+
+</main>
+</body>
+</html>
