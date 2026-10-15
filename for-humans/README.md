@@ -4,6 +4,14 @@ Everything an outside designer needs to put the Royal Ambulance brand on somethi
 
 If you only read one line: use the SVG files, set type in Montserrat, and the purple is `#43205b`.
 
+## How to get these files
+
+**[Download the whole kit as a zip](https://github.com/collective-edge/royal-brand-kit/archive/refs/heads/main.zip)**, unzip it, and open the `for-humans` folder. That is the whole process.
+
+You can also browse and download files one at a time from https://github.com/collective-edge/royal-brand-kit/tree/main/for-humans. To grab a single logo there, open it and use the download button. Do not copy an SVG out of the preview pane, as you will get the page markup instead of the file.
+
+`Royal-Ambulance-logo-sheet.html` will not render on GitHub. Download it and open it in a browser.
+
 ## What is in here
 
 ```

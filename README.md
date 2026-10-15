@@ -4,6 +4,8 @@ House type system v1.0. Cloud-hosted brand assets plus the `royal-brand-guidelin
 
 Written for agents and humans. An agent loads `SKILL.md` and applies the brand on its own. A person reads the same file start to finish and gets the same standard, in the same order, with nothing held back. Read it before producing anything for Royal Ambulance.
 
+**Outside designer, agency or print vendor?** Everything you need is in **[`for-humans/`](for-humans/)**. Logos, font, colors, rules. No install, no account, no git.
+
 Royal is an operating company under Collective Edge. It inherits the house type system unchanged and supplies two things of its own: a purple palette and the crown wordmark. Apex Paramedics and Collective Edge run the same type layer from their own kits.
 
 Everything is served from a public jsDelivr CDN, so a document generated on one machine renders the same on every other one with no local setup.
