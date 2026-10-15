@@ -4,7 +4,7 @@ Everything needed to put the Royal Ambulance brand on something. No install, no 
 
 If you only read one line: use the SVG files, set type in Montserrat, and the purple is `#43205b`.
 
-If you are building anything with a **chart, a table of numbers or a dashboard**, read [Colour for data](#colour-for-data) below as well. The purple palette is for the brand. It is deliberately not what you colour a chart with.
+If you are building anything with a **chart, a table of numbers or a dashboard**, read [Color for data](#color-for-data) below as well. The purple palette is for the brand. It is deliberately not what you color a chart with.
 
 ---
 
@@ -73,12 +73,12 @@ Hex and RGB are the authoritative values. Everything else gets converted from th
 | <img src="previews/swatches/43205b.png" width="22"> | Royal Purple | `#43205b` | 67, 32, 91 | The logo color on light backgrounds |
 | <img src="previews/swatches/8260a2.png" width="22"> | Light Purple | `#8260a2` | 130, 96, 162 | Tertiary accents and hover states only |
 | <img src="previews/swatches/1E293B.png" width="22"> | Charcoal | `#1E293B` | 30, 41, 59 | Body text |
-| <img src="previews/swatches/64748B.png" width="22"> | Muted grey | `#64748B` | 100, 116, 139 | Captions, secondary text |
+| <img src="previews/swatches/64748B.png" width="22"> | Muted gray | `#64748B` | 100, 116, 139 | Captions, secondary text |
 | <img src="previews/swatches/E2E8F0.png" width="22"> | Hairline | `#E2E8F0` | 226, 232, 240 | Table rules, card borders |
 | <img src="previews/swatches/faf5fd.png" width="22"> | Surface | `#faf5fd` | 250, 245, 253 | Very light purple tint for alternating rows and callout fills |
 | <img src="previews/swatches/FFFFFF.png" width="22"> | White | `#FFFFFF` | 255, 255, 255 | Page background |
 
-**These nine colours are for the brand.** They are not the colours you make a chart with. See [Colour for data](#colour-for-data).
+**These nine colors are for the brand.** They are not the colors you make a chart with. See [Color for data](#color-for-data).
 
 Two things that will bite you, both measured:
 
@@ -91,19 +91,19 @@ No CMYK build is specified for this brand. For offset or large-format work, conv
 
 ---
 
-## Colour for data
+## Color for data
 
 Skip this if you are making a logo, a sign or a business card. Read it if anything you are making has a chart, a graph, a dashboard, a scorecard or a table of numbers.
 
-**The brand palette is the wrong tool for a chart, and we can prove it.** The old rule said chart bars should use four shades of the brand purple. Measured against the standard test for whether two colours can be told apart, two of those four scored 6.6 where the passing mark is 15. Not "hard for colour blind readers". Hard for everybody. So the data colours below are a separate set, and they are the same in every one of our brands.
+**The brand palette is the wrong tool for a chart, and we can prove it.** The old rule said chart bars should use four shades of the brand purple. Measured against the standard test for whether two colors can be told apart, two of those four scored 6.6 where the passing mark is 15. Not "hard for color blind readers". Hard for everybody. So the data colors below are a separate set, and they are the same in every one of our brands.
 
 ### The one rule
 
-When there is data on the page, colour has a job: separate things, and signal things. The brand is carried by the band at the top, the logo and the typeface. Not by the bars.
+When there is data on the page, color has a job: separate things, and signal things. The brand is carried by the band at the top, the logo and the typeface. Not by the bars.
 
-### Series colours · telling things apart
+### Series colors · telling things apart
 
-For charts with more than one line, bar group or slice. **Use them in this order, starting at the first one.** Do not pick the ones you like. The order is what keeps neighbouring colours distinguishable, including for the roughly one man in twelve who cannot separate red from green.
+For charts with more than one line, bar group or slice. **Use them in this order, starting at the first one.** Do not pick the ones you like. The order is what keeps neighboring colors distinguishable, including for the roughly one man in twelve who cannot separate red from green.
 
 | | Name | On white | On a dark purple band |
 |---|---|---|---|
@@ -116,28 +116,28 @@ For charts with more than one line, bar group or slice. **Use them in this order
 | <img src="previews/data/series-7.png" width="22"> | Blue | `#116dce` | `#519dfa` |
 | <img src="previews/data/series-8.png" width="22"> | Pink | `#e53975` | `#fb608e` |
 
-Three of these is the limit on scatter plots, bubble charts and maps, where any two dots can end up touching. Eight is the limit everywhere else. If you need a ninth, group the smallest ones into "Other" or split the chart in two. Do not invent a colour.
+Three of these is the limit on scatter plots, bubble charts and maps, where any two dots can end up touching. Eight is the limit everywhere else. If you need a ninth, group the smallest ones into "Other" or split the chart in two. Do not invent a color.
 
 Amber and orange are light. If a series uses one, put its number directly on the bar or beside the line.
 
-### Direction colours · telling the reader how to feel
+### Direction colors · telling the reader how to feel
 
-Separate from the series colours, and never mixed with them.
+Separate from the series colors, and never mixed with them.
 
 | | Name | Hex | Pale fill | Text on that fill |
 |---|---|---|---|---|
-| <img src="previews/data/dir-favourable.png" width="22"> | Favourable | `#158840` | `#daf8df` | `#127e3b` |
-| <img src="previews/data/dir-unfavourable.png" width="22"> | Unfavourable | `#db3931` | `#fde9e6` | `#c5372f` |
+| <img src="previews/data/dir-favorable.png" width="22"> | Favorable | `#158840` | `#daf8df` | `#127e3b` |
+| <img src="previews/data/dir-unfavorable.png" width="22"> | Unfavorable | `#db3931` | `#fde9e6` | `#c5372f` |
 | <img src="previews/data/dir-caution.png" width="22"> | Caution | `#a36912` | `#fdebd7` | `#95600f` |
 | <img src="previews/data/dir-neutral.png" width="22"> | Neutral | `#64748B` | `#F1F5F9` | `#51607A` |
 
 **The part that is easy to get backwards.** Green does not mean the number went up. Green means the news is good.
 
-In one of our reports, transports rose 6.3 percent and hospital invoice costs fell 38.8 percent. One number went up, one went down, and both were good news. Both are green. The little arrow shows which way the number moved. The colour shows whether that is good.
+In one of our reports, transports rose 6.3 percent and hospital invoice costs fell 38.8 percent. One number went up, one went down, and both were good news. Both are green. The little arrow shows which way the number moved. The color shows whether that is good.
 
-Colouring a 38.8 percent cost saving red because it has a minus sign in front of it tells the reader we made things worse.
+Coloring a 38.8 percent cost saving red because it has a minus sign in front of it tells the reader we made things worse.
 
-**Always put an arrow or an icon and a word next to the colour.** Never the colour on its own. Decks get printed in black and white, projected onto washed-out screens, and read by people who cannot see the difference between your red and your green.
+**Always put an arrow or an icon and a word next to the color.** Never the color on its own. Decks get printed in black and white, projected onto washed-out screens, and read by people who cannot see the difference between your red and your green.
 
 ### The before-and-after chart
 
@@ -145,14 +145,14 @@ The most common chart we make, and the one most often got wrong.
 
 Do not use a light shade of purple for "before" and a dark shade for "after". They are too close together, so the reader has to stop and read the labels to work out which bar is which.
 
-Use a plain grey for the baseline and the brand purple for the result:
+Use a plain gray for the baseline and the brand purple for the result:
 
 - Baseline bar · `#CBD5E1`
 - Result bar · `#572e72`
-- The change, as a pill with an arrow and a word · direction colours above
+- The change, as a pill with an arrow and a word · direction colors above
 - The headline number stated once, in dollars rather than a percentage
 
-Grey against purple reads instantly. That is the whole fix.
+Gray against purple reads instantly. That is the whole fix.
 
 ### The purple ramp · for "how much"
 
@@ -160,28 +160,28 @@ For heatmaps and intensity grids, where one quantity gets darker as it gets bigg
 
 `#f0e1fd` · `#e2c2fb` · `#d29ef8` · `#ba7ce4` · `#9d60c6` · `#7f42a6` · `#572e72`
 
-It finishes on Royal Purple, so the brand colour is the darkest step. Start at the third one for anything with distinct steps, like funnel stages. The first two are so pale they are only usable on a smooth gradient.
+It finishes on Royal Purple, so the brand color is the darkest step. Start at the third one for anything with distinct steps, like funnel stages. The first two are so pale they are only usable on a smooth gradient.
 
-**Never use this ramp for things that merely have names.** Facilities, payers and crews are not more or less of anything, and shading them light to dark invents a ranking that is not there. Use the series colours.
+**Never use this ramp for things that merely have names.** Facilities, payers and crews are not more or less of anything, and shading them light to dark invents a ranking that is not there. Use the series colors.
 
 ### Quick don't list
 
 - Two shades of purple standing in for two different things.
-- Red and green as the two ends of one scale. They become the same colour for a lot of readers. Use red and teal.
+- Red and green as the two ends of one scale. They become the same color for a lot of readers. Use red and teal.
 - A red number when the news is good.
-- A ninth series colour.
+- A ninth series color.
 - Brand purple on every bar.
-- Any colour doing its job without a label.
+- Any color doing its job without a label.
 
 ### If you want to check your own work
 
-Everything above was measured rather than picked by eye. If you have a set of colours you want tested, send them to us and we will run them, or run it yourself from the repository:
+Everything above was measured rather than picked by eye. If you have a set of colors you want tested, send them to us and we will run them, or run it yourself from the repository:
 
 ```
 python3 scripts/validate-palette.py "#572e72,#1a9d4b,#d42320"
 ```
 
-It reports whether the colours are distinguishable, including under the common forms of colour blindness, and whether they have enough contrast against the page.
+It reports whether the colors are distinguishable, including under the common forms of color blindness, and whether they have enough contrast against the page.
 
 ---
 
@@ -208,7 +208,7 @@ Headings are bold. Display statements on a title, band or divider are uppercase 
 for-humans/
 ├── README.md                          You are reading it
 ├── Royal-Ambulance-logo-sheet.html    Open in a browser. Every mark and color on one page
-├── data-color-sheet.html              Open in a browser. Every chart colour on one page
+├── data-color-sheet.html              Open in a browser. Every chart color on one page
 ├── logos/svg/                         Vector. Use these
 ├── logos/png/                         Raster, transparent background
 ├── previews/                          The images shown above

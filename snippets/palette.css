@@ -16,7 +16,9 @@
 
    Always style through the semantic layer. Reach for a raw
    --royal-* value only where the brand color is the point:
-   a logo band, an accent rule, a chart series.
+   a logo band or an accent rule. NEVER a chart series:
+   data color comes from data-color.css, and a brand accent
+   is never a series color.
    ============================================================ */
 
 :root {

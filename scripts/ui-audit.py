@@ -223,7 +223,7 @@ class Chrome(object):
                 pass
 
 
-# ------------------------------------------------------------------ png + colour
+# ------------------------------------------------------------------ png + color
 def png_rgb(blob):
     """Decode an 8-bit non-interlaced PNG to (w, h, channels, bytes).
 
@@ -438,7 +438,7 @@ COLLECT_JS = r"""
 
   // An image or a scrim painted by an absolutely positioned SIBLING is
   // invisible to an ancestor walk, so a headline over a hero photograph would
-  // otherwise resolve to the flat band colour underneath it and report a
+  // otherwise resolve to the flat band color underneath it and report a
   // contrast ratio against a ground nobody sees.
   var COVERS=[];
   for(var q=0;q<all.length&&q<LIMIT;q++){
@@ -460,7 +460,7 @@ COLLECT_JS = r"""
     return false;}
 
   // Composite every translucent layer down to an opaque ground, because a
-  // ratio taken against rgba(0,0,0,0.4) is a ratio against a colour that is
+  // ratio taken against rgba(0,0,0,0.4) is a ratio against a color that is
   // never painted.
   function groundOf(el,r){
     var stack=[],e=el,img=false;
@@ -948,7 +948,7 @@ def check_hairline_crosses_text(ctx):
             if hr["i"] == tr["i"] or related(recs, hr["i"], tr["i"]):
                 continue
             # A strikethrough or an underline drawn as a bar is deliberate, and
-            # its signature is that it is painted in the colour of the text.
+            # its signature is that it is painted in the color of the text.
             if tcol and col and parse_color(col) and parse_color(tcol) and \
                     [round(v) for v in parse_color(col)[:3]] == \
                     [round(v) for v in parse_color(tcol)[:3]]:
@@ -963,7 +963,7 @@ def check_hairline_crosses_text(ctx):
             out.append(find(
                 ctx, "hairline-crosses-text", "error", tr,
                 "%s (%s, %s) crosses this %s by %.1fpx"
-                % (hr["sel"], fmt_box(band), col or "no colour", kind,
+                % (hr["sel"], fmt_box(band), col or "no color", kind,
                    min(it[2], it[3])),
                 "a rule, divider or single border edge may not intersect a text "
                 "line box or an img or svg box at all",
@@ -1334,7 +1334,7 @@ def check_contrast_over_image(ctx, chrome):
             continue
         sel = '[data-uiaudit="%d"]' % r["i"]
         # Sampling the first render samples the glyphs, which reports the text
-        # against its own colour: a ratio of 1.0 and a false blocker on every
+        # against its own color: a ratio of 1.0 and a false blocker on every
         # node. The node is hidden before the ground is sampled.
         try:
             chrome.evaluate(
@@ -1419,7 +1419,7 @@ def check_contrast_nontext(ctx):
             if v > best:
                 best, how = v, "border %s" % bc
         # A boundary drawn entirely by a box-shadow looks border-less to
-        # computed style, so its colour is read too.
+        # computed style, so its color is read too.
         if r["bsh"] and r["bsh"] != "none":
             c = parse_color(r["bsh"])
             if c:

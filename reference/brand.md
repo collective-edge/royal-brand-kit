@@ -1,6 +1,6 @@
 # Royal Ambulance · brand reference
 
-Everything about this brand that does not fit in `SKILL.md`. Color, logo, voice, sources. Type is not decided here. Read `type-system.md`. Chart and reporting colour is not decided here either. Read `data-color.md`.
+Everything about this brand that does not fit in `SKILL.md`. Color, logo, voice, sources. Type is not decided here. Read `type-system.md`. Chart and reporting color is not decided here either. Read `data-color.md`.
 
 Royal Ambulance is an operating company under Collective Edge. It inherits the house type system unchanged and supplies two things of its own: a purple palette and the crown wordmark.
 
@@ -92,8 +92,8 @@ Measured contrast on these fills: `#FFFFFF` on `#4a8e3a` is 4.02:1, large or bol
 - Black `#000000` is for maximum-contrast headings. Running body text is `--fg-1` `#1E293B`.
 - Backgrounds are white first. Tints stop at `#faf5fd` and `#f8f4fc`.
 - No off-brand hues for decoration. Functional colors stay in the status and diagram sets above.
-- **Chart series do not come from this palette.** They come from the house data layer in [data-color.md](data-color.md). The former rule here said chart series stay inside the purple ramp, `#2f193b`, `#43205b`, `#572e72`, `#8260a2`. Two of those measure ΔE 6.6 against each other under normal vision, against a floor of 15, so a reader with no colour vision deficiency at all could not separate them. The rule produced charts nobody could read and it is withdrawn.
-- Purple still carries data in two places, both of them legitimate. `--series-1` is Royal Purple, because slot 1 is the one sanctioned place a brand accent may be a series colour. And the sequential ramp lands on `#572e72` at step 700, so purple is the top of the magnitude scale. No brand value moved to make either work.
+- **Chart series do not come from this palette.** They come from the house data layer in [data-color.md](data-color.md). The former rule here said chart series stay inside the purple ramp, `#2f193b`, `#43205b`, `#572e72`, `#8260a2`. Two of those measure ΔE 6.6 against each other under normal vision, against a floor of 15, so a reader with no color vision deficiency at all could not separate them. The rule produced charts nobody could read and it is withdrawn.
+- Purple still carries data in two places, both of them legitimate. `--series-1` is Royal Purple, because slot 1 is the one sanctioned place a brand accent may be a series color. And the sequential ramp lands on `#572e72` at step 700, so purple is the top of the magnitude scale. No brand value moved to make either work.
 
 ---
 
@@ -155,7 +155,7 @@ The shipping SVGs in `assets/logos/` are the working masters. Any future vector 
 - A label, a value, and nothing between them. No helper text under a field, no caption restating the number above it, no parenthetical after a heading.
 - Sentence case for headings inside a document. Uppercase for display statements on a title, band or divider surface, and for labels. Always tracked, never past four words.
 - Name partners and facilities exactly as they write themselves.
-- The mono face is a whitelist of four: colour values, paths and filenames, code shown as code, and record identifiers a person dictates. Use `.bk-code`. Measurements, ratios, counts, ordinals, weight numbers, verdict words and labels are Montserrat.
+- The mono face is a whitelist of four: color values, paths and filenames, code shown as code, and record identifiers a person dictates. Use `.bk-code`. Measurements, ratios, counts, ordinals, weight numbers, verdict words and labels are Montserrat.
 - When you hand work back, state which brand choices you applied: logo role, accent, how the font embedded.
 
 ---

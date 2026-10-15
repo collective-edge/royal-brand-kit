@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""HOUSE DATA COLOUR v1.0 · palette gate.
+"""HOUSE DATA COLOR v1.0 · palette gate.
 
-Shared, byte-identical in every kit. Proves that a set of data colours is
-readable before it ships. Colour is computable, so it is computed here rather
+Shared, byte-identical in every kit. Proves that a set of data colors is
+readable before it ships. Color is computable, so it is computed here rather
 than argued about in review.
 
 Usage:
@@ -17,14 +17,14 @@ Usage:
 What it checks, for a categorical set:
 
   1. Lightness band    OKLCH L inside the band for the mode.
-  2. Chroma floor      OKLCH C >= 0.10. Below that a hue reads as grey and
+  2. Chroma floor      OKLCH C >= 0.10. Below that a hue reads as gray and
                        stops doing identity work.
   3. CVD separation    OKLab dE x100 >= 8 on the worst pair, under protanopia
                        and deuteranopia simulated with Machado 2009 at
                        severity 1.0. 6 to 8 is a floor band, legal only when
                        the chart also carries labels, gaps or texture.
   4. Normal vision     OKLab dE x100 >= 15 on the worst pair, unsimulated.
-                       A hard gate. Below it, readers with full colour vision
+                       A hard gate. Below it, readers with full color vision
                        cannot separate the pair either.
   5. Contrast          >= 3:1 against the ground. Below that is legal only
                        with direct labels or a table view beside the chart.
@@ -33,7 +33,7 @@ What it checks, for a categorical set:
   step gap of at least 0.06, a lightest step clearing 2:1, and a single hue.
 
 Pairs:
-    adjacent (default)  only neighbouring slots touch. Bars, stacks, lines.
+    adjacent (default)  only neighboring slots touch. Bars, stacks, lines.
     all                 any two marks can sit side by side. Scatter, bubble,
                         choropleth, small multiples. A strictly harder test.
 
@@ -98,13 +98,13 @@ EXCEPTIONS = {
 
 HEX_RE = re.compile(r"^#?[0-9a-fA-F]{6}$")
 
-# ---- colour ----------------------------------------------------------------
+# ---- color ----------------------------------------------------------------
 
 
 def _parse(h):
     h = h.strip()
     if not HEX_RE.match(h):
-        sys.stderr.write("error: not a 6-digit hex colour: %r\n" % h)
+        sys.stderr.write("error: not a 6-digit hex color: %r\n" % h)
         raise SystemExit(2)
     h = h.lstrip("#")
     return tuple(int(h[i:i + 2], 16) / 255 for i in (0, 2, 4))
@@ -191,7 +191,7 @@ def validate(palette, mode="light", surface=None, pairs="adjacent"):
     if low:
         hard_fail = True
     report.append(("Chroma floor", "FAIL" if low else "PASS",
-                   "below floor, reads grey: %s" % low if low
+                   "below floor, reads gray: %s" % low if low
                    else "all %d >= %s" % (len(palette), CHROMA_FLOOR)))
 
     pl = _pairlist(len(palette), pairs)
@@ -226,7 +226,7 @@ def validate(palette, mode="light", surface=None, pairs="adjacent"):
                        "worst %s pair %s vs %s dE %.1f%s"
                        % (pairs, wn[0], wn[1], worst_n,
                           "" if ok_n else
-                          " · below %.0f, hard to separate with full colour vision"
+                          " · below %.0f, hard to separate with full color vision"
                           % NORMAL_FLOOR)))
 
     thin = [(c, round(contrast(c, surface), 2)) for c in palette
@@ -292,7 +292,7 @@ GLYPH = {"PASS": "ok  ", "WARN": "warn", "FAIL": "FAIL"}
 
 def emit(report, ok, palette, mode, surface, pairs, ordinal):
     kind = "ordinal ramp" if ordinal else "categorical, %s pairs" % pairs
-    print("\n%s · %s · ground %s · %d colours"
+    print("\n%s · %s · ground %s · %d colors"
           % (kind, mode, surface, len(palette)))
     print("  " + "  ".join(palette))
     print()
@@ -344,7 +344,7 @@ def main():
     palette = [c if c.startswith("#") else "#" + c
                for c in (x.strip() for x in args.palette.split(",")) if c]
     if len(palette) < 2:
-        sys.stderr.write("error: need at least two colours\n")
+        sys.stderr.write("error: need at least two colors\n")
         raise SystemExit(2)
 
     surface = args.surface or DEFAULT_SURFACE[args.mode]

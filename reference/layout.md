@@ -215,7 +215,7 @@ The CSS is shared and identical in every kit: [`snippets/cobrand.css`](../snippe
 
 204px is deliberate. It runs wider than the partner mark above it because it is sized to read at a glance rather than sit quietly in a corner. The 110px logo minimum in this kit is a floor, not a target.
 
-The light lockup goes on `--bg-canvas`, not on `--royal-surface` `#faf5fd`. The same grey measures 4.43:1 on the tint, under the 4.5:1 small-text threshold.
+The light lockup goes on `--bg-canvas`, not on `--royal-surface` `#faf5fd`. The same gray measures 4.43:1 on the tint, under the 4.5:1 small-text threshold.
 
 **Where it belongs.** The footer of any Royal site or printed document. The sidebar header of any Royal dashboard. The closing slide of a deck. The foot of a report. A data page or a methodology page. Anywhere a number was computed rather than typed.
 
@@ -228,7 +228,7 @@ The light lockup goes on `--bg-canvas`, not on `--royal-surface` `#faf5fd`. The 
 - Space above a heading is three times the space below it. `--space-above-heading` is 48px, `--space-below-heading` is 16px.
 - Every vertical value is a multiple of 4. Use the `--space-*` tokens.
 - Body copy keeps its `54ch` measure. Never let it run the full width of a wide container, and never clear `max-width` on a `.bk-body*` or `.bk-caption` element to make a cell or a rail fit. Set the type on the container instead, as the table above does.
-- The mono face is a whitelist of four: colour values, paths and filenames, code shown as code, and record identifiers a person dictates, the revision marker among them. Measurements, ratios, counts, ordinals, weight numbers, verdict words and labels are Montserrat.
+- The mono face is a whitelist of four: color values, paths and filenames, code shown as code, and record identifiers a person dictates, the revision marker among them. Measurements, ratios, counts, ordinals, weight numbers, verdict words and labels are Montserrat.
 - `.bk-code` sets no font size. It takes the size of the step it sits in, so every code string lands on the ladder and none needs a size cleared by hand.
 - `.bk-code` resolves to `--font-mono`, a system stack. No kit embeds a mono face, so a `.bk-code` string falls back to whatever monospace the render host carries and does not embed in a PDF. Keep those strings short, and read them in the rendered file before you ship.
 - Maximum three weights and three sizes above body in one piece.

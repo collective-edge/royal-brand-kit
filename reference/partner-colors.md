@@ -1,8 +1,8 @@
-# Partner facility colours
+# Partner facility colors
 
 Royal only. Not shared, not in `brands.json`, and not part of the house data layer.
 
-A chart comparing partner facilities may give each facility its own brand colour. It reads as informed and it helps a reader who already knows the logos. It is opt-in, decided per chart, and it has a gate.
+A chart comparing partner facilities may give each facility its own brand color. It reads as informed and it helps a reader who already knows the logos. It is opt-in, decided per chart, and it has a gate.
 
 Read `reference/data-color.md` first. This file is the lookup table and the sourcing record.
 
@@ -22,13 +22,13 @@ Half of Bay Area healthcare is blue. Two of those logos in one chart is two seri
 So, four steps, in order, every time:
 
 1. **Look the value up here.** Never sample a logo, never eyedropper a PDF, never guess from memory.
-2. **Restep the hue into the chart band.** A brand hex is a logo colour. It is usually too dark or too weak to work as a fill. Hold the hue, move the lightness.
+2. **Restep the hue into the chart band.** A brand hex is a logo color. It is usually too dark or too weak to work as a fill. Hold the hue, move the lightness.
 3. **Run the validator on the exact set in that chart.**
    ```bash
    python3 scripts/validate-palette.py "#...,#...,#..." --pairs all
    ```
    Use `--pairs all` whenever marks can end up side by side, which on a facility comparison they can.
-4. **On a failure, fall back to the house series order for the whole chart.** Never for part of it. A chart where three facilities wear their own colours and two wear house slots is worse than either option taken cleanly.
+4. **On a failure, fall back to the house series order for the whole chart.** Never for part of it. A chart where three facilities wear their own colors and two wear house slots is worse than either option taken cleanly.
 
 ---
 
@@ -36,15 +36,15 @@ So, four steps, in order, every time:
 
 `Confidence` is the only column that decides whether you may use a value.
 
-- **Verified** · taken from the organisation's own published identity guidance. Usable.
+- **Verified** · taken from the organization's own published identity guidance. Usable.
 - **Reported** · consistent across independent third-party sources, not confirmed against the owner's own guidance. Usable with the gate, and worth confirming before anything goes to the partner.
 - **Unknown** · no reliable value found. **Use the house series order.** Do not approximate.
 
-| Facility | Colour | Hex | Confidence | Source |
+| Facility | Color | Hex | Confidence | Source |
 |---|---|---|---|---|
 | Stanford · Stanford Medicine | Cardinal Red | `#8C1515` | Verified | Stanford identity guidance, Pantone 201 C, RGB 140/21/21 |
 | Stanford, interactive accent only | Digital Red | `#B1040E` | Verified | Stanford identity toolkit. Explicitly not a replacement for Cardinal |
-| UCSF · UCSF Health | Navy | `#052049` | Verified | UCSF brand identity, colour palette page |
+| UCSF · UCSF Health | Navy | `#052049` | Verified | UCSF brand identity, color palette page |
 | UCSF, links and digital | UCSF Blue | `#0071AD` | Verified | UCSF websites standard, replaced Pantone Process Blue C |
 | El Camino Health | Cinnabar | `#E03E1A` | Reported | Third-party brand index. Consistent with the 2009 rebrand to orange and blue |
 | El Camino Health | Bahama Blue | `#006E90` | Reported | Same source |
@@ -59,7 +59,7 @@ UCSF publishes a six-range palette (blue, teal, green, purple, violet, magenta).
 
 ## 3. Restepping
 
-A logo colour is rarely a legible fill. Both Stanford Cardinal `#8C1515` and UCSF Navy `#052049` sit below the chart lightness band, so as bars they read as near-black and lose their identity entirely.
+A logo color is rarely a legible fill. Both Stanford Cardinal `#8C1515` and UCSF Navy `#052049` sit below the chart lightness band, so as bars they read as near-black and lose their identity entirely.
 
 Hold the hue angle, move the lightness until the mark clears 3:1 on the ground, then validate the set. Worked, on the three facilities with distinct hues:
 
@@ -77,7 +77,7 @@ That set passes: worst pair ΔE 13.5 simulated red-green, 20.3 normal vision, ev
 
 Two things that restepping will not fix, both met while deriving the set above:
 
-- **Sutter's teal barely holds.** At `#1ea69b` it measures 3.01:1 on white and sits just over the chroma floor. A darker step clears contrast but drops below the floor and starts reading as grey. It works, with a direct label, and it has no headroom.
+- **Sutter's teal barely holds.** At `#1ea69b` it measures 3.01:1 on white and sits just over the chroma floor. A darker step clears contrast but drops below the floor and starts reading as gray. It works, with a direct label, and it has no headroom.
 - **Kaiser cannot join this set.** Kaiser blue and UCSF navy are the same hue, so whatever lightness they are given they collapse. Three distinct hues is the practical ceiling.
 
 ---
@@ -86,7 +86,7 @@ Two things that restepping will not fix, both met while deriving the set above:
 
 - **Any chart where two facilities share a hue family.** Two blues is the common case. Use the house order.
 - **Anything going to one of those partners.** A UCSF deck using Stanford's cardinal for a comparison line is a bad look in a room where both are present.
-- **Clinical or instructional material.** Colour there carries safety meaning. It is not for identity.
+- **Clinical or instructional material.** Color there carries safety meaning. It is not for identity.
 - **More than four facilities.** Fold the tail into "Other", or split into small multiples.
 
 The house series order is never the lesser option. It is the one that was measured.
@@ -97,4 +97,4 @@ The house series order is never the lesser option. It is the one that was measur
 
 Values move when a partner rebrands. Before using one in anything going outside Royal, confirm it against the partner's own identity page. Promote a Reported value to Verified only when you have seen it in the owner's published guidance, and record where.
 
-Never record a value taken by eyedropper from a logo, a screenshot or a PDF. Colour management, image compression and screen profiles all shift it, and the result is a colour the partner does not recognise as theirs.
+Never record a value taken by eyedropper from a logo, a screenshot or a PDF. Color management, image compression and screen profiles all shift it, and the result is a color the partner does not recognize as theirs.

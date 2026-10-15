@@ -6,7 +6,7 @@
 
    OWNS interactive control structure and nothing else: buttons,
    links, form controls, status badges, the focus ring, disabled
-   and loading. No colour literal, no type value: colour resolves
+   and loading. No color literal, no type value: color resolves
    through palette.css and size through type-system.css, so one
    button looks the same across sister companies.
 
@@ -55,7 +55,7 @@
   --ui-focus-width: 2px;  --ui-focus-offset: 2px;
   --ui-focus-ring:  var(--fg-1);
 
-  /* ---- CONTROL COLOUR · names, not values ------------------ */
+  /* ---- CONTROL COLOR · names, not values ------------------ */
   --ui-accent:      var(--fg-accent);
   --ui-accent-deep: var(--bg-inverse);
   --ui-on-accent:   var(--fg-on-dark-1);
@@ -75,14 +75,14 @@
   /* ---- DISABLED · no opacity token, on purpose -------------
      Opacity multiplies against whatever sits behind a control,
      so the result is unknowable to an auditor. A disabled
-     control keeps its box and swaps two colours. */
+     control keeps its box and swaps two colors. */
   --ui-disabled-fill: var(--border-1);  --ui-disabled-ink: var(--fg-3);
 
   --ui-motion: var(--dur-fast) var(--ease-standard);   /* 120ms */
 }
 /* An ink ring on a dark ground measures 1.11:1 Collective Edge,
    1.00:1 Apex, 1.08:1 Royal, and is invisible. White on the same
-   three measures 21.00:1, 14.56:1, 15.87:1. One ring colour
+   three measures 21.00:1, 14.56:1, 15.87:1. One ring color
    cannot serve both grounds, so the dark scope names the other,
    and the filled button inverts with it: the accent fill would
    sit at 1.11:1 against Collective Edge black. The inverted fill
@@ -116,7 +116,7 @@
 
 /* ---------- BUTTON ------------------------------------------
    Three variants, three sizes. Only the filled variants carry
-   colour, so a screen holds exactly one loud action. Labels are
+   color, so a screen holds exactly one loud action. Labels are
    sentence case at 600: a shared control that shouts in one
    brand and murmurs in the next is the drift this file stops.
    There is no text-only button. A button with no fill and no
@@ -361,11 +361,11 @@
 .ui-check:has(:disabled) { color: var(--ui-disabled-ink); cursor: not-allowed; }
 
 /* ---------- STATUS BADGE ------------------------------------
-   Four states, one shape, no colourway invented per project.
-   The status colour rides on the dot and the label is set in
+   Four states, one shape, no colorway invented per project.
+   The status color rides on the dot and the label is set in
    ink, because --status-warn measures 3.40:1 on white and
    cannot legally set 12px text; a badge that works in three
-   colours out of four is not a system. The dot clears the 3:1
+   colors out of four is not a system. The dot clears the 3:1
    SC 1.4.11 asks of a meaningful graphic. A brand may switch
    the shape off: Royal does, and prefers a dot and a sentence.
    That is a position, not drift. */
@@ -387,7 +387,7 @@
   border-radius: var(--radius-pill); background: var(--ui-badge-dot);
 }
 /* One tint under all four, so a badge cannot drift into four
-   coloured boxes. Dot against --bg-surface on Collective Edge:
+   colored boxes. Dot against --bg-surface on Collective Edge:
    go 5.10:1, warn 3.26:1, stop 6.03:1, info 6.84:1; the lowest
    of the twelve values across the three brands is the Apex warn
    dot at 3.08:1, still over the 3:1 a graphic owes. Ink on that
@@ -398,7 +398,7 @@
 .ui-badge--info { --ui-badge-dot: var(--status-info); }
 
 /* On a band the badge stays a light chip, the way a field stays a
-   light box. The status colours are identical in every brand and
+   light box. The status colors are identical in every brand and
    are mixed for a light ground: on the three bands the go dot
    measures 3.95:1, 2.74:1 and 2.98:1 and the info dot 2.94:1,
    2.04:1 and 2.22:1, under the 3:1 a meaningful graphic owes, so

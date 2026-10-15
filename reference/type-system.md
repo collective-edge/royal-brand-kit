@@ -29,7 +29,7 @@ For non-CSS output (PowerPoint, Word, matplotlib, reportlab) read `type-tokens.j
 
 **There is no italic in this system, at any weight, in any brand.** Do not set italic. Do not synthesize an oblique. `font-synthesis: none` is set in the CSS so nothing can fake one. The Collective Edge heavy-italic signature exists only in the drawn wordmark SVG, where the letterforms are correct.
 
-A second face carries four kinds of string and nothing else. Montserrat’s capital I, lowercase l and figure 1 are three identical stems, and its zero and capital O are the same circle, so **a string a machine reads back goes in the mono face:** colour values, paths and filenames, code shown as code, and record identifiers a person dictates. Use `.bk-code`. Measurements, ratios, counts, ordinals, weight numbers, verdict words and labels are Montserrat. Section 7.
+A second face carries four kinds of string and nothing else. Montserrat’s capital I, lowercase l and figure 1 are three identical stems, and its zero and capital O are the same circle, so **a string a machine reads back goes in the mono face:** color values, paths and filenames, code shown as code, and record identifiers a person dictates. Use `.bk-code`. Measurements, ratios, counts, ordinals, weight numbers, verdict words and labels are Montserrat. Section 7.
 
 ### Measured metrics
 
@@ -163,7 +163,7 @@ The mono face is a whitelist of four kinds of string. Nothing else in the system
 
 | Kind | Examples | Why it qualifies |
 |---|---|---|
-| Colour value | `#1D225E`, `43 51 141` | Retyped into a stylesheet. `0` and `O` are its alphabet |
+| Color value | `#1D225E`, `43 51 141` | Retyped into a stylesheet. `0` and `O` are its alphabet |
 | Path, filename, package | `snippets/palette.css`, `apex-brand-kit@v1.1` | Pasted into an `href`. A wrong character is a 404, not a wrong look |
 | Code shown as code | `.bk-code`, `text-wrap: balance`, a `<link>` block | Retyped into source, straight quotes and all |
 | Record identifier | `IFT-114`, `Rev.&nbsp;08.26`, an auth number, an MRN | Dictated over a radio into a system of record |
@@ -237,7 +237,7 @@ Copy these into any brief. Following them literally produces correct work.
 10. `text-wrap: balance` on every heading. `text-wrap: pretty` on every paragraph. `orphans: 3; widows: 3` in print.
 11. Space above a heading is three times the space below it.
 12. Every vertical value is a multiple of 4.
-13. The mono face is a whitelist of four: colour values, paths and filenames, code shown as code, and record identifiers a person dictates. Measurements, ratios, counts, ordinals, weight numbers, verdict words and labels are Montserrat. Section 7.
+13. The mono face is a whitelist of four: color values, paths and filenames, code shown as code, and record identifiers a person dictates. Measurements, ratios, counts, ordinals, weight numbers, verdict words and labels are Montserrat. Section 7.
 14. Columns of numbers get `tabular-nums`. Curly quotes, en dashes, non-breaking spaces in units. No em dashes.
 15. A label, a value, and nothing between them.
 

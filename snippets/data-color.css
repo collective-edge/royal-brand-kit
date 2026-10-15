@@ -1,15 +1,15 @@
 /* ============================================================
-   HOUSE DATA COLOUR v1.0  ·  data-color.css
+   HOUSE DATA COLOR v1.0  ·  data-color.css
    ------------------------------------------------------------
    Byte-identical in every kit. Load fourth, after
    type-system.css, palette.css and ui.css.
 
-   OWNS the colours that carry data: series identity, magnitude,
+   OWNS the colors that carry data: series identity, magnitude,
    polarity, and whether a number is good news. Nothing here is
-   a brand colour and nothing here changes between brands. A
+   a brand color and nothing here changes between brands. A
    chart built for Royal reads identically inside an Apex or
    Collective Edge document, which is the point: a reader should
-   never have to relearn what a colour means.
+   never have to relearn what a color means.
 
    DOES NOT OWN chart layout, axes, gridline geometry, marks,
    tooltips or legends. It supplies values, not components.
@@ -17,9 +17,9 @@
    ------------------------------------------------------------
    THE ONE RULE
 
-   A brand accent is never a series colour, and a series colour
+   A brand accent is never a series color, and a series color
    is never a brand accent. When data is on the page, the job of
-   colour is to separate and to signal, not to be on brand. The
+   color is to separate and to signal, not to be on brand. The
    brand is carried by the band, the mark and the type.
 
    The single exception is slot 1. It may be remapped in
@@ -47,7 +47,7 @@
    VERIFY
 
    scripts/validate-palette.py proves any set of these values
-   still clears the gates. Never hand-pick a data colour and
+   still clears the gates. Never hand-pick a data color and
    never invent a step. reference/data-color.md carries the
    measured numbers and the reasoning.
    ============================================================ */
@@ -56,16 +56,16 @@
 
   /* ---- SERIES · categorical identity -----------------------
      Eight slots, assigned IN ORDER and never cycled. The order
-     is the colour-blindness safety mechanism, not a preference:
+     is the color-blindness safety mechanism, not a preference:
      it was selected by enumerating orderings and keeping only
-     those where every neighbouring pair stays separable. Worst
-     neighbouring pair measures ΔE 9.8 simulated red-green and
+     those where every neighboring pair stays separable. Worst
+     neighboring pair measures ΔE 9.8 simulated red-green and
      22.3 under normal vision, both clear of the floor.
 
      Three series is the cap for scatter, bubble and map charts,
      where any two marks can end up side by side. Past eight
      series, fold the tail into "Other" or split the chart.
-     Never generate a ninth colour. */
+     Never generate a ninth color. */
   --series-1: #572e72;   /* purple  · also Royal's brand accent */
   --series-2: #1a9d4b;   /* green                               */
   --series-3: #dca821;   /* amber                               */
@@ -78,7 +78,7 @@
   /* ---- SEQUENTIAL · magnitude ------------------------------
      One hue, light to dark, for "how much". Heatmaps, choropleths,
      intensity grids. The ramp lands on Royal Purple at step 700,
-     so the brand colour is the top of the scale and no brand
+     so the brand color is the top of the scale and no brand
      value had to move.
 
      Steps 100 and 200 are for continuous scales only, where the
@@ -101,12 +101,12 @@
 
      The poles are red and teal, not red and green. Red against
      green measures ΔE 5.5 under simulated deuteranopia and
-     collapses into one colour. Red against teal measures 12.8
+     collapses into one color. Red against teal measures 12.8
      and holds. Green still carries good news, but it does it
      through the direction tokens below, where an icon and a
      word always travel with it.
 
-     The middle is grey. A hue in the middle reads as a value
+     The middle is gray. A hue in the middle reads as a value
      rather than as "no difference". */
   --div-neg-3: #d05045;   /* furthest below the baseline */
   --div-neg-2: #f67a6d;
@@ -117,28 +117,28 @@
   --div-pos-3: #2b9095;   /* furthest above the baseline */
 
   /* ---- DIRECTION · how to feel about a number --------------
-     Favourable, unfavourable, caution, neutral. These answer
+     Favorable, unfavorable, caution, neutral. These answer
      "is this good news", which is NOT the same question as
      "did the number go up".
 
      Cost falling and transports rising are both good news with
      opposite arithmetic signs. Direction therefore follows
-     favourable against unfavourable, never the sign of the
+     favorable against unfavorable, never the sign of the
      delta, and never the direction of the arrow.
 
      Every one of these ships with an arrow or icon AND a word.
-     Colour is never the only thing carrying the meaning.
+     Color is never the only thing carrying the meaning.
 
      The -ink step is the darker value for text sitting on the
      matching -tint fill, which is what a pill needs. The base
      value is for text on the page and for fills. All of them
      clear 4.5:1 where they are used. */
-  --dir-favourable:        #158840;
-  --dir-favourable-tint:   #daf8df;
-  --dir-favourable-ink:    #127e3b;
-  --dir-unfavourable:      #db3931;
-  --dir-unfavourable-tint: #fde9e6;
-  --dir-unfavourable-ink:  #c5372f;
+  --dir-favorable:        #158840;
+  --dir-favorable-tint:   #daf8df;
+  --dir-favorable-ink:    #127e3b;
+  --dir-unfavorable:      #db3931;
+  --dir-unfavorable-tint: #fde9e6;
+  --dir-unfavorable-ink:  #c5372f;
   --dir-caution:           #a36912;
   --dir-caution-tint:      #fdebd7;
   --dir-caution-ink:       #95600f;
@@ -153,7 +153,7 @@
      layer exists to fix: the reader has to stop and read the
      labels to work out which bar is which.
 
-     Grey against the accent reads instantly. Grey against green
+     Gray against the accent reads instantly. Gray against green
      reads instantly. Light purple against dark purple does not. */
   --data-baseline:      #CBD5E1;
   --data-baseline-ink:  #64748B;
@@ -207,12 +207,12 @@
   --div-pos-2: #2b9095;
   --div-pos-3: #3ec4cd;
 
-  --dir-favourable:        #1ca550;
-  --dir-favourable-tint:   rgba(28,165,80,0.18);
-  --dir-favourable-ink:    #3fd173;
-  --dir-unfavourable:      #f16154;
-  --dir-unfavourable-tint: rgba(241,97,84,0.18);
-  --dir-unfavourable-ink:  #ff8d82;
+  --dir-favorable:        #1ca550;
+  --dir-favorable-tint:   rgba(28,165,80,0.18);
+  --dir-favorable-ink:    #3fd173;
+  --dir-unfavorable:      #f16154;
+  --dir-unfavorable-tint: rgba(241,97,84,0.18);
+  --dir-unfavorable-ink:  #ff8d82;
   --dir-caution:           #c68119;
   --dir-caution-tint:      rgba(198,129,25,0.18);
   --dir-caution-ink:       #e8a63f;
@@ -232,9 +232,9 @@
 }
 
 /* ============================================================
-   FORCED COLOURS
+   FORCED COLORS
    In forced-colors mode the browser replaces every value above.
-   Marks that relied on fill alone become one colour, so the
+   Marks that relied on fill alone become one color, so the
    pattern and the label have to survive. Charts generated from
    this layer keep their direct labels and their legend for this
    reason, not only for screen readers.

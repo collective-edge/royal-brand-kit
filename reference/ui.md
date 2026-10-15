@@ -31,7 +31,7 @@ token is overridable on `:root`.
 
 `.ui-btn` plus one of `.ui-btn--primary`, `.ui-btn--secondary`, `.ui-btn--danger`.
 Sizes `.ui-btn--sm` and `.ui-btn--lg`, default md. Shapes `.ui-btn--icon`, `.ui-btn--full`.
-Labels are sentence case at 600 in every brand. Only the filled variants carry colour, so a
+Labels are sentence case at 600 in every brand. Only the filled variants carry color, so a
 screen holds exactly one loud action.
 
 | State | What changes | Measured |
@@ -78,7 +78,7 @@ words. Checked mark on fill: 18.88:1, 10.71:1, 10.30:1.
 ## Status badges
 
 `.ui-badge` plus `.ui-badge--go`, `--warn`, `--stop` or `--info`. One tint under all four and the
-status colour on the dot, because `--status-warn` measures 3.40:1 on white and cannot legally set
+status color on the dot, because `--status-warn` measures 3.40:1 on white and cannot legally set
 12px text. The lowest dot value across the three brands is the Apex warn dot at 3.08:1.
 
 A brand may switch the shape off. Royal does, and prefers a dot and a sentence. That is a
@@ -88,7 +88,7 @@ position, not drift.
 
 Put `.ui-on-dark` on the band. The ring flips to white, the filled button inverts to a white fill
 with dark ink, the secondary edge flips to `--fg-on-dark-3`. An ink ring on a dark ground measures
-1.11:1, 1.00:1 and 1.08:1 and is invisible, which is why two ring colours exist. `.ui-btn--danger`
+1.11:1, 1.00:1 and 1.08:1 and is invisible, which is why two ring colors exist. `.ui-btn--danger`
 has no dark form: `--status-stop` against the three bands measures 3.34:1, 2.31:1 and 2.52:1, so a
 destructive action belongs in a dialog on the page surface. A field keeps its light surface on a
 band; its label and help text flip, the field does not.

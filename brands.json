@@ -51,7 +51,7 @@
         "apex": "4.76:1 · #64748B on #FFFFFF",
         "royal": "4.76:1 · #64748B on #FFFFFF"
       },
-      "surfaceNote": "The light lockup belongs on --bg-canvas, not on --bg-surface. On the tinted surface the same grey measures 4.89:1 for Collective Edge, 4.43:1 for Royal and 4.31:1 for Apex, and the last two fall under 4.5:1."
+      "surfaceNote": "The light lockup belongs on --bg-canvas, not on --bg-surface. On the tinted surface the same gray measures 4.89:1 for Collective Edge, 4.43:1 for Royal and 4.31:1 for Apex, and the last two fall under 4.5:1."
     },
     "placement": [
       "The footer of any site or printed document",
@@ -98,7 +98,7 @@
       "tokensJson": "tokens.json",
       "prefix": "ce",
       "hasColor": false,
-      "colorNote": "Collective Edge has no hue of its own. It runs on a grey ramp. On a co-brand surface the Edge wedge takes the PARTNER's hue.",
+      "colorNote": "Collective Edge has no hue of its own. It runs on a gray ramp. On a co-brand surface the Edge wedge takes the PARTNER's hue.",
       "color": {
         "primary": "#111111",
         "primaryDeep": "#000000",
@@ -176,7 +176,7 @@
         "bandRule": "#FDB61C",
         "surfaceTint": "#f3f3fb"
       },
-      "colorNote": "Blue is the structure, gold is the spark. Bright gold #FDB61C measures 1.77:1 on white and fails contrast as text there. Use #B77808, and only at bold or large sizes. Gold is a brand accent, never a status colour.",
+      "colorNote": "Blue is the structure, gold is the spark. Bright gold #FDB61C measures 1.77:1 on white and fails contrast as text there. Use #B77808, and only at bold or large sizes. Gold is a brand accent, never a status color.",
       "wedgeHue": "#FDB61C",
       "logos": {
         "horizontal-on-light": "assets/logos/horizontal-color.svg",

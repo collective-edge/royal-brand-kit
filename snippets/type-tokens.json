@@ -24,7 +24,7 @@
       "class": ".bk-code",
       "whitelist": [
         {
-          "kind": "colour value",
+          "kind": "color value",
           "examples": [
             "#1D225E",
             "43 51 141"
@@ -414,7 +414,7 @@
     "text-wrap: balance on every heading. text-wrap: pretty on every paragraph. orphans: 3; widows: 3 in print.",
     "Space above a heading is three times the space below it.",
     "Every vertical value is a multiple of 4.",
-    "The mono face is a whitelist of four: colour values, paths and filenames, code shown as code, and record identifiers a person dictates. Measurements, ratios, counts, ordinals, weight numbers, verdict words and labels are Montserrat.",
+    "The mono face is a whitelist of four: color values, paths and filenames, code shown as code, and record identifiers a person dictates. Measurements, ratios, counts, ordinals, weight numbers, verdict words and labels are Montserrat.",
     "Columns of numbers get tabular-nums. Curly quotes, en dashes, non-breaking spaces in units. No em dashes.",
     "A label, a value, and nothing between them. No helper text under a field, no caption restating a number, no parenthetical after a heading."
   ]

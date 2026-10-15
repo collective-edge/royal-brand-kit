@@ -1,6 +1,6 @@
-# House data colour · reference
+# House data color · reference
 
-The colours that carry data. Shared, byte-identical in every kit, and never forked for a brand.
+The colors that carry data. Shared, byte-identical in every kit, and never forked for a brand.
 
 `snippets/data-color.css` is authoritative. `tokens.json` carries the same values for generators that cannot parse CSS. This file carries the reasoning and the measured numbers.
 
@@ -12,28 +12,28 @@ Read this before building any chart, table heatmap, dashboard tile, scorecard or
 
 The brand palette is purple. For a logo, a band and a letterhead that is correct. For a chart it is a defect.
 
-Measured: the rule this layer withdrew said chart series stay inside the purple ramp, `#2f193b`, `#43205b`, `#572e72`, `#8260a2`. Two of those sit at **ΔE 6.6 under normal vision**. The floor is 15. A reader with no colour vision deficiency at all cannot reliably tell them apart. The rule was producing charts nobody could read, including the person who wrote the rule.
+Measured: the rule this layer withdrew said chart series stay inside the purple ramp, `#2f193b`, `#43205b`, `#572e72`, `#8260a2`. Two of those sit at **ΔE 6.6 under normal vision**. The floor is 15. A reader with no color vision deficiency at all cannot reliably tell them apart. The rule was producing charts nobody could read, including the person who wrote the rule.
 
 So, the governing principle:
 
-> When there is data on the page, the job of colour is to separate and to signal. The brand is carried by the band, the mark and the type, not by the bars.
+> When there is data on the page, the job of color is to separate and to signal. The brand is carried by the band, the mark and the type, not by the bars.
 
-A brand accent is never a series colour and a series colour is never a brand accent. Slot 1 is the single sanctioned exception: a kit may map it to the brand accent in `palette.css`, and Royal does.
+A brand accent is never a series color and a series color is never a brand accent. Slot 1 is the single sanctioned exception: a kit may map it to the brand accent in `palette.css`, and Royal does.
 
 ---
 
 ## 2. The four jobs
 
-Every colour in a chart does exactly one of these. If you cannot say which, the chart is not finished.
+Every color in a chart does exactly one of these. If you cannot say which, the chart is not finished.
 
 | Job | Question it answers | What to use |
 |---|---|---|
 | **Identity** | which series is this | `--series-1` to `--series-8`, in order |
 | **Magnitude** | how much | `--seq-100` to `--seq-700` |
 | **Polarity** | which side of a baseline | `--div-neg-3` to `--div-pos-3` |
-| **Direction** | is this good news | `--dir-favourable`, `--dir-unfavourable`, `--dir-caution`, `--dir-neutral` |
+| **Direction** | is this good news | `--dir-favorable`, `--dir-unfavorable`, `--dir-caution`, `--dir-neutral` |
 
-The commonest mistake in Royal and Apex material is using identity colour where the answer was direction, or using two tints of the brand hue where the answer was identity.
+The commonest mistake in Royal and Apex material is using identity color where the answer was direction, or using two tints of the brand hue where the answer was identity.
 
 ---
 
@@ -52,9 +52,9 @@ Eight slots. Assign in order. Never cycle, never skip, never generate a ninth.
 | 7 | blue | `#116dce` | `#519dfa` | 5.12:1 |
 | 8 | pink | `#e53975` | `#fb608e` | 4.06:1 |
 
-The **order is the safety mechanism**, not a preference. It was chosen by enumerating orderings and keeping only those where every neighbouring pair stays separable under simulated red-green colour blindness. Reordering the slots to suit a deck undoes the work.
+The **order is the safety mechanism**, not a preference. It was chosen by enumerating orderings and keeping only those where every neighboring pair stays separable under simulated red-green color blindness. Reordering the slots to suit a deck undoes the work.
 
-Measured on the neighbouring pairs:
+Measured on the neighboring pairs:
 
 | | Simulated red-green | Normal vision | Floor |
 |---|---|---|---|
@@ -64,7 +64,7 @@ Measured on the neighbouring pairs:
 **Caps that are not negotiable.**
 
 - **Three series** on scatter, bubble, map and small-multiple charts. In those forms any two marks can end up adjacent, which is a harder test than bars and lines. Slots 1 to 3 clear it; slot 4 does not.
-- **Eight series** everywhere else. Past eight, fold the tail into "Other" or split into several charts. A ninth colour does not exist.
+- **Eight series** everywhere else. Past eight, fold the tail into "Other" or split into several charts. A ninth color does not exist.
 - **Amber `#dca821` and orange `#e6811c` sit below 3:1 on white.** Legal, but only with direct labels or a table view beside the chart. They are never the only way to read a value.
 
 ---
@@ -83,7 +83,7 @@ One hue, light to dark, for a single continuous quantity. Volume by month, densi
 | 600 | `#7f42a6` | `#d29ef8` |
 | 700 | `#572e72` | `#e2c2fb` |
 
-The ramp lands on Royal Purple `#572e72` at step 700. The brand colour is the darkest step of the magnitude scale, which is why this layer could be added without moving a single brand value.
+The ramp lands on Royal Purple `#572e72` at step 700. The brand color is the darkest step of the magnitude scale, which is why this layer could be added without moving a single brand value.
 
 On a dark ground the anchor flips: the **lightest** step means the largest value.
 
@@ -109,11 +109,11 @@ Two hues away from a neutral middle, for distance above or below a baseline. Bud
 | `--div-pos-2` | `#3ab9bf` | |
 | `--div-pos-3` | `#2b9095` | furthest above |
 
-**The poles are red and teal, not red and green.** Red against green measures **ΔE 5.5 under simulated deuteranopia**, which is a collapse: for a large minority of readers the two ends of the scale are the same colour. Red against teal measures 12.8 and holds.
+**The poles are red and teal, not red and green.** Red against green measures **ΔE 5.5 under simulated deuteranopia**, which is a collapse: for a large minority of readers the two ends of the scale are the same color. Red against teal measures 12.8 and holds.
 
 Green still carries good news. It does it through the direction tokens in the next section, where an icon and a word always travel with it, so the meaning never rests on hue alone.
 
-The middle is grey on purpose. A hue in the middle of a diverging scale reads as a value rather than as "no difference".
+The middle is gray on purpose. A hue in the middle of a diverging scale reads as a value rather than as "no difference".
 
 ---
 
@@ -123,8 +123,8 @@ This is the section that fixes the complaint "I cannot tell how to feel about th
 
 | Token | Light | On tint | Dark ground |
 |---|---|---|---|
-| `--dir-favourable` | `#158840` | ink `#127e3b` on `#daf8df` | `#1ca550` |
-| `--dir-unfavourable` | `#db3931` | ink `#c5372f` on `#fde9e6` | `#f16154` |
+| `--dir-favorable` | `#158840` | ink `#127e3b` on `#daf8df` | `#1ca550` |
+| `--dir-unfavorable` | `#db3931` | ink `#c5372f` on `#fde9e6` | `#f16154` |
 | `--dir-caution` | `#a36912` | ink `#95600f` on `#fdebd7` | `#c68119` |
 | `--dir-neutral` | `#64748B` | ink `#51607A` on `#F1F5F9` | `#B0A2BC` |
 
@@ -134,28 +134,28 @@ All of them clear 4.5:1 where they are used, including the ink steps on their ow
 
 The rule that matters, and the one that gets broken:
 
-> Colour follows **favourable against unfavourable**. It never follows the arithmetic sign of the delta, and it never follows the direction of the arrow.
+> Color follows **favorable against unfavorable**. It never follows the arithmetic sign of the delta, and it never follows the direction of the arrow.
 
-The worked example, from a real Royal report. Transports rose 6.3 percent. Hospital invoice cost fell 38.8 percent. One went up, one went down, **both are good news**. Both wear `--dir-favourable`. The arrow carries the direction, the word carries the meaning, and the colour carries the verdict:
+The worked example, from a real Royal report. Transports rose 6.3 percent. Hospital invoice cost fell 38.8 percent. One went up, one went down, **both are good news**. Both wear `--dir-favorable`. The arrow carries the direction, the word carries the meaning, and the color carries the verdict:
 
 ```html
-<span class="bk-caption" style="background:var(--dir-favourable-tint); color:var(--dir-favourable-ink);
+<span class="bk-caption" style="background:var(--dir-favorable-tint); color:var(--dir-favorable-ink);
       padding:4px 11px; border-radius:999px; font-weight:700;">▲ 6.3% more</span>
 
-<span class="bk-caption" style="background:var(--dir-favourable-tint); color:var(--dir-favourable-ink);
+<span class="bk-caption" style="background:var(--dir-favorable-tint); color:var(--dir-favorable-ink);
       padding:4px 11px; border-radius:999px; font-weight:700;">▼ 38.8% lower</span>
 ```
 
-Two different arrows, one colour, because there is one verdict.
+Two different arrows, one color, because there is one verdict.
 
-Getting this wrong is worse than leaving it uncoloured. A red "−38.8%" on a cost saving tells the reader Royal made things worse.
+Getting this wrong is worse than leaving it uncolored. A red "−38.8%" on a cost saving tells the reader Royal made things worse.
 
-### Never colour alone
+### Never color alone
 
 Every direction value ships with an arrow or icon **and** a word. Reasons, in order of how often they bite:
 
-1. The deck gets printed in greyscale.
-2. The reader has a colour vision deficiency. About one man in twelve does.
+1. The deck gets printed in grayscale.
+2. The reader has a color vision deficiency. About one man in twelve does.
 3. The slide is projected on a washed-out screen in a hospital conference room.
 
 ---
@@ -164,7 +164,7 @@ Every direction value ships with an arrow or icon **and** a word. Reasons, in or
 
 A before-and-after against a baseline is the most common chart in Royal and Apex material, and it has its own recipe because the obvious approach is wrong.
 
-**Wrong: two tints of the brand hue.** Light purple baseline, dark purple result. This is the defect this layer exists to fix. The two bars are close in hue and lightness, so the reader has to stop and read the labels to work out which is which. It also spends the brand colour on a distinction the brand has no opinion about.
+**Wrong: two tints of the brand hue.** Light purple baseline, dark purple result. This is the defect this layer exists to fix. The two bars are close in hue and lightness, so the reader has to stop and read the labels to work out which is which. It also spends the brand color on a distinction the brand has no opinion about.
 
 **Right, and the default:**
 
@@ -173,28 +173,28 @@ A before-and-after against a baseline is the most common chart in Royal and Apex
 | Baseline bar | `--data-baseline` `#CBD5E1` | The world before. Inert, and nothing to feel about it. |
 | Result bar | `--series-1` | What the programme did. Carries the brand accent in Royal. |
 | Delta pill | `--dir-*` with arrow and word | The verdict. |
-| Headline figure | `--dir-favourable` | Stated once, in the unit that matters. Dollars, not percent. |
+| Headline figure | `--dir-favorable` | Stated once, in the unit that matters. Dollars, not percent. |
 
-Grey against the accent separates instantly. That is the whole fix.
+Gray against the accent separates instantly. That is the whole fix.
 
-**The sanctioned variant.** On a single-metric hero slide, the result bar may take the direction colour instead of the accent, so the bar itself carries the verdict. It reads from the back of a room. The cost is that on a report where everything went well, every bar is green and green stops carrying information. Use it for one slide, not for a deck.
+**The sanctioned variant.** On a single-metric hero slide, the result bar may take the direction color instead of the accent, so the bar itself carries the verdict. It reads from the back of a room. The cost is that on a report where everything went well, every bar is green and green stops carrying information. Use it for one slide, not for a deck.
 
-**Do not** colour a baseline red to make a result look better. The baseline is not a failure, it is a measurement.
+**Do not** color a baseline red to make a result look better. The baseline is not a failure, it is a measurement.
 
 ---
 
-## 8. Partner facility colours
+## 8. Partner facility colors
 
-Charts that compare partner facilities may use each facility's own brand colour, which reads as informed and helps a reader who knows the logos. It is opt-in, it is per-chart, and it has a gate.
+Charts that compare partner facilities may use each facility's own brand color, which reads as informed and helps a reader who knows the logos. It is opt-in, it is per-chart, and it has a gate.
 
 The gate exists because partner brands were never chosen to be distinguishable from each other. Measured on a realistic five-facility set: UCSF navy against El Camino's blue sits at **ΔE 9.0 under normal vision**, below the 15 floor. Once both are re-stepped to be chart-legible, UCSF navy against Kaiser blue collapses to **ΔE 0.5 under simulated protanopia**. They are the same blue.
 
 The rule:
 
-1. Use a partner colour only from `reference/partner-colors.md`, which carries the sourced value and its confidence. Never sample a logo, never guess.
-2. Re-step the hue into the chart band. A partner's raw brand hex is usually a logo colour and is often too dark or too weak to be a legible fill.
+1. Use a partner color only from a sourced table. Where a kit ships `reference/partner-colors.md`, that file is the only sanctioned source and it carries each value with its confidence. Royal ships one. A kit without one has no sanctioned partner colors, so use the house series order. Never sample a logo, never guess.
+2. Re-step the hue into the chart band. A partner's raw brand hex is usually a logo color and is often too dark or too weak to be a legible fill.
 3. **Run `scripts/validate-palette.py` on the exact set in that chart.** Every chart, because the set changes.
-4. On a failure, fall back to the house series order for the whole chart. Never part of it. A chart where three facilities wear their own colours and two wear house slots is worse than either.
+4. On a failure, fall back to the house series order for the whole chart. Never part of it. A chart where three facilities wear their own colors and two wear house slots is worse than either.
 
 ---
 
@@ -207,19 +207,19 @@ python3 scripts/validate-palette.py "#...,#..." --pairs all        # scatter, bu
 python3 scripts/validate-palette.py "#...,#..." --ordinal          # a one-hue ramp
 ```
 
-It reports the lightness band, the chroma floor, colour-blind separation, the normal-vision floor and contrast against the ground, and exits non-zero on a real failure.
+It reports the lightness band, the chroma floor, color-blind separation, the normal-vision floor and contrast against the ground, and exits non-zero on a real failure.
 
 It cannot see a chart. Render it and look:
 
-- [ ] Every colour does exactly one of the four jobs, and you can say which.
+- [ ] Every color does exactly one of the four jobs, and you can say which.
 - [ ] Series assigned in slot order, starting at 1.
 - [ ] No two tints of the brand hue standing in for two different things.
-- [ ] Direction follows favourable against unfavourable, not the sign of the number.
-- [ ] Every direction colour carries an arrow or icon and a word.
+- [ ] Direction follows favorable against unfavorable, not the sign of the number.
+- [ ] Every direction color carries an arrow or icon and a word.
 - [ ] Legend present for two or more series. Four or fewer are also directly labelled.
 - [ ] Amber and orange series carry direct labels or a table.
 - [ ] One y-axis. Two measures of different scale means two charts.
-- [ ] Greyscale print still readable.
+- [ ] Grayscale print still readable.
 - [ ] On a dark band, `.bk-on-dark` is on the container.
 
 ---
@@ -232,10 +232,10 @@ It cannot see a chart. Render it and look:
 | Red and green as the ends of a scale | ΔE 5.5 simulated deuteranopia. Collapses. |
 | Red for a negative number that is good news | Tells the reader a cost saving was a loss. |
 | A sequential ramp across facility names | Magnitude encoding on identity data. Implies a ranking that is not there. |
-| A ninth series colour | There is no ninth slot. Fold into "Other". |
-| Series colour on a value that means good or bad | Use direction tokens. Never both in one chart. |
+| A ninth series color | There is no ninth slot. Fold into "Other". |
+| Series color on a value that means good or bad | Use direction tokens. Never both in one chart. |
 | Brand accent on every bar | Spends the brand on a distinction it has no opinion about. |
-| Colour with no label | Fails on print, on projectors, and for one man in twelve. |
+| Color with no label | Fails on print, on projectors, and for one man in twelve. |
 
 ---
 
@@ -243,6 +243,6 @@ It cannot see a chart. Render it and look:
 
 The method, the gates and the simulation model come from the house data visualisation standard: eight fixed hues in a validated order, OKLab ΔE ×100, Machado-Oliveira-Fernandes 2009 at severity 1.0.
 
-The hue angles follow Apple's system colours, which is why the set reads as familiar rather than invented. Apple does not publish fixed hex values and advises against hard-coding them, so the hues were taken as angles and re-stepped against our own grounds. One useful coincidence made the whole thing fit: Apple's `systemPurple` sits at OKLCH hue 312.4 degrees and Royal Purple `#572e72` sits at 309.8 degrees. The brand hue was already the right hue. Only its lightness needed company.
+The hue angles follow Apple's system colors, which is why the set reads as familiar rather than invented. Apple does not publish fixed hex values and advises against hard-coding them, so the hues were taken as angles and re-stepped against our own grounds. One useful coincidence made the whole thing fit: Apple's `systemPurple` sits at OKLCH hue 312.4 degrees and Royal Purple `#572e72` sits at 309.8 degrees. The brand hue was already the right hue. Only its lightness needed company.
 
-Partner values and their confidence are recorded in `reference/partner-colors.md`.
+Partner values and their confidence are recorded in a kit's own `reference/partner-colors.md` where one ships. Royal's is the worked example.
