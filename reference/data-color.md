@@ -12,7 +12,7 @@ Read this before building any chart, table heatmap, dashboard tile, scorecard or
 
 The brand palette is purple. For a logo, a band and a letterhead that is correct. For a chart it is a defect.
 
-Measured: the pre-v1.1 rule said chart series stay inside the purple ramp, `#2f193b`, `#43205b`, `#572e72`, `#8260a2`. Two of those sit at **ΔE 6.6 under normal vision**. The floor is 15. A reader with no colour vision deficiency at all cannot reliably tell them apart. The rule was producing charts nobody could read, including the person who wrote the rule.
+Measured: the rule this layer withdrew said chart series stay inside the purple ramp, `#2f193b`, `#43205b`, `#572e72`, `#8260a2`. Two of those sit at **ΔE 6.6 under normal vision**. The floor is 15. A reader with no colour vision deficiency at all cannot reliably tell them apart. The rule was producing charts nobody could read, including the person who wrote the rule.
 
 So, the governing principle:
 
