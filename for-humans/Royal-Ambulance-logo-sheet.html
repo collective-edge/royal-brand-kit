@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Royal Ambulance · Logo sheet</title>
+
+<!-- Visual reference for an outside design partner. Every mark, every color,
+     on screen. The logo images are local relative paths, so this page still
+     shows the marks with no network. The stylesheets and the font come from
+     the public CDN and need a connection to render in brand type. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/palette.css">
+
+<style>
+@font-face {
+  font-family: "Montserrat";
+  src: url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.woff2") format("woff2-variations"),
+       url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf")   format("truetype-variations");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--bg-surface);
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+}
+
+.sheet {
+  width: 8.5in;
+  margin: var(--space-6) auto;
+  background: var(--bg-canvas);
+  box-shadow: var(--shadow-2);
+  padding-bottom: var(--space-7);
+}
+
+header {
+  background: var(--bg-band);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: var(--space-6) 0.5in;
+}
+
+.block { padding: var(--space-7) 0.5in 0; }
+
+.eyebrow {
+  color: var(--fg-3);
+  margin: 0 0 var(--space-2);
+}
+
+/* Logo plates. Light plate for the purple marks, dark plate for the white
+   ones, so each mark is shown on the ground it is actually for. */
+.plates {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.plate {
+  border: 1px solid var(--border-1);
+  border-radius: 6px;
+  padding: var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.5in;
+}
+
+.plate.light { background: var(--bg-canvas); }
+.plate.dark  { background: var(--bg-inverse); border-color: var(--bg-inverse); }
+
+.plate img { display: block; max-width: 100%; height: auto; }
+.plate.horizontal img { width: 2.6in; }
+.plate.stacked img    { width: 1.5in; }
+.plate.crown img      { width: 0.9in; }
+
+.caption {
+  color: var(--fg-3);
+  margin: var(--space-2) 0 0;
+}
+
+/* Color chips */
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.swatch { border: 1px solid var(--border-1); border-radius: 6px; overflow: hidden; }
+.swatch .fill { height: 0.7in; }
+.swatch .meta { padding: var(--space-3) var(--space-4) var(--space-4); }
+.swatch .name { margin: 0 0 2px; }
+.swatch .hex  { color: var(--fg-3); margin: 0; }
+
+table { width: 100%; border-collapse: collapse; margin-top: var(--space-4); }
+th {
+  text-align: left;
+  background: var(--bg-band);
+  color: var(--fg-on-dark-1);
+  padding: var(--space-3) var(--space-4);
+}
+td { padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--border-1); color: var(--fg-1); }
+tbody tr:nth-child(even) { background: var(--bg-surface); }
+
+ul { margin: var(--space-4) 0 0; padding-left: 1.1em; color: var(--fg-1); }
+li { margin-bottom: var(--space-2); }
+
+footer {
+  margin-top: var(--space-7);
+  padding: var(--space-5) 0.5in 0;
+  border-top: 1px solid var(--border-1);
+  color: var(--fg-3);
+}
+
+@media print {
+  body { background: #fff; }
+  .sheet { width: auto; margin: 0; box-shadow: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <header class="bk-on-dark">
+    <div class="bk-h2 bk-caps" style="margin:0;">Logo sheet</div>
+    <img src="logos/svg/Royal-Ambulance-horizontal-white.svg" alt="Royal Ambulance" style="width:1.6in; height:auto; display:block; flex:none;">
+  </header>
+
+  <div class="block">
+    <p class="bk-eyebrow eyebrow bk-caps">The marks</p>
+    <h1 class="bk-h1" style="margin:0;">Three lockups, two colors each</h1>
+    <p class="bk-body" style="color:var(--fg-2);">
+      Pick by the background. The file named <strong>purple</strong> goes on light. The file named
+      <strong>white</strong> goes on dark. The name is the ink, not the ground.
+    </p>
+
+    <div class="plates">
+      <div>
+        <div class="plate light horizontal"><img src="logos/svg/Royal-Ambulance-horizontal-purple.svg" alt="Royal Ambulance horizontal logo in purple"></div>
+        <p class="bk-caption caption">Horizontal · purple · on light</p>
+      </div>
+      <div>
+        <div class="plate dark horizontal"><img src="logos/svg/Royal-Ambulance-horizontal-white.svg" alt="Royal Ambulance horizontal logo in white"></div>
+        <p class="bk-caption caption">Horizontal · white · on dark</p>
+      </div>
+
+      <div>
+        <div class="plate light stacked"><img src="logos/svg/Royal-Ambulance-stacked-purple.svg" alt="Royal Ambulance stacked logo in purple"></div>
+        <p class="bk-caption caption">Stacked · purple · on light</p>
+      </div>
+      <div>
+        <div class="plate dark stacked"><img src="logos/svg/Royal-Ambulance-stacked-white.svg" alt="Royal Ambulance stacked logo in white"></div>
+        <p class="bk-caption caption">Stacked · white · on dark</p>
+      </div>
+
+      <div>
+        <div class="plate light crown"><img src="logos/svg/Royal-Ambulance-crown-purple.svg" alt="Royal Ambulance crown mark in purple"></div>
+        <p class="bk-caption caption">Crown · purple · on light</p>
+      </div>
+      <div>
+        <div class="plate dark crown"><img src="logos/svg/Royal-Ambulance-crown-white.svg" alt="Royal Ambulance crown mark in white"></div>
+        <p class="bk-caption caption">Crown · white · on dark</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2 class="bk-h2" style="margin:0;">Sizes and spacing</h2>
+    <table>
+      <thead>
+        <tr><th class="bk-table-head bk-caps">Rule</th><th class="bk-table-head bk-caps">Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="bk-body">Clear space on all four sides</td><td class="bk-body">Height of the crown mark</td></tr>
+        <tr><td class="bk-body">Horizontal lockup, minimum</td><td class="bk-body">110 px on screen · 1 inch in print</td></tr>
+        <tr><td class="bk-body">Crown, minimum</td><td class="bk-body">32 px on screen</td></tr>
+        <tr><td class="bk-body">Logo width in a header band</td><td class="bk-body">1.4in to 1.8in</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <h2 class="bk-h2" style="margin:0;">Color</h2>
+    <p class="bk-body" style="color:var(--fg-2);">Hex and RGB are authoritative. Everything else converts from these.</p>
+
+    <div class="swatches">
+      <div class="swatch">
+        <div class="fill" style="background:#2f193b;"></div>
+        <div class="meta"><p class="bk-label name">Dark Purple</p><p class="bk-caption hex bk-code">#2f193b</p></div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#572e72;"></div>
+        <div class="meta"><p class="bk-label name">Purple</p><p class="bk-caption hex bk-code">#572e72</p></div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#43205b;"></div>
+        <div class="meta"><p class="bk-label name">Royal Purple</p><p class="bk-caption hex bk-code">#43205b</p></div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#8260a2;"></div>
+        <div class="meta"><p class="bk-label name">Light Purple</p><p class="bk-caption hex bk-code">#8260a2</p></div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#1E293B;"></div>
+        <div class="meta"><p class="bk-label name">Charcoal</p><p class="bk-caption hex bk-code">#1E293B</p></div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#faf5fd;"></div>
+        <div class="meta"><p class="bk-label name">Surface</p><p class="bk-caption hex bk-code">#faf5fd</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2 class="bk-h2" style="margin:0;">Two traps, both measured</h2>
+    <ul>
+      <li class="bk-body">Light Purple <span class="bk-code">#8260a2</span> is never body text and never a large background. It is a tertiary accent and a hover state.</li>
+      <li class="bk-body">Never put Light Purple on Dark Purple. It measures 3.13:1 and fails at every size. On a dark ground use <span class="bk-code">#E0D6E8</span> for body and <span class="bk-code">#B0A2BC</span> for captions.</li>
+      <li class="bk-body">White text belongs only on Dark Purple, Purple or Royal Purple. Never white on Light Purple.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h2 class="bk-h2" style="margin:0;">Type</h2>
+    <p class="bk-body" style="color:var(--fg-2);">
+      Montserrat throughout. There is no secondary typeface. The variable font is in
+      <span class="bk-code">fonts/</span>, and the full family is free from Google Fonts.
+    </p>
+    <p class="bk-display-md bk-caps" style="margin:var(--space-5) 0 0;">Display caps</p>
+    <h3 class="bk-h3" style="margin:var(--space-4) 0 0;">Heading in sentence case</h3>
+    <p class="bk-body" style="margin:var(--space-2) 0 0;">Body copy sits at this size and weight. Short declarative sentences, active verbs, nothing before the point.</p>
+    <p class="bk-caption" style="margin:var(--space-2) 0 0;">Caption and metadata sit here.</p>
+  </div>
+
+  <div class="block">
+    <h2 class="bk-h2" style="margin:0;">Do not</h2>
+    <ul>
+      <li class="bk-body">Stretch, squash, skew or rotate the logo.</li>
+      <li class="bk-body">Recolor it. Pick the file that matches the background.</li>
+      <li class="bk-body">Add a drop shadow, glow, outline or gradient.</li>
+      <li class="bk-body">Separate the crown from the wordmark in the horizontal lockup.</li>
+      <li class="bk-body">Place it on a busy photograph without a solid backing panel.</li>
+      <li class="bk-body">Render it below the minimum sizes above.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p class="bk-caption" style="margin:0;">Royal Ambulance · brand assets are property of Royal Ambulance and are for Royal Ambulance and partner work only.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>

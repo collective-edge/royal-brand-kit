@@ -36,6 +36,7 @@ royal-brand-kit/
 │   ├── colors.json           # Deprecated. Read tokens.json
 │   ├── fonts/                # Montserrat variable TTF, kept for documents already pointing at it
 │   └── logos/                # Horizontal, crown and stacked, purple and white
+├── for-humans/               # Self-contained logo pack for an outside design partner. No install
 └── Examples/                 # Shipped work, with the pre-v1.0 version of each beside it
 ```
 
@@ -83,6 +84,10 @@ cd ~/skills/royal-brand-guidelines && git pull
 ```
 
 Recipients do not need the kit. Generated HTML pulls the assets from the CDN at render time, and a PDF carries the font embedded.
+
+## Handing the brand to an outside partner
+
+`for-humans/` is a self-contained pack for a design agency, printer or contractor. Logos in SVG and transparent PNG, the font, the palette, the rules, and `Royal-Ambulance-logo-sheet.html` to open in a browser. It assumes no tooling and no access to this repo. Send the folder, or send the zip built from it.
 
 ## Verify before shipping
 
