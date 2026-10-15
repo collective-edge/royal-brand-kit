@@ -1,6 +1,6 @@
 # Royal Ambulance · brand reference
 
-Everything about this brand that does not fit in `SKILL.md`. Color, logo, voice, sources. Type is not decided here. Read `type-system.md`.
+Everything about this brand that does not fit in `SKILL.md`. Color, logo, voice, sources. Type is not decided here. Read `type-system.md`. Chart and reporting colour is not decided here either. Read `data-color.md`.
 
 Royal Ambulance is an operating company under Collective Edge. It inherits the house type system unchanged and supplies two things of its own: a purple palette and the crown wordmark.
 
@@ -63,7 +63,7 @@ Identical in every brand so an operational signal never changes meaning between 
 | Stop | `--status-stop` | `#B0322B` |
 | Info | `--status-info` | `#2A5A8C` |
 
-`--status-warn` `#B5821A` measures 3.40:1 on `#FFFFFF`. Use it large or bold only. Never set running copy in it. Carry a warning at body size with a `#B5821A` rule, chip border or icon and keep the text at `--fg-1`.
+`--status-warn` `#B5821A` measures 3.40:1 on `#FFFFFF`. Use it large or bold only. Never set running copy in it. Carry a warning at body size with a `#B5821A` rule, chip border or icon and keep the text at `--fg-1`. Where the warning is a reported number rather than an operational state, use `--dir-caution` `#a36912` from the data layer instead: it measures 4.58:1 and is legal as text.
 
 ### Diagram roles
 
@@ -92,7 +92,8 @@ Measured contrast on these fills: `#FFFFFF` on `#4a8e3a` is 4.02:1, large or bol
 - Black `#000000` is for maximum-contrast headings. Running body text is `--fg-1` `#1E293B`.
 - Backgrounds are white first. Tints stop at `#faf5fd` and `#f8f4fc`.
 - No off-brand hues for decoration. Functional colors stay in the status and diagram sets above.
-- Chart series stay inside the purple ramp: `#2f193b`, `#43205b`, `#572e72`, `#8260a2`. Reach outside it only for a status meaning, and then use the status colors.
+- **Chart series do not come from this palette.** They come from the house data layer in [data-color.md](data-color.md). The former rule here said chart series stay inside the purple ramp, `#2f193b`, `#43205b`, `#572e72`, `#8260a2`. Two of those measure ΔE 6.6 against each other under normal vision, against a floor of 15, so a reader with no colour vision deficiency at all could not separate them. The rule produced charts nobody could read and it is withdrawn.
+- Purple still carries data in two places, both of them legitimate. `--series-1` is Royal Purple, because slot 1 is the one sanctioned place a brand accent may be a series colour. And the sequential ramp lands on `#572e72` at step 700, so purple is the top of the magnitude scale. No brand value moved to make either work.
 
 ---
 

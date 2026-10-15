@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Royal Ambulance · colour for data</title>
+<!--
+  Self-contained. No install, no network, no account. Open it in a browser.
+  Every value below is a literal hex so this file keeps working offline and
+  after any change to the kit. If it disagrees with reference/data-color.md
+  in the repository, the repository is right.
+-->
+<style>
+  :root{
+    --ink:#1E293B; --ink-2:#64748B; --ink-3:#94A3B8;
+    --paper:#FFFFFF; --rule:#E2E8F0; --surface:#faf5fd; --brand:#572e72; --band:#2f193b;
+    --s1:#572e72; --s2:#1a9d4b; --s3:#dca821; --s4:#d42320;
+    --s5:#1a97a3; --s6:#e6811c; --s7:#116dce; --s8:#e53975;
+    --d1:#be6df2; --d2:#1ba04d; --d3:#f3ba26; --d4:#e6443a;
+    --d5:#22b6c4; --d6:#f78b1f; --d7:#519dfa; --d8:#fb608e;
+    --fav:#158840; --fav-t:#daf8df; --fav-i:#127e3b;
+    --unf:#db3931; --unf-t:#fde9e6; --unf-i:#c5372f;
+    --cau:#a36912; --cau-t:#fdebd7; --cau-i:#95600f;
+    --neu:#64748B; --neu-t:#F1F5F9; --neu-i:#51607A;
+    --base:#CBD5E1;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);line-height:1.6;
+    font-family:"Montserrat","Helvetica Neue",Helvetica,Arial,sans-serif;}
+  .band{background:var(--band);color:#fff;padding:26px 36px;}
+  .band h1{margin:0;font-size:23px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;}
+  .band p{margin:7px 0 0;color:#E0D6E8;font-size:13px;}
+  .sheet{max-width:980px;margin:0 auto;padding:34px 36px 80px;}
+  section{margin-top:42px;}
+  h2{font-size:19px;font-weight:700;margin:0 0 7px;}
+  p{margin:0 0 13px;color:var(--ink-2);max-width:64ch;font-size:14px;}
+  p strong{color:var(--ink);}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(146px,1fr));gap:11px;margin-top:17px;}
+  .sw{border:1px solid var(--rule);border-radius:6px;overflow:hidden;}
+  .sw .chip{height:58px;display:block;}
+  .sw .m{padding:8px 10px 10px;}
+  .sw .n{font-size:12.5px;font-weight:700;display:block;}
+  .sw .h{font-size:11.5px;color:var(--ink-3);font-variant-numeric:tabular-nums;}
+  .sw .o{font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:3px;}
+  .dark{background:var(--band);padding:24px 36px;margin:17px -36px 0;}
+  .dark .sw{border-color:rgba(255,255,255,.14);}
+  .dark .sw .m{background:rgba(255,255,255,.04);}
+  .dark .sw .n{color:#fff;} .dark .sw .h,.dark .sw .o{color:#B0A2BC;}
+  .dark .lab{color:#B0A2BC;font-size:10.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;margin:0 0 13px;}
+  .pill{display:inline-block;padding:5px 12px;border-radius:999px;font-size:13px;font-weight:700;margin:0 7px 8px 0;}
+  .ramp{display:flex;border:1px solid var(--rule);border-radius:6px;overflow:hidden;margin-top:16px;}
+  .ramp span{flex:1;height:58px;display:block;}
+  .rl{display:flex;margin-top:5px;}
+  .rl span{flex:1;text-align:center;font-size:10.5px;color:var(--ink-3);font-variant-numeric:tabular-nums;}
+  .demo{border:1px solid var(--rule);border-radius:9px;padding:21px;margin-top:17px;}
+  .bar{display:grid;grid-template-columns:132px 1fr 104px;align-items:center;gap:12px;margin-bottom:7px;}
+  .bar .l{font-size:11.5px;color:var(--ink-3);}
+  .bar .t{height:17px;} .bar .f{height:100%;border-radius:2px;}
+  .bar .v{font-size:12.5px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;}
+  .head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:12px;flex-wrap:wrap;}
+  .head .t{font-weight:700;font-size:14.5px;}
+  table{border-collapse:collapse;width:100%;margin-top:15px;font-size:13.5px;}
+  th{text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+     color:var(--ink-3);padding:0 12px 7px 0;border-bottom:1px solid var(--rule);}
+  td{padding:8px 12px 8px 0;border-bottom:1px solid var(--rule);color:var(--ink-2);vertical-align:top;}
+  td:first-child{color:var(--ink);font-weight:600;}
+  .note{border-left:3px solid var(--brand);background:var(--surface);padding:15px 18px;margin-top:17px;border-radius:0 6px 6px 0;}
+  .note p:last-child{margin-bottom:0;}
+  .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:20px;margin-top:17px;}
+  ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:13.5px;}
+  li{margin-bottom:6px;}
+  @media print{.dark{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+
+<div class="band">
+  <h1>Colour for data</h1>
+  <p>Royal Ambulance · the set you use for charts, dashboards and reported numbers</p>
+</div>
+
+<div class="sheet">
+
+<p style="font-size:15px;"><strong>The brand palette is not what you colour a chart with.</strong> The purple palette is for the band, the logo and the type. These colours are for the data. They are the same across Royal Ambulance, Apex Paramedics and Collective Edge, so a chart means the same thing in any of our documents.</p>
+
+<div class="note">
+<p><strong>Why there is a separate set.</strong> The old rule asked for four shades of brand purple on a chart. Measured against the standard test for whether two colours can be told apart, two of those four scored 6.6 where the passing mark is 15. Not difficult for colour blind readers. Difficult for everyone.</p>
+</div>
+
+<section>
+<h2>Series colours</h2>
+<p>For charts with more than one line, bar group or slice. <strong>Use them in this order, starting at the first.</strong> The order is what keeps neighbouring colours apart, including for the roughly one man in twelve who cannot separate red from green. Do not reorder them to suit a deck.</p>
+<div class="grid">
+  <div class="sw"><span class="chip" style="background:var(--s1)"></span><div class="m"><span class="o">Slot 1</span><span class="n">Purple</span><span class="h">#572e72</span></div></div>
+  <div class="sw"><span class="chip" style="background:var(--s2)"></span><div class="m"><span class="o">Slot 2</span><span class="n">Green</span><span class="h">#1a9d4b</span></div></div>
+  <div class="sw"><span class="chip" style="background:var(--s3)"></span><div class="m"><span class="o">Slot 3</span><span class="n">Amber</span><span class="h">#dca821</span></div></div>
+  <div class="sw"><span class="chip" style="background:var(--s4)"></span><div class="m"><span class="o">Slot 4</span><span class="n">Red</span><span class="h">#d42320</span></div></div>
+  <div class="sw"><span class="chip" style="background:var(--s5)"></span><div class="m"><span class="o">Slot 5</span><span class="n">Teal</span><span class="h">#1a97a3</span></div></div>
+  <div class="sw"><span class="chip" style="background:var(--s6)"></span><div class="m"><span class="o">Slot 6</span><span class="n">Orange</span><span class="h">#e6811c</span></div></div>
+  <div class="sw"><span class="chip" style="background:var(--s7)"></span><div class="m"><span class="o">Slot 7</span><span class="n">Blue</span><span class="h">#116dce</span></div></div>
+  <div class="sw"><span class="chip" style="background:var(--s8)"></span><div class="m"><span class="o">Slot 8</span><span class="n">Pink</span><span class="h">#e53975</span></div></div>
+</div>
+
+<div class="dark">
+  <p class="lab">The same eight on a dark purple band</p>
+  <div class="grid" style="margin-top:0">
+    <div class="sw"><span class="chip" style="background:var(--d1)"></span><div class="m"><span class="o">Slot 1</span><span class="n">Purple</span><span class="h">#be6df2</span></div></div>
+    <div class="sw"><span class="chip" style="background:var(--d2)"></span><div class="m"><span class="o">Slot 2</span><span class="n">Green</span><span class="h">#1ba04d</span></div></div>
+    <div class="sw"><span class="chip" style="background:var(--d3)"></span><div class="m"><span class="o">Slot 3</span><span class="n">Amber</span><span class="h">#f3ba26</span></div></div>
+    <div class="sw"><span class="chip" style="background:var(--d4)"></span><div class="m"><span class="o">Slot 4</span><span class="n">Red</span><span class="h">#e6443a</span></div></div>
+    <div class="sw"><span class="chip" style="background:var(--d5)"></span><div class="m"><span class="o">Slot 5</span><span class="n">Teal</span><span class="h">#22b6c4</span></div></div>
+    <div class="sw"><span class="chip" style="background:var(--d6)"></span><div class="m"><span class="o">Slot 6</span><span class="n">Orange</span><span class="h">#f78b1f</span></div></div>
+    <div class="sw"><span class="chip" style="background:var(--d7)"></span><div class="m"><span class="o">Slot 7</span><span class="n">Blue</span><span class="h">#519dfa</span></div></div>
+    <div class="sw"><span class="chip" style="background:var(--d8)"></span><div class="m"><span class="o">Slot 8</span><span class="n">Pink</span><span class="h">#fb608e</span></div></div>
+  </div>
+</div>
+
+<p style="margin-top:17px;"><strong>Three</strong> is the limit on scatter plots, bubble charts and maps, where any two marks can end up touching. <strong>Eight</strong> everywhere else. If you need a ninth, group the smallest into “Other” or split the chart. Amber and orange are light, so put the number directly on those bars.</p>
+</section>
+
+<section>
+<h2>Direction colours</h2>
+<p>Separate from the series colours, and never mixed with them. These tell the reader how to feel about a number.</p>
+<p style="margin-top:15px;">
+  <span class="pill" style="background:var(--fav-t);color:var(--fav-i)">&#9650; 6.3% more</span>
+  <span class="pill" style="background:var(--fav-t);color:var(--fav-i)">&#9660; 38.8% lower</span>
+  <span class="pill" style="background:var(--unf-t);color:var(--unf-i)">&#9650; 4.1% worse</span>
+  <span class="pill" style="background:var(--cau-t);color:var(--cau-i)">&#9679; At risk</span>
+  <span class="pill" style="background:var(--neu-t);color:var(--neu-i)">&#8211; No change</span>
+</p>
+<table>
+<tr><th>Name</th><th>Colour</th><th>Pale fill</th><th>Text on that fill</th><th>On a dark band</th></tr>
+<tr><td>Favourable</td><td>#158840</td><td>#daf8df</td><td>#127e3b</td><td>#1ca550</td></tr>
+<tr><td>Unfavourable</td><td>#db3931</td><td>#fde9e6</td><td>#c5372f</td><td>#f16154</td></tr>
+<tr><td>Caution</td><td>#a36912</td><td>#fdebd7</td><td>#95600f</td><td>#c68119</td></tr>
+<tr><td>Neutral</td><td>#64748B</td><td>#F1F5F9</td><td>#51607A</td><td>#B0A2BC</td></tr>
+</table>
+
+<div class="note">
+<p><strong>Green does not mean the number went up. Green means the news is good.</strong></p>
+<p>In one of our reports, transports rose 6.3 percent and hospital invoice costs fell 38.8 percent. One went up, one went down, and both were good news. Both are green. The arrow shows which way the number moved; the colour shows whether that is good.</p>
+<p>Colouring a 38.8 percent cost saving red because it has a minus sign tells the reader we made things worse.</p>
+</div>
+
+<p style="margin-top:15px;"><strong>Always pair the colour with an arrow or icon and a word.</strong> Never colour alone. Decks get printed in black and white, projected onto washed-out screens, and read by people who cannot see the difference between your red and your green.</p>
+</section>
+
+<section>
+<h2>The before-and-after chart</h2>
+<p>The most common chart we make, and the one most often got wrong. Do not use a light purple for "before" and a dark purple for "after". They are too close, so the reader has to stop and read the labels. Use a plain grey baseline against the brand purple.</p>
+<div class="demo">
+  <div class="head">
+    <span class="t">Hospital invoice cost</span>
+    <span class="pill" style="background:var(--fav-t);color:var(--fav-i);margin:0;">&#9660; 38.8% lower</span>
+  </div>
+  <div class="bar"><span class="l">Baseline</span><div class="t"><div class="f" style="width:84%;background:var(--base)"></div></div><span class="v">$317,945</span></div>
+  <div class="bar"><span class="l">Program period</span><div class="t"><div class="f" style="width:51%;background:var(--s1)"></div></div><span class="v">$194,646</span></div>
+  <div style="border-top:1px solid var(--rule);margin-top:14px;padding-top:13px;">
+    <span style="font-size:28px;font-weight:700;color:var(--fav);font-variant-numeric:tabular-nums;">$123,300</span>
+    <span style="font-size:12.5px;color:var(--ink-2);margin-left:10px;">saved against the baseline period</span>
+  </div>
+</div>
+<table>
+<tr><th>Element</th><th>Colour</th><th>Why</th></tr>
+<tr><td>Baseline bar</td><td>#CBD5E1</td><td>The world before. Inert, and nothing to feel about it.</td></tr>
+<tr><td>Result bar</td><td>#572e72</td><td>What the programme did.</td></tr>
+<tr><td>The change</td><td>Direction colour</td><td>A pill with an arrow and a word.</td></tr>
+<tr><td>Headline figure</td><td>#158840</td><td>Stated once, in dollars rather than a percentage.</td></tr>
+</table>
+</section>
+
+<section>
+<h2>The purple ramp, for "how much"</h2>
+<p>For heatmaps and intensity grids, where one quantity gets darker as it gets bigger. It finishes on Royal Purple, so the brand colour is the darkest step.</p>
+<div class="ramp">
+  <span style="background:#f0e1fd"></span><span style="background:#e2c2fb"></span><span style="background:#d29ef8"></span>
+  <span style="background:#ba7ce4"></span><span style="background:#9d60c6"></span><span style="background:#7f42a6"></span>
+  <span style="background:#572e72"></span>
+</div>
+<div class="rl"><span>100</span><span>200</span><span>300</span><span>400</span><span>500</span><span>600</span><span>700</span></div>
+<p style="margin-top:15px;">Start at <strong>300</strong> for anything with distinct steps, like funnel stages. The first two are only usable on a smooth gradient. <strong>Never use this ramp for things that merely have names.</strong> Facilities and payers are not more or less of anything, and shading them light to dark invents a ranking that is not there.</p>
+</section>
+
+<section>
+<h2>Quick rules</h2>
+<div class="cols">
+<div>
+<p style="font-weight:700;color:var(--fav);font-size:12px;letter-spacing:.09em;text-transform:uppercase;margin-bottom:9px;">Do</p>
+<ul>
+<li>Make every colour do one job.</li>
+<li>Use series colours in order, from slot 1.</li>
+<li>Pair every direction colour with an arrow and a word.</li>
+<li>Use a grey baseline for before-and-after.</li>
+<li>Label amber and orange series directly.</li>
+</ul>
+</div>
+<div>
+<p style="font-weight:700;color:var(--unf);font-size:12px;letter-spacing:.09em;text-transform:uppercase;margin-bottom:9px;">Do not</p>
+<ul>
+<li>Use two shades of purple for two different things.</li>
+<li>Use red and green as the ends of one scale. Use red and teal.</li>
+<li>Colour a number red when the news is good.</li>
+<li>Shade facility names light to dark.</li>
+<li>Invent a ninth series colour.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section>
+<h2>Questions</h2>
+<p>Anything this sheet does not answer, ask before you guess. If you have a set of colours you want tested, send them over and we will measure them. We would rather answer a question than correct a proof.</p>
+</section>
+
+</div>
+</body>
+</html>

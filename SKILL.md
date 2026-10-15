@@ -1,6 +1,6 @@
 ---
 name: royal-brand-guidelines
-description: Applies Royal Ambulance’s brand standards to any output representing Royal Ambulance: the purple palette, the crown wordmark, and the shared Collective Edge house type system set in Montserrat. Use when producing or reviewing a Royal Ambulance email, slide, deck, one-pager, report, letterhead, flyer, document, web page, table, chart, diagram, flowchart, case study, proposal, or PDF, and when checking existing Royal material for brand compliance. Covers asset CDN URLs, logo role selection, color and contrast rules, the fifteen type rules, the house layout patterns, and the validator to run before shipping.
+description: Applies Royal Ambulance’s brand standards to any output representing Royal Ambulance: the purple palette, the crown wordmark, and the shared Collective Edge house type system set in Montserrat. Use when producing or reviewing a Royal Ambulance email, slide, deck, one-pager, report, letterhead, flyer, document, web page, table, chart, diagram, flowchart, case study, proposal, or PDF, and when checking existing Royal material for brand compliance. Covers asset CDN URLs, logo role selection, color and contrast rules, the house data colour layer for charts, dashboards and reporting, the fifteen type rules, the house layout patterns, and the validators to run before shipping.
 ---
 
 # Royal Ambulance · brand guidelines
@@ -14,6 +14,8 @@ Reference, read on demand:
 - [reference/brand.md](reference/brand.md) · full color table, contrast traps, logo specifications, voice
 - [reference/type-system.md](reference/type-system.md) · the type standard and the fifteen rules
 - [reference/layout.md](reference/layout.md) · header band, sub-banner, flowchart nodes, stat callout, table, footer, the Collective Edge co-brand lockup
+- [reference/data-color.md](reference/data-color.md) · the data colour layer. Series, magnitude, polarity, direction, and the comparison chart
+- [reference/partner-colors.md](reference/partner-colors.md) · partner facility colours, their sourcing and the gate on using them
 - `tokens.json` · colors for python-pptx, python-docx, matplotlib, reportlab
 - `snippets/type-tokens.json` · type values for the same generators
 
@@ -21,12 +23,13 @@ Reference, read on demand:
 
 ## 1. Load the assets
 
-Three stylesheets, in this order. `type-system.css` is identical in every kit and is served from the Collective Edge kit. `palette.css` is the only file that differs. `cobrand.css` is the co-brand lockup, also identical everywhere, and it reads the palette, so it loads last.
+Stylesheets in this order. `type-system.css` is identical in every kit and is served from the Collective Edge kit. `palette.css` is the only file that differs. `cobrand.css` is the co-brand lockup, also identical everywhere, and it reads the palette, so it loads after it. `data-color.css` is the data layer, identical everywhere, and loads last. Add it on anything with a chart, a dashboard tile or a reported number.
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/palette.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/data-color.css">
 ```
 
 Inline this block at the top of every HTML file you generate, even when Montserrat is installed on the rendering machine. A local copy makes the file render correctly on that one machine and wrong everywhere else, and only the declaration embeds the font in a downstream PDF (weasyprint, wkhtmltopdf, Chrome print). The `font-family` line is not optional: without it nothing selects Montserrat when the CDN stylesheet fails to resolve.
@@ -84,7 +87,37 @@ Diagram roles come from `brands.json` and are identical across the house: decisi
 
 ---
 
-## 3. Type
+## 3. Data colour
+
+The brand palette is purple. For a band and a letterhead that is correct. For a chart it is a defect: two of the four purples the old rule allowed measure ΔE 6.6 under normal vision, and the floor is 15. Nobody could tell them apart.
+
+**When there is data on the page, the job of colour is to separate and to signal.** The brand is carried by the band, the mark and the type, not by the bars. A brand accent is never a series colour. Load `data-color.css` and style through it. Full standard in [reference/data-color.md](reference/data-color.md).
+
+Every colour in a chart does exactly one of four jobs. If you cannot say which, the chart is not finished.
+
+| Job | Question | Tokens |
+|---|---|---|
+| Identity | which series is this | `--series-1` to `--series-8`, in order, never cycled |
+| Magnitude | how much | `--seq-100` to `--seq-700` |
+| Polarity | which side of a baseline | `--div-neg-3` to `--div-pos-3` |
+| Direction | is this good news | `--dir-favourable`, `--dir-unfavourable`, `--dir-caution`, `--dir-neutral` |
+
+Four things that get broken most:
+
+1. **Direction is not the sign of the number.** Transports rose 6.3 percent, hospital invoice cost fell 38.8 percent, and both are good news. Colour follows favourable against unfavourable, never the arithmetic sign and never the direction of the arrow. A red "−38.8%" on a cost saving tells the reader Royal made things worse.
+2. **Never two tints of the brand hue for two different things.** The before-and-after chart takes an inert grey baseline `--data-baseline` against `--series-1`. Light purple against dark purple is the original defect.
+3. **Diverging poles are red and teal, never red and green.** Red against green measures ΔE 5.5 under simulated deuteranopia and collapses into one colour.
+4. **Every direction colour carries an arrow or icon and a word.** Colour is never the only thing holding the meaning. The deck gets printed in greyscale and read by people who cannot separate red from green.
+
+Series cap is three on scatter, bubble and map charts, eight everywhere else. There is no ninth colour: fold the tail into "Other" or split the chart. Amber `#dca821` and orange `#e6811c` sit below 3:1 on white, so those series carry a direct label or a table beside them.
+
+On a dark band put `.bk-on-dark` on the container and every token takes its dark step, exactly as the type layer already works.
+
+Partner facility colours are opt-in and gated. Read [reference/partner-colors.md](reference/partner-colors.md) before using one, and never sample a logo.
+
+---
+
+## 4. Type
 
 Type is shared with Apex Paramedics and Collective Edge and is never forked for Royal. Read [reference/type-system.md](reference/type-system.md) for the scale, the measure, the micro-typography and the fifteen rules. Style through the `.bk-*` classes. Do not restate the scale from memory.
 
@@ -98,7 +131,7 @@ On any dark ground put `.bk-on-dark` on the container. It adds 0.005em tracking 
 
 ---
 
-## 4. Layout
+## 5. Layout
 
 Header band, sub-banner, flowchart nodes, stat callout, table and footer are in [reference/layout.md](reference/layout.md) as copy-pasteable blocks. Start every one-pager, report and letterhead with the band:
 
@@ -120,11 +153,12 @@ Header band, sub-banner, flowchart nodes, stat callout, table and footer are in 
 
 ---
 
-## 5. Verify before shipping
+## 6. Verify before shipping
 
 ```bash
 python3 scripts/validate.py path/to/output.html
 python3 scripts/ui-audit.py path/to/page.html --width 375 --width 768 --width 1440
+python3 scripts/validate-palette.py --series          # whenever a chart is involved
 ```
 
 It checks rules 1, 2, 5, 9, 10, 13 and 14 mechanically and exits non-zero on a violation. It cannot see the rest, so also look:
@@ -137,7 +171,11 @@ It checks rules 1, 2, 5, 9, 10, 13 and 14 mechanically and exits non-zero on a v
 - [ ] Correct logo role for the ground, clear space respected, never stretched or recolored.
 - [ ] Body text holds its 54ch measure and does not run the full container width.
 - [ ] “Powered by Collective Edge” on the footer, the sidebar or the closing slide. Once, beside the Royal mark and never inside it.
-- [ ] Every color comes from the palette. No off-brand hue.
+- [ ] Every color comes from the palette. No off-brand hue. Chart colours come from `data-color.css`.
+- [ ] Every chart colour does exactly one of the four jobs, and you can say which.
+- [ ] Direction follows favourable against unfavourable, not the sign of the number.
+- [ ] No two tints of the brand hue standing in for two different things.
+- [ ] Every direction colour carries an arrow or icon and a word.
 - [ ] Margins and alignment consistent across every page and every rail.
 - [ ] Page breaks clean for print. No table, card or stat block split across a page.
 - [ ] No helper text, no caption restating the thing above it, no parenthetical after a heading, no em dash.

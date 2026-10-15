@@ -8,7 +8,7 @@ Usage:
 
 Asserts three things about the kit this script sits in:
 
-  1. The twelve shared files are byte-identical to the copies in the
+  1. The sixteen shared files are byte-identical to the copies in the
      collective-edge-brand-kit sibling directory. The type layer is never forked.
   2. snippets/palette.css defines every variable in the semantic contract, so a
      component written for one brand renders in another with only that file swapped.
@@ -32,14 +32,18 @@ import sys
 SHARED_FILES = [
     "reference/type-system.md",
     "reference/ui.md",
+    "reference/data-color.md",
     "NEW-BRAND.md",
     "brands.json",
     "snippets/type-system.css",
     "snippets/type-tokens.json",
     "snippets/cobrand.css",
     "snippets/ui.css",
+    "snippets/data-color.css",
     "Examples/ui-controls.html",
+    "Examples/data-color.html",
     "scripts/validate.py",
+    "scripts/validate-palette.py",
     "scripts/check-sync.py",
     "scripts/ui-audit.py",
 ]

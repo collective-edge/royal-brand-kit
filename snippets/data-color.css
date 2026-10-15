@@ -1,0 +1,245 @@
+/* ============================================================
+   HOUSE DATA COLOUR v1.0  ·  data-color.css
+   ------------------------------------------------------------
+   Byte-identical in every kit. Load fourth, after
+   type-system.css, palette.css and ui.css.
+
+   OWNS the colours that carry data: series identity, magnitude,
+   polarity, and whether a number is good news. Nothing here is
+   a brand colour and nothing here changes between brands. A
+   chart built for Royal reads identically inside an Apex or
+   Collective Edge document, which is the point: a reader should
+   never have to relearn what a colour means.
+
+   DOES NOT OWN chart layout, axes, gridline geometry, marks,
+   tooltips or legends. It supplies values, not components.
+
+   ------------------------------------------------------------
+   THE ONE RULE
+
+   A brand accent is never a series colour, and a series colour
+   is never a brand accent. When data is on the page, the job of
+   colour is to separate and to signal, not to be on brand. The
+   brand is carried by the band, the mark and the type.
+
+   The single exception is slot 1. It may be remapped in
+   palette.css to the brand accent where that reads better, and
+   Royal does exactly that. Remapping any other slot forks the
+   house order and breaks the guarantee above.
+
+   ------------------------------------------------------------
+   DARK GROUNDS
+
+   Every value has a dark-ground step, applied by putting
+   .bk-on-dark on the container, exactly as the type layer
+   already works. The dark steps are selected for the dark
+   ground, not lightened automatically from the light ones.
+
+   The house dark band sits at OKLCH L 0.60 to 0.83, higher
+   than a general dark-mode band, because our dark grounds are
+   brand bands rather than near-black. Apex #1D225E carries
+   twice the relative luminance of a typical dark surface
+   (0.0221 against 0.0103), so a mark needs more lightness to
+   clear contrast on it. The band was moved for that reason and
+   for no other.
+
+   ------------------------------------------------------------
+   VERIFY
+
+   scripts/validate-palette.py proves any set of these values
+   still clears the gates. Never hand-pick a data colour and
+   never invent a step. reference/data-color.md carries the
+   measured numbers and the reasoning.
+   ============================================================ */
+
+:root {
+
+  /* ---- SERIES · categorical identity -----------------------
+     Eight slots, assigned IN ORDER and never cycled. The order
+     is the colour-blindness safety mechanism, not a preference:
+     it was selected by enumerating orderings and keeping only
+     those where every neighbouring pair stays separable. Worst
+     neighbouring pair measures ΔE 9.8 simulated red-green and
+     22.3 under normal vision, both clear of the floor.
+
+     Three series is the cap for scatter, bubble and map charts,
+     where any two marks can end up side by side. Past eight
+     series, fold the tail into "Other" or split the chart.
+     Never generate a ninth colour. */
+  --series-1: #572e72;   /* purple  · also Royal's brand accent */
+  --series-2: #1a9d4b;   /* green                               */
+  --series-3: #dca821;   /* amber                               */
+  --series-4: #d42320;   /* red                                 */
+  --series-5: #1a97a3;   /* teal                                */
+  --series-6: #e6811c;   /* orange                              */
+  --series-7: #116dce;   /* blue                                */
+  --series-8: #e53975;   /* pink                                */
+
+  /* ---- SEQUENTIAL · magnitude ------------------------------
+     One hue, light to dark, for "how much". Heatmaps, choropleths,
+     intensity grids. The ramp lands on Royal Purple at step 700,
+     so the brand colour is the top of the scale and no brand
+     value had to move.
+
+     Steps 100 and 200 are for continuous scales only, where the
+     lightest step means "near zero" and is meant to recede into
+     the page. Discrete ordered marks (funnel stages, tiers,
+     bands) start at step 300, which is the lightest step that
+     still separates from white. */
+  --seq-100: #f0e1fd;
+  --seq-200: #e2c2fb;
+  --seq-300: #d29ef8;
+  --seq-400: #ba7ce4;
+  --seq-500: #9d60c6;
+  --seq-600: #7f42a6;
+  --seq-700: #572e72;
+
+  /* ---- DIVERGING · polarity --------------------------------
+     Two hues away from a neutral middle, for over and under a
+     baseline: budget variance, days ahead or behind, percentage
+     point change against target.
+
+     The poles are red and teal, not red and green. Red against
+     green measures ΔE 5.5 under simulated deuteranopia and
+     collapses into one colour. Red against teal measures 12.8
+     and holds. Green still carries good news, but it does it
+     through the direction tokens below, where an icon and a
+     word always travel with it.
+
+     The middle is grey. A hue in the middle reads as a value
+     rather than as "no difference". */
+  --div-neg-3: #d05045;   /* furthest below the baseline */
+  --div-neg-2: #f67a6d;
+  --div-neg-1: #f9b8af;
+  --div-mid:   #EDEBEF;   /* no difference */
+  --div-pos-1: #49e3eb;
+  --div-pos-2: #3ab9bf;
+  --div-pos-3: #2b9095;   /* furthest above the baseline */
+
+  /* ---- DIRECTION · how to feel about a number --------------
+     Favourable, unfavourable, caution, neutral. These answer
+     "is this good news", which is NOT the same question as
+     "did the number go up".
+
+     Cost falling and transports rising are both good news with
+     opposite arithmetic signs. Direction therefore follows
+     favourable against unfavourable, never the sign of the
+     delta, and never the direction of the arrow.
+
+     Every one of these ships with an arrow or icon AND a word.
+     Colour is never the only thing carrying the meaning.
+
+     The -ink step is the darker value for text sitting on the
+     matching -tint fill, which is what a pill needs. The base
+     value is for text on the page and for fills. All of them
+     clear 4.5:1 where they are used. */
+  --dir-favourable:        #158840;
+  --dir-favourable-tint:   #daf8df;
+  --dir-favourable-ink:    #127e3b;
+  --dir-unfavourable:      #db3931;
+  --dir-unfavourable-tint: #fde9e6;
+  --dir-unfavourable-ink:  #c5372f;
+  --dir-caution:           #a36912;
+  --dir-caution-tint:      #fdebd7;
+  --dir-caution-ink:       #95600f;
+  --dir-neutral:           #64748B;
+  --dir-neutral-tint:      #F1F5F9;
+  --dir-neutral-ink:       #51607A;
+
+  /* ---- BASELINE · the comparison ground --------------------
+     The "before" bar, the prior period, the target line, the
+     benchmark. It is deliberately inert and deliberately not
+     purple. Two tints of one brand hue is the failure this
+     layer exists to fix: the reader has to stop and read the
+     labels to work out which bar is which.
+
+     Grey against the accent reads instantly. Grey against green
+     reads instantly. Light purple against dark purple does not. */
+  --data-baseline:      #CBD5E1;
+  --data-baseline-ink:  #64748B;
+  --data-target:        #94A3B8;
+
+  /* ---- CHART CHROME ----------------------------------------
+     Recessive by policy. The grid is a hint, not a feature.
+     Nothing in the chrome competes with a mark. */
+  --chart-surface: #FFFFFF;
+  --chart-grid:    #E2E8F0;
+  --chart-axis:    #CBD5E1;
+  --chart-label:   #64748B;
+  --chart-ink:     #1E293B;
+}
+
+/* ============================================================
+   DARK GROUNDS
+   Put .bk-on-dark on the container. Same slots, same meanings,
+   steps selected against a dark ground. Measured on all three
+   house bands (#2f193b Royal, #000000 Collective Edge,
+   #1D225E Apex): every series step clears 3.64:1 or better and
+   every direction value clears 4.54:1 or better, so a chart
+   keeps working wherever it is placed.
+   ============================================================ */
+
+.bk-on-dark {
+  --series-1: #be6df2;
+  --series-2: #1ba04d;
+  --series-3: #f3ba26;
+  --series-4: #e6443a;
+  --series-5: #22b6c4;
+  --series-6: #f78b1f;
+  --series-7: #519dfa;
+  --series-8: #fb608e;
+
+  /* Sequential flips its anchor: on a dark ground the LIGHTEST
+     step means the largest value. */
+  --seq-100: #3d1f52;
+  --seq-200: #572e72;
+  --seq-300: #7f42a6;
+  --seq-400: #9d60c6;
+  --seq-500: #ba7ce4;
+  --seq-600: #d29ef8;
+  --seq-700: #e2c2fb;
+
+  --div-neg-3: #f16154;
+  --div-neg-2: #c04a40;
+  --div-neg-1: #7d352f;
+  --div-mid:   #4A4458;
+  --div-pos-1: #1f5f64;
+  --div-pos-2: #2b9095;
+  --div-pos-3: #3ec4cd;
+
+  --dir-favourable:        #1ca550;
+  --dir-favourable-tint:   rgba(28,165,80,0.18);
+  --dir-favourable-ink:    #3fd173;
+  --dir-unfavourable:      #f16154;
+  --dir-unfavourable-tint: rgba(241,97,84,0.18);
+  --dir-unfavourable-ink:  #ff8d82;
+  --dir-caution:           #c68119;
+  --dir-caution-tint:      rgba(198,129,25,0.18);
+  --dir-caution-ink:       #e8a63f;
+  --dir-neutral:           #B0A2BC;
+  --dir-neutral-tint:      rgba(255,255,255,0.10);
+  --dir-neutral-ink:       #CFC5D6;
+
+  --data-baseline:     rgba(255,255,255,0.26);
+  --data-baseline-ink: #B0A2BC;
+  --data-target:       rgba(255,255,255,0.40);
+
+  --chart-surface: transparent;
+  --chart-grid:    rgba(255,255,255,0.12);
+  --chart-axis:    rgba(255,255,255,0.24);
+  --chart-label:   #B0A2BC;
+  --chart-ink:     #FFFFFF;
+}
+
+/* ============================================================
+   FORCED COLOURS
+   In forced-colors mode the browser replaces every value above.
+   Marks that relied on fill alone become one colour, so the
+   pattern and the label have to survive. Charts generated from
+   this layer keep their direct labels and their legend for this
+   reason, not only for screen readers.
+   ============================================================ */
+
+@media (forced-colors: active) {
+  :root { --chart-grid: CanvasText; --chart-axis: CanvasText; }
+}

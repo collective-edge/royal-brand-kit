@@ -21,9 +21,12 @@ royal-brand-kit/
 ├── reference/
 │   ├── brand.md              # Full color table, contrast traps, logo specifications, voice, sources
 │   ├── layout.md             # Header band, sub-banner, flowchart nodes, stat callout, table, footer
+│   ├── data-color.md         # Chart and reporting colour. Series, magnitude, polarity, direction. Shared
+│   ├── partner-colors.md     # Partner facility colours, sourcing and the gate. Royal only
 │   └── type-system.md        # The type standard and the fifteen rules. Shared
 ├── snippets/
 │   ├── palette.css           # The only file that differs between brands
+│   ├── data-color.css        # The data colour layer. Shared
 │   ├── type-system.css       # The shared type layer. Shared
 │   ├── type-tokens.json      # Type values for the same generators. Shared
 │   ├── header-band.html      # Drop-in header band
@@ -32,7 +35,8 @@ royal-brand-kit/
 │   ├── document.html         # Print-ready one-pager and report letterhead
 │   └── deck.html             # Five slides at 16:9, one landscape page each
 ├── scripts/
-│   ├── check-sync.py         # Asserts the seven shared files have not forked. Shared
+│   ├── check-sync.py         # Asserts the shared files have not forked. Shared
+│   ├── validate-palette.py   # Proves a set of data colours is readable. Shared
 │   └── validate.py           # Checks generated HTML against the mechanical rules. Shared
 ├── assets/
 │   ├── colors.json           # Deprecated. Read tokens.json
@@ -56,6 +60,14 @@ Two stylesheets, in this order. `type-system.css` is served from the Collective 
 ```
 
 Style through the `.bk-*` classes and the `--fg-*`, `--bg-*` and `--border-*` variables. Reach for a raw `--royal-*` value only where the brand color is the point.
+
+Anything with a chart, a dashboard tile or a reported number loads a third sheet, the data colour layer:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/data-color.css">
+```
+
+Chart colour never comes from the brand palette. The standard is in [`reference/data-color.md`](reference/data-color.md).
 
 For anything printed or converted to PDF, inline the `@font-face` block from `SKILL.md` and select the family on `html, body`. The declaration alone selects nothing. Do this even when Montserrat is installed on the rendering machine: a local copy makes the file render correctly on that one machine and wrong everywhere else.
 
@@ -105,7 +117,11 @@ python3 scripts/validate.py snippets/*.html templates/*.html \
   $(ls Examples/*.html | grep -v '\.before\.html$')
 ```
 
-`check-sync.py` proves the shared files have not forked and that `palette.css` still satisfies the semantic contract. `validate.py` checks rules 1, 2, 5, 9, 10, 13 and 14 mechanically and exits non-zero on a violation. Neither can see overlap, clipping or a fallback font. Open the rendered file and look. If your environment cannot render, say so plainly instead of claiming it looks clean.
+```bash
+python3 scripts/validate-palette.py --series
+```
+
+`check-sync.py` proves the shared files have not forked and that `palette.css` still satisfies the semantic contract. `validate-palette.py` proves a set of data colours is actually readable, under colour blindness and against the ground. `validate.py` checks rules 1, 2, 5, 9, 10, 13 and 14 mechanically and exits non-zero on a violation. Neither can see overlap, clipping or a fallback font. Open the rendered file and look. If your environment cannot render, say so plainly instead of claiming it looks clean.
 
 ## Color
 
