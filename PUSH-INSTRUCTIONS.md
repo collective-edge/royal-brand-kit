@@ -72,14 +72,14 @@ Production materials pin by replacing `@main` with `@v1.1` in the CDN URL.
 
 ## Step 6. Tell the team
 
-One line. They run it once and Claude applies the brand from then on.
+One line. They run it once, into the skills directory their agent reads, and the brand applies from then on. Anyone without an agent reads `SKILL.md` directly.
 
 ```bash
-git clone https://github.com/collective-edge/royal-brand-kit ~/.claude/skills/royal-brand-guidelines
+git clone https://github.com/collective-edge/royal-brand-kit ~/skills/royal-brand-guidelines
 ```
 
 To update:
 
 ```bash
-cd ~/.claude/skills/royal-brand-guidelines && git pull
+cd ~/skills/royal-brand-guidelines && git pull
 ```

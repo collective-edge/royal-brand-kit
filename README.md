@@ -1,6 +1,8 @@
 # Royal Ambulance brand kit
 
-House type system v1.0. Cloud-hosted brand assets plus the `royal-brand-guidelines` skill Claude reads before it produces anything for Royal Ambulance.
+House type system v1.0. Cloud-hosted brand assets plus the `royal-brand-guidelines` skill.
+
+Written for agents and humans. An agent loads `SKILL.md` and applies the brand on its own. A person reads the same file start to finish and gets the same standard, in the same order, with nothing held back. Read it before producing anything for Royal Ambulance.
 
 Royal is an operating company under Collective Edge. It inherits the house type system unchanged and supplies two things of its own: a purple palette and the crown wordmark. Apex Paramedics and Collective Edge run the same type layer from their own kits.
 
@@ -10,7 +12,7 @@ Everything is served from a public jsDelivr CDN, so a document generated on one 
 
 ```
 royal-brand-kit/
-├── SKILL.md                  # The skill Claude reads. Assets, color, type, layout, the pre-ship check
+├── SKILL.md                  # The brand standard. Assets, color, type, layout, the pre-ship check
 ├── NEW-BRAND.md              # How to add a fourth brand to the house. Shared, byte-identical across kits
 ├── brands.json               # Registry of every brand, logo role and diagram role. Shared
 ├── tokens.json               # Color tokens for python-pptx, python-docx, matplotlib, reportlab
@@ -68,17 +70,19 @@ https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/ho
 
 ## Install the skill
 
-```bash
-git clone https://github.com/collective-edge/royal-brand-kit ~/.claude/skills/royal-brand-guidelines
-```
-
-Claude picks up `SKILL.md` and applies the brand from then on. To update:
+Clone the kit into the skills directory your agent reads. The directory name differs by tool, so substitute your own.
 
 ```bash
-cd ~/.claude/skills/royal-brand-guidelines && git pull
+git clone https://github.com/collective-edge/royal-brand-kit ~/skills/royal-brand-guidelines
 ```
 
-Recipients do not need the skill. Generated HTML pulls the assets from the CDN at render time, and a PDF carries the font embedded.
+The agent picks up `SKILL.md` and applies the brand from then on. Working without one, open `SKILL.md` and follow it in order. To update:
+
+```bash
+cd ~/skills/royal-brand-guidelines && git pull
+```
+
+Recipients do not need the kit. Generated HTML pulls the assets from the CDN at render time, and a PDF carries the font embedded.
 
 ## Verify before shipping
 
