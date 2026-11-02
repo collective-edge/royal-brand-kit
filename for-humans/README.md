@@ -189,7 +189,18 @@ It reports whether the colors are distinguishable, including under the common fo
 
 The brand is set in **Montserrat** throughout. There is no secondary typeface.
 
-The variable font file is in [`fonts/`](fonts/). It is also free from Google Fonts at https://fonts.google.com/specimen/Montserrat, which is the better source if you want the full static family.
+The four weights the brand uses are in [`fonts/static/`](fonts/static/), one file each. Install these if your software asks for a font file: Word, PowerPoint, Keynote, a handbook platform, a sign shop.
+
+| Weight | File | Used for |
+|---|---|---|
+| Regular 400 | [`Montserrat-Regular.ttf`](fonts/static/Montserrat-Regular.ttf) | Body text |
+| SemiBold 600 | [`Montserrat-SemiBold.ttf`](fonts/static/Montserrat-SemiBold.ttf) | Labels, subheads, emphasis |
+| Bold 700 | [`Montserrat-Bold.ttf`](fonts/static/Montserrat-Bold.ttf) | Headings |
+| ExtraBold 800 | [`Montserrat-ExtraBold.ttf`](fonts/static/Montserrat-ExtraBold.ttf) | Display statements on a band or title |
+
+There is no italic in this brand, at any weight. Do not set one and do not let software fake one.
+
+The single variable font file in [`fonts/`](fonts/) carries every weight in one file, for web and design tools that read a weight axis. Montserrat is also free from Google Fonts at https://fonts.google.com/specimen/Montserrat.
 
 Headings are bold. Display statements on a title, band or divider are uppercase and letter-spaced, and never run past four words. Headings inside a document are sentence case.
 
@@ -212,7 +223,8 @@ for-humans/
 ├── logos/svg/                         Vector. Use these
 ├── logos/png/                         Raster, transparent background
 ├── previews/                          The images shown above
-└── fonts/                             The brand typeface
+└── fonts/                             The brand typeface, variable file
+    └── static/                        Regular, SemiBold, Bold, ExtraBold as single files
 ```
 
 ## Questions

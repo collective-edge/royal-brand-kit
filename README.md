@@ -101,7 +101,7 @@ Recipients do not need the kit. Generated HTML pulls the assets from the CDN at 
 
 ## Handing the brand to an outside partner
 
-`for-humans/` is a self-contained pack for a design agency, printer or contractor. Logos in SVG and transparent PNG, the font, the palette, the rules, and `Royal-Ambulance-logo-sheet.html` to open in a browser. It assumes no tooling and no access to this repo. Send the folder, or send the zip built from it.
+`for-humans/` is a self-contained pack for a design agency, printer or contractor. Logos in SVG and transparent PNG, the font as a variable file and four static weights, the palette, the rules, and `Royal-Ambulance-logo-sheet.html` to open in a browser. It assumes no tooling and no access to this repo. Send the folder, or send the zip built from it.
 
 ## Verify before shipping
 
