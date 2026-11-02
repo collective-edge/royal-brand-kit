@@ -189,7 +189,18 @@ It reports whether the colors are distinguishable, including under the common fo
 
 The brand is set in **Montserrat** throughout. There is no secondary typeface.
 
-The variable font file is in [`fonts/`](fonts/). It is also free from Google Fonts at https://fonts.google.com/specimen/Montserrat, which is the better source if you want the full static family.
+The four weights the brand uses are in [`fonts/static/`](fonts/static/), one file each. Install these if your software asks for a font file: Word, PowerPoint, Keynote, a handbook platform, a sign shop.
+
+| Weight | File | Used for |
+|---|---|---|
+| Regular 400 | [`Montserrat-Regular.ttf`](fonts/static/Montserrat-Regular.ttf) | Body text |
+| SemiBold 600 | [`Montserrat-SemiBold.ttf`](fonts/static/Montserrat-SemiBold.ttf) | Labels, subheads, emphasis |
+| Bold 700 | [`Montserrat-Bold.ttf`](fonts/static/Montserrat-Bold.ttf) | Headings |
+| ExtraBold 800 | [`Montserrat-ExtraBold.ttf`](fonts/static/Montserrat-ExtraBold.ttf) | Display statements on a band or title |
+
+There is no italic in this brand, at any weight. Do not set one and do not let software fake one.
+
+The single variable font file in [`fonts/`](fonts/) carries every weight in one file, for web and design tools that read a weight axis. Montserrat is also free from Google Fonts at https://fonts.google.com/specimen/Montserrat.
 
 Headings are bold. Display statements on a title, band or divider are uppercase and letter-spaced, and never run past four words. Headings inside a document are sentence case.
 
@@ -199,6 +210,37 @@ Headings are bold. Display statements on a title, band or divider are uppercase 
 - No em dashes. Use a period, a comma, or `·`.
 - A label and a value, nothing between them. No helper text under a field, no caption restating the number above it.
 - Name partners and facilities exactly the way they write themselves.
+
+---
+
+## Photos
+
+Twenty photographs of Royal people at work, chosen for a culture code or a handbook. People first, smiling, across crews, the communications center, training and team events. Full frame, JPEG, up to 3200 pixels on the long edge. [`photos/manifest.csv`](photos/manifest.csv) links each one to its full-resolution original for print.
+
+Use them as they are. Do not add filters, recolor, mirror or composite them. Crop freely. Photos go behind a solid panel if a logo has to sit on top.
+
+| | Photo | Suggested use | Pixels |
+|---|---|---|---|
+| <img src="photos/01-royal-crew-sharing-a-laugh.jpg" width="160"> | [Crew sharing a laugh](photos/01-royal-crew-sharing-a-laugh.jpg) | Opening / culture | 3200 × 2285 |
+| <img src="photos/02-royal-smiling-dispatcher-at-work.jpg" width="160"> | [Smiling dispatcher at work](photos/02-royal-smiling-dispatcher-at-work.jpg) | People / communications | 3200 × 2132 |
+| <img src="photos/03-royal-crew-at-the-ambulance-doors.jpg" width="160"> | [Crew at the ambulance doors](photos/03-royal-crew-at-the-ambulance-doors.jpg) | Teamwork / everyday work | 2000 × 1429 |
+| <img src="photos/04-royal-a-smile-from-the-cab.jpg" width="160"> | [A smile from the cab](photos/04-royal-a-smile-from-the-cab.jpg) | Everyday work / people | 2048 × 1464 |
+| <img src="photos/05-royal-team-recognition-beside-the-royal-rig.jpg" width="160"> | [Team recognition beside the Royal rig](photos/05-royal-team-recognition-beside-the-royal-rig.jpg) | Opening / shared pride | 3200 × 2400 |
+| <img src="photos/06-royal-a-friendly-moment-inside-the-rig.jpg" width="160"> | [A friendly moment inside the rig](photos/06-royal-a-friendly-moment-inside-the-rig.jpg) | Culture / teamwork | 2000 × 1429 |
+| <img src="photos/07-royal-dispatcher-smiling-at-the-console.jpg" width="160"> | [Dispatcher smiling at the console](photos/07-royal-dispatcher-smiling-at-the-console.jpg) | People / communications | 3200 × 2132 |
+| <img src="photos/08-royal-conversation-during-nicu-training.jpg" width="160"> | [Conversation during NICU training](photos/08-royal-conversation-during-nicu-training.jpg) | Learning / collaboration | 3200 × 2286 |
+| <img src="photos/09-royal-colleagues-serving-a-team-meal.jpg" width="160"> | [Colleagues serving a team meal](photos/09-royal-colleagues-serving-a-team-meal.jpg) | Care for colleagues / culture | 3200 × 2286 |
+| <img src="photos/10-royal-hands-on-clinical-practice.jpg" width="160"> | [Hands-on clinical practice](photos/10-royal-hands-on-clinical-practice.jpg) | Learning / professional development | 2286 × 3200 |
+| <img src="photos/11-royal-equipment-preparation-at-the-rig.jpg" width="160"> | [Equipment preparation at the rig](photos/11-royal-equipment-preparation-at-the-rig.jpg) | Everyday work / readiness | 2000 × 1429 |
+| <img src="photos/12-royal-two-colleagues-one-easy-smile.jpg" width="160"> | [Two colleagues, one easy smile](photos/12-royal-two-colleagues-one-easy-smile.jpg) | People / belonging | 2286 × 3200 |
+| <img src="photos/13-royal-warm-portrait-at-a-workstation.jpg" width="160"> | [Warm portrait at a workstation](photos/13-royal-warm-portrait-at-a-workstation.jpg) | People / support teams | 2220 × 3200 |
+| <img src="photos/14-royal-nicu-training-team-together.jpg" width="160"> | [NICU training team together](photos/14-royal-nicu-training-team-together.jpg) | Learning / collaboration | 3200 × 2133 |
+| <img src="photos/15-royal-a-wider-royal-team.jpg" width="160"> | [A wider Royal team](photos/15-royal-a-wider-royal-team.jpg) | Belonging / culture | 2285 × 3200 |
+| <img src="photos/16-royal-serving-colleagues-at-the-team-meal.jpg" width="160"> | [Serving colleagues at the team meal](photos/16-royal-serving-colleagues-at-the-team-meal.jpg) | Culture / supporting one another | 3200 × 2286 |
+| <img src="photos/17-royal-three-colleagues-celebrating-together.jpg" width="160"> | [Three colleagues celebrating together](photos/17-royal-three-colleagues-celebrating-together.jpg) | Team pride / people | 1463 × 2048 |
+| <img src="photos/18-royal-crew-recognition-at-the-ambulance.jpg" width="160"> | [Crew recognition at the ambulance](photos/18-royal-crew-recognition-at-the-ambulance.jpg) | Recognition / teamwork | 3200 × 2286 |
+| <img src="photos/19-royal-a-smiling-colleague-at-the-base.jpg" width="160"> | [A smiling colleague at the base](photos/19-royal-a-smiling-colleague-at-the-base.jpg) | People / everyday culture | 1463 × 2048 |
+| <img src="photos/20-royal-a-colleague-inside-the-ambulance.jpg" width="160"> | [A colleague inside the ambulance](photos/20-royal-a-colleague-inside-the-ambulance.jpg) | Everyday work / people | 1463 × 2048 |
 
 ---
 
@@ -212,7 +254,9 @@ for-humans/
 ├── logos/svg/                         Vector. Use these
 ├── logos/png/                         Raster, transparent background
 ├── previews/                          The images shown above
-└── fonts/                             The brand typeface
+├── photos/                            Twenty photographs for handbooks and culture pieces, with manifest.csv
+└── fonts/                             The brand typeface, variable file
+    └── static/                        Regular, SemiBold, Bold, ExtraBold as single files
 ```
 
 ## Questions
