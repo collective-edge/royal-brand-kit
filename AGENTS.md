@@ -11,6 +11,6 @@ If you were asked to change this repository itself:
 - Sixteen files are shared byte for byte with the other two kits. `scripts/check-sync.py` lists them and fails when one drifts. Change a shared file in all three kits or not at all.
 - Paths under `assets/`, `snippets/` and `for-humans/logos/` are fetched live from the CDN by shipped documents and sites. Add files. Do not move or rename one.
 - `for-humans/logos/` and `for-humans/previews/` are built by `scripts/build-handoff.py` from `for-humans/pack.json`. Edit the list and rerun. Do not hand-export.
-- Run `python3 scripts/check-sync.py` before committing. [`PUSH-INSTRUCTIONS.md`](PUSH-INSTRUCTIONS.md) covers the rest.
+- Run `python3 scripts/check-sync.py` before committing. [`CONTRIBUTING.md`](CONTRIBUTING.md) covers the rest.
 
 A person looking for logos wants [`for-humans/`](for-humans/).

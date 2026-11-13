@@ -47,6 +47,7 @@ royal-brand-kit/
 ├── AGENTS.md                 # Entry point an agent finds on its own. Points at the two files below it
 ├── SKILL.md                  # The brand standard. Assets, color, type, layout, the pre-ship check
 ├── NEW-BRAND.md              # How to add a fourth brand to the house. Shared, byte-identical across kits
+├── CONTRIBUTING.md           # How to change this kit without breaking live work
 ├── brands.json               # Registry of every brand, logo role and diagram role. Shared
 ├── tokens.json               # Color tokens for python-pptx, python-docx, matplotlib, reportlab
 ├── reference/
