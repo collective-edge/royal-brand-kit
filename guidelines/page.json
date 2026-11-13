@@ -1,0 +1,311 @@
+{
+  "_comment": "Brand-specific copy for the guidelines page. guidelines/build.py reads this file with brands.json, tokens.json, snippets/type-tokens.json, snippets/palette.css and snippets/data-color.css, and writes index.html. No color value, token name, role or URL belongs here unless it sits inside a sentence: the build checks every hex and every token name in this file against the kit. Edit, then run python3 guidelines/build.py.",
+  "say": "Royal Ambulance is a Bay Area medical transportation company under Collective Edge.",
+  "cover": {
+    "width": 470,
+    "nudge": 0,
+    "footWidth": 180
+  },
+  "bigPlate": {
+    "role": "horizontal-on-light",
+    "ground": "--bg-canvas",
+    "width": 660,
+    "caption": "The primary lockup on white. Crown and wordmark travel together."
+  },
+  "logoLead": "Every lockup, on its correct ground. The file named for a ground goes on that ground.",
+  "logoRowWidth": {
+    "horizontal": 196,
+    "mark": 56,
+    "stacked": 112
+  },
+  "logoCopy": {
+    "horizontal-on-light": {
+      "name": "Horizontal",
+      "use": "Primary lockup. Default anywhere with horizontal room."
+    },
+    "horizontal-on-dark": {
+      "name": "Horizontal",
+      "use": "Primary lockup on dark purple grounds."
+    },
+    "mark-on-light": {
+      "name": "Crown",
+      "use": "Icon only. Favicons, badges, avatars, table corners."
+    },
+    "mark-on-dark": {
+      "name": "Crown",
+      "use": "Icon only on dark purple grounds."
+    },
+    "stacked-on-dark": {
+      "name": "Stacked",
+      "use": "Vertical lockup for portrait and square formats on dark."
+    },
+    "stacked-on-light": {
+      "name": "Stacked",
+      "use": "Vertical lockup for portrait and square formats on light."
+    }
+  },
+  "clearSpace": {
+    "role": "horizontal-on-light",
+    "viewBox": [
+      735.76,
+      179.54
+    ],
+    "art": [
+      0,
+      0,
+      735.76,
+      179.54
+    ],
+    "x": 179.54,
+    "scale": 0.4,
+    "unit": "the height of the crown mark"
+  },
+  "minimums": [
+    {
+      "role": "horizontal-on-light",
+      "label": "Horizontal"
+    },
+    {
+      "role": "mark-on-light",
+      "label": "Crown"
+    }
+  ],
+  "logoNotes": [
+    "The fill on light is #43205B in every lockup. The fill on dark is #FFFFFF.",
+    "On a header band the logo is 1.6in wide.",
+    "If the clear space is short, shrink the logo.",
+    "Under 1.5in wide, use the horizontal lockup in place of the stacked one."
+  ],
+  "minimumNote": {
+    "stacked": "use horizontal under 1.5in"
+  },
+  "paletteHead": "Color",
+  "palette": [
+    {
+      "token": "--royal-dark-purple",
+      "name": "Dark Purple",
+      "role": "Band",
+      "use": "The dominant color. Header bands, title slides, table header rows. The band carries no rule."
+    },
+    {
+      "token": "--royal-purple",
+      "name": "Purple",
+      "role": "Primary",
+      "use": "The working accent. Bars, buttons, links and brand-colored text on white."
+    },
+    {
+      "token": "--royal-royal-purple",
+      "name": "Royal Purple",
+      "role": "Logo",
+      "use": "The logo fill on light."
+    },
+    {
+      "token": "--royal-light-purple",
+      "name": "Light Purple",
+      "role": "Tertiary",
+      "use": "Tertiary accents and hover only.",
+      "never": "Never body text. Never a large background. Never on #2F193B."
+    },
+    {
+      "token": "--bg-surface-2",
+      "name": "Surface 2",
+      "role": "Stronger tint",
+      "use": "The second tint, a step under Surface. Step 100 of the purple ramp.",
+      "never": "Never carries white text."
+    },
+    {
+      "token": "--royal-surface",
+      "name": "Surface",
+      "role": "Tint",
+      "use": "Callout fill.",
+      "never": "Never carries white text."
+    },
+    {
+      "token": "--royal-white",
+      "name": "White",
+      "role": "Canvas",
+      "use": "The page background. Text on any dark purple.",
+      "never": "Never white text on Light Purple."
+    }
+  ],
+  "colorLead": "Purple is the whole palette. Text and rules come from the shared neutrals.",
+  "colorNote": "Three purples do the work. Dark Purple opens every document, Purple marks, Royal Purple is the logo.",
+  "partner": {
+    "title": "With Collective Edge",
+    "lead": "Royal is an operating company under Collective Edge and the reader should be able to see it.",
+    "note": "The Powered by Collective Edge lockup rides beside the Royal mark, never inside it, under a hairline. It appears once per surface.",
+    "plates": [
+      {
+        "ground": "light",
+        "brand": "royal",
+        "role": "horizontal-on-light",
+        "width": 190,
+        "label": "On white",
+        "text": "The black Collective Edge file, under a hairline."
+      },
+      {
+        "ground": "dark",
+        "brand": "royal",
+        "role": "horizontal-on-dark",
+        "width": 190,
+        "label": "On the band",
+        "text": "The white Collective Edge file, never a filter."
+      }
+    ],
+    "wedge": [
+      {
+        "label": "On a Royal surface",
+        "partner": "royal"
+      }
+    ],
+    "wedgeNote": "When the Collective Edge block mark stands on a Royal surface, its wedge is Royal purple. Use the shipped file from the Collective Edge kit."
+  },
+  "rules": {
+    "use": [
+      "Open every document on the Dark Purple #2F193B band.",
+      "Use Purple #572E72 for accents and brand-colored text on white.",
+      "Set body text in #23232A.",
+      "Keep white text on Dark Purple, Purple or Royal Purple only.",
+      "Use the horizontal lockup wherever it fits.",
+      "Add Powered by Collective Edge once, beside the Royal mark."
+    ],
+    "avoid": [
+      "Do not set Light Purple #8260A2 as body text.",
+      "Do not use Light Purple as a large background.",
+      "Do not put #8260A2 on #2F193B.",
+      "Do not use a brand purple as a status color.",
+      "Do not recolor a logo or invert it with a CSS filter.",
+      "Do not separate the crown from the wordmark in the horizontal lockup.",
+      "Do not use a background tint stronger than #F0E1FD.",
+      "Do not sample a partner facility color from a logo."
+    ]
+  },
+  "character": [
+    "Written for the reader who is between calls",
+    "Short declarative sentences"
+  ],
+  "voice": [
+    "Write for the reader who is between calls.",
+    "Short declarative sentences, active verbs.",
+    "Name partners and facilities exactly as they write themselves.",
+    "No em dashes. A period, a comma or a middot."
+  ],
+  "memo": {
+    "to": "Dispatch supervisors",
+    "frm": "Royal Dispatch",
+    "re": "Confirming discharge rides",
+    "ps": [
+      "From 1 December, case managers book next-day discharge rides before 10:00. Dispatch confirms each one within 15 minutes.",
+      "A confirmation names the unit and the pickup window. If no unit is free in the window, call the case manager before the 15 minutes run out.",
+      "The crew calls the nursing station 20 minutes before arrival. Dispatch does not make that call.",
+      "Requests after 10:00 are still taken. Confirm them in the order received, after the morning requests, and give the case manager the earliest open window."
+    ],
+    "acts": [
+      "Staff one dispatcher on the ordering page from 07:00 to 10:00.",
+      "Reply to every request with a unit and a window.",
+      "Log any ride confirmed late, with the reason."
+    ],
+    "sign": [
+      "Royal Dispatch",
+      "dispatch@royal.example"
+    ],
+    "foot": "Royal Ambulance · Internal"
+  },
+  "onePager": {
+    "band": "Discharge transport",
+    "h1": "Discharge rides are booked by 10:00.",
+    "lead": "From 1 December, book next-day discharge transport before 10:00. Royal confirms each ride within 15 minutes.",
+    "meta": [
+      [
+        "For",
+        "Case management"
+      ],
+      [
+        "From",
+        "Royal Dispatch"
+      ],
+      [
+        "Date",
+        "13 November 2026"
+      ]
+    ],
+    "h2a": "How it works.",
+    "pa": "The case manager sends the request through the ordering page. Dispatch assigns a unit and replies with a pickup window. The crew calls the nursing station 20 minutes before arrival.",
+    "h2b": "Pickup windows.",
+    "th": [
+      "Level of service",
+      "Request by",
+      "Pickup window",
+      "Status"
+    ],
+    "rows": [
+      [
+        "Wheelchair",
+        "10:00",
+        "11:00 to 15:00",
+        [
+          "go",
+          "Open"
+        ]
+      ],
+      [
+        "Gurney",
+        "10:00",
+        "11:00 to 16:00",
+        [
+          "go",
+          "Open"
+        ]
+      ],
+      [
+        "Basic life support",
+        "10:00",
+        "12:00 to 17:00",
+        [
+          "warn",
+          "Limited"
+        ]
+      ],
+      [
+        "Critical care",
+        "Call dispatch",
+        "By arrangement",
+        [
+          "info",
+          "By phone"
+        ]
+      ]
+    ],
+    "close": "If a discharge moves, call dispatch. The unit holds for 15 minutes past the window, then returns to service.",
+    "foot": "Royal Ambulance · Discharge transport"
+  },
+  "deck": {
+    "title": "Discharge transport",
+    "sub": "Booking guide for case managers",
+    "date": "13 November 2026",
+    "h": "Book by 10:00. Royal confirms in 15 minutes.",
+    "pts": [
+      "Request through the ordering page.",
+      "Dispatch replies with a pickup window.",
+      "The crew calls 20 minutes before arrival."
+    ],
+    "cap": "Request by 10:00 for these windows",
+    "th": [
+      "Level of service",
+      "Pickup window"
+    ],
+    "rows": [
+      [
+        "Wheelchair",
+        "11:00 to 15:00"
+      ],
+      [
+        "Gurney",
+        "11:00 to 16:00"
+      ]
+    ]
+  },
+  "sampleDate": "13 November 2026",
+  "agentLine": "Royal Ambulance is an operating company under Collective Edge. Purple palette, the crown lockup, the house type system.",
+  "deckMarkWidth": 137
+}

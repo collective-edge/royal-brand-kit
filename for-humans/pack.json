@@ -3,7 +3,7 @@
   "brand": "Royal Ambulance",
   "filePrefix": "Royal-Ambulance",
   "grounds": { "light": "#FFFFFF", "dark": "#2f193b" },
-  "previewBorder": "#E2E8F0",
+  "previewBorder": "#E4E4E9",
   "logos": [
     { "name": "horizontal-purple", "source": "assets/logos/horizontal-purple.svg", "ground": "light", "png": [1200, 2400], "preview": { "plate": [960, 320], "logoWidth": 720 } },
     { "name": "horizontal-white",  "source": "assets/logos/horizontal-white.svg",  "ground": "dark",  "png": [1200, 2400], "preview": { "plate": [960, 320], "logoWidth": 720 } },
@@ -12,6 +12,6 @@
     { "name": "crown-purple",      "source": "assets/logos/crown-purple.svg",      "ground": "light", "png": [512, 1024],  "preview": { "plate": [480, 480], "logoWidth": 300 } },
     { "name": "crown-white",       "source": "assets/logos/crown-white.svg",       "ground": "dark",  "png": [512, 1024],  "preview": { "plate": [480, 480], "logoWidth": 300 } }
   ],
-  "swatches": ["#2f193b", "#572e72", "#43205b", "#8260a2", "#1E293B", "#64748B", "#E2E8F0", "#faf5fd", "#FFFFFF"],
+  "swatches": ["#2f193b", "#572e72", "#43205b", "#8260a2", "#f0e1fd", "#faf5fd", "#FFFFFF", "#23232A", "#565860", "#6D6D77", "#8A8B93", "#D0D0D6", "#E4E4E9", "#DDDDE3", "#A3A4AC", "#1E7A4D", "#DAF8DF", "#56B580", "#B5821A", "#926603", "#FFEFDD", "#E9B457", "#B0322B", "#FDE9E6", "#EB685C", "#2A5A8C", "#E3F0FF", "#5796D9", "#EEEEF2", "#D3D4D9", "#B6B7BD", "#97989F", "#76777F", "#51525A", "#E5EAFF", "#C2CFFE", "#A0B1F1", "#8193DE", "#6374C9", "#4452B1", "#2B338D", "#e2c2fb", "#d29ef8", "#ba7ce4", "#9d60c6", "#7f42a6"],
   "fonts": ["assets/fonts/Montserrat-VariableFont_wght.ttf"]
 }

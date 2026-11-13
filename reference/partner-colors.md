@@ -50,8 +50,8 @@ So, four steps, in order, every time:
 | El Camino Health | Bahama Blue | `#006E90` | Reported | Same source |
 | Sutter Health | Teal | `#00A499` | Reported | Third-party sources disagree in the range `#00A499` to `#00A9A0` |
 | Kaiser Permanente | Blue | `#0075C9` | Reported | Widely published, not confirmed against Kaiser's own guidance |
-| Alameda Health System | — | — | Unknown | No published value found. Use the house series order |
-| John George Psychiatric Hospital | — | — | Unknown | Operates under Alameda Health System. Use the house series order |
+| Alameda Health System | None | None | Unknown | No published value found. Use the house series order |
+| John George Psychiatric Hospital | None | None | Unknown | Operates under Alameda Health System. Use the house series order |
 
 UCSF publishes a six-range palette (blue, teal, green, purple, violet, magenta). Only navy and the link blue above were confirmed. For anything beyond those two, ask UCSF or use the house order.
 

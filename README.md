@@ -1,183 +1,147 @@
+<p><picture><source media="(prefers-color-scheme: dark)" srcset="for-humans/logos/png/Royal-Ambulance-horizontal-white-1200w.png"><img src="for-humans/logos/png/Royal-Ambulance-horizontal-purple-1200w.png" width="280" alt="Royal Ambulance"></picture></p>
+
 # Royal Ambulance brand kit
 
-<p><img src="for-humans/previews/horizontal-purple.png" width="400" alt="Royal Ambulance logo on white"> <img src="for-humans/previews/horizontal-white.png" width="400" alt="Royal Ambulance logo on dark purple"></p>
+Royal Ambulance is a Bay Area medical transportation company under Collective Edge. This repository is the public source for the brand: logos, color, type and document layouts, with the rules for using them.
 
-The public source for the Royal Ambulance brand. Logos, colors, type, photographs and the rules for using them. Pick your door.
+**[Read the brand guidelines](https://collective-edge.github.io/royal-brand-kit/)** · the whole standard on one page.
 
-| | **[For humans →](for-humans/)** | **[For agents →](for-agents/)** |
+## Start here
+
+| | For people | For agents |
 |---|---|---|
-| Who | Designers, agencies, printers, teammates | AI agents, and developers generating branded output |
-| What you get | Logos in SVG and PNG, the fonts, the colors, the rules. No install, no account, no git | CDN URLs, logo roles, color tokens, the full standard, validators |
-| Start with | [Download the pack](https://github.com/collective-edge/royal-brand-kit/archive/refs/heads/main.zip), then open `for-humans` | [`for-agents/README.md`](for-agents/README.md), then [`SKILL.md`](SKILL.md) |
+| Who | Designers, agencies, printers, staff | An agent or a script that makes branded documents |
+| Open | [`for-humans/`](for-humans/) | [`for-agents/README.md`](for-agents/README.md), then [`SKILL.md`](SKILL.md) |
+| Get | [Download the pack](https://github.com/collective-edge/royal-brand-kit/archive/refs/heads/main.zip). Logos, fonts and a plain guide in one zip | Asset URLs, logo roles, color tokens and layout rules in inches, points and hex |
 
 ## Grab a logo
 
-The file named for its ink goes on the opposite background. Full set, sizes and rules are in [`for-humans/`](for-humans/).
+Pick by the ground the logo sits on. The file named **purple** goes on light. The file named **white** goes on dark. Use the SVG wherever the software takes it. Sizes, clear space and the rules are in [`for-humans/`](for-humans/#sizes-and-spacing).
 
-| | For light backgrounds | For dark backgrounds |
+| Lockup | On a light ground | On a dark ground |
 |---|---|---|
 | Horizontal | [SVG](for-humans/logos/svg/Royal-Ambulance-horizontal-purple.svg) · [PNG](for-humans/logos/png/Royal-Ambulance-horizontal-purple-1200w.png) | [SVG](for-humans/logos/svg/Royal-Ambulance-horizontal-white.svg) · [PNG](for-humans/logos/png/Royal-Ambulance-horizontal-white-1200w.png) |
 | Stacked | [SVG](for-humans/logos/svg/Royal-Ambulance-stacked-purple.svg) · [PNG](for-humans/logos/png/Royal-Ambulance-stacked-purple-1200w.png) | [SVG](for-humans/logos/svg/Royal-Ambulance-stacked-white.svg) · [PNG](for-humans/logos/png/Royal-Ambulance-stacked-white-1200w.png) |
 | Crown | [SVG](for-humans/logos/svg/Royal-Ambulance-crown-purple.svg) · [PNG](for-humans/logos/png/Royal-Ambulance-crown-purple-512w.png) | [SVG](for-humans/logos/svg/Royal-Ambulance-crown-white.svg) · [PNG](for-humans/logos/png/Royal-Ambulance-crown-white-512w.png) |
 
+The purple in every logo file is Royal Purple `#43205b`. Use the horizontal lockup wherever it fits.
+
+## The system at a glance
+
+### Color
+
+Purple is the whole palette. Dark Purple opens the document, Purple marks, Royal Purple is the logo.
+
+| | Name | Hex | Use |
+|---|---|---|---|
+| <img src="for-humans/previews/swatches/2f193b.png" width="18" alt=""> | Dark Purple | `#2f193b` | The header band. Title, divider and closing slides |
+| <img src="for-humans/previews/swatches/572e72.png" width="18" alt=""> | Purple | `#572e72` | The primary and accent color. Links, rules, callout borders, purple text on white |
+| <img src="for-humans/previews/swatches/43205b.png" width="18" alt=""> | Royal Purple | `#43205b` | The logo color on light backgrounds |
+| <img src="for-humans/previews/swatches/8260a2.png" width="18" alt=""> | Light Purple | `#8260a2` | Tertiary accents and hover states only. Never text |
+| <img src="for-humans/previews/swatches/f0e1fd.png" width="18" alt=""> | Surface 2 | `#f0e1fd` | The stronger tint. Never text |
+| <img src="for-humans/previews/swatches/faf5fd.png" width="18" alt=""> | Surface | `#faf5fd` | Callout fills. Never text |
+| <img src="for-humans/previews/swatches/FFFFFF.png" width="18" alt=""> | White | `#FFFFFF` | The page. The default surface |
+
+Text, rules and borders come from one neutral family, the same in all three brands. Ink is `#23232A`. Green means good and nothing else. A brand color is never a status color. Chart colors come from the house data set.
+
+Every value: [`tokens.json`](tokens.json). Every rule: [`reference/brand.md`](reference/brand.md). Charts: [`reference/data-color.md`](reference/data-color.md).
+
+### Type
+
+Montserrat at 400, 600, 700 and 800. No italic. The scale is the same in all three brands.
+
+| Role | Print | Screen |
+|---|---|---|
+| Headline | 30pt | 40px |
+| Section heading | 24pt | 32px |
+| Subhead | 18pt | 24px |
+| Lead | 15pt | 20px |
+| Body | 12pt | 16px |
+| Table text | 10.5pt | 14px |
+| Caption and footer | 9pt | 12px |
+
+Every rule: [`reference/type-system.md`](reference/type-system.md). Every value: [`snippets/type-tokens.json`](snippets/type-tokens.json).
+
+### Documents
+
+Six types. Most requests change a file that already exists: keep its layout, styles and wording, and change only what was asked.
+
+| Type | For | Page | Body | Template |
+|---|---|---|---|---|
+| Working document | The default. Anything people keep editing in Google Docs or Word: agendas, plans, status reports, notes | US Letter, portrait, 0.75in margins | 10.5pt | [`templates/working-doc.html`](templates/working-doc.html) |
+| Sheet | Trackers and lists in Google Sheets or Excel | One table per tab, from A1 | 10pt | None |
+| Deck | Anything on a screen | 13.333 x 7.5in. 0.67in top, 0.83in left and right, 0.42in bottom | 15pt | [`templates/deck.html`](templates/deck.html) |
+| One-pager | A designed single page for an outside reader, as a PDF | US Letter, portrait, 0.6in margins, exactly one page | 12pt | [`templates/one-pager.html`](templates/one-pager.html) |
+| Report | A designed document of three pages or more, as a PDF | US Letter, portrait, 0.75in margins | 12pt | [`templates/document.html`](templates/document.html) |
+| Memo | Only when asked for by name | US Letter, portrait, 0.75in margins | 12pt | [`templates/memo.html`](templates/memo.html) |
+
+A working document is plain: the logo at top left, a title, no band. The band opens a one-pager, a report and a memo, which are made for PDF and print. Content slides are white. The dark ground is for the title, divider and closing slides. “Powered by Collective Edge” appears once, small, on every Apex Paramedics and Royal Ambulance PDF, deck and image. A working document and a sheet never carry it.
+
+Every rule: [`reference/layout.md`](reference/layout.md). The same values as data: [`documents.json`](documents.json).
+
 ## The house
 
-Three brands, one type system, the same layout in every kit.
+Three brands, one standard. The kits differ in color, logo and brand facts.
 
-| Brand | Kit | People | Agents |
-|---|---|---|---|
-| Collective Edge · the parent | [`collective-edge-brand-kit`](https://github.com/collective-edge/collective-edge-brand-kit) | [for-humans](https://github.com/collective-edge/collective-edge-brand-kit/tree/main/for-humans) | [for-agents](https://github.com/collective-edge/collective-edge-brand-kit/tree/main/for-agents) |
-| Apex Paramedics | [`apex-brand-kit`](https://github.com/collective-edge/apex-brand-kit) | [for-humans](https://github.com/collective-edge/apex-brand-kit/tree/main/for-humans) | [for-agents](https://github.com/collective-edge/apex-brand-kit/tree/main/for-agents) |
-| **Royal Ambulance** | this kit | [for-humans](for-humans/) | [for-agents](for-agents/) |
-
-## About this kit
-
-House type system v1.0. Cloud-hosted brand assets plus the `royal-brand-guidelines` skill.
-
-Royal is an operating company under Collective Edge. It inherits the house type system unchanged and supplies two things of its own: a purple palette and the crown wordmark. Apex Paramedics and Collective Edge run the same type layer from their own kits.
-
-Everything is served from a public jsDelivr CDN, so a document generated on one machine renders the same on every other one with no local setup.
+| Brand | Guidelines | Repository |
+|---|---|---|
+| Collective Edge · the parent | [collective-edge.github.io/collective-edge-brand-kit](https://collective-edge.github.io/collective-edge-brand-kit/) | [`collective-edge-brand-kit`](https://github.com/collective-edge/collective-edge-brand-kit) |
+| Apex Paramedics | [collective-edge.github.io/apex-brand-kit](https://collective-edge.github.io/apex-brand-kit/) | [`apex-brand-kit`](https://github.com/collective-edge/apex-brand-kit) |
+| Royal Ambulance | [collective-edge.github.io/royal-brand-kit](https://collective-edge.github.io/royal-brand-kit/) | [`royal-brand-kit`](https://github.com/collective-edge/royal-brand-kit) |
 
 ## What is in here
 
 ```
 royal-brand-kit/
-├── for-humans/               # Start here if you are a person. Logos, fonts, photos, colors, rules. No install
-├── for-agents/               # Start here if you are an agent. URLs, roles, tokens, rules, on one page
-├── AGENTS.md                 # Entry point an agent finds on its own. Points at the two files below it
-├── SKILL.md                  # The brand standard. Assets, color, type, layout, the pre-ship check
-├── NEW-BRAND.md              # How to add a fourth brand to the house. Shared, byte-identical across kits
-├── CONTRIBUTING.md           # How to change this kit without breaking live work
-├── brands.json               # Registry of every brand, logo role and diagram role. Shared
-├── tokens.json               # Color tokens for python-pptx, python-docx, matplotlib, reportlab
-├── reference/
-│   ├── brand.md              # Full color table, contrast traps, logo specifications, voice, sources
-│   ├── layout.md             # Header band, sub-banner, flowchart nodes, stat callout, table, footer
-│   ├── data-color.md         # Chart and reporting color. Series, magnitude, polarity, direction. Shared
-│   ├── partner-colors.md     # Partner facility colors, sourcing and the gate. Royal only
-│   └── type-system.md        # The type standard and the fifteen rules. Shared
-├── snippets/
-│   ├── palette.css           # The only file that differs between brands
-│   ├── data-color.css        # The data color layer. Shared
-│   ├── type-system.css       # The shared type layer. Shared
-│   ├── type-tokens.json      # Type values for the same generators. Shared
-│   ├── header-band.html      # Drop-in header band
-│   └── brand-base.css        # Deprecated. A shim that forwards to the two files above it
-├── templates/
-│   ├── document.html         # Print-ready one-pager and report letterhead
-│   └── deck.html             # Five slides at 16:9, one landscape page each
-├── scripts/
-│   ├── build-handoff.py      # Renders the PNG logos, previews and color chips in for-humans/
-│   ├── check-sync.py         # Asserts the shared files have not forked. Shared
-│   ├── validate-palette.py   # Proves a set of data colors is readable. Shared
-│   └── validate.py           # Checks generated HTML against the mechanical rules. Shared
-├── assets/
-│   ├── colors.json           # Deprecated. Read tokens.json
-│   ├── fonts/                # Montserrat variable TTF, kept for documents already pointing at it
-│   └── logos/                # Horizontal, crown and stacked, purple and white
-└── Examples/                 # Shipped work, with the pre-v1.0 version of each beside it
+├── index.html        The guidelines page. Built by guidelines/build.py
+├── guidelines/       The page builder, its stylesheet, the brand copy and the preview image
+├── for-humans/       Logos, fonts, color chips, photographs and a plain guide. For people
+├── for-agents/       The shortest correct path for an agent
+├── AGENTS.md         Agent entry point
+├── SKILL.md          The standard in brief
+├── reference/        The full standard: brand, layout, type, data color, controls
+├── brands.json       Every brand in the house: CDN roots, logo roles, the co-brand lockup
+├── documents.json    The document types as data
+├── tokens.json       This brand's colors as hex and RGB
+├── snippets/         Stylesheets, type tokens and the header band
+├── templates/        Working document, deck, one-pager, report and memo
+├── Examples/         Filled references
+├── assets/           Logo masters and fonts. Live CDN paths
+├── scripts/          The checks and the builders
+├── CONTRIBUTING.md   How to change this repository
+├── NEW-BRAND.md      How to stand up a kit for a new brand
+└── TRADEMARKS.md     What others may do with the names and logos
 ```
 
-Shared files are byte-identical in all three kits. `scripts/check-sync.py` fails if one drifts. Never edit a shared file in this repo alone.
+## Use it
 
-In `Examples/`, `NAME.html` is the shipped v1.0 file and `NAME.before.html` is the pre-v1.0 original kept beside it as the record of what changed. A `*.before.html` file is expected to fail `validate.py`: it predates the rules the validator checks. Never run the validator over it and never correct it. `Examples/HPSM_Ordering_Workflow_Manager.before.html` returns 29 violations across 7 rules, which is the point of keeping it.
+### Load
 
-## Load the assets
-
-Two stylesheets, in this order. `type-system.css` is served from the Collective Edge kit. `palette.css` is the only file that differs.
-
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/palette.css">
-```
-
-Style through the `.bk-*` classes and the `--fg-*`, `--bg-*` and `--border-*` variables. Reach for a raw `--royal-*` value only where the brand color is the point.
-
-Anything with a chart, a dashboard tile or a reported number loads a third sheet, the data color layer:
-
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/data-color.css">
-```
-
-Chart color never comes from the brand palette. The standard is in [`reference/data-color.md`](reference/data-color.md).
-
-For anything printed or converted to PDF, inline the `@font-face` block from `SKILL.md` and select the family on `html, body`. The declaration alone selects nothing. Do this even when Montserrat is installed on the rendering machine: a local copy makes the file render correctly on that one machine and wrong everywhere else.
-
-## CDN base URL
+Every file is public on jsDelivr. No auth, no install.
 
 ```
 https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/
 ```
 
-Append the path inside this repo to fetch any file:
+Colors are in `tokens.json`. Type is in `snippets/type-tokens.json`. Layouts are in `documents.json` and `reference/layout.md`. Logos resolve by role in `brands.json`. The stylesheet link tags for an HTML page are in [`for-agents/README.md`](for-agents/README.md).
 
-```
-https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-white.svg
-```
-
-## Install the skill
-
-Clone the kit into the skills directory your agent reads. The directory name differs by tool, so substitute your own.
-
-```bash
-git clone https://github.com/collective-edge/royal-brand-kit ~/skills/royal-brand-guidelines
-```
-
-The agent picks up `SKILL.md` and applies the brand from then on. Working without one, open `SKILL.md` and follow it in order. To update:
-
-```bash
-cd ~/skills/royal-brand-guidelines && git pull
-```
-
-Recipients do not need the kit. Generated HTML pulls the assets from the CDN at render time, and a PDF carries the font embedded.
-
-## Handing the brand to an outside partner
-
-`for-humans/` is a self-contained pack for a design agency, printer or contractor. Logos in SVG and transparent PNG, the font as a variable file and four static weights, twenty photographs, the palette, the rules, and `Royal-Ambulance-logo-sheet.html` to open in a browser. It assumes no tooling and no access to this repo. Send the folder, or send the zip built from it.
-
-The PNG logos, the previews and the color chips are rendered by `scripts/build-handoff.py` from `for-humans/pack.json`. When a mark or a color changes, edit the list and rerun it.
-
-## Verify before shipping
+### Verify
 
 ```bash
 python3 scripts/check-sync.py
 python3 scripts/validate.py path/to/output.html
-```
-
-Over the whole kit, skip the pre-v1.0 originals:
-
-```bash
-python3 scripts/validate.py snippets/*.html templates/*.html \
-  $(ls Examples/*.html | grep -v '\.before\.html$')
-```
-
-```bash
 python3 scripts/validate-palette.py --series
+python3 scripts/ui-audit.py path/to/output.html
 ```
 
-`check-sync.py` proves the shared files have not forked and that `palette.css` still satisfies the semantic contract. `validate-palette.py` proves a set of data colors is actually readable, under color blindness and against the ground. `validate.py` checks rules 1, 2, 5, 9, 10, 13 and 14 mechanically and exits non-zero on a violation. Neither can see overlap, clipping or a fallback font. Open the rendered file and look. If your environment cannot render, say so plainly instead of claiming it looks clean.
+`check-sync.py` proves the shared files match the other two kits. `validate.py` checks type rules 1, 2, 5, 9, 10, 13 and 14 and check L1, retired logo artwork. `validate-palette.py` checks the chart colors. `ui-audit.py` measures a rendered page. No script reads a page the way a person does. Open the file and look.
 
-## Color
+### Versions
 
-`snippets/palette.css` is authoritative. `tokens.json` is the machine-readable copy. Full table, contrast traps and usage rules are in `reference/brand.md`.
+`main` is live. The CDN serves it and the agent reads it on every request, so a change lands whole. Production material pins a tag in place of `@main`. [`CONTRIBUTING.md`](CONTRIBUTING.md) covers changes.
 
-| Name | CSS | Hex | Use |
-|---|---|---|---|
-| Dark Purple | `--royal-dark-purple` | `#2f193b` | Header bands, hero grounds, table header fill |
-| Purple | `--royal-purple` | `#572e72` | Accent bars, callout borders, links, brand-colored text |
-| Royal Purple | `--royal-royal-purple` | `#43205b` | Logo fill on light, stat numerals, flowchart action nodes |
-| Light Purple | `--royal-light-purple` | `#8260a2` | Tertiary accents and hover only. Never text, never a large ground |
-| Charcoal | `--royal-charcoal` | `#1E293B` | Body text on light. This is `--fg-1` |
-| Surface | `--royal-surface` | `#faf5fd` | Tinted rows and callout fills |
+### License and trademarks
 
-## Deprecated, still served
+The names, logos and brand colors in this repository belong to Royal Ambulance. [`TRADEMARKS.md`](TRADEMARKS.md) says what others may do with them. Permission is by request.
 
-`snippets/brand-base.css` and `assets/colors.json` predate v1.0 and stay on the CDN because documents already point at them. `brand-base.css` now forwards to `type-system.css` and `palette.css` and keeps the old `--royal-*` names resolving, so an old document picks up the corrected type without being edited. New work loads the two stylesheets above and reads `tokens.json`.
-
-## Versioning
-
-`@main` serves the latest. Pin to a tag for stability: replace `@main` with `@v1.1`. Bump the major version when a palette value or a mark changes.
-
-## License
-
-Brand assets are property of Royal Ambulance. Use only for Royal Ambulance and partner-related materials.
+Montserrat is licensed under the SIL Open Font License, Version 1.1. The license text is in [`assets/fonts/OFL.txt`](assets/fonts/OFL.txt) and [`for-humans/fonts/OFL.txt`](for-humans/fonts/OFL.txt).

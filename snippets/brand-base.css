@@ -18,7 +18,8 @@
      --royal-purple --royal-dark-purple --royal-light-purple
      --royal-royal-purple --royal-black --royal-white
      --royal-charcoal --royal-muted --royal-hairline --royal-surface
-       defined in palette.css, same hex values, no alias needed
+       defined in palette.css, no alias needed. The three neutral
+       names now carry the shared neutral family
      --royal-decision --royal-decision-border --royal-warning
      --royal-warning-border --royal-info --royal-info-border
        aliased below onto the --diagram-* roles

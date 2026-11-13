@@ -19,9 +19,41 @@
    a logo band or an accent rule. NEVER a chart series:
    data color comes from data-color.css, and a brand accent
    is never a series color.
+
+   Three families below are IDENTICAL IN EVERY BRAND and are the
+   one source for every functional color in the house:
+
+     --neutral-*   the shared neutral family. Text, hairlines,
+                   on-dark text. One gray for all three brands.
+     --alert-*     the alert family. go, warn, stop, info, each
+                   with five steps: base, -text, -tint, -on-tint,
+                   -on-dark. CANONICAL. These never change with
+                   the ground; pick the step for the ground.
+     --status-*    ALIASES of the alert base. They follow the
+                   ground: under .bk-on-dark they resolve to the
+                   -on-dark step, so a status reads on a band.
+     --diagram-*   ALIASES of the alert and neutral families.
+
+   --dir-* in data-color.css are aliases of the same family.
    ============================================================ */
 
 :root {
+
+  /* ---- NEUTRALS · shared family ----------------------------
+     Identical in every brand. One neutral, OKLCH hue 280 and
+     chroma under 0.016, so it sits between the Apex and Royal
+     hues and leans toward neither. Measured on #FFFFFF. */
+  --neutral-ink:             #23232A;   /* 15.61:1 */
+  --neutral-secondary:       #565860;   /*  7.09:1 */
+  --neutral-tertiary:        #6D6D77;   /*  5.12:1. The dimmest text */
+  --neutral-dimmed:          #8A8B93;   /*  3.39:1. Non-text marks only */
+  --neutral-border:          #D0D0D6;   /*  1.54:1 */
+  --neutral-hairline:        #E4E4E9;   /*  1.27:1 */
+  --neutral-tint-2:          #E5E6EA;
+  --neutral-tint:            #F0F1F4;
+  --neutral-mid:             #4E4F58;   /* white on it 8.13:1 */
+  --neutral-on-dark-body:    #DDDDE3;
+  --neutral-on-dark-caption: #A3A4AC;
 
   /* ---- BRAND ----
      Purple is the whole palette. royal-royal-purple is the logo
@@ -34,58 +66,129 @@
   --royal-black:         #000000;
   --royal-white:         #FFFFFF;
 
-  /* ---- NEUTRALS ---- */
-  --royal-charcoal:  #1E293B;
-  --royal-muted:     #64748B;
-  --royal-hairline:  #E2E8F0;
+  /* ---- BRAND NEUTRAL NAMES ----
+     Kept so every page already using them resolves. The values
+     are the shared neutral family above. The surface is the
+     brand's own tint and did not move. */
+  --royal-charcoal:  var(--neutral-ink);        /* #23232A */
+  --royal-muted:     var(--neutral-tertiary);   /* #6D6D77 */
+  --royal-hairline:  var(--neutral-hairline);   /* #E4E4E9 */
   --royal-surface:   #faf5fd;
 
   /* ---- SEMANTIC FOREGROUND ---------------------------------
-     type-system.css styles through these. Same names everywhere. */
-  --fg-1: var(--royal-charcoal);   /* primary text on light   */
-  --fg-2: var(--royal-muted);   /* secondary text          */
-  --fg-3: var(--royal-muted);   /* tertiary, metadata      */
-  --fg-4: #94A3B8;   /* labels, dimmed          */
-  --fg-accent: var(--royal-purple);   /* brand-colored text  */
-  --fg-on-dark-1: #FFFFFF;
-  --fg-on-dark-2: #E0D6E8;
-  --fg-on-dark-3: #B0A2BC;
+     type-system.css styles through these. Same names everywhere.
+     Ratios are the worst of #FFFFFF and --bg-surface. */
+  --fg-1: var(--neutral-ink);         /* primary text on light. 14.53:1 */
+  --fg-2: var(--neutral-secondary);   /* secondary text. 6.60:1 */
+  --fg-3: var(--neutral-tertiary);    /* tertiary, metadata. 4.76:1 */
+  --fg-4: var(--neutral-dimmed);      /* dimmed non-text. 3.15:1, never text */
+  --fg-accent: var(--royal-purple);   /* brand-colored text. 9.59:1 */
+  --fg-on-dark-1: #FFFFFF;                          /* 15.87:1 on --bg-band */
+  --fg-on-dark-2: var(--neutral-on-dark-body);      /* 11.73:1 */
+  --fg-on-dark-3: var(--neutral-on-dark-caption);   /* 6.40:1 */
 
-  /* ---- SEMANTIC BACKGROUND --------------------------------- */
-  --bg-canvas:   #FFFFFF;
-  --bg-surface:  var(--royal-surface);
-  --bg-elevated: #FFFFFF;
-  --bg-inverse:  var(--royal-dark-purple);
-  --bg-band:     var(--royal-dark-purple);
+  /* ---- SEMANTIC BACKGROUND ---------------------------------
+     --bg-surface-2 is the stronger tint, a second step under
+     --bg-surface. A table header sits on --bg-band, not here. --bg-mid is a filled block
+     in the brand color; white on it measures 10.30:1. --fg-3
+     measures 4.12:1 on --bg-surface-2; set --fg-2 there. --fg-on-dark-3
+     measures 4.15:1 on --bg-mid; set --fg-on-dark-2 there,
+     7.61:1 */
+  --bg-canvas:    #FFFFFF;
+  --bg-surface:   var(--royal-surface);
+  --bg-surface-2: #f0e1fd;
+  --bg-elevated:  #FFFFFF;
+  --bg-mid:       var(--royal-purple);
+  --bg-inverse:   var(--royal-dark-purple);
+  --bg-band:      var(--royal-dark-purple);
 
   /* ---- BORDERS --------------------------------------------- */
-  --border-1: var(--royal-hairline);
-  --border-2: #CBD5E1;
+  --border-1: var(--neutral-hairline);
+  --border-2: var(--neutral-border);
   --border-on-dark: rgba(255,255,255,0.12);
   --border-band-rule: transparent;
 
-  /* ---- STATUS ----------------------------------------------
+  /* ---- ALERT · canonical -----------------------------------
      Identical in every brand so an operational signal never
      changes meaning between documents. A brand accent is never
-     a status color. */
-  --status-go:   #1E7A4D;
-  --status-warn: #B5821A;
-  --status-stop: #B0322B;
-  --status-info: #2A5A8C;
+     an alert color. Always paired with an icon or a word.
 
-  /* ---- DIAGRAM ROLES ---------------------------------------
+       base      fills, rules, dots on a light ground. 3:1 or
+                 better; white text on it where noted.
+       -text     text on #FFFFFF and on every --bg-surface.
+       -tint     the pill and callout fill.
+       -on-tint  text on the matching tint.
+       -on-dark  text, dots and rules on a band.
+
+     Worst measured ratio across the three brands:
+       -text on white and surfaces  go 4.71  warn 4.51  stop 5.57  info 6.33
+       -on-tint on -tint            go 4.68  warn 4.52  stop 5.39  info 6.18
+       -on-dark on the bands        go 5.76  warn 7.72  stop 4.62  info 4.69
+     The base warn #B5821A measures 3.40:1 on white: a fill, a
+     rule or a dot, never text. Warn text is #926603.
+     On --bg-surface-2 the -text step of go measures 4.28:1 and
+     warn 4.10:1. Bare go or warn text does not sit on that tier;
+     carry it in a -tint pill there. Stop and info hold. */
+  --alert-go:           #1E7A4D;   /* white on it 5.32:1 */
+  --alert-go-text:      #1E7A4D;
+  --alert-go-tint:      #DAF8DF;
+  --alert-go-on-tint:   #1E7A4D;
+  --alert-go-on-dark:   #56B580;
+  --alert-warn:         #B5821A;   /* ink on it 4.59:1. White fails at 3.40:1 */
+  --alert-warn-text:    #926603;
+  --alert-warn-tint:    #FFEFDD;
+  --alert-warn-on-tint: #926603;
+  --alert-warn-on-dark: #E9B457;
+  --alert-stop:         #B0322B;   /* white on it 6.29:1 */
+  --alert-stop-text:    #B0322B;
+  --alert-stop-tint:    #FDE9E6;
+  --alert-stop-on-tint: #B0322B;
+  --alert-stop-on-dark: #EB685C;
+  --alert-info:         #2A5A8C;   /* white on it 7.14:1 */
+  --alert-info-text:    #2A5A8C;
+  --alert-info-tint:    #E3F0FF;
+  --alert-info-on-tint: #2A5A8C;
+  --alert-info-on-dark: #5796D9;
+
+  /* ---- STATUS · aliases of the alert base ------------------
+     Kept so every page already using them resolves. They follow
+     the ground: the .bk-on-dark block at the foot of this file
+     points them at the -on-dark step. For warn as TEXT use
+     --alert-warn-text; --status-warn is the base and is a fill. */
+  --status-go:   var(--alert-go);
+  --status-warn: var(--alert-warn);
+  --status-stop: var(--alert-stop);
+  --status-info: var(--alert-info);
+
+  /* ---- DIAGRAM ROLES · aliases -----------------------------
      Identical in every brand. Rectangles, 6px radius. Role is
-     communicated by fill, never by shape. */
-  --diagram-decision:        #4a8e3a;
-  --diagram-decision-text:   #FFFFFF;   /* 4.02:1, large or bold only */
-  --diagram-decision-border: #3a7029;
-  --diagram-warning:         #f57c00;
-  --diagram-warning-text:    #111111;   /* 6.98:1. White measures 2.70:1 and fails */
-  --diagram-warning-border:  #cc6600;
-  --diagram-process:         #3e3e3e;
-  --diagram-process-text:    #FFFFFF;   /* 10.70:1 */
-  --diagram-process-border:  #2a2a2a;
-  --diagram-connector:       #3e3e3e;
+     communicated by fill, never by shape. Fills come from the
+     alert and neutral families; a node carries its own ground,
+     so these do not change on a band. */
+  --diagram-decision:        var(--alert-go);
+  --diagram-decision-text:   #FFFFFF;   /* 5.32:1, any size */
+  --diagram-decision-border: #036139;
+  --diagram-warning:         var(--alert-warn);
+  --diagram-warning-text:    var(--neutral-ink);   /* 4.59:1. White measures 3.40:1 and fails */
+  --diagram-warning-border:  var(--alert-warn-text);
+  --diagram-process:         var(--neutral-mid);
+  --diagram-process-text:    #FFFFFF;   /* 8.13:1 */
+  --diagram-process-border:  var(--neutral-ink);
+  --diagram-connector:       var(--neutral-mid);
+
+  /* ---- SEQUENTIAL RAMP · brand hue -------------------------
+     Magnitude in the brand's own hue. data-color.css reads
+     these into --seq-100 through --seq-700; chart code uses the
+     --seq-* names, never these. Step 700 is --fg-accent. On a
+     band the anchor flips: the lightest step is the largest
+     value. */
+  --brand-seq-100: #f0e1fd;   --brand-seq-dark-100: #3d1f52;
+  --brand-seq-200: #e2c2fb;   --brand-seq-dark-200: #572e72;
+  --brand-seq-300: #d29ef8;   --brand-seq-dark-300: #7f42a6;
+  --brand-seq-400: #ba7ce4;   --brand-seq-dark-400: #9d60c6;
+  --brand-seq-500: #9d60c6;   --brand-seq-dark-500: #ba7ce4;
+  --brand-seq-600: #7f42a6;   --brand-seq-dark-600: #d29ef8;
+  --brand-seq-700: #572e72;   --brand-seq-dark-700: #e2c2fb;
 
   /* ---- RADII / ELEVATION -----------------------------------
      The house is flat. Shadow signals elevation, never decoration. */
@@ -99,4 +202,22 @@
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fast: 120ms; --dur-base: 200ms; --dur-slow: 360ms;
+}
+
+/* ============================================================
+   DARK GROUNDS
+   Put .bk-on-dark on the band, the same class the type layer
+   and data-color.css already use. The status aliases move to
+   the -on-dark step, so a status word, dot or rule reads on
+   every band: worst case 4.62:1, stop on the Apex band.
+
+   Only the aliases move. The canonical --alert-* steps and the
+   diagram roles keep one value on every ground.
+   ============================================================ */
+
+.bk-on-dark {
+  --status-go:   var(--alert-go-on-dark);
+  --status-warn: var(--alert-warn-on-dark);
+  --status-stop: var(--alert-stop-on-dark);
+  --status-info: var(--alert-info-on-dark);
 }

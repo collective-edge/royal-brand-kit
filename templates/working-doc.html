@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Royal Ambulance · Working document template</title>
+
+<!-- WORKING DOCUMENT. The spec is reference/layout.md section 7 and documents.json types.working-doc.
+     The default type: anything people will keep editing in Google Docs or Word.
+     US Letter, 0.75in margins, text block 7.0in. Weights 400 and 700 only.
+     Parts in order: logo, title, meta line, headings, body, bullets, table, footer.
+     No band, no callout, no card. No Powered by Collective Edge, as words
+     or as a lockup. Plain on purpose.
+
+     This page shows the result. The file people edit is built as .docx and
+     converted to a Google Doc: for-agents/README.md section 5.
+
+     Load order. type-system.css is identical in every kit and is served from
+     the Collective Edge kit. palette.css is the only stylesheet that differs
+     by brand. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/palette.css">
+
+<style>
+/* ---------- FONT ------------------------------------------------
+   type-system.css binds Montserrat through --font-sans. A print
+   engine that resolves no network stylesheet leaves that token
+   undefined, so this block names the face. */
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.woff2") format("woff2-variations"),
+       url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf")   format("truetype-variations");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+html, body { font-family: var(--font-sans, "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif); }
+
+/* ---------- BRAND VALUES ----------------------------------------
+   With the palette link, the logo URL and the footer line, this is
+   the only line that differs between the three kits.
+   reference/layout.md section 2 lists them. */
+
+:root {
+  --wdoc-logo: 1.3in;
+}
+
+/* ---------- PAGE ------------------------------------------------
+   US Letter, portrait. 1px is 1/96in on screen and in print, so
+   every value below prints at its stated size. 4px = 3pt.
+
+   Line spacing. Word and Google Docs state it as a multiple of the
+   natural line of the face, which is 1.219 for Montserrat. 1.15 for
+   headings is a line-height of 1.4. 1.35 for body is 1.65. */
+
+@page { size: letter; margin: 0; }
+
+:root {
+  --page-margin: 0.75in;
+  --wdoc-lh-heading: 1.4;
+  --wdoc-lh-body: 1.65;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { background: var(--bg-surface); margin: 0; padding: 0; }
+
+.sheet {
+  width: 8.5in;
+  min-height: 11in;
+  margin: 32px auto;
+  padding: var(--page-margin);
+  background: var(--bg-canvas);
+  box-shadow: 0 0 0 1px var(--border-1);
+  display: flex;
+  flex-direction: column;
+}
+
+.wdoc-body { flex: 1; }
+
+/* ---------- LOGO ------------------------------------------------
+   Role horizontal-on-light. Once, top left of page 1, 12pt after. */
+
+.wdoc-logo { width: var(--wdoc-logo); height: auto; display: block; margin: 0 0 16px; }
+
+/* ---------- TITLE AND META LINE ---------------------------------
+   Title 24pt, 700. Meta line 10.5pt, tertiary, over a hairline. */
+
+.wdoc-title { margin: 0 0 4px; max-width: none; font-weight: var(--weight-bold, 700); color: var(--fg-1); line-height: var(--wdoc-lh-heading); }
+.wdoc-meta {
+  margin: 0 0 16px;
+  padding: 0 0 8px;
+  max-width: none;
+  color: var(--fg-3);
+  line-height: var(--wdoc-lh-body);
+  border-bottom: 1px solid var(--border-1);
+}
+
+/* ---------- HEADINGS --------------------------------------------
+   Two levels. Heading 1 is 15pt in ink. Heading 2 is 12pt in the
+   accent. Both 700. */
+
+.wdoc-h1 { margin: 24px 0 8px; max-width: none; font-weight: var(--weight-bold, 700); color: var(--fg-1); line-height: var(--wdoc-lh-heading); }
+.wdoc-h2 { margin: 16px 0 4px; max-width: none; font-weight: var(--weight-bold, 700); color: var(--fg-accent); line-height: var(--wdoc-lh-heading); }
+
+/* ---------- BODY AND BULLETS ------------------------------------
+   10.5pt, 400, ink. 6pt after a paragraph, 3pt after a bullet.
+   Hanging indent 0.25in. */
+
+.wdoc-p { margin: 0 0 8px; max-width: none; color: var(--fg-1); line-height: var(--wdoc-lh-body); }
+.wdoc-list { margin: 0; padding: 0 0 0 24px; }
+.wdoc-li { margin: 0 0 4px; padding: 0; max-width: none; color: var(--fg-1); line-height: var(--wdoc-lh-body); }
+
+/* ---------- TABLE -----------------------------------------------
+   Full text width. Light header fill with an ink rule under it.
+   Hairline under every row. No frame, no vertical rule, no zebra.
+   Cell padding 4pt top and bottom, 6pt left and right. */
+
+.wdoc-table { width: 100%; margin: 0 0 8px; border-collapse: collapse; table-layout: fixed; font-variant-numeric: tabular-nums lining-nums; }
+.wdoc-table th,
+.wdoc-table td {
+  font-size: var(--fs-body-sm);
+  line-height: var(--wdoc-lh-body);
+  letter-spacing: var(--tr-body-sm);
+  padding: 4pt 6pt;
+  text-align: left;
+  vertical-align: top;
+  color: var(--fg-1);
+}
+.wdoc-table th { font-weight: var(--weight-bold, 700); background: var(--bg-surface-2); border-bottom: 1px solid var(--fg-1); }
+.wdoc-table td { font-weight: var(--weight-regular, 400); border-bottom: 1px solid var(--border-1); }
+.wdoc-table .num { text-align: right; }
+.wdoc-table .wdoc-col-s { width: 16%; }
+.wdoc-table .wdoc-col-m { width: 24%; }
+
+/* Status. A square and the word, in the alert text color. The word
+   carries the meaning. In a Word or Google file the square is the
+   character U+25A0. */
+.doc-status { display: inline-flex; align-items: center; gap: 8px; font-weight: var(--weight-bold, 700); white-space: nowrap; }
+.doc-status::before { content: ""; width: 8px; height: 8px; background: currentColor; flex: none; }
+.doc-status.is-go   { color: var(--alert-go-text); }
+.doc-status.is-warn { color: var(--alert-warn-text); }
+.doc-status.is-stop { color: var(--alert-stop-text); }
+.doc-status.is-info { color: var(--alert-info-text); }
+
+/* ---------- FOOTER ----------------------------------------------
+   One left-aligned line, 9pt, tertiary. No rule, no logo. */
+
+.wdoc-footer { flex: none; margin: 24px 0 0; }
+.wdoc-foot { margin: 0; max-width: none; color: var(--fg-3); }
+
+/* ---------- NARROW SCREEN ---------------------------------------
+   Under 880px the sheet is fluid. Print never takes this block. */
+
+@media screen and (max-width: 879px) {
+  :root { --page-margin: 24px; }
+  .sheet { width: auto; min-height: 0; margin: 0; box-shadow: none; }
+  .wdoc-logo { max-width: 100%; }
+  .wdoc-table-wrap { overflow-x: auto; }
+  .wdoc-table { min-width: 560px; }
+}
+
+/* ---------- PRINT ----------------------------------------------- */
+
+@media print {
+  *, *::before, *::after { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { background: #FFFFFF; }
+  .sheet { margin: 0; box-shadow: none; }
+  p, li { orphans: 3; widows: 3; }
+  h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+  tr { break-inside: avoid; page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<article class="sheet">
+
+  <main class="wdoc-body">
+
+    <!-- LOGO · role horizontal-on-light · once -->
+    <img class="wdoc-logo" src="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-purple.svg" alt="Royal Ambulance">
+
+    <!-- TITLE · 24pt · 60 characters at most -->
+    <h1 class="bk-h2 wdoc-title">Weekly operations sync</h1>
+
+    <!-- META LINE · owner or team · date · audience or status -->
+    <p class="bk-body-sm wdoc-meta">Operations · 13 November 2026 · Station leads</p>
+
+    <!-- FIRST LINE · the decision, the ask or the status -->
+    <p class="bk-body-sm wdoc-p">Decide today whether Medic 42 joins the night roster on 1 December.</p>
+
+    <!-- AGENDA · a 3-column table, or a numbered list. Never both -->
+    <h2 class="bk-h4 wdoc-h1">Agenda</h2>
+    <div class="wdoc-table-wrap">
+      <table class="wdoc-table">
+        <thead>
+          <tr><th class="wdoc-col-s">Minutes</th><th>Topic</th><th class="wdoc-col-m">Owner</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>5</td><td>Open actions from last week</td><td>Operations</td></tr>
+          <tr><td>15</td><td>Medic 42 inspection and the night roster</td><td>Fleet</td></tr>
+          <tr><td>10</td><td>December training dates</td><td>Training</td></tr>
+          <tr><td>10</td><td>Holiday coverage gaps</td><td>Scheduling</td></tr>
+          <tr><td>5</td><td>Decisions and owners</td><td>Operations</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- STATUS REPORT · one line of overall status, then the table -->
+    <h2 class="bk-h4 wdoc-h1">Status</h2>
+    <p class="bk-body-sm wdoc-p">On track. One item is at risk and one is blocked.</p>
+    <div class="wdoc-table-wrap">
+      <table class="wdoc-table">
+        <thead>
+          <tr><th>Item</th><th class="wdoc-col-s">Owner</th><th class="wdoc-col-m">Due</th><th class="wdoc-col-s">Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Medic 42 inspection</td><td>Fleet</td><td>26 November 2026</td><td><span class="doc-status is-warn">At risk</span></td></tr>
+          <tr><td>Night roster for December</td><td>Scheduling</td><td>20 November 2026</td><td><span class="doc-status is-go">On track</span></td></tr>
+          <tr><td>Refresher course sign-ups</td><td>Training</td><td>4 December 2026</td><td><span class="doc-status is-go">On track</span></td></tr>
+          <tr><td>Station 4 bay repair</td><td>Facilities</td><td>15 December 2026</td><td><span class="doc-status is-stop">Blocked</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- NEEDS A DECISION · bullets, one line each -->
+    <h3 class="bk-body wdoc-h2">Needs a decision</h3>
+    <ul class="wdoc-list">
+      <li class="bk-body-sm wdoc-li">Medic 42 joins the night roster on 1 December, or waits for the inspection.</li>
+      <li class="bk-body-sm wdoc-li">Who covers Station 4 nights if the bay repair slips past 15 December.</li>
+    </ul>
+
+  </main>
+
+  <!-- FOOTER · one line · brand and page number -->
+  <footer class="wdoc-footer">
+    <p class="bk-caption wdoc-foot">Royal Ambulance · Page 1</p>
+  </footer>
+
+</article>
+
+</body>
+</html>

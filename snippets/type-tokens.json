@@ -404,7 +404,7 @@
   "rules": [
     "Montserrat everywhere. No italic, ever, at any weight.",
     "Weights: 400 body, 600 subheads and caps labels, 700 headings and emphasis, 800 hero only. Nothing else.",
-    "Three weights maximum in one piece. Three sizes above body maximum.",
+    "Three weights maximum in one document. A deck is the one piece that uses all four. Three sizes above body maximum.",
     "On any dark ground, add 0.005em tracking at every step, and drop one weight where the step is 700 or heavier. 600 is the floor, because 500 is not in the ladder.",
     "Tracking in em, never px. Large type negative, small caps positive.",
     "Uppercase is always tracked and never longer than four words.",

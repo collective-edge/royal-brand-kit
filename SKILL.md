@@ -1,184 +1,226 @@
 ---
 name: royal-brand-guidelines
-description: Applies Royal Ambulance’s brand standards to any output representing Royal Ambulance: the purple palette, the crown wordmark, and the shared Collective Edge house type system set in Montserrat. Use when producing or reviewing a Royal Ambulance email, slide, deck, one-pager, report, letterhead, flyer, document, web page, table, chart, diagram, flowchart, case study, proposal, or PDF, and when checking existing Royal material for brand compliance. Covers asset CDN URLs, logo role selection, color and contrast rules, the house data color layer for charts, dashboards and reporting, the fifteen type rules, the house layout patterns, and the validators to run before shipping.
+description: Applies the Royal Ambulance brand standard to any document, deck, sheet, PDF or page that carries the Royal name. Royal Ambulance is an operating company under Collective Edge. It runs purple over the shared house neutrals, with the crown wordmark. Type is Montserrat at 400, 600, 700 and 800 with no italic. Covers how to load the kit, logos by role, color, the alert family, chart color, type, the rules for editing an existing file, the working document, sheet, deck, one-pager, report and memo layouts, the “Powered by Collective Edge” lockup that appears once, small, on every PDF, deck and image and never on a working document or a sheet, voice, and a pre-ship check. Use when producing or reviewing any Royal Ambulance material.
 ---
 
-# Royal Ambulance · brand guidelines
+# Royal Ambulance · brand standard
 
-House type system v1.0.
+Royal Ambulance is a Bay Area medical transportation company and an operating company under Collective Edge. Its color is purple and its mark is the crown.
 
-Royal Ambulance is a Bay Area medical transportation company and an operating company under Collective Edge. It inherits the house type system unchanged and supplies two things of its own: a purple palette and the crown wordmark.
+Collective Edge, Apex Paramedics and Royal Ambulance share one standard. The sections, the order and the rules are the same in all three kits. Color, logo and brand facts differ. Type, layout, alert color, chart color and the co-brand lockup are shared and never forked for one brand.
 
-Reference, read on demand:
+This file is the whole standard in brief. The references carry the full tables: [reference/brand.md](reference/brand.md) for color, logo, co-brand and voice, [reference/layout.md](reference/layout.md) for every document type in inches and points, [reference/type-system.md](reference/type-system.md) for type, [reference/data-color.md](reference/data-color.md) for charts, [reference/ui.md](reference/ui.md) for controls. [reference/partner-colors.md](reference/partner-colors.md) holds partner facility colors.
 
-- [reference/brand.md](reference/brand.md) · full color table, contrast traps, logo specifications, voice
-- [reference/type-system.md](reference/type-system.md) · the type standard and the fifteen rules
-- [reference/layout.md](reference/layout.md) · header band, sub-banner, flowchart nodes, stat callout, table, footer, the Collective Edge co-brand lockup
-- [reference/data-color.md](reference/data-color.md) · the data color layer. Series, magnitude, polarity, direction, and the comparison chart
-- [reference/partner-colors.md](reference/partner-colors.md) · partner facility colors, their sourcing and the gate on using them
-- `tokens.json` · colors for python-pptx, python-docx, matplotlib, reportlab
-- `snippets/type-tokens.json` · type values for the same generators
+## 1. Brand
 
----
-
-## 1. Load the assets
-
-Stylesheets in this order. `type-system.css` is identical in every kit and is served from the Collective Edge kit. `palette.css` is the only file that differs. `cobrand.css` is the co-brand lockup, also identical everywhere, and it reads the palette, so it loads after it. `data-color.css` is the data layer, identical everywhere, and loads last. Add it on anything with a chart, a dashboard tile or a reported number.
-
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/palette.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/data-color.css">
-```
-
-Inline this block at the top of every HTML file you generate, even when Montserrat is installed on the rendering machine. A local copy makes the file render correctly on that one machine and wrong everywhere else, and only the declaration embeds the font in a downstream PDF (weasyprint, wkhtmltopdf, Chrome print). The `font-family` line is not optional: without it nothing selects Montserrat when the CDN stylesheet fails to resolve.
-
-```css
-@font-face {
-  font-family: "Montserrat";
-  src: url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.woff2") format("woff2-variations"),
-       url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf")   format("truetype-variations");
-  font-weight: 400 800;
-  font-style: normal;
-  font-display: swap;
-}
-html, body { font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif; font-synthesis: none; }
-```
-
-The range is `400 800`. 100, 200, 300 and 900 are forbidden at document sizes, so never open the axis to `100 900`.
-
-### Logo roles
-
-Ask for a role, never a filename. `-on-light` is the version you place **on** a light background.
-
-| Role | URL |
+| | |
 |---|---|
-| horizontal-on-light | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-purple.svg` |
-| horizontal-on-dark | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-white.svg` |
-| mark-on-light | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/crown-purple.svg` |
-| mark-on-dark | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/crown-white.svg` |
-| stacked-on-dark | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/stacked-white.svg` |
+| Role | Operating company under Collective Edge |
+| Character | Written for the reader who is between calls. Short declarative sentences |
+| Palette | Purple. Dark Purple is the band, Purple is the accent, Royal Purple is the logo |
+| Logo | The crown and the `ROYAL AMBULANCE` wordmark. The mark is the crown |
 
-Horizontal is the default anywhere with horizontal room. Minimum width 110px for horizontal, 32px for the mark. Never recolor a mark with a filter. Pick the file for the ground. Full specifications in [reference/brand.md](reference/brand.md).
+## 2. Load
 
----
+Every file is public on jsDelivr. No auth, no install. Paths in this file are relative to the kit root.
 
-## 2. Color
+```
+https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/
+```
 
-| Name | CSS | Hex | Usage |
+| File | Holds |
+|---|---|
+| `brands.json` | All three brands. CDN roots, logo roles, minimum sizes and the co-brand lockup. Identical in every kit |
+| `tokens.json` | This brand’s colors as hex and RGB. One key structure in all three kits |
+| `snippets/type-tokens.json` | The type scale, weights, measure, spacing and the static font names. Identical in every kit |
+| `for-humans/logos/png/` | Transparent PNG logos, for generators that cannot place SVG |
+| `for-humans/fonts/static/` | Montserrat Regular, SemiBold, Bold and ExtraBold, as static files |
+
+**Word, PowerPoint, Excel and PDF.** Read color from `tokens.json` and type from `snippets/type-tokens.json`. Place logos as PNG. Name the family `Montserrat`, and install or register the four static files before rendering so the face embeds. `office` in `snippets/type-tokens.json` gives the menu name for each weight. If the render falls back to another face, say so when you hand the work back.
+
+**HTML.** Four stylesheets, in this order: `snippets/type-system.css`, `snippets/palette.css`, `snippets/cobrand.css`, `snippets/data-color.css`. `palette.css` loads from this kit and is the only one that differs by brand. The other three load from the Collective Edge kit. Load `data-color.css` only when the page has a chart or a reported number. Style through the `.bk-*` classes and the `--fg-*`, `--bg-*` and `--border-*` variables. The link tags and the `@font-face` block that embeds the face in a PDF are in `for-agents/README.md`. `assets/colors.json` and `snippets/brand-base.css` predate the house type system. They still ship for pages already loading them. New work never reads them.
+
+## 3. Logo
+
+Ask for a role, never a filename. Filenames differ between brands. `-on-light` is the file placed on a light background. `-on-dark` is the file placed on a dark one. Royal ships no compact lockup and no app icon. Use the horizontal lockup.
+
+| Role | SVG, in `assets/logos/` | PNG, in `for-humans/logos/png/` | Use |
 |---|---|---|---|
-| Dark Purple | `--royal-dark-purple` | `#2f193b` | Header bands, hero grounds, section dividers, table header fill |
-| Purple | `--royal-purple` | `#572e72` | Accent bars, callout borders, links, buttons, brand-colored text |
-| Royal Purple | `--royal-royal-purple` | `#43205b` | Logo fill on light, stat numerals, flowchart action nodes |
-| Light Purple | `--royal-light-purple` | `#8260a2` | Tertiary accents and hover only |
-| Charcoal | `--royal-charcoal` | `#1E293B` | Body text on light. This is `--fg-1` |
-| Surface | `--royal-surface` | `#faf5fd` | Tinted rows and callout fills |
+| `horizontal-on-light` | `horizontal-purple.svg` | `Royal-Ambulance-horizontal-purple-1200w.png` | The primary lockup, on white and tints |
+| `horizontal-on-dark` | `horizontal-white.svg` | `Royal-Ambulance-horizontal-white-1200w.png` | The primary lockup, on the band |
+| `mark-on-light` | `crown-purple.svg` | `Royal-Ambulance-crown-purple-512w.png` | The crown, on light. Avatars, badges |
+| `mark-on-dark` | `crown-white.svg` | `Royal-Ambulance-crown-white-512w.png` | The crown, on dark |
+| `stacked-on-light` | `stacked-purple.svg` | `Royal-Ambulance-stacked-purple-1200w.png` | The vertical lockup, on light. Portrait and square formats |
+| `stacked-on-dark` | `stacked-white.svg` | `Royal-Ambulance-stacked-white-1200w.png` | The vertical lockup, on dark |
 
-Style through `--fg-*`, `--bg-*` and `--border-*`. Reach for a raw `--royal-*` value only where the brand color is the point.
+Minimum width: horizontal 110px on screen and 1in in print, mark 32px and 0.33in. Clear space on all four sides: the height of the crown. Each PNG also ships at double width: replace `1200w` with `2400w`, or `512w` with `1024w`.
 
-Three rules that get broken most:
+1. The brand’s logo appears once in a document and at most once on a slide: in the band of a memo, a one-pager or a report, top left of page 1 on a working-doc.
+2. Match the file to the ground. Never recolor a logo and never invert one with a filter.
+3. Never stretch, skew, rotate, outline or shadow a logo.
+4. Hold the clear space. If it is short, shrink the logo, down to the minimum.
+5. Never place a logo on a photograph without a solid backing.
+6. Never separate the crown from the wordmark in the horizontal or stacked lockup.
+7. Use the horizontal lockup wherever it fits. The fill is `#43205b` or white, and nothing else.
 
-1. **Light Purple `#8260a2` is never body text and never a large background.** It measures 5.07:1 on `#FFFFFF`, so it clears AA at text sizes and fails AAA, and it washes out at scale. It is the tertiary accent, not a text color. Body text is `--fg-1` `#1E293B`, 14.63:1. Brand-colored text is `--fg-accent` `#572e72`, 10.30:1.
-2. **Never put `#8260a2` on `#2f193b`.** On a dark ground use `--fg-on-dark-2` `#E0D6E8` or `--fg-on-dark-3` `#B0A2BC`.
-3. **A brand purple is never a status color.** Status is `--status-go` `#1E7A4D`, `--status-warn` `#B5821A`, `--status-stop` `#B0322B`, `--status-info` `#2A5A8C`, identical in every brand.
+## 4. Color
 
-Diagram roles come from `brands.json` and are identical across the house: decision `#4a8e3a`, warning `#f57c00`, process `#3e3e3e`. Everything else is in [reference/brand.md](reference/brand.md).
+### 4.1 Palette
 
----
+Purple is the whole palette. Text and rules come from the shared neutrals.
 
-## 3. Data color
+| Name | Token | Hex | Use |
+|---|---|---|---|
+| Dark Purple | `--royal-dark-purple` | `#2f193b` | The band. Hero grounds, section dividers, table header rows |
+| Purple | `--royal-purple` | `#572e72` | Primary. Accent bars, callout borders, buttons, links. Accent text |
+| Royal Purple | `--royal-royal-purple` | `#43205b` | The logo fill on light. The action node in a flowchart |
+| Light Purple | `--royal-light-purple` | `#8260a2` | Tertiary accents and hover states. Never text. Never a large background |
+| Surface | `--royal-surface` | `#faf5fd` | Callout fill |
+| White | `--royal-white` | `#FFFFFF` | The page. Text on a dark purple ground |
 
-The brand palette is purple. For a band and a letterhead that is correct. For a chart it is a defect: two of the four purples the old rule allowed measure ΔE 6.6 under normal vision, and the floor is 15. Nobody could tell them apart.
+### 4.2 Grounds and neutrals
 
-**When there is data on the page, the job of color is to separate and to signal.** The brand is carried by the band, the mark and the type, not by the bars. A brand accent is never a series color. Load `data-color.css` and style through it. Full standard in [reference/data-color.md](reference/data-color.md).
+Every brand has the same six grounds, and one neutral family sets text and rules in all three brands. White is the page. The last column lists the only text that sits on each ground.
 
-Every color in a chart does exactly one of four jobs. If you cannot say which, the chart is not finished.
+| Ground | Token | Hex | Text on it |
+|---|---|---|---|
+| Canvas | `--bg-canvas` | `#FFFFFF` | `#23232A` body, `#565860` secondary, `#6D6D77` captions |
+| Surface | `--bg-surface` | `#faf5fd` | The same three |
+| Surface 2 | `--bg-surface-2` | `#f0e1fd` | `#23232A` and `#565860` only |
+| Mid | `--bg-mid` | `#572e72` | `#FFFFFF` and `#DDDDE3` only |
+| Band | `--bg-band` | `#2f193b` | `#FFFFFF` headings, `#DDDDE3` body, `#A3A4AC` captions |
+| Hero | `--bg-inverse` | `#2f193b` | The same three |
 
-| Job | Question | Tokens |
-|---|---|---|
-| Identity | which series is this | `--series-1` to `--series-8`, in order, never cycled |
-| Magnitude | how much | `--seq-100` to `--seq-700` |
-| Polarity | which side of a baseline | `--div-neg-3` to `--div-pos-3` |
-| Direction | is this good news | `--dir-favorable`, `--dir-unfavorable`, `--dir-caution`, `--dir-neutral` |
+Ink `#23232A` is `--fg-1`. Secondary `#565860` is `--fg-2`. Tertiary `#6D6D77` is `--fg-3`, the dimmest text. On-dark body `#DDDDE3` is `--fg-on-dark-2`. On-dark caption `#A3A4AC` is `--fg-on-dark-3`. Hairline `#E4E4E9` is `--border-1`. Border `#D0D0D6` is `--border-2`. Dimmed `#8A8B93`, `--fg-4`, is for marks only.
 
-Four things that get broken most:
+### 4.3 Alerts
 
-1. **Direction is not the sign of the number.** Transports rose 6.3 percent, hospital invoice cost fell 38.8 percent, and both are good news. Color follows favorable against unfavorable, never the arithmetic sign and never the direction of the arrow. A red "−38.8%" on a cost saving tells the reader Royal made things worse.
-2. **Never two tints of the brand hue for two different things.** The before-and-after chart takes an inert gray baseline `--data-baseline` against `--series-1`. Light purple against dark purple is the original defect.
-3. **Diverging poles are red and teal, never red and green.** Red against green measures ΔE 5.5 under simulated deuteranopia and collapses into one color.
-4. **Every direction color carries an arrow or icon and a word.** Color is never the only thing holding the meaning. The deck gets printed in grayscale and read by people who cannot separate red from green.
+Four meanings, one family, identical in every brand. Green means good and nothing else. A brand color is never a status color. A word or an icon always travels with the color.
 
-Series cap is three on scatter, bubble and map charts, eight everywhere else. There is no ninth color: fold the tail into "Other" or split the chart. Amber `#dca821` and orange `#e6811c` sit below 3:1 on white, so those series carry a direct label or a table beside them.
+| Meaning | Base | Text | Tint | Text on tint | On dark |
+|---|---|---|---|---|---|
+| Go · cleared, on time, in service | `#1E7A4D` | `#1E7A4D` | `#DAF8DF` | `#1E7A4D` | `#56B580` |
+| Warn · at risk, pending, watch | `#B5821A` | `#926603` | `#FFEFDD` | `#926603` | `#E9B457` |
+| Stop · failed, out of service, blocked | `#B0322B` | `#B0322B` | `#FDE9E6` | `#B0322B` | `#EB685C` |
+| Info · neutral notice | `#2A5A8C` | `#2A5A8C` | `#E3F0FF` | `#2A5A8C` | `#5796D9` |
 
-On a dark band put `.bk-on-dark` on the container and every token takes its dark step, exactly as the type layer already works.
+- **Steps.** Base is a fill, a rule or a dot on a light ground. Text is text on white and on a surface. Tint is a pill or a callout fill. On dark is text, dots and rules on a dark ground.
+- **Names.** The canonical names are `--alert-<name>`, `-text`, `-tint`, `-on-tint` and `-on-dark` in `palette.css`, and `alert` in `tokens.json`. `--status-*`, `--dir-*` and `--diagram-*` are aliases of this family.
+- **Dark grounds.** Status works on a band. Use the on-dark step there. In CSS, `--status-*` moves to that step under `.bk-on-dark`.
+- **Warn.** The base `#B5821A` measures 3.40:1 on white and is never text. Warn text is `#926603`. Text on an amber fill is `#23232A`, never white.
+- **Diagrams.** Decision `#1E7A4D` with `#FFFFFF` text. Warning `#B5821A` with `#23232A` text. Process `#4E4F58` with `#FFFFFF` text. Connector `#4E4F58` at 1.8pt. Rectangles, 6px radius. Fill carries the role, never shape.
 
-Partner facility colors are opt-in and gated. Read [reference/partner-colors.md](reference/partner-colors.md) before using one, and never sample a logo.
+### 4.4 Charts
 
----
+Chart colors come from the house data set, never from the brand palette. Full standard: [reference/data-color.md](reference/data-color.md).
 
-## 4. Type
+| Job | Colors |
+|---|---|
+| Series on light, in order | `#2063e6` `#eb6f32` `#b93388` `#7f3810` `#8a72f7` `#819808` `#259cde` |
+| Series on dark, in order | `#0986e4` `#fc803e` `#c4588d` `#ac772e` `#ac94fd` `#b1d454` `#74c8fc` |
+| Magnitude, light to dark | `#f0e1fd` `#e2c2fb` `#d29ef8` `#ba7ce4` `#9d60c6` `#7f42a6` `#572e72` |
+| Good, bad, caution, neutral | `#1E7A4D` `#B0322B` `#926603` `#6D6D77`, each with an arrow or icon and a word |
 
-Type is shared with Apex Paramedics and Collective Edge and is never forked for Royal. Read [reference/type-system.md](reference/type-system.md) for the scale, the measure, the micro-typography and the fifteen rules. Style through the `.bk-*` classes. Do not restate the scale from memory.
+- Assign series in order. Never cycle. There is no eighth: fold the tail into “Other” or split the chart. On a scatter, a bubble chart, a map or small multiples, four series at most on light and three on dark.
+- Good or bad follows the meaning, never the sign of the number. A cost that falls is good. Never two tints of one hue for two different things: a before and after chart sets a `#D0D0D6` baseline against series 1.
 
-Three things to never do:
+### 4.5 Color rules
 
-1. **No italic**, at any weight, in any brand. Never synthesize an oblique.
-2. **No weight outside 400, 600, 700, 800.** 400 body, 600 subheads and caps labels, 700 headings and emphasis and stat numerals, 800 hero only.
-3. **No tracking in px or pt.** Tracking is always em, from the tracking tokens.
+1. White is the page. The band opens a document. It is never the reading surface.
+2. Body text is `#23232A` on white. On a dark ground, headings are `#FFFFFF` and body is `#DDDDE3`.
+3. `#8A8B93`, `#D0D0D6` and `#E4E4E9` are never text.
+4. A brand color is never a status color and never a chart series. Every color is an exact hex from `tokens.json`. Never invent one and never tint one.
+5. Light Purple `#8260a2` is never text and never a large background. It never sits on `#2f193b`, where it measures 3.13:1.
+6. Accent text on white is Purple `#572e72`, which measures 10.30:1. White text sits on `#2f193b`, `#572e72` or `#43205b` only.
+7. Dark grounds are `#2f193b` and `#572e72` only. Tints are `#faf5fd` and `#f0e1fd` only.
+8. Partner facility colors are gated. Read `reference/partner-colors.md` first. Never sample a color from a logo.
 
-On any dark ground put `.bk-on-dark` on the container. It adds 0.005em tracking at every step and drops one weight where the step is 700 or heavier. 600 is the floor, so `.bk-h3`, `.bk-h4`, `.bk-eyebrow` and `.bk-table th` hold 600 and gain the tracking alone. Every Royal document opens on a dark band, so every Royal document needs it.
+## 5. Type
 
----
+Montserrat for every word, in every brand. Full standard: [reference/type-system.md](reference/type-system.md).
 
-## 5. Layout
+| Step | pt | px | Weight | Leading | Use |
+|---|---|---|---|---|---|
+| `bk-display-xl` | 72 | 96 | 800 | 1.05 | Hero and title bands only |
+| `bk-display-lg` | 54 | 72 | 800 | 1.08 | Hero and title bands only |
+| `bk-display-md` | 42 | 56 | 800 | 1.10 | Slide headlines |
+| `bk-h1` | 30 | 40 | 700 | 1.18 | Page title |
+| `bk-h2` | 24 | 32 | 700 | 1.25 | Section heading |
+| `bk-h3` | 18 | 24 | 600 | 1.35 | Subhead |
+| `bk-h4` | 15 | 20 | 600 | 1.45 | Subhead |
+| `bk-body-lg` | 15 | 20 | 400 | 1.55 | Lead paragraph, deck body |
+| `bk-body` | 12 | 16 | 400 | 1.60 | Body |
+| `bk-body-sm` | 10.5 | 14 | 400 | 1.55 | Table cells, secondary body |
+| `bk-caption` | 9 | 12 | 400 | 1.45 | Captions, footers. The print floor |
+| `bk-eyebrow` | 9 | 12 | 600 | 1.45 | Uppercase labels, tracked 0.080em |
 
-Header band, sub-banner, flowchart nodes, stat callout, table and footer are in [reference/layout.md](reference/layout.md) as copy-pasteable blocks. Start every one-pager, report and letterhead with the band:
+1. No italic, at any weight. Never synthesize one.
+2. Weights 400, 600, 700 and 800 only. Three at most in a document. A deck is the one piece that uses all four.
+3. On a dark ground, drop one weight where the step is 700 or heavier and add 0.005em tracking. 600 is the floor.
+4. Tracking is in em, never px or pt. Uppercase is always tracked and never longer than four words.
+5. Sentence case for every heading. Uppercase for the band title and the title slide title only.
+6. Flush left, ragged right. Never justify. Never center past three lines. A body line stops at 70 characters, which is 54ch. Captions 40ch. Headings 28ch.
+7. Space above a heading is three times the space under it. Subhead 18pt above, 6pt under. Section heading 36pt above, 12pt under.
+8. The mono face is for color values, paths and filenames, code, and record identifiers. Everything else is Montserrat.
 
-```html
-<header class="bk-on-dark" style="background:var(--bg-band); display:flex; align-items:center; justify-content:space-between; gap:var(--space-6); padding:var(--space-6) 0.5in;">
-  <div class="bk-h2 bk-caps" style="margin:0;">
-    Document title
-  </div>
-  <img src="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-white.svg"
-       alt="Royal Ambulance" style="width:1.6in; height:auto; display:block; flex:none;">
-</header>
-```
+## 6. Layout
 
-`.bk-caps` resolves the uppercase and the caps tracking at whatever step it sits on, and `.bk-on-dark` adds the 0.005em bonus. Never type either value. Slides swap `.bk-h2` for `.bk-display-md`.
+Six types. Take the first that fits: sheet, deck, working-doc, one-pager, report, memo. The working-doc is the default for anything in Google Docs or Word. A memo is only for a request that asks for one by name. Every value, the wording budget and the build for Word, PowerPoint and Google files: [for-agents/README.md](for-agents/README.md) section 5 and [reference/layout.md](reference/layout.md).
 
-**Powered by Collective Edge.** Royal is an operating company under Collective Edge, and the reader should be able to see it. The lockup rides beside the Royal mark, never inside it, with a hairline between them, at 204px, which is wider than the Royal mark above it on purpose. `.ce-powered` on a dark band, `.ce-powered ce-powered-light` on white, `.ce-powered-text` where no mark fits. It belongs on footers, dashboard sidebars, closing slides, data pages, anywhere a number was computed rather than typed. Never on the Royal mark itself, never on a clinical instruction or a patient-facing consent, never twice on one surface. Both grounds, the measured contrast and copy-pasteable blocks are in [reference/layout.md](reference/layout.md).
+1. Editing an existing file comes first. Keep its layout, styles, fonts, sizes, colors, column order and wording. Change only what was asked, in the same file.
+2. New content takes the style of its neighbors. A document the person points to is the template, and this kit does not override it.
+3. Restyle, shorten or rewrite only when asked. Never delete someone else’s content. Never change spacing, sizes or margins to make an edit fit a page. All eight rules: `for-agents/README.md` section 5.
 
-**UI controls.** Buttons, links, form controls, status badges and the focus ring are shared and identical in all three brands: [`snippets/ui.css`](snippets/ui.css), loaded third after `palette.css`, with the standard in [reference/ui.md](reference/ui.md). Cards, tables, dashboard shells, navigation and heroes are not shared; each site builds its own on those tokens. `Examples/ui-controls.html` renders every control in every state.
+| | Working-doc | Sheet | Deck | One-pager, report, memo |
+|---|---|---|---|---|
+| Page | US Letter, portrait, 0.75in margins | One table per tab. Logo in row 1, header in row 2 | 13.333 by 7.5in, 16:9 | US Letter, portrait. 0.75in margins, 0.6in on a one-pager |
+| Opens on | The logo, top left, then the title at 24pt. No band | The header row, frozen, filter on | A title slide on the dark ground | The band, with the logo |
+| Body | 10.5pt, weights 400 and 700 | Montserrat 10pt | 15pt, on white | `bk-body`, 12pt, 70 characters a line |
 
----
+1. The band is for PDF, print and slides. A document that will live in Google Docs is a working-doc unless the person asks for a designed one-pager. A working-doc is plain: no band, callout, card, icon, uppercase label or stat numeral. A light table header, a hairline under every row, a one-line footer.
+2. In a file that becomes a Google file, line spacing is a multiple, 1.15 for headings and 1.35 for body, never an exact point value. Table indent equals the left cell padding, 6pt. An empty paragraph sits between two tables.
+3. Keep it short. The first line states the decision, the ask or the status. In an agenda it states what the meeting is for. No restated title, no closing summary. A sentence runs 20 words at most.
 
-## 6. Verify before shipping
+## 7. Co-brand
 
-```bash
-python3 scripts/validate.py path/to/output.html
-python3 scripts/ui-audit.py path/to/page.html --width 375 --width 768 --width 1440
-python3 scripts/validate-palette.py --series          # whenever a chart is involved
-```
+Apex Paramedics and Royal Ambulance are operating companies under Collective Edge, and the reader should be able to see it.
 
-It checks rules 1, 2, 5, 9, 10, 13 and 14 mechanically and exits non-zero on a violation. It cannot see the rest, so also look:
+1. “Powered by Collective Edge” appears once on everything Apex Paramedics and Royal Ambulance deliver as a PDF, a deck or an image: memo, one-pager, report, proposal, deck. Never twice. A working-doc and a sheet never carry it, as a lockup or as words. The rule follows the type, not the file format: a working-doc exported to PDF stays as it is.
+2. A Collective Edge document carries the Collective Edge logo and no lockup. Where the Collective Edge mark shares a surface with another brand, the lockup is on that surface, once.
+3. In a document, a deck or an image the lockup is small and quiet: the words `Powered by` at caption size, 9pt, 400, `#6D6D77`, then on the same line the Collective Edge horizontal logo at its minimum width, 1.25in (120px) wide and 0.208in (20px) tall. On the closing slide the words are 12pt, `#A3A4AC`. The `horizontal-on-light` file on white, `horizontal-on-dark` on a dark ground. On a site or a dashboard it is the 204px lockup in `cobrand` in `brands.json`.
+4. A memo and a one-pager carry it in the footer row of page 1, at left. A report carries it as the last line of the body on the last page. A deck carries it in the footer row of the closing slide. A chart or data graphic made on its own carries no logo: one line of words, `Powered by Collective Edge`, bottom right, caption size, `#6D6D77`.
+5. It sits beside the brand’s own logo, never inside it. Never merge, nest or recolor either mark.
+6. Two exceptions, from `brands.json`: a clinical instruction and a patient-facing consent or safety document carry no lockup.
+7. On an Apex Paramedics or Royal Ambulance surface, that company leads. Its logo heads the page and its palette runs the band. Collective Edge adds no hue.
+8. On a Royal surface the Collective Edge block mark takes a `#572E72` wedge. Use the shipped files `mark-black-royal.svg` and `mark-white-royal.svg` from the Collective Edge kit. Full construction: [reference/brand.md](reference/brand.md) section 3.
 
-- [ ] Rendered, not just written. Open it. Overlap, clipping and overflow are invisible in source. If your environment cannot render, say so plainly instead of claiming it looks clean.
-- [ ] No collisions. Nothing overlapping, clipped or overflowing. No text running past its container, off the page, or into the logo.
-- [ ] Montserrat actually rendered, not a fallback. For PDF, actually embedded.
-- [ ] No italic anywhere.
-- [ ] The dark band is one weight lighter than the light-surface equivalent.
-- [ ] Correct logo role for the ground, clear space respected, never stretched or recolored.
-- [ ] Body text holds its 54ch measure and does not run the full container width.
-- [ ] “Powered by Collective Edge” on the footer, the sidebar or the closing slide. Once, beside the Royal mark and never inside it.
-- [ ] Every color comes from the palette. No off-brand hue. Chart colors come from `data-color.css`.
-- [ ] Every chart color does exactly one of the four jobs, and you can say which.
-- [ ] Direction follows favorable against unfavorable, not the sign of the number.
-- [ ] No two tints of the brand hue standing in for two different things.
-- [ ] Every direction color carries an arrow or icon and a word.
-- [ ] Margins and alignment consistent across every page and every rail.
-- [ ] Page breaks clean for print. No table, card or stat block split across a page.
-- [ ] No helper text, no caption restating the thing above it, no parenthetical after a heading, no em dash.
-- [ ] Nothing under 9pt on paper. `.bk-code` sets no size of its own, so a code string inside a 9pt caption sets at 9pt.
+## 8. Voice
 
-State which brand choices you applied when you hand the work back: logo role, accent, how the font embedded.
+Royal writes for the reader who is between calls. Short declarative sentences.
+
+1. Short declarative sentences. Active verbs. No filler and no throat-clearing.
+2. No em dashes. Use a period, a comma or `·`. An en dash only in a date or number range.
+3. Exact values. The real number, never a rounded one. The hex, never a description of the color.
+4. A label, a value, and nothing between them. No helper text, no caption restating the thing above it, no parenthetical after a heading.
+5. No emoji, no exclamation points, no rhetorical questions.
+6. Clinical and operational terms stay precise. Name people, partners and facilities exactly as they write themselves.
+7. The reader is between calls. Keep it short.
+
+## 9. Check before shipping
+
+Check the finished file, not the code that made it.
+
+- [ ] Every text run names Montserrat. No run is italic. Every weight is 400, 600, 700 or 800. Three at most in a document. Only a deck uses all four.
+- [ ] Every size is a step in section 5 and nothing is under 9pt. Every color is a hex from `tokens.json`. No text is set in `#8A8B93`, `#D0D0D6` or `#E4E4E9`.
+- [ ] Body text is `#23232A` on white. On a dark ground headings are `#FFFFFF` and body is `#DDDDE3`.
+- [ ] An edited file changed only where asked. A Google file has no exact line spacing, a 6pt table indent and a paragraph between two tables.
+- [ ] Margins are 0.75in on a working-doc, a memo or a report and 0.6in on a one-pager. A one-pager, an agenda and a status report are one page.
+- [ ] Slides are 13.333 by 7.5in with 15pt body. Only the title, divider and closing slides are dark.
+- [ ] The brand’s logo appears once in a document and at most once on a slide, in the role for its ground, at or above the minimum, clear space held, aspect ratio unchanged.
+- [ ] On a PDF, a deck or an image, “Powered by Collective Edge” appears exactly once, small. A working-doc and a sheet carry none.
+- [ ] Every status color is an alert step for its ground and carries a word or an icon. Green marks good only. Every chart color is from the house data set, with series in order.
+- [ ] No em dash in any text. No uppercase run is longer than four words. Body lines hold 70 characters. No text is justified.
+- [ ] No text is `#8260a2`. White text sits only on `#2f193b`, `#572e72` or `#43205b`.
+- [ ] The file was rendered and looked at. Nothing overlaps, clips or overflows. If you could not render it, say so.
+
+For HTML output, also run `python3 scripts/validate.py FILE.html` and `python3 scripts/ui-audit.py FILE.html`. `validate.py` checks type rules 1, 2, 5, 9, 10, 13 and 14 and check L1, retired logo artwork, and exits non-zero on a violation. It cannot see a rendered page. When you hand the work back, state the brand, the document type, the logo role, how the font embedded, and anything you could not verify. `@main` serves the latest. Production pins a tag in place of `@main`.

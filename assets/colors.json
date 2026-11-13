@@ -4,7 +4,7 @@
     "replacedBy": "tokens.json",
     "replacementUrl": "https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/tokens.json",
     "authoritativePalette": "snippets/palette.css",
-    "why": "This file has no semantic layer, no status colors and no type values, and it names #000000 as body text. Running body text is #1E293B.",
+    "why": "This file has no semantic layer, no status colors and no type values, and it names #000000 as body text. Running body text is #23232A.",
     "kept": "Live documents already point at this URL. Read tokens.json for anything new."
   },
 
@@ -17,15 +17,15 @@
     "white":       { "hex": "#FFFFFF", "rgb": [255, 255, 255], "role": "Text on dark, page background" }
   },
   "neutrals": {
-    "charcoal": { "hex": "#1E293B", "role": "Body text on white" },
-    "muted":    { "hex": "#64748B", "role": "Supporting text, captions, legends" },
-    "hairline": { "hex": "#E2E8F0", "role": "Card borders, thin rules" },
+    "charcoal": { "hex": "#23232A", "role": "Body text on white" },
+    "muted":    { "hex": "#6D6D77", "role": "Supporting text, captions, legends" },
+    "hairline": { "hex": "#E4E4E9", "role": "Card borders, thin rules" },
     "surface":  { "hex": "#faf5fd", "role": "Very-light purple background tint" }
   },
   "diagram": {
-    "decision":      { "hex": "#4a8e3a", "borderHex": "#3a7029", "role": "Decision boxes, questions, branch points" },
-    "warning":       { "hex": "#f57c00", "borderHex": "#cc6600", "role": "Warning boxes, advisories, watch-out pills" },
-    "infoProcess":   { "hex": "#3e3e3e", "borderHex": "#2a2a2a", "role": "Neutral process steps, context boxes" }
+    "decision":      { "hex": "#1E7A4D", "borderHex": "#036139", "role": "Decision boxes, questions, branch points" },
+    "warning":       { "hex": "#B5821A", "borderHex": "#926603", "role": "Warning boxes, advisories, watch-out pills" },
+    "infoProcess":   { "hex": "#4E4F58", "borderHex": "#23232A", "role": "Neutral process steps, context boxes" }
   },
   "font": {
     "family": "Montserrat",
