@@ -134,7 +134,7 @@
     {
       "n": 4,
       "name": "Restyle only when asked",
-      "rule": "Restyle only on a request such as brand this, clean up the formatting or make it consistent. Then apply the working-doc styles to what is there: font, sizes, heading colors, table style, logo, footer. Do not reorder, rewrite or shorten the words. Do not add a band."
+      "rule": "Restyle only on a request such as brand this, clean up the formatting or make it consistent. Then apply the working-doc styles to what is there: font, sizes, heading colors, table style, logo, footer. Do not reorder, rewrite or shorten the words. Do not add a band. Where the file has a band, take it out: the logo goes top left and the band's words go only if they are not already the title."
     },
     {
       "n": 5,
@@ -159,7 +159,7 @@
   ],
   "wording": {
     "_comment": "The wording budget. It applies to every type.",
-    "firstLine": "The first line states the decision, the ask or the status.",
+    "firstLine": "The first line states the decision, the ask or the status. In an agenda it states what the meeting is for.",
     "never": [
       "A paragraph that restates the title",
       "A closing summary",
@@ -1587,7 +1587,7 @@
         "Line spacing is a multiple: line_spacing as a float with line_spacing_rule MULTIPLE. Never EXACTLY and never a point value.",
         "Name Montserrat on every style and every run, in w:ascii, w:hAnsi, w:eastAsia and w:cs.",
         "Weight 700 is bold on. Do not name Montserrat SemiBold.",
-        "Table indent 0. Fixed column widths that sum to 7.0in. One empty paragraph between two tables.",
+        "Table indent 6pt, the left cell padding. Fixed column widths that sum to 6.92in. One empty paragraph between two tables.",
         "The logo is an inline picture. The footer is one plain paragraph with a PAGE field.",
         "No text boxes, floating images, section breaks, columns or tab stops."
       ]
@@ -2377,7 +2377,7 @@
         "Line spacing is a multiple: line_spacing as a float with line_spacing_rule MULTIPLE. Never EXACTLY and never a point value.",
         "Name Montserrat on every style and every run, in w:ascii, w:hAnsi, w:eastAsia and w:cs.",
         "Weight 700 is bold on. Do not name Montserrat SemiBold.",
-        "Table indent 0. Fixed column widths that sum to 7.0in. One empty paragraph between two tables.",
+        "Table indent 6pt, the left cell padding. Fixed column widths that sum to 6.92in. One empty paragraph between two tables.",
         "The logo is an inline picture. The footer is one plain paragraph with a PAGE field.",
         "No text boxes, floating images, section breaks, columns or tab stops."
       ]
@@ -2485,7 +2485,7 @@
       },
       {
         "fact": "A table pokes about 9pt into the left margin.",
-        "rule": "Set the table indent to 0 explicitly."
+        "rule": "Set the table indent to the left cell padding, 6pt, explicitly."
       },
       {
         "fact": "Line heights run taller than in Word, so a page that fits in Word can spill to two.",

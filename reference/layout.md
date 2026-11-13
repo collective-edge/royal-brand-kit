@@ -24,7 +24,7 @@ Most requests change a file that already exists. These eight rules come before e
 1. **Edit in place.** Asked to edit, update, fix or add to an existing file: keep its layout, styles, fonts, sizes, colors, column order and wording. Change only what was asked. Same file, same link. Do not convert its format, move it or make a copy unless asked.
 2. **Match the neighbors.** New content inside an existing file takes the style of the nearest existing content of the same kind. A new row looks like the rows around it. A new slide uses the deck’s own layout.
 3. **A named example is the template.** Asked to make it look like another document: copy that document’s structure, styles and order. This kit does not override it.
-4. **Restyle only when asked.** “Brand this”, “clean up the formatting”, “make it consistent”. Then apply the working-doc styles to what is there: font, sizes, heading colors, table style, logo, footer. Do not reorder, rewrite or shorten the words. Do not add a band.
+4. **Restyle only when asked.** “Brand this”, “clean up the formatting”, “make it consistent”. Then apply the working-doc styles to what is there: font, sizes, heading colors, table style, logo, footer. Do not reorder, rewrite or shorten the words. Do not add a band. Where the file has a band, take it out: the logo goes top left and the band’s words go only if they are not already the title.
 5. **An accepted format is fixed.** A recurring report or an agenda a person approved is reused exactly next time. Never improve it unprompted.
 6. **Leave the words alone.** Shorten or rewrite only when asked. Asked to tighten: cut at least half and keep every fact, name, number and date.
 7. **Delete nothing that is not yours.** Never delete someone else’s content, comments, formulas, data validation or tabs. Before a large change, say what will change. After, list what changed in three bullets or fewer.
@@ -43,7 +43,7 @@ Most requests change a file that already exists. These eight rules come before e
 
 - **Default.** A request that matches nothing is a working-doc. The earlier generic type is now working-doc.
 - **The band.** The band is for PDF, print and slides. A document that will live in Google Docs is a working-doc unless the person asks for a designed one-pager.
-- **Wording budget.** It applies to every type. The first line states the decision, the ask or the status. No paragraph restates the title. No closing summary. No sentence about the document itself. A sentence runs 20 words at most. Items that share the same fields go in a table. Parallel items go in bullets.
+- **Wording budget.** It applies to every type. The first line states the decision, the ask or the status. In an agenda it states what the meeting is for. No paragraph restates the title. No closing summary. No sentence about the document itself. A sentence runs 20 words at most. Items that share the same fields go in a table. Parallel items go in bullets.
 
 ### Page setup
 
@@ -77,7 +77,7 @@ The values that belong to Royal Ambulance. Every other value in this file is sha
 | Slide footer logo | Role `horizontal-on-light`, 1.43in wide, 0.35in tall |
 | Working-doc logo | Role `horizontal-on-light`, 1.3in wide. Section 7 |
 | Working-doc and sheet table header | Fill `--bg-surface-2` #f0e1fd. Text `--fg-1` #23232A |
-| Working-doc footer line | `Royal Ambulance · Powered by Collective Edge · Page N` |
+| Working-doc footer line | `Royal Ambulance · Page N` |
 | Powered by Collective Edge lockup | Once on every PDF, deck and image, small. Never on a working-doc or a sheet. Section 3.12 |
 
 Shared by every brand: text `--fg-1` #23232A, secondary text `--fg-2` #565860, captions and footers `--fg-3` #6D6D77, hairline `--border-1` #E4E4E9, stronger rule `--border-2` #D0D0D6, page `--bg-canvas` #FFFFFF. On a dark ground: `--fg-on-dark-1` #FFFFFF, `--fg-on-dark-2` #DDDDE3, `--fg-on-dark-3` #A3A4AC, and the rule `--border-on-dark`, white at 12 percent, which is #483553 on #2f193b.
@@ -362,7 +362,7 @@ The default type, `working-doc`. Anything people will keep editing in Google Doc
 | Weights | 400 and 700 only. Bold off and bold on. `Montserrat SemiBold` is not needed |
 | Never | Band, callout box, card, shadow, tinted panel, icon, emoji, uppercase label, sub-banner, stat numeral, justified text, text box, floating image, section break, columns |
 | Logo | Role `horizontal-on-light`, PNG, 1.3in wide. Once, top left of page 1, inline, as its own paragraph, 12pt after |
-| Footer | The document footer, on every page. One left-aligned line: `Royal Ambulance · Powered by Collective Edge · Page N`, where N is the page number field. No rule, no logo, no table |
+| Footer | The document footer, on every page. One left-aligned line: `Royal Ambulance · Page N`, where N is the page number field. No rule, no logo, no table |
 | Lockup | None. A working-doc never carries “Powered by Collective Edge”, as words or as a lockup. The rule follows the type, not the file format: a working-doc exported to PDF stays as it is |
 | Template | [`templates/working-doc.html`](../templates/working-doc.html) |
 
@@ -381,12 +381,12 @@ The default type, `working-doc`. Anything people will keep editing in Google Doc
 
 - **Headings.** Two levels at most. No label, number or rule above or under a heading.
 - **Lists.** A numbered list only for steps in order or agenda items.
-- **Table.** The full text width, table indent 0. The left edge of the table sits on the left margin: the cell padding sits inside the table and never pushes its edge outside the text block. Cell padding 4pt top and bottom, 6pt left and right. No vertical rules, no zebra, no frame, no dark header fill. The dark header of section 3.7 is for the one-pager, the report and the deck. One empty paragraph between two adjacent tables.
+- **Table.** The full text width, the left edge of the table on the left margin. In a Word or Google file that takes a table indent equal to the left cell padding, 6pt, and column widths that sum to the text block less 6pt. Cell padding 4pt top and bottom, 6pt left and right. No vertical rules, no zebra, no frame, no dark header fill. The dark header of section 3.7 is for the one-pager, the report and the deck. One empty paragraph between two adjacent tables.
 - **Status.** The alert text colors of section 3.7: good #1E7A4D, caution #926603, bad #B0322B, notice #2A5A8C.
 - **Agenda.** A 3-column table: Time or minutes, Topic, Owner. Or a numbered list with the owner and the minutes at the end of each line. Never both.
 - **Status report.** One line of overall status. Then a table: Item, Owner, Due, Status. Then bullets under the heading Needs a decision, if any.
 - **Line spacing.** A multiple, as Word and Google Docs state it: 1.15 for headings, 1.35 for body. Never an exact point value. In CSS the same lines are a line-height of 1.4 and 1.65, since the natural line of Montserrat is 1.219.
-- **Restyling an existing file.** Only when asked. Apply these styles to what is there. Do not reorder, rewrite or shorten the words. Do not add a band.
+- **Restyling an existing file.** Only when asked. Apply these styles to what is there. Do not reorder, rewrite or shorten the words. Do not add a band. Where the file has a band, take it out: the logo goes top left and the band’s words go only if they are not already the title.
 - **Build.** Section 11, Google Docs.
 
 ---
@@ -689,7 +689,7 @@ Build the `.docx` with python-docx, then upload with conversion. Conversion was 
 | A full-bleed band is impossible. A header table with a negative indent loses its cell padding | A band is a table at text-block width with indent 0, and only on a designed document the person asked for. A working-doc has no band |
 | Right tab stops are lost | A left and right footer is a two-cell borderless table. A working-doc footer is one left-aligned line |
 | Two tables with nothing between them merge, and the second loses its column widths | One empty paragraph between adjacent tables |
-| A table pokes about 9pt into the left margin | Table indent 0, set explicitly: `w:tblInd` with `w:w="0"` and `w:type="dxa"` in `w:tblPr` |
+| A table pokes about 9pt into the left margin | Table indent equal to the left cell padding, set explicitly: `w:tblInd` with `w:w="120"` and `w:type="dxa"` in `w:tblPr` |
 | Line heights run taller than in Word, so a page that fits in Word can spill onto a second | Budget to 90 percent of a page |
 | `Montserrat SemiBold` and `Montserrat ExtraBold` survive as real faces | Name the family, bold off. A working-doc needs neither |
 | Text boxes, floating images, section breaks and columns do not convert cleanly | Use none. Place the logo inline |
@@ -705,7 +705,7 @@ Build the `.docx` with python-docx, then upload with conversion. Conversion was 
 | Logo | The first paragraph. `run.add_picture(path, width=Inches(1.3))`, inline, space after 12pt |
 | Meta line | A `Normal` paragraph, 10.5pt, #6D6D77, space after 12pt, with `w:pBdr` holding `w:bottom w:val="single" w:sz="6" w:space="6" w:color="E4E4E9"` |
 | Bullets | Styles `List Bullet` and `List Number`: left indent 0.25in, first line indent -0.25in, space after 3pt |
-| Table | `doc.add_table` with no table style, autofit off, column widths that sum to 7.0in. `w:tblInd w:w="0"`, so the left edge of the table sits on the left margin and the cell padding sits inside it. Cell margins 80 twentieths of a point top and bottom, 120 left and right. Header cells: shading F0E1FD, bold, bottom border `w:sz="6"` in 23232A. Body cells: bottom border `w:sz="6"` in E4E4E9, no other border. Cell paragraphs: space after 0. Number cells right-aligned |
+| Table | `doc.add_table` with no table style, autofit off, column widths that sum to 6.92in. `w:tblInd w:w="120"`, so the left edge of the table sits on the left margin and the cell padding sits inside it. Cell margins 80 twentieths of a point top and bottom, 120 left and right. Header cells: shading F0E1FD, bold, bottom border `w:sz="6"` in 23232A. Body cells: bottom border `w:sz="6"` in E4E4E9, no other border. Cell paragraphs: space after 0. Number cells right-aligned |
 | Status cell | One bold run in the alert text color: U+25A0, U+00A0, then the word |
 | Between tables | One empty `Normal` paragraph |
 | Footer | `section.footer.paragraphs[0]`, left-aligned, 9pt, #6D6D77: the text, then a `PAGE` field. No table, no tab stop, no border. Same footer on every page |

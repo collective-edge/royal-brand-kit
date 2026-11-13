@@ -178,8 +178,8 @@ Six types. Take the first that fits: sheet, deck, working-doc, one-pager, report
 | Body | 10.5pt, weights 400 and 700 | Montserrat 10pt | 15pt, on white | `bk-body`, 12pt, 70 characters a line |
 
 1. The band is for PDF, print and slides. A document that will live in Google Docs is a working-doc unless the person asks for a designed one-pager. A working-doc is plain: no band, callout, card, icon, uppercase label or stat numeral. A light table header, a hairline under every row, a one-line footer.
-2. In a file that becomes a Google file, line spacing is a multiple, 1.15 for headings and 1.35 for body, never an exact point value. Table indent is 0. An empty paragraph sits between two tables.
-3. Keep it short. The first line states the decision, the ask or the status. No restated title, no closing summary. A sentence runs 20 words at most.
+2. In a file that becomes a Google file, line spacing is a multiple, 1.15 for headings and 1.35 for body, never an exact point value. Table indent equals the left cell padding, 6pt. An empty paragraph sits between two tables.
+3. Keep it short. The first line states the decision, the ask or the status. In an agenda it states what the meeting is for. No restated title, no closing summary. A sentence runs 20 words at most.
 
 ## 7. Co-brand
 
@@ -213,7 +213,7 @@ Check the finished file, not the code that made it.
 - [ ] Every text run names Montserrat. No run is italic. Every weight is 400, 600, 700 or 800. Three at most in a document. Only a deck uses all four.
 - [ ] Every size is a step in section 5 and nothing is under 9pt. Every color is a hex from `tokens.json`. No text is set in `#8A8B93`, `#D0D0D6` or `#E4E4E9`.
 - [ ] Body text is `#23232A` on white. On a dark ground headings are `#FFFFFF` and body is `#DDDDE3`.
-- [ ] An edited file changed only where asked. A Google file has no exact line spacing, table indent 0 and a paragraph between two tables.
+- [ ] An edited file changed only where asked. A Google file has no exact line spacing, a 6pt table indent and a paragraph between two tables.
 - [ ] Margins are 0.75in on a working-doc, a memo or a report and 0.6in on a one-pager. A one-pager, an agenda and a status report are one page.
 - [ ] Slides are 13.333 by 7.5in with 15pt body. Only the title, divider and closing slides are dark.
 - [ ] The brand’s logo appears once in a document and at most once on a slide, in the role for its ground, at or above the minimum, clear space held, aspect ratio unchanged.
