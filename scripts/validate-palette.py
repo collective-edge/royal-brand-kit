@@ -8,7 +8,7 @@ than argued about in review.
 Usage:
     python3 validate-palette.py --series                 # the house set, both grounds
     python3 validate-palette.py --series --mode dark
-    python3 validate-palette.py "#572e72,#1a9d4b,#d42320"
+    python3 validate-palette.py "#2063e6,#eb6f32,#0f9b89"
     python3 validate-palette.py "#a,#b" --pairs all      # scatter, bubble, map
     python3 validate-palette.py "#a,#b" --ordinal        # a single-hue ramp
     python3 validate-palette.py "#a,#b" --surface "#2f193b" --mode dark
@@ -81,19 +81,18 @@ MACHADO = {
 
 # The house series order. Keep in step with snippets/data-color.css.
 SERIES = {
-    "light": ["#572e72", "#1a9d4b", "#dca821", "#d42320",
-              "#1a97a3", "#e6811c", "#116dce", "#e53975"],
-    "dark":  ["#be6df2", "#1ba04d", "#f3ba26", "#e6443a",
-              "#22b6c4", "#f78b1f", "#519dfa", "#fb608e"],
+    "light": ["#2063e6", "#eb6f32", "#0f9b89", "#7f3810",
+              "#8a72f7", "#819808", "#259cde", "#b93388"],
+    "dark":  ["#0986e4", "#fc803e", "#06bfa8", "#ac772e",
+              "#ac94fd", "#b1d454", "#74c8fc", "#c4588d"],
 }
 
 # Documented, measured exceptions to the band check. Surfaced on every run
 # rather than hidden, so the reason stays visible to whoever reads the output.
 EXCEPTIONS = {
-    "#572e72": "Royal Purple, series slot 1. Sits at L 0.387, below the light "
-               "band, because the brand value is fixed and is not restepped. "
-               "It clears every other gate and measures 10.30:1 on white, the "
-               "highest contrast in the set.",
+    "#572e72": "Royal Purple, a brand value and not a house series slot. Sits "
+               "at L 0.387, below the light band, because the brand value is "
+               "fixed and is not restepped. It measures 10.30:1 on white.",
 }
 
 HEX_RE = re.compile(r"^#?[0-9a-fA-F]{6}$")
@@ -307,7 +306,7 @@ def emit(report, ok, palette, mode, surface, pairs, ordinal):
 def main():
     ap = argparse.ArgumentParser(add_help=True)
     ap.add_argument("palette", nargs="?",
-                    help='comma separated hex, e.g. "#572e72,#1a9d4b"')
+                    help='comma separated hex, e.g. "#2063e6,#eb6f32"')
     ap.add_argument("--series", action="store_true",
                     help="validate the house series order instead")
     ap.add_argument("--mode", choices=("light", "dark"), default="light")

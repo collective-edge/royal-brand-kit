@@ -41,19 +41,22 @@
 
   /* ---- CONTROL EDGE ---------------------------------------
      SC 1.4.11 asks a boundary for 3:1 against its ground.
-     --border-1 is a document hairline: 1.30:1 on Collective
-     Edge white, 1.23:1 on Apex and Royal, so it cannot draw a
-     control. --fg-3 measures 5.10:1 and 4.76:1, and does. */
+     --border-1 is a document hairline: 1.27:1 on white in
+     every brand, so it cannot draw a control. --fg-3 measures
+     5.12:1, and does. */
   --ui-border: 1px;  --ui-border-color: var(--fg-3);
 
   /* ---- FOCUS ----------------------------------------------
      One ring on :focus-visible, offset so a band of page ground
-     sits between ring and fill. That offset is what lets an ink
-     ring serve a filled button: ink on the primary fill is
-     1.00:1 Collective Edge, 1.37:1 Apex, 1.42:1 Royal; on the
-     ground behind it, 18.88:1 and 14.63:1. */
+     sits between ring and fill. That offset is what lets a dark
+     ring serve a filled button: the ring on the primary fill is
+     1.00:1 Collective Edge, 1.46:1 Apex, 1.52:1 Royal; on the
+     ground behind it, 21.00:1 Collective Edge and 15.61:1 Apex
+     and Royal. The ring reads --focus-ring where a palette sets
+     one, as Collective Edge does, to black. A palette without
+     it falls back to --fg-1. */
   --ui-focus-width: 2px;  --ui-focus-offset: 2px;
-  --ui-focus-ring:  var(--fg-1);
+  --ui-focus-ring:  var(--focus-ring, var(--fg-1));
 
   /* ---- CONTROL COLOR · names, not values ------------------ */
   --ui-accent:      var(--fg-accent);
@@ -63,8 +66,8 @@
   --ui-ink-help:    var(--fg-3);
 
   /* Hover tint for an unfilled control. --bg-surface measures
-     1.04:1 on Collective Edge white and is too weak to read as
-     a cue; --border-1 measures 1.30:1 and does. */
+     1.07:1 on Royal white and is too weak to read as a cue;
+     --border-1 measures 1.27:1 and does. */
   --ui-tint: var(--border-1);
 
   /* --status-stop ships one value and no deeper step, so the
@@ -80,18 +83,18 @@
 
   --ui-motion: var(--dur-fast) var(--ease-standard);   /* 120ms */
 }
-/* An ink ring on a dark ground measures 1.11:1 Collective Edge,
-   1.00:1 Apex, 1.08:1 Royal, and is invisible. White on the same
-   three measures 21.00:1, 14.56:1, 15.87:1. One ring color
+/* The light-ground ring on a band measures 1.35:1 Collective Edge,
+   1.07:1 Apex, 1.02:1 Royal, and does not read. White on the same
+   three measures 15.61:1, 14.56:1, 15.87:1. One ring color
    cannot serve both grounds, so the dark scope names the other,
    and the filled button inverts with it: the accent fill would
-   sit at 1.11:1 against Collective Edge black. The inverted fill
-   measures 21.00:1, 14.56:1, 15.87:1 against its band and its
-   ink measures the same against the fill; the hover fill,
-   14.45:1, 10.47:1, 11.30:1. The secondary edge measures 7.84:1,
-   5.98:1, 6.61:1. --ui-btn--danger has no dark form: --status-stop
-   against the three bands measures 3.34:1, 2.31:1 and 2.52:1, so
-   a destructive action belongs in a dialog on the page surface. */
+   sit at 1.35:1 against the Collective Edge band. The inverted
+   fill measures 15.61:1, 14.56:1, 15.87:1 against its band; the
+   hover fill, 11.54:1, 10.76:1, 11.73:1. The secondary edge
+   measures 6.29:1, 5.87:1, 6.40:1. --ui-btn--danger has no dark
+   form: the stop fill against the three bands measures 2.48:1,
+   2.31:1 and 2.52:1, so a destructive action belongs in a dialog
+   on the page surface. */
 .ui-on-dark {
   --ui-focus-ring:   var(--fg-on-dark-1);
   --ui-ink:          var(--fg-on-dark-1);
@@ -155,7 +158,7 @@
 .ui-btn--icon.ui-btn--sm { width: var(--ui-h-sm); } .ui-btn--icon.ui-btn--lg { width: var(--ui-h-lg); }
 .ui-btn--full { display: flex; width: 100%; }
 
-/* Primary. White on the accent fill measures 18.88:1 on
+/* Primary. White on the accent fill measures 21.00:1 on
    Collective Edge, 10.71:1 on Apex, 10.30:1 on Royal; on the
    hover fill 21.00:1, 14.56:1 and 15.87:1. */
 .ui-btn--primary {
@@ -167,8 +170,8 @@
    under its label is light again and the bonus comes back off. */
 .ui-on-dark .ui-btn--primary { --tr-dark: 0em; }
 
-/* Secondary. Edge 5.10:1 on Collective Edge, 4.76:1 on Apex and
-   Royal. Label on the hover tint 14.58:1 and 11.87:1. */
+/* Secondary. Edge 5.12:1 in every brand. Label on the hover
+   tint 12.32:1. */
 .ui-btn--secondary { border-color: var(--ui-border-color); }
 .ui-btn--secondary:hover { background: var(--ui-tint); border-color: var(--ui-ink); }
 
@@ -188,7 +191,7 @@
 .ui-btn:active { box-shadow: var(--shadow-1) inset; }
 
 /* Disabled keeps the box so nothing reflows. Ink on the fill
-   measures 3.94:1 Collective Edge, 3.86:1 Apex and Royal, under
+   measures 4.04:1 in every brand, under
    the 4.5:1 live text owes. SC 1.4.3 exempts a disabled
    control, and this is the one exemption the house takes: the
    alternative is a dead button that looks live. */
@@ -239,10 +242,10 @@
 .ui-link-action:hover { text-decoration-thickness: 2px; }
 
 /* On a band both links take the dark scope's accent, which is
-   white: 21.00:1 Collective Edge, 14.56:1 Apex, 15.87:1 Royal.
-   --fg-accent does not flip, and on Collective Edge it is the ink
-   the copy is set in, so a link left unflipped measures 1.11:1 on
-   the band and only the underline survives. */
+   white: 15.61:1 Collective Edge, 14.56:1 Apex, 15.87:1 Royal.
+   --fg-accent does not flip, and on Collective Edge it is black,
+   so a link left unflipped measures 1.35:1 on the band and only
+   the underline survives. */
 .ui-on-dark .ui-link, .ui-on-dark .ui-link-action { color: var(--ui-accent); }
 
 /* ---------- FIELD -------------------------------------------
@@ -308,9 +311,10 @@
   font-size: var(--fs-body-sm); font-weight: var(--weight-regular);
   line-height: var(--lh-body-sm); max-width: var(--measure-caption);
 }
-/* 5.10:1 on Collective Edge white, 4.76:1 on Apex and Royal. On
-   --bg-surface the Apex value falls to 4.31:1, so a field on a
-   tinted panel overrides --ui-ink-help to --fg-1. */
+/* 5.12:1 on white in every brand. On --bg-surface it measures
+   4.53:1 Collective Edge, 4.64:1 Apex, 4.76:1 Royal. On
+   --bg-surface-2 it falls to 4.10:1, so a field on that panel
+   overrides --ui-ink-help to --fg-2. */
 .ui-help  { color: var(--ui-ink-help); }
 .ui-error { color: var(--ui-danger); }   /* 6.29:1 on white */
 
@@ -346,7 +350,7 @@
   width: 8px; height: 8px;
   border-radius: var(--radius-pill); background: var(--ui-on-accent);
 }
-/* Mark on fill: 18.88:1 Collective Edge, 10.71:1 Apex, 10.30:1
+/* Mark on fill: 21.00:1 Collective Edge, 10.71:1 Apex, 10.30:1
    Royal. */
 .ui-checkbox:checked, .ui-radio:checked {
   background: var(--ui-accent);
@@ -363,7 +367,7 @@
 /* ---------- STATUS BADGE ------------------------------------
    Four states, one shape, no colorway invented per project.
    The status color rides on the dot and the label is set in
-   ink, because --status-warn measures 3.40:1 on white and
+   ink, because the warn base measures 3.40:1 on white and
    cannot legally set 12px text; a badge that works in three
    colors out of four is not a system. The dot clears the 3:1
    SC 1.4.11 asks of a meaningful graphic. A brand may switch
@@ -388,24 +392,31 @@
 }
 /* One tint under all four, so a badge cannot drift into four
    colored boxes. Dot against --bg-surface on Collective Edge:
-   go 5.10:1, warn 3.26:1, stop 6.03:1, info 6.84:1; the lowest
-   of the twelve values across the three brands is the Apex warn
-   dot at 3.08:1, still over the 3:1 a graphic owes. Ink on that
-   tint measures 18.09:1, 13.25:1, 13.61:1. */
-.ui-badge--go   { --ui-badge-dot: var(--status-go); }
-.ui-badge--warn { --ui-badge-dot: var(--status-warn); }
-.ui-badge--stop { --ui-badge-dot: var(--status-stop); }
-.ui-badge--info { --ui-badge-dot: var(--status-info); }
+   go 4.71:1, warn 3.01:1, stop 5.57:1, info 6.33:1; that warn
+   dot is the lowest of the twelve values across the three
+   brands, still over the 3:1 a graphic owes. Ink on that
+   tint measures 13.82:1, 14.14:1, 14.53:1.
+
+   The dot reads the alert base, which keeps one value on every
+   ground, because the chip under it is always light. --status-*
+   follows the ground and would hand a light chip the on-dark
+   step. The fallback serves a palette.css pinned to an older
+   tag. */
+.ui-badge--go   { --ui-badge-dot: var(--alert-go, var(--status-go)); }
+.ui-badge--warn { --ui-badge-dot: var(--alert-warn, var(--status-warn)); }
+.ui-badge--stop { --ui-badge-dot: var(--alert-stop, var(--status-stop)); }
+.ui-badge--info { --ui-badge-dot: var(--alert-info, var(--status-info)); }
 
 /* On a band the badge stays a light chip, the way a field stays a
-   light box. The status colors are identical in every brand and
-   are mixed for a light ground: on the three bands the go dot
-   measures 3.95:1, 2.74:1 and 2.98:1 and the info dot 2.94:1,
-   2.04:1 and 2.22:1, under the 3:1 a meaningful graphic owes, so
-   a dark badge would carry two dots out of four that cannot be
-   read. Left to the dark scope alone the chip would also set
-   white ink on --bg-surface: 1.04:1, 1.10:1 and 1.07:1. The chip
-   is a light ground, so rule 4's tracking bonus comes back off. */
+   light box. The alert base is identical in every brand and is
+   mixed for a light ground: on the three bands the go dot
+   measures 2.93:1, 2.74:1 and 2.98:1 and the info dot 2.19:1,
+   2.04:1 and 2.22:1, under the 3:1 a meaningful graphic owes. A
+   status set straight on the band, with no chip, takes the
+   -on-dark step through .bk-on-dark instead. Left to the dark
+   scope alone the chip would also set white ink on --bg-surface:
+   1.13:1, 1.10:1 and 1.07:1. The chip is a light ground, so
+   rule 4's tracking bonus comes back off. */
 .ui-on-dark .ui-badge {
   color: var(--fg-1); --ui-badge-tint: var(--bg-surface); --tr-dark: 0em;
 }

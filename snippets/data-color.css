@@ -5,11 +5,13 @@
    type-system.css, palette.css and ui.css.
 
    OWNS the colors that carry data: series identity, magnitude,
-   polarity, and whether a number is good news. Nothing here is
-   a brand color and nothing here changes between brands. A
-   chart built for Royal reads identically inside an Apex or
-   Collective Edge document, which is the point: a reader should
-   never have to relearn what a color means.
+   polarity, and whether a number is good news. Series,
+   polarity and direction are not brand colors and do not change
+   between brands. A chart built for Royal reads identically
+   inside an Apex or Collective Edge document, which is the
+   point: a reader should never have to relearn what a color
+   means. The one value that follows the brand is the
+   sequential ramp, where darker means more in any hue.
 
    DOES NOT OWN chart layout, axes, gridline geometry, marks,
    tooltips or legends. It supplies values, not components.
@@ -22,10 +24,27 @@
    color is to separate and to signal, not to be on brand. The
    brand is carried by the band, the mark and the type.
 
-   The single exception is slot 1. It may be remapped in
-   palette.css to the brand accent where that reads better, and
-   Royal does exactly that. Remapping any other slot forks the
-   house order and breaks the guarantee above.
+   No series slot is a brand color and none is remapped. The
+   eight are blue, orange, teal, umber, violet, olive, sky and
+   magenta: no green and no red, which belong to the alert
+   family, and no brand accent.
+
+   ------------------------------------------------------------
+   ONE FUNCTIONAL FAMILY
+
+   The alert family in palette.css (--alert-go, -warn, -stop,
+   -info, each with base, -text, -tint, -on-tint and -on-dark)
+   is CANONICAL. The --dir-* names here are ALIASES of it:
+
+     --dir-favorable    ->  --alert-go
+     --dir-unfavorable  ->  --alert-stop
+     --dir-caution      ->  --alert-warn
+     --dir-neutral      ->  the shared neutrals
+
+   Each alias carries the alert value as its fallback, so this
+   file still resolves beside a palette.css pinned to an older
+   tag. The neutrals in the chart chrome are the shared neutral
+   family, written as values for the same reason.
 
    ------------------------------------------------------------
    DARK GROUNDS
@@ -59,40 +78,44 @@
      is the color-blindness safety mechanism, not a preference:
      it was selected by enumerating orderings and keeping only
      those where every neighboring pair stays separable. Worst
-     neighboring pair measures ΔE 9.8 simulated red-green and
-     22.3 under normal vision, both clear of the floor.
+     neighboring pair measures ΔE 10.8 simulated red-green and
+     25.1 under normal vision, both clear of the floor. All
+     eight measure 3:1 or better on white.
 
-     Three series is the cap for scatter, bubble and map charts,
+     Four series is the cap for scatter, bubble and map charts,
      where any two marks can end up side by side. Past eight
      series, fold the tail into "Other" or split the chart.
      Never generate a ninth color. */
-  --series-1: #572e72;   /* purple  · also Royal's brand accent */
-  --series-2: #1a9d4b;   /* green                               */
-  --series-3: #dca821;   /* amber                               */
-  --series-4: #d42320;   /* red                                 */
-  --series-5: #1a97a3;   /* teal                                */
-  --series-6: #e6811c;   /* orange                              */
-  --series-7: #116dce;   /* blue                                */
-  --series-8: #e53975;   /* pink                                */
+  --series-1: #2063e6;   /* blue    */
+  --series-2: #eb6f32;   /* orange  */
+  --series-3: #0f9b89;   /* teal    */
+  --series-4: #7f3810;   /* umber   */
+  --series-5: #8a72f7;   /* violet  */
+  --series-6: #819808;   /* olive   */
+  --series-7: #259cde;   /* sky     */
+  --series-8: #b93388;   /* magenta */
 
   /* ---- SEQUENTIAL · magnitude ------------------------------
      One hue, light to dark, for "how much". Heatmaps, choropleths,
-     intensity grids. The ramp lands on Royal Purple at step 700,
-     so the brand color is the top of the scale and no brand
-     value had to move.
+     intensity grids. The ramp is the brand's own hue: darker
+     means more in any color, so this is the one data value that
+     may carry the brand. Each palette.css ships the seven steps
+     as --brand-seq-100 to -700, landing on that brand's
+     --fg-accent at step 700. The values written here are the
+     house neutral ramp, used only when no palette supplies one.
 
      Steps 100 and 200 are for continuous scales only, where the
      lightest step means "near zero" and is meant to recede into
      the page. Discrete ordered marks (funnel stages, tiers,
      bands) start at step 300, which is the lightest step that
      still separates from white. */
-  --seq-100: #f0e1fd;
-  --seq-200: #e2c2fb;
-  --seq-300: #d29ef8;
-  --seq-400: #ba7ce4;
-  --seq-500: #9d60c6;
-  --seq-600: #7f42a6;
-  --seq-700: #572e72;
+  --seq-100: var(--brand-seq-100, #EEEEF2);
+  --seq-200: var(--brand-seq-200, #D3D4D9);
+  --seq-300: var(--brand-seq-300, #B6B7BD);
+  --seq-400: var(--brand-seq-400, #97989F);
+  --seq-500: var(--brand-seq-500, #76777F);
+  --seq-600: var(--brand-seq-600, #51525A);
+  --seq-700: var(--brand-seq-700, #23232A);
 
   /* ---- DIVERGING · polarity --------------------------------
      Two hues away from a neutral middle, for over and under a
@@ -111,7 +134,7 @@
   --div-neg-3: #d05045;   /* furthest below the baseline */
   --div-neg-2: #f67a6d;
   --div-neg-1: #f9b8af;
-  --div-mid:   #EDEBEF;   /* no difference */
+  --div-mid:   #E4E4E9;   /* no difference */
   --div-pos-1: #49e3eb;
   --div-pos-2: #3ab9bf;
   --div-pos-3: #2b9095;   /* furthest above the baseline */
@@ -129,105 +152,115 @@
      Every one of these ships with an arrow or icon AND a word.
      Color is never the only thing carrying the meaning.
 
-     The -ink step is the darker value for text sitting on the
-     matching -tint fill, which is what a pill needs. The base
-     value is for text on the page and for fills. All of them
-     clear 4.5:1 where they are used. */
-  --dir-favorable:        #158840;
-  --dir-favorable-tint:   #daf8df;
-  --dir-favorable-ink:    #127e3b;
-  --dir-unfavorable:      #db3931;
-  --dir-unfavorable-tint: #fde9e6;
-  --dir-unfavorable-ink:  #c5372f;
-  --dir-caution:           #a36912;
-  --dir-caution-tint:      #fdebd7;
-  --dir-caution-ink:       #95600f;
-  --dir-neutral:           #64748B;
-  --dir-neutral-tint:      #F1F5F9;
-  --dir-neutral-ink:       #51607A;
+     These are ALIASES of the alert family in palette.css. The
+     base value is for text on the page and for fills, so it
+     reads the -text step. The -ink step is text on the matching
+     -tint fill, which is what a pill needs. Worst measured
+     across white and the three brand surfaces: favorable
+     4.71:1, caution 4.51:1, unfavorable 5.57:1, neutral 4.53:1.
+     Ink on its tint: 4.68:1, 4.52:1, 5.39:1, 6.28:1. */
+  --dir-favorable:        var(--alert-go-text, #1E7A4D);
+  --dir-favorable-tint:   var(--alert-go-tint, #DAF8DF);
+  --dir-favorable-ink:    var(--alert-go-on-tint, #1E7A4D);
+  --dir-unfavorable:      var(--alert-stop-text, #B0322B);
+  --dir-unfavorable-tint: var(--alert-stop-tint, #FDE9E6);
+  --dir-unfavorable-ink:  var(--alert-stop-on-tint, #B0322B);
+  --dir-caution:           var(--alert-warn-text, #926603);
+  --dir-caution-tint:      var(--alert-warn-tint, #FFEFDD);
+  --dir-caution-ink:       var(--alert-warn-on-tint, #926603);
+  --dir-neutral:           #6D6D77;
+  --dir-neutral-tint:      #F0F1F4;
+  --dir-neutral-ink:       #565860;
 
   /* ---- BASELINE · the comparison ground --------------------
      The "before" bar, the prior period, the target line, the
      benchmark. It is deliberately inert and deliberately not
-     purple. Two tints of one brand hue is the failure this
+     the brand hue. Two tints of one brand hue is the failure this
      layer exists to fix: the reader has to stop and read the
      labels to work out which bar is which.
 
      Gray against the accent reads instantly. Gray against green
      reads instantly. Light purple against dark purple does not. */
-  --data-baseline:      #CBD5E1;
-  --data-baseline-ink:  #64748B;
-  --data-target:        #94A3B8;
+  --data-baseline:      #D0D0D6;
+  --data-baseline-ink:  #6D6D77;
+  --data-target:        #8A8B93;
 
   /* ---- CHART CHROME ----------------------------------------
      Recessive by policy. The grid is a hint, not a feature.
      Nothing in the chrome competes with a mark. */
   --chart-surface: #FFFFFF;
-  --chart-grid:    #E2E8F0;
-  --chart-axis:    #CBD5E1;
-  --chart-label:   #64748B;
-  --chart-ink:     #1E293B;
+  --chart-grid:    #E4E4E9;
+  --chart-axis:    #D0D0D6;
+  --chart-label:   #6D6D77;
+  --chart-ink:     #23232A;
 }
 
 /* ============================================================
    DARK GROUNDS
    Put .bk-on-dark on the container. Same slots, same meanings,
-   steps selected against a dark ground. Measured on all three
-   house bands (#2f193b Royal, #000000 Collective Edge,
-   #1D225E Apex): every series step clears 3.64:1 or better and
-   every direction value clears 4.54:1 or better, so a chart
-   keeps working wherever it is placed.
+   steps selected against a dark ground. Measured on all four
+   house dark grounds (#2f193b Royal, #1D225E Apex, #23232A the
+   Collective Edge band, #000000 the Collective Edge hero):
+   every series step clears 3.55:1 or better and every
+   direction value clears 4.62:1 or better, so a chart keeps
+   working wherever it is placed. Worst neighboring series pair:
+   ΔE 14.4 simulated red-green and 22.5 under normal vision.
+   Three series is the scatter cap on a dark ground.
    ============================================================ */
 
 .bk-on-dark {
-  --series-1: #be6df2;
-  --series-2: #1ba04d;
-  --series-3: #f3ba26;
-  --series-4: #e6443a;
-  --series-5: #22b6c4;
-  --series-6: #f78b1f;
-  --series-7: #519dfa;
-  --series-8: #fb608e;
+  --series-1: #0986e4;
+  --series-2: #fc803e;
+  --series-3: #06bfa8;
+  --series-4: #ac772e;
+  --series-5: #ac94fd;
+  --series-6: #b1d454;
+  --series-7: #74c8fc;
+  --series-8: #c4588d;
 
   /* Sequential flips its anchor: on a dark ground the LIGHTEST
      step means the largest value. */
-  --seq-100: #3d1f52;
-  --seq-200: #572e72;
-  --seq-300: #7f42a6;
-  --seq-400: #9d60c6;
-  --seq-500: #ba7ce4;
-  --seq-600: #d29ef8;
-  --seq-700: #e2c2fb;
+  --seq-100: var(--brand-seq-dark-100, #37383C);
+  --seq-200: var(--brand-seq-dark-200, #4C4D52);
+  --seq-300: var(--brand-seq-dark-300, #626369);
+  --seq-400: var(--brand-seq-dark-400, #7C7D84);
+  --seq-500: var(--brand-seq-dark-500, #9698A0);
+  --seq-600: var(--brand-seq-dark-600, #B6B7BE);
+  --seq-700: var(--brand-seq-dark-700, #DCDDE4);
 
   --div-neg-3: #f16154;
   --div-neg-2: #c04a40;
   --div-neg-1: #7d352f;
-  --div-mid:   #4A4458;
+  --div-mid:   #4E4F58;
   --div-pos-1: #1f5f64;
   --div-pos-2: #2b9095;
   --div-pos-3: #3ec4cd;
 
-  --dir-favorable:        #1ca550;
-  --dir-favorable-tint:   rgba(28,165,80,0.18);
-  --dir-favorable-ink:    #3fd173;
-  --dir-unfavorable:      #f16154;
-  --dir-unfavorable-tint: rgba(241,97,84,0.18);
-  --dir-unfavorable-ink:  #ff8d82;
-  --dir-caution:           #c68119;
-  --dir-caution-tint:      rgba(198,129,25,0.18);
-  --dir-caution-ink:       #e8a63f;
-  --dir-neutral:           #B0A2BC;
+  /* The alert -on-dark step is the base on a band. The tint is
+     that step at 18%, and the ink on it is white: the colored
+     step on its own tint falls to 3.70:1, white holds 10.31:1
+     or better on every band. */
+  --dir-favorable:        var(--alert-go-on-dark, #56B580);
+  --dir-favorable-tint:   rgba(86,181,128,0.18);
+  --dir-favorable-ink:    #FFFFFF;
+  --dir-unfavorable:      var(--alert-stop-on-dark, #EB685C);
+  --dir-unfavorable-tint: rgba(235,104,92,0.18);
+  --dir-unfavorable-ink:  #FFFFFF;
+  --dir-caution:           var(--alert-warn-on-dark, #E9B457);
+  --dir-caution-tint:      rgba(233,180,87,0.18);
+  --dir-caution-ink:       #FFFFFF;
+  --dir-neutral:           #A3A4AC;
   --dir-neutral-tint:      rgba(255,255,255,0.10);
-  --dir-neutral-ink:       #CFC5D6;
+  --dir-neutral-ink:       #DDDDE3;
 
   --data-baseline:     rgba(255,255,255,0.26);
-  --data-baseline-ink: #B0A2BC;
+  --data-baseline-ink: #A3A4AC;
   --data-target:       rgba(255,255,255,0.40);
 
   --chart-surface: transparent;
   --chart-grid:    rgba(255,255,255,0.12);
   --chart-axis:    rgba(255,255,255,0.24);
-  --chart-label:   #B0A2BC;
+  --chart-label:   #A3A4AC;
   --chart-ink:     #FFFFFF;
 }
 

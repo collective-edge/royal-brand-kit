@@ -6,7 +6,7 @@ Usage:
     python3 check-sync.py --json
     python3 check-sync.py --reference /path/to/collective-edge-brand-kit
 
-Asserts three things about the kit this script sits in:
+Asserts four things about the kit this script sits in:
 
   1. The sixteen shared files are byte-identical to the copies in the
      collective-edge-brand-kit sibling directory. The type layer is never forked.
@@ -15,6 +15,10 @@ Asserts three things about the kit this script sits in:
   3. Every scale row in snippets/type-tokens.json resolves to a matching
      --fs- / --lh- / --tr- token in snippets/type-system.css, at the same value,
      so the JSON and the CSS cannot drift.
+  4. tokens.json has the same key structure as the tokens.json in the other
+     kits it can find beside it. Same keys, values may differ. A list may be
+     any length, including empty; every object inside one list has the keys
+     its counterparts have.
 
 Exit codes:
     0  pass
@@ -53,9 +57,29 @@ SEMANTIC_CONTRACT = [
     "--fg-on-dark-1", "--fg-on-dark-2", "--fg-on-dark-3",
     "--bg-canvas", "--bg-surface", "--bg-elevated", "--bg-inverse", "--bg-band",
     "--border-1", "--border-2", "--border-on-dark", "--border-band-rule",
+    "--bg-surface-2", "--bg-mid",
 ]
 
+# The functional families every palette.css carries under identical names:
+# the shared neutrals, the alert family with its five steps, the aliases
+# that older pages read, and the brand's sequential ramp for data-color.css.
+SEMANTIC_CONTRACT += ["--neutral-%s" % n for n in (
+    "ink", "secondary", "tertiary", "dimmed", "border", "hairline",
+    "tint", "tint-2", "mid", "on-dark-body", "on-dark-caption")]
+SEMANTIC_CONTRACT += ["--alert-%s%s" % (n, step)
+                      for n in ("go", "warn", "stop", "info")
+                      for step in ("", "-text", "-tint", "-on-tint", "-on-dark")]
+SEMANTIC_CONTRACT += ["--status-%s" % n for n in ("go", "warn", "stop", "info")]
+SEMANTIC_CONTRACT += ["--diagram-%s" % n for n in (
+    "decision", "decision-text", "decision-border",
+    "warning", "warning-text", "warning-border",
+    "process", "process-text", "process-border", "connector")]
+SEMANTIC_CONTRACT += ["--brand-seq-%s%d" % (g, n)
+                      for g in ("", "dark-") for n in range(100, 800, 100)]
+
 REFERENCE_KIT = "collective-edge-brand-kit"
+SISTER_KITS = ["collective-edge-brand-kit", "apex-brand-kit", "royal-brand-kit"]
+COLOR_TOKENS = "tokens.json"
 PALETTE = "snippets/palette.css"
 TOKENS = "snippets/type-tokens.json"
 TYPE_CSS = "snippets/type-system.css"
@@ -175,6 +199,67 @@ def resolve(token, prefix, prop, css_vars, rules):
     return None, None
 
 
+def key_shape(node, path="", out=None):
+    """Flatten a JSON value to the set of its key paths.
+
+    An object contributes one path per key. A list contributes "[]" and the
+    keys of the objects inside it, merged, so two lists of different lengths
+    compare equal when their items are built alike. An empty list contributes
+    nothing below itself and is skipped by the comparison.
+    """
+    if out is None:
+        out = set()
+    if isinstance(node, dict):
+        for key, value in node.items():
+            child = "%s.%s" % (path, key) if path else key
+            out.add(child)
+            key_shape(value, child, out)
+    elif isinstance(node, list):
+        for item in node:
+            if isinstance(item, (dict, list)):
+                key_shape(item, path + "[]", out)
+    return out
+
+
+def empty_lists(node, path="", out=None):
+    """Paths of the lists that hold no object, so their items cannot be compared."""
+    if out is None:
+        out = set()
+    if isinstance(node, dict):
+        for key, value in node.items():
+            empty_lists(value, "%s.%s" % (path, key) if path else key, out)
+    elif isinstance(node, list):
+        if not any(isinstance(item, (dict, list)) for item in node):
+            out.add(path + "[]")
+        for item in node:
+            empty_lists(item, path + "[]", out)
+    return out
+
+
+def ragged_lists(node, path="", out=None):
+    """Lists whose own objects do not share one set of keys."""
+    if out is None:
+        out = []
+    if isinstance(node, dict):
+        for key, value in node.items():
+            ragged_lists(value, "%s.%s" % (path, key) if path else key, out)
+    elif isinstance(node, list):
+        dicts = [item for item in node if isinstance(item, dict)]
+        if dicts and any(set(d) != set(dicts[0]) for d in dicts[1:]):
+            out.append(path + "[]")
+        for item in node:
+            ragged_lists(item, path + "[]", out)
+    return out
+
+
+def shape_diff(mine, theirs):
+    """Key paths present on one side only, ignoring the items of an empty list."""
+    skip = tuple(p + "." for p in empty_lists(mine) | empty_lists(theirs))
+    a = set(p for p in key_shape(mine) if not p.startswith(skip))
+    b = set(p for p in key_shape(theirs) if not p.startswith(skip))
+    return sorted(a - b), sorted(b - a)
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(
         prog="check-sync.py",
@@ -277,6 +362,53 @@ def main(argv=None):
             record("scale", "scale rows", True,
                    "%d rows · %d tokens resolved" % (len(spec.get("scale", [])), resolved))
 
+    # 4. tokens.json, one key structure across the kits
+    mine_tokens_path = os.path.join(kit, COLOR_TOKENS)
+    if not os.path.isfile(mine_tokens_path):
+        record("tokens", COLOR_TOKENS, False, "missing from %s" % kit_name)
+    else:
+        try:
+            mine_tokens = json.loads(read(mine_tokens_path).decode("utf-8"))
+        except ValueError as exc:
+            fail("%s is not valid JSON · %s" % (COLOR_TOKENS, exc))
+        ragged = ragged_lists(mine_tokens)
+        if ragged:
+            record("tokens", COLOR_TOKENS, False,
+                   "objects inside %s do not share one set of keys" % " ".join(ragged))
+        siblings = [ref] if not is_reference else []
+        for name in SISTER_KITS:
+            other = os.path.join(os.path.dirname(kit), name)
+            if (os.path.realpath(other) != os.path.realpath(kit)
+                    and os.path.realpath(other) not in [os.path.realpath(x) for x in siblings]
+                    and os.path.isfile(os.path.join(other, COLOR_TOKENS))):
+                siblings.append(other)
+        if not siblings:
+            record("tokens", COLOR_TOKENS, True, "no sister kit beside this one · nothing to compare")
+        for other in siblings:
+            other_name = os.path.basename(other)
+            other_path = os.path.join(other, COLOR_TOKENS)
+            if not os.path.isfile(other_path):
+                record("tokens", "vs %s" % other_name, False, "%s missing from %s" % (COLOR_TOKENS, other_name))
+                continue
+            try:
+                theirs_tokens = json.loads(read(other_path).decode("utf-8"))
+            except ValueError as exc:
+                fail("%s in %s is not valid JSON · %s" % (COLOR_TOKENS, other_name, exc))
+            only_mine, only_theirs = shape_diff(mine_tokens, theirs_tokens)
+            if only_mine or only_theirs:
+                parts = []
+                if only_mine:
+                    parts.append("only in %s: %s" % (kit_name, " ".join(only_mine[:8])
+                                 + (" and %d more" % (len(only_mine) - 8) if len(only_mine) > 8 else "")))
+                if only_theirs:
+                    parts.append("only in %s: %s" % (other_name, " ".join(only_theirs[:8])
+                                 + (" and %d more" % (len(only_theirs) - 8) if len(only_theirs) > 8 else "")))
+                record("tokens", "vs %s" % other_name, False,
+                       "key structure differs · %s" % " · ".join(parts))
+            else:
+                record("tokens", "vs %s" % other_name, True,
+                       "%d key paths, same structure" % len(key_shape(mine_tokens)))
+
     if args.json:
         sys.stdout.write(json.dumps({
             "kit": kit,
@@ -292,6 +424,7 @@ def main(argv=None):
             ("shared", "shared files vs %s" % REFERENCE_KIT),
             ("palette", "semantic contract"),
             ("scale", "scale sync · %s vs %s" % (TOKENS, TYPE_CSS)),
+            ("tokens", "%s · one key structure in every kit" % COLOR_TOKENS),
         ):
             rows = [c for c in checks if c["group"] == group]
             if not rows:

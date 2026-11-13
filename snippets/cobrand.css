@@ -49,20 +49,20 @@
    it is small text and owes 4.5:1.
 
    Dark ground, --fg-on-dark-3 on that brand's --bg-band:
-     Collective Edge  #9E9E9E on #000000   7.84:1
-     Apex Paramedics  #9EA5C4 on #1D225E   5.98:1
-     Royal Ambulance  #B0A2BC on #2f193b   6.61:1
+     Collective Edge  #A3A4AC on #23232A   6.29:1
+     Apex Paramedics  #A3A4AC on #1D225E   5.87:1
+     Royal Ambulance  #A3A4AC on #2f193b   6.40:1
 
    Light ground, --fg-3 on --bg-canvas #FFFFFF:
-     Collective Edge  #6E6E6E              5.10:1
-     Apex Paramedics  #64748B              4.76:1
-     Royal Ambulance  #64748B              4.76:1
+     Collective Edge  #6D6D77              5.12:1
+     Apex Paramedics  #6D6D77              5.12:1
+     Royal Ambulance  #6D6D77              5.12:1
 
    All six clear 4.5:1. The light variant belongs on the white
    canvas and not on a tinted surface: --fg-3 on --bg-surface
-   measures 4.89:1 for Collective Edge, 4.43:1 for Royal and
-   4.31:1 for Apex, and the last two fall under the threshold.
-   Put the light lockup on --bg-canvas.
+   measures 4.53:1 for Collective Edge, 4.64:1 for Apex and
+   4.76:1 for Royal, and on --bg-surface-2 all three fall under
+   the threshold. Put the light lockup on --bg-canvas.
    ============================================================ */
 
 

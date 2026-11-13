@@ -42,16 +42,16 @@
       "colorOnDark": "--fg-on-dark-3",
       "colorOnLight": "--fg-3",
       "contrastOnDark": {
-        "collective-edge": "7.84:1 · #9E9E9E on #000000",
-        "apex": "5.98:1 · #9EA5C4 on #1D225E",
-        "royal": "6.61:1 · #B0A2BC on #2f193b"
+        "collective-edge": "6.29:1 · #A3A4AC on #23232A",
+        "apex": "5.87:1 · #A3A4AC on #1D225E",
+        "royal": "6.40:1 · #A3A4AC on #2f193b"
       },
       "contrastOnLight": {
-        "collective-edge": "5.10:1 · #6E6E6E on #FFFFFF",
-        "apex": "4.76:1 · #64748B on #FFFFFF",
-        "royal": "4.76:1 · #64748B on #FFFFFF"
+        "collective-edge": "5.12:1 · #6D6D77 on #FFFFFF",
+        "apex": "5.12:1 · #6D6D77 on #FFFFFF",
+        "royal": "5.12:1 · #6D6D77 on #FFFFFF"
       },
-      "surfaceNote": "The light lockup belongs on --bg-canvas, not on --bg-surface. On the tinted surface the same gray measures 4.89:1 for Collective Edge, 4.43:1 for Royal and 4.31:1 for Apex, and the last two fall under 4.5:1."
+      "surfaceNote": "The light lockup belongs on --bg-canvas, not on --bg-surface. On the tinted surface the same gray measures 4.53:1 for Collective Edge, 4.64:1 for Apex and 4.76:1 for Royal. On --bg-surface-2 it falls to 4.10:1, 4.27:1 and 4.12:1, under 4.5:1."
     },
     "placement": [
       "The footer of any site or printed document",
@@ -98,14 +98,15 @@
       "tokensJson": "tokens.json",
       "prefix": "ce",
       "hasColor": false,
-      "colorNote": "Collective Edge has no hue of its own. It runs on a gray ramp. On a co-brand surface the Edge wedge takes the PARTNER's hue.",
+      "colorNote": "Collective Edge has no hue of its own. It reads as tiers: black for the hero and the accent, graphite #23232A for the band and the body ink, #4E4F58 for the mid tone, then two tints and white. On a co-brand surface the Edge wedge takes the PARTNER's hue.",
       "color": {
-        "primary": "#111111",
+        "primary": "#000000",
         "primaryDeep": "#000000",
         "accent": "#C8C8C8",
-        "accentDeep": "#6E6E6E",
-        "bandBackground": "#000000",
-        "surfaceTint": "#FAFAFA"
+        "accentDeep": "#6D6D77",
+        "bandBackground": "#23232A",
+        "bandRule": "#C8C8C8",
+        "surfaceTint": "#F0F1F4"
       },
       "logos": {
         "horizontal-on-light": "assets/logos/horizontal-black.svg",
@@ -233,34 +234,34 @@
     }
   },
   "diagramRoles": {
-    "_comment": "Functional colors for flowcharts, status and dashboards. Identical across every brand so a diagram reads the same regardless of whose document it sits in. Never invent new hues for these roles. A brand accent is never a status color. Each role names the text color that clears contrast on it; measured, do not substitute.",
+    "_comment": "Functional colors for flowcharts, status and dashboards. Identical across every brand so a diagram reads the same regardless of whose document it sits in. The fills are the alert and neutral families in each palette.css. Never invent new hues for these roles. A brand accent is never a status color. Each role names the text color that clears contrast on it; measured, do not substitute.",
     "decision": {
-      "fill": "#4a8e3a",
-      "border": "#3a7029",
+      "fill": "#1E7A4D",
+      "border": "#036139",
       "use": "decision boxes, questions, branch points",
       "text": "#FFFFFF",
-      "contrast": "4.02:1",
-      "textRule": "large or bold only, which is what a node label is. Never body copy on this fill."
+      "contrast": "5.32:1",
+      "textRule": "any size"
     },
     "warning": {
-      "fill": "#f57c00",
-      "border": "#cc6600",
+      "fill": "#B5821A",
+      "border": "#926603",
       "use": "warnings, advisories",
-      "text": "#111111",
-      "contrast": "6.98:1",
-      "textRule": "near-black, not white. White on this amber measures 2.70:1 and fails at every size."
+      "text": "#23232A",
+      "contrast": "4.59:1",
+      "textRule": "ink, not white. White on this amber measures 3.40:1 and fails at body size."
     },
     "process": {
-      "fill": "#3e3e3e",
-      "border": "#2a2a2a",
+      "fill": "#4E4F58",
+      "border": "#23232A",
       "use": "neutral process steps, context boxes",
       "text": "#FFFFFF",
-      "contrast": "10.70:1",
+      "contrast": "8.13:1",
       "textRule": "any size"
     },
     "shape": "rectangles, 6px radius. Role is communicated by fill color, never by shape.",
     "connector": {
-      "stroke": "#3e3e3e",
+      "stroke": "#4E4F58",
       "width": "1.8pt"
     }
   },
