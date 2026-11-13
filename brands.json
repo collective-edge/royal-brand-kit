@@ -183,16 +183,16 @@
         "horizontal-on-dark": "assets/logos/horizontal-white.svg",
         "compact-on-light": "assets/logos/compact-on-light.svg",
         "compact-on-dark": "assets/logos/compact-on-dark.svg",
-        "mark-on-light": "assets/logos/mark-color.svg",
-        "mark-on-dark": "assets/logos/mark-white.svg",
+        "mark-on-light": null,
+        "mark-on-dark": null,
+        "app-icon": "assets/logos/app-icon.svg",
         "stacked-on-dark": null
       },
-      "logoNote": "The main logo is APEX PARAMEDICS, the horizontal lockup. The compact lockup is APEX alone, for smaller places, decks, or a corner. The delivered compact files carried #000F9F and #FFB71B; both are normalised to the primary lockup so the house ships one blue and one gold. The delivered originals are in the git history, at the commit that adopted the set.",
+      "logoNote": "The main logo is APEX PARAMEDICS, the horizontal lockup. The compact lockup is APEX alone, for smaller places, decks, or a corner. Apex has no icon-only mark: the gold arc never appears without the letters. Where another brand would use a mark, Apex uses the compact lockup, and a favicon, an app tile or a space too small for the compact lockup uses app-icon.svg, the A under the arc on a navy square. The arc-only files mark-color.svg and mark-white.svg are deleted, and scripts/validate.py fails on any reference to them. The delivered compact files carried #000F9F and #FFB71B; both are normalised to the primary lockup so the house ships one blue and one gold. The delivered originals are in the git history, at the commit that adopted the set.",
       "logoSource": "assets/logos/source/apex-paramedics-PMS123-PMS072.eps",
       "minWidth": {
         "horizontal": "110px",
-        "compact": "80px",
-        "mark": "32px"
+        "compact": "80px"
       }
     },
     "royal": {
