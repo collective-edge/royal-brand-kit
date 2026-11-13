@@ -94,10 +94,10 @@ Purple is the whole palette. Text and rules come from the shared neutrals. Every
 
 Base is a fill, a rule or a dot on a light ground. Text is text on white. Tint is a pill or callout fill. On dark is text, dots and rules on a dark ground. Warn base #B5821A is never text, and text on it is #23232A.
 
-**Charts.** Chart colors come from the house data set, never from the brand palette. Assign series 1 to 8 in order. Never cycle. There is no ninth.
+**Charts.** Chart colors come from the house data set, never from the brand palette. Assign series 1 to 7 in order. Never cycle. There is no eighth.
 
-- On a light ground: `#2063e6` `#eb6f32` `#0f9b89` `#7f3810` `#8a72f7` `#819808` `#259cde` `#b93388`
-- On a dark ground: `#0986e4` `#fc803e` `#06bfa8` `#ac772e` `#ac94fd` `#b1d454` `#74c8fc` `#c4588d`
+- On a light ground: `#2063e6` `#eb6f32` `#b93388` `#7f3810` `#8a72f7` `#819808` `#259cde`
+- On a dark ground: `#0986e4` `#fc803e` `#c4588d` `#ac772e` `#ac94fd` `#b1d454` `#74c8fc`
 
 ## 5. Make a document
 

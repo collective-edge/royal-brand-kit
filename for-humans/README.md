@@ -206,16 +206,15 @@ For charts with more than one line, bar group or slice. **Use them in this order
 |---|---|---|---|
 | 1 | Blue | <img src="previews/data/series-1.png" width="22"> `#2063e6` | <img src="previews/data/series-1-dark.png" width="22"> `#0986e4` |
 | 2 | Orange | <img src="previews/data/series-2.png" width="22"> `#eb6f32` | <img src="previews/data/series-2-dark.png" width="22"> `#fc803e` |
-| 3 | Teal | <img src="previews/data/series-3.png" width="22"> `#0f9b89` | <img src="previews/data/series-3-dark.png" width="22"> `#06bfa8` |
+| 3 | Magenta | <img src="previews/data/series-3.png" width="22"> `#b93388` | <img src="previews/data/series-3-dark.png" width="22"> `#c4588d` |
 | 4 | Umber | <img src="previews/data/series-4.png" width="22"> `#7f3810` | <img src="previews/data/series-4-dark.png" width="22"> `#ac772e` |
 | 5 | Violet | <img src="previews/data/series-5.png" width="22"> `#8a72f7` | <img src="previews/data/series-5-dark.png" width="22"> `#ac94fd` |
 | 6 | Olive | <img src="previews/data/series-6.png" width="22"> `#819808` | <img src="previews/data/series-6-dark.png" width="22"> `#b1d454` |
 | 7 | Sky | <img src="previews/data/series-7.png" width="22"> `#259cde` | <img src="previews/data/series-7-dark.png" width="22"> `#74c8fc` |
-| 8 | Magenta | <img src="previews/data/series-8.png" width="22"> `#b93388` | <img src="previews/data/series-8-dark.png" width="22"> `#c4588d` |
 
-None of the eight is green or red. Green and red belong to the direction colors below.
+None of the seven is green or red. Green and red belong to the direction colors below.
 
-Eight is the limit. If you need a ninth, group the smallest ones into "Other" or split the chart in two. Do not invent a color. On scatter plots, bubble charts and maps, where any two dots can end up touching, the limit is four on white and three on a dark band.
+Seven is the limit. If you need an eighth, group the smallest ones into "Other" or split the chart in two. Do not invent a color. On scatter plots, bubble charts and maps, where any two dots can end up touching, the limit is four on white and three on a dark band.
 
 ### Direction colors · telling the reader how to feel
 
@@ -255,11 +254,11 @@ Gray against blue reads instantly. That is the whole fix.
 
 ### Above and below a line
 
-For a value that sits over or under a baseline: budget variance, days ahead or behind. Red below, teal above, gray in the middle. Not red and green.
+For a value that sits over or under a baseline: budget variance, days ahead or behind. Red below, blue above, gray in the middle. Not red and green.
 
 | Furthest below | | | No difference | | | Furthest above |
 |---|---|---|---|---|---|---|
-| `#d05045` | `#f67a6d` | `#f9b8af` | `#E4E4E9` | `#49e3eb` | `#3ab9bf` | `#2b9095` |
+| `#d05045` | `#f67a6d` | `#f9b8af` | `#E4E4E9` | `#afcbfe` | `#71a3fe` | `#467ce1` |
 
 ### The ramp · for "how much"
 
@@ -288,9 +287,9 @@ On a dark band the ramp flips. The lightest step is the largest value:
 - A brand color as a chart color.
 - A brand color as a status color. Green means good only.
 - Two shades of one color standing in for two different things.
-- Red and green as the two ends of one scale. Use red and teal.
+- Red and green as the two ends of one scale. Use red and blue.
 - A red number when the news is good.
-- A ninth series color.
+- An eighth series color.
 - Series colors out of order.
 - Any color doing its job without a label.
 
@@ -299,7 +298,7 @@ On a dark band the ramp flips. The lightest step is the largest value:
 Everything above was measured, not picked by eye. If you have a set of colors you want tested, send them to us and we will run them, or run it yourself from the full download:
 
 ```
-python3 scripts/validate-palette.py "#2063e6,#eb6f32,#0f9b89"
+python3 scripts/validate-palette.py "#2063e6,#eb6f32,#b93388"
 ```
 
 It reports whether the colors can be told apart and whether they have enough contrast against the page.

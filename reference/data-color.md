@@ -28,7 +28,7 @@ Every color in a chart does exactly one of these. If you cannot say which, the c
 
 | Job | Question it answers | What to use |
 |---|---|---|
-| **Identity** | which series is this | `--series-1` to `--series-8`, in order |
+| **Identity** | which series is this | `--series-1` to `--series-7`, in order |
 | **Magnitude** | how much | `--seq-100` to `--seq-700` |
 | **Polarity** | which side of a baseline | `--div-neg-3` to `--div-pos-3` |
 | **Direction** | is this good news | `--dir-favorable`, `--dir-unfavorable`, `--dir-caution`, `--dir-neutral` |
@@ -39,18 +39,17 @@ The commonest mistake in Royal and Apex material is using identity color where t
 
 ## 3. Series · identity
 
-Eight slots. Assign in order. Never cycle, never skip, never generate a ninth.
+Seven slots. Assign in order. Never cycle, never skip, never generate an eighth.
 
 | Slot | Hue | Light | Dark ground | Contrast on white |
 |---|---|---|---|---|
 | 1 | blue | `#2063e6` | `#0986e4` | 5.26:1 |
 | 2 | orange | `#eb6f32` | `#fc803e` | 3.06:1 |
-| 3 | teal | `#0f9b89` | `#06bfa8` | 3.46:1 |
+| 3 | magenta | `#b93388` | `#c4588d` | 5.40:1 |
 | 4 | umber | `#7f3810` | `#ac772e` | 8.48:1 |
 | 5 | violet | `#8a72f7` | `#ac94fd` | 3.60:1 |
 | 6 | olive | `#819808` | `#b1d454` | 3.27:1 |
 | 7 | sky | `#259cde` | `#74c8fc` | 3.05:1 |
-| 8 | magenta | `#b93388` | `#c4588d` | 5.40:1 |
 
 The **order is the safety mechanism**, not a preference. It was chosen by enumerating orderings and keeping only those where every neighboring pair stays separable under simulated red-green color blindness. Reordering the slots to suit a deck undoes the work.
 
@@ -58,14 +57,14 @@ Measured on the neighboring pairs:
 
 | | Simulated red-green | Normal vision | Floor |
 |---|---|---|---|
-| Light | ΔE 10.8 | ΔE 25.1 | 8 / 15 |
-| Dark ground | ΔE 14.4 | ΔE 22.5 | 8 / 15 |
+| Light | ΔE 16.3 | ΔE 20.3 | 8 / 15 |
+| Dark ground | ΔE 11.6 | ΔE 16.9 | 8 / 15 |
 
 **Caps that are not negotiable.**
 
 - **Four series** on scatter, bubble, map and small-multiple charts, **three** on a dark ground. In those forms any two marks can end up adjacent, which is a harder test than bars and lines. Slots 1 to 4 clear it on light and slots 1 to 3 on dark; the next slot does not.
-- **Eight series** everywhere else. Past eight, fold the tail into "Other" or split into several charts. A ninth color does not exist.
-- **All eight measure 3:1 or better on white**, and 3.55:1 or better on every dark band. Sky `#259cde` at 3.05:1 and orange `#eb6f32` at 3.06:1 are the lowest.
+- **Seven series** everywhere else. Past seven, fold the tail into "Other" or split into several charts. An eighth color does not exist.
+- **All seven measure 3:1 or better on white**, and 3.55:1 or better on every dark band. Sky `#259cde` at 3.05:1 and orange `#eb6f32` at 3.06:1 are the lowest.
 
 ---
 
@@ -117,11 +116,13 @@ Two hues away from a neutral middle, for distance above or below a baseline. Bud
 | `--div-neg-2` | `#f67a6d` | |
 | `--div-neg-1` | `#f9b8af` | just below |
 | `--div-mid` | `#E4E4E9` | no difference |
-| `--div-pos-1` | `#49e3eb` | just above |
-| `--div-pos-2` | `#3ab9bf` | |
-| `--div-pos-3` | `#2b9095` | furthest above |
+| `--div-pos-1` | `#afcbfe` | just above |
+| `--div-pos-2` | `#71a3fe` | |
+| `--div-pos-3` | `#467ce1` | furthest above |
 
-**The poles are red and teal, not red and green.** Red against green measures **ΔE 5.5 under simulated deuteranopia**, which is a collapse: for a large minority of readers the two ends of the scale are the same color. Red against teal measures 12.8 and holds.
+**The poles are red and blue, not red and green.** Red against green measures **ΔE 5.5 under simulated deuteranopia**, which is a collapse: for a large minority of readers the two ends of the scale are the same color. Red against blue measures 23.6 at the furthest step under the weaker of the two red-green simulations, and 24.5 on a dark ground. It holds.
+
+The blue is the hue of series 1, stepped to the same lightness as the red at every step, so neither side of the baseline outweighs the other. The furthest steps measure 4.27:1 and 4.01:1 on white, and 4.56:1 and 4.84:1 or better on every dark band.
 
 Green still carries good news. It does it through the direction tokens in the next section, where an icon and a word always travel with it, so the meaning never rests on hue alone.
 
@@ -216,7 +217,7 @@ The rule:
 
 ```bash
 python3 scripts/validate-palette.py --series                       # the house set, both grounds
-python3 scripts/validate-palette.py "#2063e6,#eb6f32,#0f9b89"      # an ad-hoc set
+python3 scripts/validate-palette.py "#2063e6,#eb6f32,#b93388"      # an ad-hoc set
 python3 scripts/validate-palette.py "#...,#..." --pairs all        # scatter, bubble, map
 python3 scripts/validate-palette.py "#...,#..." --ordinal          # a one-hue ramp
 ```
@@ -245,7 +246,7 @@ It cannot see a chart. Render it and look:
 | Red and green as the ends of a scale | ΔE 5.5 simulated deuteranopia. Collapses. |
 | Red for a negative number that is good news | Tells the reader a cost saving was a loss. |
 | A sequential ramp across facility names | Magnitude encoding on identity data. Implies a ranking that is not there. |
-| A ninth series color | There is no ninth slot. Fold into "Other". |
+| An eighth series color | There is no eighth slot. Fold into "Other". |
 | Series color on a value that means good or bad | Use direction tokens. Never both in one chart. |
 | Brand accent on every bar | Spends the brand on a distinction it has no opinion about. |
 | Color with no label | Fails on print, on projectors, and for one man in twelve. |
@@ -254,8 +255,8 @@ It cannot see a chart. Render it and look:
 
 ## 11. Sources
 
-The method, the gates and the simulation model come from the house data visualisation standard: eight fixed hues in a validated order, OKLab ΔE ×100, Machado-Oliveira-Fernandes 2009 at severity 1.0.
+The method, the gates and the simulation model come from the house data visualisation standard: seven fixed hues in a validated order, OKLab ΔE ×100, Machado-Oliveira-Fernandes 2009 at severity 1.0.
 
-The eight hues are blue, orange, teal, umber, violet, olive, sky and magenta. Green and red belong to the alert family and no brand accent is among them. Each was stepped against our own grounds, and the order was fixed by the validator.
+The seven hues are blue, orange, magenta, umber, violet, olive and sky. Green and red belong to the alert family and no brand accent is among them. Each was stepped against our own grounds, and the order was fixed by the validator.
 
 Partner values and their confidence are recorded in a kit's own `reference/partner-colors.md` where one ships. Royal's is the worked example.

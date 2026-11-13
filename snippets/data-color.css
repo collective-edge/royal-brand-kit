@@ -25,8 +25,8 @@
    brand is carried by the band, the mark and the type.
 
    No series slot is a brand color and none is remapped. The
-   eight are blue, orange, teal, umber, violet, olive, sky and
-   magenta: no green and no red, which belong to the alert
+   seven are blue, orange, magenta, umber, violet, olive and
+   sky: no green and no red, which belong to the alert
    family, and no brand accent.
 
    ------------------------------------------------------------
@@ -74,26 +74,25 @@
 :root {
 
   /* ---- SERIES · categorical identity -----------------------
-     Eight slots, assigned IN ORDER and never cycled. The order
+     Seven slots, assigned IN ORDER and never cycled. The order
      is the color-blindness safety mechanism, not a preference:
      it was selected by enumerating orderings and keeping only
      those where every neighboring pair stays separable. Worst
-     neighboring pair measures ΔE 10.8 simulated red-green and
-     25.1 under normal vision, both clear of the floor. All
-     eight measure 3:1 or better on white.
+     neighboring pair measures ΔE 16.3 simulated red-green and
+     20.3 under normal vision, both clear of the floor. All
+     seven measure 3:1 or better on white.
 
      Four series is the cap for scatter, bubble and map charts,
-     where any two marks can end up side by side. Past eight
+     where any two marks can end up side by side. Past seven
      series, fold the tail into "Other" or split the chart.
-     Never generate a ninth color. */
+     Never generate an eighth color. */
   --series-1: #2063e6;   /* blue    */
   --series-2: #eb6f32;   /* orange  */
-  --series-3: #0f9b89;   /* teal    */
+  --series-3: #b93388;   /* magenta */
   --series-4: #7f3810;   /* umber   */
   --series-5: #8a72f7;   /* violet  */
   --series-6: #819808;   /* olive   */
   --series-7: #259cde;   /* sky     */
-  --series-8: #b93388;   /* magenta */
 
   /* ---- SEQUENTIAL · magnitude ------------------------------
      One hue, light to dark, for "how much". Heatmaps, choropleths,
@@ -122,12 +121,16 @@
      baseline: budget variance, days ahead or behind, percentage
      point change against target.
 
-     The poles are red and teal, not red and green. Red against
+     The poles are red and blue, not red and green. Red against
      green measures ΔE 5.5 under simulated deuteranopia and
-     collapses into one color. Red against teal measures 12.8
-     and holds. Green still carries good news, but it does it
-     through the direction tokens below, where an icon and a
-     word always travel with it.
+     collapses into one color. Red against blue measures 23.6
+     at the furthest step under the weaker of the two red-green
+     simulations, 24.5 on a dark ground, and holds. The blue is
+     the hue of series 1, stepped to the same lightness as the
+     red, so the two sides weigh the same. The furthest step
+     clears 4.01:1 on white. Green still carries good news, but
+     it does it through the direction tokens below, where an
+     icon and a word always travel with it.
 
      The middle is gray. A hue in the middle reads as a value
      rather than as "no difference". */
@@ -135,9 +138,9 @@
   --div-neg-2: #f67a6d;
   --div-neg-1: #f9b8af;
   --div-mid:   #E4E4E9;   /* no difference */
-  --div-pos-1: #49e3eb;
-  --div-pos-2: #3ab9bf;
-  --div-pos-3: #2b9095;   /* furthest above the baseline */
+  --div-pos-1: #afcbfe;
+  --div-pos-2: #71a3fe;
+  --div-pos-3: #467ce1;   /* furthest above the baseline */
 
   /* ---- DIRECTION · how to feel about a number --------------
      Favorable, unfavorable, caution, neutral. These answer
@@ -204,19 +207,18 @@
    every series step clears 3.55:1 or better and every
    direction value clears 4.62:1 or better, so a chart keeps
    working wherever it is placed. Worst neighboring series pair:
-   ΔE 14.4 simulated red-green and 22.5 under normal vision.
+   ΔE 11.6 simulated red-green and 16.9 under normal vision.
    Three series is the scatter cap on a dark ground.
    ============================================================ */
 
 .bk-on-dark {
   --series-1: #0986e4;
   --series-2: #fc803e;
-  --series-3: #06bfa8;
+  --series-3: #c4588d;
   --series-4: #ac772e;
   --series-5: #ac94fd;
   --series-6: #b1d454;
   --series-7: #74c8fc;
-  --series-8: #c4588d;
 
   /* Sequential flips its anchor: on a dark ground the LIGHTEST
      step means the largest value. */
@@ -232,9 +234,9 @@
   --div-neg-2: #c04a40;
   --div-neg-1: #7d352f;
   --div-mid:   #4E4F58;
-  --div-pos-1: #1f5f64;
-  --div-pos-2: #2b9095;
-  --div-pos-3: #3ec4cd;
+  --div-pos-1: #2f4d86;
+  --div-pos-2: #4172cf;
+  --div-pos-3: #5a92fe;
 
   /* The alert -on-dark step is the base on a band. The tint is
      that step at 18%, and the ink on it is white: the colored

@@ -201,7 +201,7 @@ figure + .lines, .pair + .lines { margin-top: 32px; }
 .alert .sw.dk { background: var(--band); letter-spacing: 0.005em; }
 .alert .sw .dot { width: 8px; height: 8px; margin-right: 8px; }
 
-.series { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); }
+.series { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
 .series + .series { margin-top: 20px; }
 .series.seq { grid-template-columns: repeat(7, minmax(0, 1fr)); }
 .series .c { display: block; height: 44px; margin-bottom: 8px; }

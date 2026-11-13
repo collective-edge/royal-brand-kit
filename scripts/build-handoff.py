@@ -13,7 +13,7 @@ Reads for-humans/pack.json in the kit this script sits in and writes:
   previews/         each logo on the ground it is for, as shown in the README
   previews/swatches one chip per brand color
   previews/data     one chip per house data color, read from snippets/data-color.css:
-                    the eight series on light and on a dark band, and the four
+                    the seven series on light and on a dark band, and the four
                     direction colors
   fonts/            the variable font, copied from assets/fonts/
 
@@ -167,11 +167,11 @@ def build_data(out):
     os.makedirs(d, exist_ok=True)
     n = 0
     for block, suffix in ((light, ""), (dark, "-dark")):
-        for i in range(1, 9):
-            m = re.search(r"--series-%d:\s*(#[0-9a-fA-F]{6})" % i, block)
-            if not m:
-                fail("no --series-%d%s in %s" % (i, suffix, css_path))
-            chip(m.group(1), os.path.join(d, "series-%d%s.png" % (i, suffix)))
+        slots = re.findall(r"--series-(\d+):\s*(#[0-9a-fA-F]{6})", block)
+        if not slots:
+            fail("no --series-N%s in %s" % (suffix, css_path))
+        for i, value in slots:
+            chip(value, os.path.join(d, "series-%s%s.png" % (i, suffix)))
             n += 1
     for role in ("favorable", "unfavorable", "caution", "neutral"):
         # A direction color is an alias of the alert family and carries the

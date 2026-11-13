@@ -365,6 +365,8 @@ def s_color(P):
       </figure>'''
     out += P.subsec('Alerts', 'Four meanings, one family. Green means good and nothing else. A brand color is never a status. The word always travels with the color.', main)
     D = T['data']; cap = D['series']['allPairsCap']
+    nums = {3: 'three', 4: 'four'}
+    count = {6: 'six', 7: 'seven', 8: 'eight', 9: 'nine', 10: 'ten'}
     cols = ''
     for i, (h, hd) in enumerate(zip(D['series']['light'], D['series']['dark'])):
         h, hd = U(h), U(hd)
@@ -375,10 +377,9 @@ def s_color(P):
         <ol class="series two">{cols}</ol>
         <p class="series-h">Sequential ramp, {esc(NAME)}</p>
         <ol class="series seq">{sq}</ol>
-        {P.cap(f'Chart series in fixed order, one to {({8: "eight"})[len(D["series"]["light"])]}, and the sequential ramp. The ramp ends on {"the ink" if not T["hasColor"] else "the brand"}.')}
+        {P.cap(f'Chart series in fixed order, one to {count[len(D["series"]["light"])]}, and the sequential ramp. The ramp ends on {"the ink" if not T["hasColor"] else "the brand"}.')}
       </figure>'''
-    nums = {3: 'three', 4: 'four'}
-    out += P.subsec('Charts', f'Chart color is a separate house set of eight. A brand color is never a series color. Assign in order. Never cycle. In a scatter, {nums[cap["light"]]} series at most on light and {nums[cap["dark"]]} on dark. Darker means more, so the ramp can carry the brand.', main)
+    out += P.subsec('Charts', f'Chart color is a separate house set of {count[len(D["series"]["light"])]}. A brand color is never a series color. Assign in order. Never cycle. In a scatter, {nums[cap["light"]]} series at most on light and {nums[cap["dark"]]} on dark. Darker means more, so the ramp can carry the brand.', main)
     return out
 
 
