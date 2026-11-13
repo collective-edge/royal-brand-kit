@@ -173,7 +173,7 @@ Six types. Take the first that fits: sheet, deck, working-doc, one-pager, report
 
 | | Working-doc | Sheet | Deck | One-pager, report, memo |
 |---|---|---|---|---|
-| Page | US Letter, portrait, 0.75in margins | One table per tab, from A1 | 13.333 by 7.5in, 16:9 | US Letter, portrait. 0.75in margins, 0.6in on a one-pager |
+| Page | US Letter, portrait, 0.75in margins | One table per tab. Logo in row 1, header in row 2 | 13.333 by 7.5in, 16:9 | US Letter, portrait. 0.75in margins, 0.6in on a one-pager |
 | Opens on | The logo, top left, then the title at 24pt. No band | The header row, frozen, filter on | A title slide on the dark ground | The band, with the logo |
 | Body | 10.5pt, weights 400 and 700 | Montserrat 10pt | 15pt, on white | `bk-body`, 12pt, 70 characters a line |
 

@@ -745,13 +745,13 @@ Section 14 holds the values. With openpyxl, then upload with conversion, or the 
 | Rule | How |
 |---|---|
 | Font | `Font(name='Montserrat', size=10)` on every cell. Header, status and totals: `bold=True`. Never `Montserrat SemiBold`, never size 10.5 |
-| Header row | Row 1. `PatternFill('solid', fgColor='F0E1FD')`, `Border(bottom=Side(style='thin', color='23232A'))` |
+| Header row | Row 2. `ws.freeze_panes = "A3"`. `PatternFill('solid', fgColor='F0E1FD')`, `Border(bottom=Side(style='thin', color='23232A'))` |
 | Freeze and filter | `ws.freeze_panes = 'A2'`, or `'B2'` when column A is the name or ID of the row. `ws.auto_filter.ref = ws.dimensions` |
 | Columns | `ws.column_dimensions[letter].width` in characters: short code 11, date 15, name 25, notes 45, which is 80px, 110px, 180px and 320px. Text cells `Alignment(wrap_text=True, vertical='top')`. Number cells `Alignment(horizontal='right')` |
 | Formats | `cell.number_format`: `'d mmm yyyy'`, `'#,##0'`, `'$#,##0'`, `'0%'` |
 | Status | `DataValidation(type='list', formula1='"■ Not started,■ On track,■ At risk,■ Blocked,■ Done"')` on the column. One conditional format per value sets the fill to the alert tint and the font to the alert text on tint, bold |
 | Due dates | One conditional format on the date column: the date is before `TODAY()` and the status of the row is not `■ Done`. Font color B0322B |
-| Logo and tabs | No picture, no `=IMAGE()`, no tab that was not asked for |
+| Logo and tabs | `ws.add_image(Image(path), "A1")` with the picture scaled to 120px wide, `ws.row_dimensions[1].height` set to 30.8 points. No `=IMAGE()`. No tab that was not asked for |
 | Totals row | The last row. Bold, `Border(top=Side(style='thin', color='23232A'))`. Every value a formula such as `=SUM(D2:D40)` |
 | Editing | Load the file, change only the cells asked for, save to the same file. Never rebuild the sheet from its values |
 
@@ -831,16 +831,16 @@ Lines 7, 8, 9, 12 and 13 describe a memo, a one-pager and a report. For a workin
 
 ## 14. Sheet
 
-A tracker, list or workbook in Google Sheets or Excel. Type `sheet`. A sheet carries no logo and no lockup.
+A tracker, list or workbook in Google Sheets or Excel. Type `sheet`. A sheet carries one small logo, top left, and no lockup.
 
 | | |
 |---|---|
-| Layout | One table per tab, starting at A1. The header is row 1. No title row above it, no spacer row or column, no merged cells, no decorative color |
+| Layout | One table per tab. Row 1 is the logo row, row 2 is the header, data starts in row 3. No title text, no spacer row or column, no merged cells, no decorative color |
 | Tabs | Only the tabs that were asked for. No cover tab, no “How to use” tab |
-| Logo | None, and no lockup. A growing table has no stable place for one. Never use `=IMAGE()`: it returns `#REF!` |
+| Logo | The logo sits top left: role `horizontal-on-light`, the PNG, placed as a picture anchored to cell A1, 120px wide. Row 1 holds the logo and nothing else: 41px tall, no fill, no text, no merge. Insert it as an embedded picture (`ws.add_image` in openpyxl). Never use `=IMAGE()`: it returns `#REF!`. No lockup |
 | Font | Family `Montserrat`, 10pt, in every cell. Google Sheets sets whole point sizes only, so 10pt is the one size outside the scale of section 9. Never 10.5pt. Bold off or bold on, weights 400 and 700. Never name a weight family such as `Montserrat SemiBold` in a sheet: it falls back to Times New Roman |
 | Alignment | Text left. Numbers right |
-| Header row | Row 1. Weight 700, `--fg-1` #23232A, fill `--bg-surface-2` #f0e1fd, a 1pt `--fg-1` #23232A bottom border. Frozen, filter on |
+| Header row | Row 2. Weight 700, `--fg-1` #23232A, fill `--bg-surface-2` #f0e1fd, a 1pt `--fg-1` #23232A bottom border. Rows 1 and 2 frozen, filter on row 2 |
 | First column | Frozen when it is the name or ID of the row |
 | Columns | Wrap text columns and set their widths: short code 80px, date 110px, name 180px, notes 320px. Clip nothing. Row height automatic |
 | Dates | `d mmm yyyy` |

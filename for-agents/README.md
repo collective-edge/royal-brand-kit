@@ -159,9 +159,10 @@ Plain on purpose, so it survives Google Docs untouched. US Letter, portrait, 0.7
 
 | Part, in Google Sheets or Excel | Specification |
 |---|---|
-| Layout | One table per tab, starting at A1. The header is row 1. No title row above it, no spacer row or column, no merged cells, no decorative color. No tab that was not asked for: no cover tab, no “How to use” tab. No logo and no lockup, since a growing table has no stable place for one. Never use `=IMAGE()`: it returns `#REF!` |
+| Layout | One table per tab. Row 1 is the logo row, row 2 is the header, data starts in row 3. No title text, no spacer row or column, no merged cells, no decorative color. No tab that was not asked for: no cover tab, no “How to use” tab |
+| Logo | The logo sits top left: role `horizontal-on-light`, the PNG, placed as a picture anchored to cell A1, 120px wide. Row 1 holds the logo and nothing else: 41px tall, no fill, no text, no merge. Insert it as an embedded picture (`ws.add_image` in openpyxl). Never use `=IMAGE()`: it returns `#REF!`. No lockup |
 | Font | Family `Montserrat`, 10pt, in every cell. Whole point sizes only, never 10.5pt. Bold off or bold on, 400 and 700. Never name a weight family such as `Montserrat SemiBold` in a sheet: it falls back to Times New Roman. Text left-aligned, numbers right-aligned |
-| Header row | Row 1. 700, #23232A, fill `--bg-surface-2` #f0e1fd, a 1pt #23232A bottom border. Frozen, filter on. Freeze the first column too when it is the name or ID of the row |
+| Header row | Row 2. 700, #23232A, fill `--bg-surface-2` #f0e1fd, a 1pt #23232A bottom border. Rows 1 and 2 frozen, filter on row 2. Freeze the first column too when it is the name or ID of the row |
 | Columns | Wrap text columns and set their widths: short code 80px, date 110px, name 180px, notes 320px. Clip nothing. Row height automatic |
 | Formats | Date `d mmm yyyy`. Whole number `#,##0`. Money `$#,##0`, two decimals only when cents matter. Percent `0%` |
 | Status column | A dropdown: data validation from a fixed list. Each value is U+25A0, a space, then one or two words. Never free text. Conditional formatting sets the color by value, never a hand fill: the alert Tint as fill and the alert Text on tint as text, 700: go #DAF8DF and #1E7A4D, warn #FFEFDD and #926603, stop #FDE9E6 and #B0322B, info #E3F0FF and #2A5A8C. Default list when none is given: Not started (info), On track (go), At risk (warn), Blocked (stop), Done (go) |

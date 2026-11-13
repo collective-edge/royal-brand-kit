@@ -428,18 +428,21 @@
       "layout": {
         "tablesPerTab": 1,
         "startCell": "A1",
-        "headerRow": 1,
+        "logoRow": 1,
+        "headerRow": 2,
+        "firstDataRow": 3,
+        "frozenRows": 2,
+        "logo": "Role horizontal-on-light, the PNG, as a picture anchored to A1. Width brandFacts.<brand>.sheetLogoWidthPx. Row 1 is brandFacts.<brand>.sheetLogoRowPx tall and holds nothing else: no fill, no text, no merge. Embedded picture, never =IMAGE()",
         "never": [
-          "title row above the header",
+          "title text above the header",
           "spacer row or column",
           "merged cells",
-          "logo",
           "lockup",
           "=IMAGE(), which returns #REF!",
           "a tab that was not asked for, such as a cover tab or a How to use tab",
           "decorative color"
         ],
-        "whyNoLogo": "A growing table has no stable place for one"
+        "logoNote": "One small logo, top left, in its own row. Nothing else sits above the header"
       },
       "font": {
         "family": "Montserrat",
@@ -531,11 +534,11 @@
         "A sheet that already has its own colors and layout keeps them."
       ],
       "rules": [
-        "One table per tab, starting at A1.",
-        "No logo and no lockup on a sheet.",
+        "One table per tab. Row 1 is the logo row, row 2 is the header.",
+        "One small logo, top left. No lockup on a sheet.",
         "A status is a dropdown of one or two words, never free text."
       ],
-      "lockupPlacement": "None. A sheet carries no logo and no Powered by Collective Edge"
+      "lockupPlacement": "None. A sheet carries its own logo and no Powered by Collective Edge"
     },
     "deck": {
       "name": "deck",
@@ -2541,7 +2544,10 @@
       },
       "workingDocLogoRole": "horizontal-on-light",
       "workingDocLogoWidthIn": 1.7,
-      "workingDocFooter": "Collective Edge · Page N"
+      "workingDocFooter": "Collective Edge · Page N",
+      "sheetLogoRole": "horizontal-on-light",
+      "sheetLogoWidthPx": 150,
+      "sheetLogoRowPx": 37
     },
     "apex": {
       "lockup": true,
@@ -2557,7 +2563,10 @@
       },
       "workingDocLogoRole": "horizontal-on-light",
       "workingDocLogoWidthIn": 1.3,
-      "workingDocFooter": "Apex Paramedics · Page N"
+      "workingDocFooter": "Apex Paramedics · Page N",
+      "sheetLogoRole": "horizontal-on-light",
+      "sheetLogoWidthPx": 110,
+      "sheetLogoRowPx": 58
     },
     "royal": {
       "lockup": true,
@@ -2573,7 +2582,10 @@
       },
       "workingDocLogoRole": "horizontal-on-light",
       "workingDocLogoWidthIn": 1.3,
-      "workingDocFooter": "Royal Ambulance · Page N"
+      "workingDocFooter": "Royal Ambulance · Page N",
+      "sheetLogoRole": "horizontal-on-light",
+      "sheetLogoWidthPx": 120,
+      "sheetLogoRowPx": 41
     }
   },
   "templates": {
