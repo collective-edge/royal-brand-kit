@@ -26,7 +26,7 @@ Most requests change a file that already exists. These eight rules come before e
 3. **A named example is the template.** Asked to make it look like another document: copy that document’s structure, styles and order. This kit does not override it.
 4. **Restyle only when asked.** “Brand this”, “clean up the formatting”, “make it consistent”. Then apply the working-doc styles to what is there: font, sizes, heading colors, table style, logo, footer. Do not reorder, rewrite or shorten the words. Do not add a band. Where the file has a band, take it out: the logo goes top left and the band’s words go only if they are not already the title.
 5. **An accepted format is fixed.** A recurring report or an agenda a person approved is reused exactly next time. Never improve it unprompted.
-6. **Leave the words alone.** Shorten or rewrite only when asked. Asked to tighten: cut at least half and keep every fact, name, number and date.
+6. **Leave the words alone.** Shorten or rewrite only when asked. Asked to tighten: keep every fact, name, number and date, and cut every other word you can. Aim for half.
 7. **Delete nothing that is not yours.** Never delete someone else’s content, comments, formulas, data validation or tabs. Before a large change, say what will change. After, list what changed in three bullets or fewer.
 8. **Never resize to fit.** Never change the spacing, sizes or margins of an existing file to make an edit fit a page. If an edit pushes content onto a new page, leave it there and say so when you hand the work back.
 
@@ -673,7 +673,7 @@ The same page in each tool. A value not listed here comes from the section named
 | Ground | White slides: background #FFFFFF. Dark slides: background #2f193b |
 | Headline | Text box at 0.83in, 0.67in, 10.0in by 1.28in. `Montserrat ExtraBold`, 42pt, #572e72, line spacing 46.2pt, anchored top |
 | Body | `Montserrat`, 15pt, #23232A, line spacing 23.3pt |
-| Bullets | `a:buChar` U+2022, `a:buClr` #572e72, `marL` 0.33in, `indent` -0.33in, space before 9pt |
+| Bullets | `a:buChar` U+2022 with `a:buFont typeface="Montserrat"`, `a:buClr` #572e72, `marL` 0.33in, `indent` -0.33in, space before 9pt |
 | Rules | A line shape, 0.75pt, #E4E4E9 on white or #483553 on dark |
 | Table | `shapes.add_table` in the body zone. Set `a:tableStyleId` to `{2D5ABB26-0587-4C30-8999-92F81FD0307C}` and `firstRow` and `bandRow` to 0. On every cell write `a:lnL`, `a:lnR`, `a:lnT` and `a:lnB` in `a:tcPr`: `a:noFill` for no border, or `w` in EMU with a solid fill. 0.75pt is 9525. 1.5pt is 19050. Header cells: fill #2f193b, text #FFFFFF, no border. Body cells no fill, bottom border 0.75pt #E4E4E9, no other border. Header row height 0.49in, body rows 0.57in. Columns in proportion to content, summing to 11.67in |
 | Chart | In the chart box of the chart layout. Series colors from `reference/data-color.md`, in order. One quantity is one series, in series color 1. `chart.value_axis.visible = False`. `plot.has_data_labels = True`, `plot.data_labels.number_format = '#,##0'`, `plot.data_labels.number_format_is_linked = False` |
@@ -746,13 +746,13 @@ Section 14 holds the values. With openpyxl, then upload with conversion, or the 
 |---|---|
 | Font | `Font(name='Montserrat', size=10)` on every cell. Header, status and totals: `bold=True`. Never `Montserrat SemiBold`, never size 10.5 |
 | Header row | Row 2. `ws.freeze_panes = "A3"`. `PatternFill('solid', fgColor='F0E1FD')`, `Border(bottom=Side(style='thin', color='23232A'))` |
-| Freeze and filter | `ws.freeze_panes = 'A2'`, or `'B2'` when column A is the name or ID of the row. `ws.auto_filter.ref = ws.dimensions` |
-| Columns | `ws.column_dimensions[letter].width` in characters: short code 11, date 15, name 25, notes 45, which is 80px, 110px, 180px and 320px. Text cells `Alignment(wrap_text=True, vertical='top')`. Number cells `Alignment(horizontal='right')` |
+| Freeze and filter | `ws.freeze_panes = 'A3'`, or `'B3'` when column A is the name or ID of the row. The filter covers the header row and the data, from row 2 down, never row 1 |
+| Columns | `ws.column_dimensions[letter].width` in characters: short code 11, number 14, date 15, status 18, owner 21, name 25, notes 45, which is 80px, 100px, 110px, 130px, 150px, 180px and 320px. Text cells `Alignment(wrap_text=True, vertical='top')`. Number cells `Alignment(horizontal='right')` |
 | Formats | `cell.number_format`: `'d mmm yyyy'`, `'#,##0'`, `'$#,##0'`, `'0%'` |
 | Status | `DataValidation(type='list', formula1='"■ Not started,■ On track,■ At risk,■ Blocked,■ Done"')` on the column. One conditional format per value sets the fill to the alert tint and the font to the alert text on tint, bold |
 | Due dates | One conditional format on the date column: the date is before `TODAY()` and the status of the row is not `■ Done`. Font color B0322B |
 | Logo and tabs | `ws.add_image(Image(path), "A1")` with the picture scaled to 120px wide, `ws.row_dimensions[1].height` set to 30.8 points. No `=IMAGE()`. No tab that was not asked for |
-| Totals row | The last row. Bold, `Border(top=Side(style='thin', color='23232A'))`. Every value a formula such as `=SUM(D2:D40)` |
+| Totals row | The last row. Bold, `Border(top=Side(style='thin', color='23232A'))`. Every value a formula such as `=SUM(D3:D40)` |
 | Editing | Load the file, change only the cells asked for, save to the same file. Never rebuild the sheet from its values |
 
 ### HTML
@@ -842,13 +842,13 @@ A tracker, list or workbook in Google Sheets or Excel. Type `sheet`. A sheet car
 | Alignment | Text left. Numbers right |
 | Header row | Row 2. Weight 700, `--fg-1` #23232A, fill `--bg-surface-2` #f0e1fd, a 1pt `--fg-1` #23232A bottom border. Rows 1 and 2 frozen, filter on row 2 |
 | First column | Frozen when it is the name or ID of the row |
-| Columns | Wrap text columns and set their widths: short code 80px, date 110px, name 180px, notes 320px. Clip nothing. Row height automatic |
+| Columns | Wrap text columns and set their widths: short code 80px, number 100px, date 110px, status 130px, owner 150px, name 180px, notes 320px. Clip nothing. Row height automatic |
 | Dates | `d mmm yyyy` |
 | Numbers | Whole numbers `#,##0`. Money `$#,##0`, two decimals only when cents matter. Percent `0%` |
 | Status column | A dropdown: data validation from a fixed list. Each value is U+25A0, a space, then one or two words. No free text. Weight 700. Conditional formatting sets the color by value, never a hand fill |
-| Due dates | Conditional formatting turns a date in the past `--alert-stop-text` #B0322B, unless the status of the row is Done |
+| Due dates | Only a column that holds a deadline, not a date of record such as a survey date. Conditional formatting turns a date in the past `--alert-stop-text` #B0322B, unless the status of the row is Done |
 | Notes | 120 characters at most. Longer context goes in a linked doc |
-| Totals row | At the bottom. Weight 700, a 1pt `--fg-1` #23232A top border. Formulas, never typed values |
+| Totals row | Only when the sheet sums a column, such as a budget. At the bottom. Weight 700, a 1pt `--fg-1` #23232A top border. Formulas, never typed values |
 | Tab names | 20 characters at most, Title Case. No date unless the tab is a period |
 
 **Status colors.** The cell fill is the alert tint. The text is the alert text on tint. From `alert` in [`tokens.json`](../tokens.json).
