@@ -1,0 +1,17 @@
+{
+  "_comment": "Input to scripts/build-handoff.py. It lists what goes in this folder and the script renders it. Edit here, rerun the script, never hand-export a PNG.",
+  "brand": "Royal Ambulance",
+  "filePrefix": "Royal-Ambulance",
+  "grounds": { "light": "#FFFFFF", "dark": "#2f193b" },
+  "previewBorder": "#E2E8F0",
+  "logos": [
+    { "name": "horizontal-purple", "source": "assets/logos/horizontal-purple.svg", "ground": "light", "png": [1200, 2400], "preview": { "plate": [960, 320], "logoWidth": 720 } },
+    { "name": "horizontal-white",  "source": "assets/logos/horizontal-white.svg",  "ground": "dark",  "png": [1200, 2400], "preview": { "plate": [960, 320], "logoWidth": 720 } },
+    { "name": "stacked-purple",    "source": "assets/logos/stacked-purple.svg",    "ground": "light", "png": [1200, 2400], "preview": { "plate": [600, 480], "logoWidth": 400 } },
+    { "name": "stacked-white",     "source": "assets/logos/stacked-white.svg",     "ground": "dark",  "png": [1200, 2400], "preview": { "plate": [600, 480], "logoWidth": 400 } },
+    { "name": "crown-purple",      "source": "assets/logos/crown-purple.svg",      "ground": "light", "png": [512, 1024],  "preview": { "plate": [480, 480], "logoWidth": 300 } },
+    { "name": "crown-white",       "source": "assets/logos/crown-white.svg",       "ground": "dark",  "png": [512, 1024],  "preview": { "plate": [480, 480], "logoWidth": 300 } }
+  ],
+  "swatches": ["#2f193b", "#572e72", "#43205b", "#8260a2", "#1E293B", "#64748B", "#E2E8F0", "#faf5fd", "#FFFFFF"],
+  "fonts": ["assets/fonts/Montserrat-VariableFont_wght.ttf"]
+}

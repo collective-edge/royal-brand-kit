@@ -48,8 +48,9 @@ RULE_TITLES = {
     "R10": "text-wrap balance and pretty",
     "R13": "codes in the mono face",
     "R14": "micro-typography",
+    "L1": "retired logo artwork",
 }
-RULE_ORDER = ["R1", "R2", "R5", "R9", "R10", "R13", "R14"]
+RULE_ORDER = ["R1", "R2", "R5", "R9", "R10", "R13", "R14", "L1"]
 
 MAX_MEASURE_CH = 60
 
@@ -91,6 +92,16 @@ EMDASH_RE = re.compile(r"—|&mdash;|&#8212;|&#x2014;", re.I)
 STRAIGHT_QUOTE_RE = re.compile(r"[\"']|&quot;|&#34;|&apos;|&#39;", re.I)
 YEAR_HYPHEN_RE = re.compile(r"\b(1[89]\d{2}|20\d{2})-(1[89]\d{2}|20\d{2})\b")
 DOT_ELLIPSIS_RE = re.compile(r"\.{3,}")
+
+# The Apex gold arc on its own. It was shipped as mark-color.svg and
+# mark-white.svg, read as a stray swoop wherever it landed, and is retired.
+# The arc never appears without the letters. Collective Edge has a
+# mark-white.svg of its own, so that name only counts under the Apex kit.
+RETIRED_LOGO_RE = re.compile(
+    r"mark-color\.svg"
+    r"|apex-brand-kit[^\s\"'<>)]*?/mark-white\.svg"
+    r"|viewBox\s*=\s*[\"']-8 -8 619 245[\"']"
+)
 
 
 # ---------- tokens -------------------------------------------------------
@@ -390,6 +401,10 @@ def check_file(path, tokens, weights, reserved, mono_re, italic_family_re):
     starts = line_starts(src)
     css_chunks, texts, italic_tags, links = scan(src)
     rules = collect_rules(css_chunks)
+
+    for m in RETIRED_LOGO_RE.finditer(src):
+        rep.add("L1", line_of(starts, m.start()), snippet(m.group(0)),
+                "the Apex arc never appears without the letters · use compact-on-light, compact-on-dark or app-icon")
     kit_loaded = any("type-system.css" in (h or "") for h in links)
 
     wrap_heading = tokens.get("composition", {}).get("textWrapHeading", "balance")
@@ -622,7 +637,7 @@ def main(argv=None):
                   % (len(findings), "" if len(findings) == 1 else "s",
                      len(grouped), "" if len(grouped) == 1 else "s"))
         elif read:
-            print("clean · 7 rules, 0 violations")
+            print("clean · %d rules, 0 violations" % len(RULE_ORDER))
         for path in missing:
             print("unreadable: %s" % path)
 
