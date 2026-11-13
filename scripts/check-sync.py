@@ -8,7 +8,7 @@ Usage:
 
 Asserts four things about the kit this script sits in:
 
-  1. The sixteen shared files are byte-identical to the copies in the
+  1. The seventeen shared files are byte-identical to the copies in the
      collective-edge-brand-kit sibling directory. The type layer is never forked.
   2. snippets/palette.css defines every variable in the semantic contract, so a
      component written for one brand renders in another with only that file swapped.
@@ -39,6 +39,7 @@ SHARED_FILES = [
     "reference/data-color.md",
     "NEW-BRAND.md",
     "brands.json",
+    "documents.json",
     "snippets/type-system.css",
     "snippets/type-tokens.json",
     "snippets/cobrand.css",

@@ -3,23 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Royal Ambulance · Document template</title>
+<title>Royal Ambulance · Report template</title>
 
-<!-- HOUSE TYPE SYSTEM v1.0 · print-ready one-pager and report letterhead.
-     Load order is fixed: the shared type layer first, the brand palette second.
-     type-system.css is identical in every kit. palette.css is the only file
-     that differs between Apex, Royal and Collective Edge. -->
+<!-- REPORT, and the generic branded document. The spec is reference/layout.md sections 6 and 7
+     and documents.json types.report and types.generic.
+     US Letter, 0.75in margins, text block 7.0in, body measure 70 characters. Flows over pages.
+     Parts in order: band on page 1, title block, meta row, sections, lockup, footer on every page.
+     A generic document is this file without the meta row.
+
+     Load order. type-system.css and cobrand.css are identical in every kit and
+     are served from the Collective Edge kit. palette.css is the only stylesheet
+     that differs by brand. -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/palette.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css">
 
 <style>
 /* ---------- FONT ------------------------------------------------
-   Declared here, and the family is selected on html, body below, so
-   Montserrat still loads and still embeds when this file is printed
-   or converted to PDF and the CDN stylesheet does not resolve. The
-   declaration alone selects nothing. woff2 for screen, TTF so print
-   engines can embed. No italic face exists at any weight. */
+   type-system.css binds Montserrat through --font-sans. A print
+   engine that resolves no network stylesheet leaves that token
+   undefined, so this block names the face. */
 
 @font-face {
   font-family: "Montserrat";
@@ -30,324 +33,332 @@
   font-display: swap;
 }
 
+html, body { font-family: var(--font-sans, "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif); }
 
-/* ---------- BRAND ------------------------------------------------
-   The only per-brand lines in this file. Everything below resolves
-   through the semantic layer and is identical in every kit. */
+/* ---------- BRAND VALUES ----------------------------------------
+   With the palette link and the logo URLs, these are the only lines
+   that differ between the three kits. reference/layout.md section 2
+   lists them. */
 
 :root {
-  --tpl-subbanner:   var(--royal-purple);
-  --tpl-stat-kicker: var(--royal-purple);
+  --doc-logo-band: 1.6in;
+  --doc-th-fill: var(--bg-band);
+  --doc-th-text: var(--fg-on-dark-1);
+  --doc-th-rule: var(--bg-band);
+  --doc-th-tracking: 0.005em;
 }
 
+/* ---------- PAGE ------------------------------------------------
+   US Letter, portrait. 1px is 1/96in on screen and in print, so
+   every value below prints at its stated size. 4px = 3pt. */
 
-/* ---------- PAGE ------------------------------------------------- */
+@page { size: letter; margin: 0; }
+
+:root {
+  --page-margin: 0.75in;
+  --fs-h1: 40px;
+  --fs-h2: 32px;
+}
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html, body {
-  margin: 0;
-  background: var(--bg-surface);
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-synthesis: none;
-}
+html, body { background: var(--bg-surface); margin: 0; padding: 0; }
 
-/* No horizontal padding on the page: the band bleeds to the edge on
-   screen exactly as it bleeds to the trim on paper. Every block below
-   carries its own 0.5in inset. */
-.doc-page {
+.sheet {
   width: 8.5in;
-  margin: var(--space-6) auto;
-  padding: 0 0 var(--space-7);
+  min-height: 11in;
+  margin: 32px auto;
   background: var(--bg-canvas);
-  box-shadow: var(--shadow-2);
+  box-shadow: 0 0 0 1px var(--border-1);
+  display: flex;
+  flex-direction: column;
 }
 
-
-/* ---------- HEADER BAND ------------------------------------------
-   Dark Purple ground, white horizontal logo at the right, title at
-   the left. .bk-on-dark drops the heading weight and opens the
-   tracking. .bk-caps carries the uppercase and the caps tracking for
-   the h2 step. Never set either by hand. */
+/* ---------- BAND ------------------------------------------------
+   Edge to edge, 1.11in tall. The bottom 0.03in is the band rule. */
 
 .doc-band {
+  height: 107px;
+  flex: none;
   background: var(--bg-band);
-  padding: var(--space-6) 0.5in;
+  border-bottom: 3px solid var(--border-band-rule);
+  padding: 0 var(--page-margin);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-5);
+  gap: 48px;
 }
+.doc-band-title { margin: 0; max-width: none; white-space: nowrap; }
+.doc-band-logo { width: var(--doc-logo-band); height: auto; display: block; flex: none; }
 
-.doc-band .band-title { margin: 0; }
+/* ---------- BODY ------------------------------------------------ */
 
-.doc-band .band-logo {
-  width: 1.6in;
-  height: auto;
-  display: block;
-  flex: 0 0 auto;
+.doc-body { flex: 1; padding: 24px var(--page-margin) 0; }
+
+.doc-headline { margin: 0; max-width: none; }
+.doc-lead { margin: 16px 0 0; max-width: 640px; }
+
+.doc-meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 24px;
+  margin: 16px 0 0;
+  padding: 8px 0;
+  border-top: 1px solid var(--border-1);
+  border-bottom: 1px solid var(--border-1);
 }
+.doc-meta p { margin: 0; }
+.doc-meta-value { font-weight: var(--weight-semibold, 600); color: var(--fg-1); max-width: 54ch; text-wrap: pretty; }
 
-
-/* ---------- SUB-BANNER -------------------------------------------
-   Optional. Delete the element to drop it. Never past four words.
-   The explicit on-dark color overrides the dimmed eyebrow, which
-   does not hold contrast on Purple. */
-
-.doc-subbanner { background: var(--tpl-subbanner); padding: var(--space-2) 0.5in; }
-.doc-subbanner .bk-eyebrow { margin: 0; color: var(--fg-on-dark-1); }
-
-
-/* ---------- BODY -------------------------------------------------- */
-
-.doc-body { padding: var(--space-7) 0.5in 0; }
-
-.doc-body .doc-eyebrow { margin: 0 0 var(--space-2); color: var(--fg-accent); }
-
-.doc-body .doc-h1 { margin: 0 0 var(--space-4); }
-
-.doc-body .doc-h2 { margin: var(--space-7) 0 var(--space-4); }
-
-/* No max-width here. .bk-body already carries --measure-body on the same
-   element, and .bk-caption carries --measure-caption on the stat unit. */
-.doc-body p {
-  margin: 0 0 var(--space-4);
-  text-wrap: pretty;
-  orphans: 3;
-  widows: 3;
+.doc-to { margin: 0 0 24px; border-top: 1px solid var(--border-1); }
+.doc-to-row {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-1);
 }
+.doc-to-cell { margin: 0; }
+.doc-to-label { color: var(--fg-3); }
 
+.doc-h2 { margin: 48px 0 16px; }
+.doc-h3 { margin: 24px 0 8px; color: var(--fg-accent); text-wrap: balance; }
+.doc-p { margin: 0; }
+.doc-p + .doc-p { margin-top: 16px; }
 
-/* ---------- TABLE ------------------------------------------------
-   Header row is 600 uppercase at 9pt, set by .bk-table. Cell type is
-   set once on the table, never on every cell, so no cell has to have
-   its measure cleared afterwards. Cells carry tabular figures, so a
-   number column needs nothing but text-align. */
+/* ---------- TABLE -----------------------------------------------
+   Header fill by brand. Hairline under every row. No frame, no
+   vertical rule, no zebra. Text left, numbers right. */
 
-.doc-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 0;
-  color: var(--fg-1);
+.doc-table-wrap { margin: 8px 0 0; }
+.doc-table-gap { margin: 16px 0 0; }
+.doc-caption { margin: 0 0 8px; max-width: none; }
+.doc-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums lining-nums; }
+.doc-table th,
+.doc-table td {
   font-size: var(--fs-body-sm);
   line-height: var(--lh-body-sm);
   letter-spacing: var(--tr-body-sm);
+  text-align: left;
+  vertical-align: top;
 }
-
-.doc-table thead tr { background: var(--bg-inverse); }
-
 .doc-table th {
-  padding: var(--space-2) var(--space-3);
-  color: var(--fg-on-dark-1);
+  font-weight: var(--weight-semibold, 600);
+  letter-spacing: calc(var(--tr-body-sm) + var(--doc-th-tracking));
+  padding: 8px 12px;
+  background: var(--doc-th-fill);
+  color: var(--doc-th-text);
+  border-bottom: 2px solid var(--doc-th-rule);
 }
+.doc-table td { font-weight: var(--weight-regular, 400); padding: 8px 12px; color: var(--fg-1); border-bottom: 1px solid var(--border-1); }
+.doc-table .num { text-align: right; }
+.doc-table .total td { font-weight: var(--weight-bold, 700); border-top: 1px solid var(--border-2); }
 
-.doc-table td {
-  padding: var(--space-2) var(--space-3);
-  border-bottom: 1px solid var(--border-1);
+/* Status. An 8px square and the word, in the alert text color.
+   The word carries the meaning. */
+.doc-status { display: inline-flex; align-items: center; gap: 8px; font-weight: var(--weight-semibold, 600); white-space: nowrap; }
+.doc-status::before { content: ""; width: 8px; height: 8px; background: currentColor; flex: none; }
+.doc-status.is-go   { color: var(--alert-go-text); }
+.doc-status.is-warn { color: var(--alert-warn-text); }
+.doc-status.is-stop { color: var(--alert-stop-text); }
+.doc-status.is-info { color: var(--alert-info-text); }
+
+/* ---------- CALLOUT --------------------------------------------- */
+
+.doc-callout {
+  margin: 16px 0 0;
+  padding: 16px 20px;
+  background: var(--bg-surface);
+  border-top: 2px solid var(--fg-accent);
 }
+.doc-callout p { margin: 0; }
 
-.doc-table tbody tr:nth-child(even) { background: var(--bg-surface); }
+/* ---------- ACTIONS --------------------------------------------- */
 
-.doc-table .num { text-align: right; white-space: nowrap; }
-
-
-/* ---------- STAT CALLOUT -----------------------------------------
-   Numerals are 700, not 800. At 42pt ExtraBold reads as a slab
-   rather than a number. .bk-stat sets tabular figures. */
-
-.doc-stats {
-  display: flex;
-  gap: var(--space-6);
-  margin: var(--space-5) 0 0;
+.doc-actions { list-style: none; margin: 0; padding: 0; }
+.doc-actions-item {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  margin: 0;
+  padding: 8px 0;
+  border-top: 1px solid var(--border-1);
 }
+.doc-actions-item:last-child { border-bottom: 1px solid var(--border-1); }
+.doc-actions-n { font-weight: var(--weight-semibold, 600); color: var(--fg-accent); font-variant-numeric: tabular-nums lining-nums; }
 
-.doc-stats > div { flex: 1 1 0; min-width: 0; }
+/* ---------- SIGN-OFF -------------------------------------------- */
 
-.doc-stats .stat-kicker { margin: 0 0 var(--space-1); color: var(--tpl-stat-kicker); }
-.doc-stats .stat-value  { color: var(--fg-accent); }
-.doc-stats .stat-unit   { margin: var(--space-1) 0 0; text-wrap: pretty; }
+.doc-sign { margin: 32px 0 0; }
+.doc-sign p { margin: 0; }
+.doc-sign-name { font-weight: var(--weight-semibold, 600); max-width: 54ch; text-wrap: pretty; }
+.doc-sign-contact { color: var(--fg-3); max-width: 54ch; text-wrap: pretty; }
 
-
-/* ---------- FOOTER ----------------------------------------------- */
+/* ---------- FOOTER ----------------------------------------------
+   Inside the margins. The last line sits on the bottom margin. */
 
 .doc-footer {
-  margin: var(--space-5) 0.5in 0;
-  padding-top: var(--space-2);
+  flex: none;
+  margin: 16px var(--page-margin) var(--page-margin);
+  padding: 12px 0 0;
   border-top: 1px solid var(--border-1);
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  gap: var(--space-5);
+  align-items: flex-end;
+  gap: 24px;
+}
+.doc-footer p { margin: 0; }
+
+/* ---------- LOCKUP ----------------------------------------------
+   Powered by Collective Edge. Once per document, operating
+   companies only. cobrand.css owns the label and the 204px logo. */
+
+.doc-footer .ce-powered { margin: 0; padding: 0; border: 0; }
+.doc-lockup { margin: 24px 0 0; padding: 24px 0 0; }
+
+/* ---------- NARROW SCREEN ---------------------------------------
+   Under 880px the sheet is fluid. Print never takes this block. */
+
+@media screen and (max-width: 879px) {
+  :root {
+    --page-margin: 24px;
+    --fs-h1: clamp(28px, 3.2vw, 40px);
+    --fs-h2: clamp(24px, 2.4vw, 32px);
+  }
+  .sheet { width: auto; min-height: 0; margin: 0; box-shadow: none; }
+  .doc-band { height: auto; flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px var(--page-margin); }
+  .doc-band-title { white-space: normal; }
+  .doc-band-logo { max-width: 100%; }
+  .doc-meta { grid-template-columns: 1fr; row-gap: 8px; }
+  .doc-table-wrap { overflow-x: auto; }
+  .doc-footer { flex-direction: column; align-items: flex-start; gap: 16px; }
 }
 
-.doc-footer .doc-rev {
-  color: var(--royal-purple);
-  font-weight: 600;
+/* ---------- PRINT -----------------------------------------------
+   A flowing document. The page carries the top and bottom margins,
+   .doc-body carries the side margins, so the band reaches both
+   edges on page 1. The footer is a margin box on every page:
+   signature left, page number right, 9pt, the last line on the
+   bottom margin. */
+
+@page {
+  size: letter;
+  margin: 0.75in 0 1.3in;
+  @bottom-left {
+    content: "Royal Ambulance · Dispatch report";
+    font: 400 9pt/1.45 "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: 0.01em;
+    color: #6D6D77;
+    vertical-align: top;
+    margin: 0.24in 0 0 0.75in;
+    padding-top: 9pt;
+    border-top: 0.75pt solid #E4E4E9;
+  }
+  @bottom-right {
+    content: "Page " counter(page) " of " counter(pages);
+    font: 400 9pt/1.45 "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: 0.01em;
+    color: #6D6D77;
+    vertical-align: top;
+    margin: 0.24in 0.75in 0 0;
+    padding-top: 9pt;
+    border-top: 0.75pt solid #E4E4E9;
+  }
 }
-
-
-/* ---------- CO-BRAND ---------------------------------------------
-   Powered by Collective Edge. The CE lockup rides beside the Royal
-   brand, never inside it, so the hairline keeps the two marks
-   distinct and they read as two brands rather than one combined
-   mark. cobrand.css owns the geometry, the 204px width and the
-   label. This rule only puts it on the page rail. */
-
-.doc-cobrand {
-  margin-left: 0.5in;
-  margin-right: 0.5in;
-  margin-bottom: var(--space-7);
-}
-
-
-/* ---------- PRINT ------------------------------------------------
-   The print block from the shared type layer, repeated so this file
-   sets point sizes on paper on its own. Nothing a person reads at
-   length drops below 10.5pt. Nothing at all drops below 9pt. */
-
-/* No @page margin: the dark band bleeds to the trim on all four
-   sides. Every block below carries its own 0.5in horizontal inset,
-   and .doc-page adds the foot margin back in print. */
-@page { size: letter; margin: 0; }
+@page :first { margin-top: 0; }
 
 @media print {
-  /* This block exists for the case where the CDN stylesheet does not resolve.
-     Without this every dark band prints white and its reversed type disappears. */
-  *, *::before, *::after {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  html, body { background: var(--bg-canvas); font-size: 12pt; line-height: var(--lh-body); }
-
-  .doc-page { width: auto; margin: 0; padding: 0 0 var(--space-7); box-shadow: none; }
-
-  .bk-display-xl { font-size: 72pt; }
-  .bk-display-lg { font-size: 54pt; }
-  .bk-display-md { font-size: 42pt; }
-  .bk-h1         { font-size: 30pt; }
-  .bk-h2         { font-size: 24pt; }
-  .bk-h3         { font-size: 18pt; }
-  .bk-h4         { font-size: 15pt; }
-  .bk-body-lg    { font-size: 15pt; }
-  .bk-body       { font-size: 12pt; }
-  .bk-body-sm    { font-size: 10.5pt; }
-  .bk-caption,
-  .bk-eyebrow    { font-size: 9pt; }
-  .bk-stat       { font-size: 42pt; }
-  .doc-table     { font-size: 10.5pt; }
-
-  p, li, dd, blockquote { orphans: 3; widows: 3; max-width: var(--measure-body); text-wrap: pretty; }
-  h1, h2, h3, h4 { break-after: avoid; page-break-after: avoid; text-wrap: balance; }
-  table, figure, .bk-keep { break-inside: avoid; page-break-inside: avoid; }
-  /* The co-brand lockup is a mark, not decoration. It does not split. */
-  .ce-powered { break-inside: avoid; page-break-inside: avoid; }
-  .ce-powered span { font-size: 9pt; }
+  *, *::before, *::after { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { background: #FFFFFF; }
+  .sheet { display: block; width: auto; min-height: 0; margin: 0; box-shadow: none; }
+  .doc-footer { display: none; }
+  p, li { orphans: 3; widows: 3; }
+  h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+  table, .doc-table-wrap, .doc-callout, .doc-actions, .ce-powered { break-inside: avoid; page-break-inside: avoid; }
+  /* The lockup never sits alone on a page. */
+  .doc-lockup { break-before: avoid; page-break-before: avoid; }
 }
 </style>
 </head>
 <body>
+<article class="sheet">
 
-<article class="doc-page">
-
-  <!-- HEADER BAND -->
+  <!-- BAND · 8.5in by 1.11in · logo role horizontal-on-dark -->
   <header class="doc-band bk-on-dark">
-    <div class="bk-h2 bk-caps band-title">Discharge transport</div>
-    <img class="band-logo"
-         src="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-white.svg"
-         alt="Royal Ambulance">
+    <p class="bk-h2 bk-caps doc-band-title">Dispatch report</p>
+    <img class="doc-band-logo" src="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-white.svg" alt="Royal Ambulance">
   </header>
 
-  <!-- SUB-BANNER -->
-  <div class="doc-subbanner bk-on-dark">
-    <p class="bk-eyebrow">Hospital partners · Q3 2026</p>
-  </div>
-
-  <!-- BODY -->
   <main class="doc-body">
 
-    <p class="bk-eyebrow doc-eyebrow">Operations report</p>
+    <!-- TITLE BLOCK -->
+    <h1 class="bk-h1 doc-headline">Morning booking puts discharge rides on time.</h1>
+    <p class="bk-body-lg doc-lead">Two hospitals booked next-day discharge rides before 10:00 for six weeks. Late pickups fell at both. The rule applies to every partner hospital from 1 December.</p>
 
-    <h1 class="bk-h1 doc-h1">The delay sits in one quartile.</h1>
+    <!-- META ROW -->
+    <div class="doc-meta">
+      <div><p class="bk-caption">For</p><p class="bk-body-sm doc-meta-value">Case management leads</p></div>
+      <div><p class="bk-caption">From</p><p class="bk-body-sm doc-meta-value">Royal Dispatch</p></div>
+      <div><p class="bk-caption">Period</p><p class="bk-body-sm doc-meta-value">1 Oct to 11 Nov 2026</p></div>
+    </div>
 
-    <p class="bk-body">Two thirds of Q3 interfacility volume carried a patient from an acute
-      floor to a skilled nursing bed. Imaging appointments and dialysis split the rest.</p>
+    <!-- SECTION -->
+    <h2 class="bk-h2 doc-h2">Summary.</h2>
+    <p class="bk-body doc-p">Case managers at two hospitals sent next-day discharge requests through the ordering page before 10:00. Dispatch confirmed each ride within 15&nbsp;minutes with a unit and a pickup window.</p>
+    <p class="bk-body doc-p">With the morning list in hand, dispatch planned units against it. Fewer patients waited past their window, and fewer units arrived before the patient was ready.</p>
 
-    <p class="bk-body">Bed to wheels is the number partners feel. It runs from discharge
-      order release to departure at the origin door. The slowest quartile ran
-      71&nbsp;minutes, almost twice the median.</p>
+    <!-- SECTION -->
+    <h2 class="bk-h2 doc-h2">Results.</h2>
+    <p class="bk-body doc-p">The table shows discharge rides picked up inside the window, before the test and during it.</p>
+    <div class="doc-table-wrap doc-table-gap">
+      <p class="bk-caption doc-caption">Discharge rides picked up inside the window, percent</p>
+      <table class="doc-table">
+        <thead>
+          <tr><th>Level of service</th><th class="num">Rides</th><th class="num">Before</th><th class="num">During</th><th class="num">Change</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Wheelchair</td><td class="num">412</td><td class="num">81</td><td class="num">93</td><td class="num">+12</td></tr>
+          <tr><td>Gurney</td><td class="num">268</td><td class="num">78</td><td class="num">91</td><td class="num">+13</td></tr>
+          <tr><td>Basic life support</td><td class="num">195</td><td class="num">74</td><td class="num">88</td><td class="num">+14</td></tr>
+          <tr><td>Critical care</td><td class="num">37</td><td class="num">92</td><td class="num">92</td><td class="num">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="bk-h3 doc-h3">What case managers reported.</h3>
+    <p class="bk-body doc-p">Case managers asked for the pickup window in the confirmation itself. Every confirmation now names the unit and the window. The crew calls the nursing station 20&nbsp;minutes before arrival.</p>
 
-    <h2 class="bk-h2 doc-h2">Where the minutes go</h2>
+    <!-- SECTION -->
+    <h2 class="bk-h2 doc-h2">Risks.</h2>
+    <p class="bk-body doc-p">Basic life support windows are limited after 15:00 on weekdays. A late request at that level may move to the next morning.</p>
+    <aside class="doc-callout"><p class="bk-body">If a discharge moves, call dispatch. The unit holds for 15&nbsp;minutes past the window, then returns to service.</p></aside>
 
-    <table class="bk-table doc-table">
-      <thead>
-        <tr class="bk-on-dark">
-          <th>Account</th>
-          <th>Origin</th>
-          <th>Level</th>
-          <th class="num">Bed to wheels</th>
-          <th class="num">Transports</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="bk-code">RA-2291</span></td>
-          <td>UCSF Parnassus</td>
-          <td>BLS</td>
-          <td class="num">34&nbsp;min</td>
-          <td class="num">1,284</td>
-        </tr>
-        <tr>
-          <td><span class="bk-code">RA-3140</span></td>
-          <td>Alameda Health System</td>
-          <td>CCT</td>
-          <td class="num">46&nbsp;min</td>
-          <td class="num">612</td>
-        </tr>
-        <tr>
-          <td><span class="bk-code">RA-2867</span></td>
-          <td>Eden Medical Center</td>
-          <td>ALS</td>
-          <td class="num">38&nbsp;min</td>
-          <td class="num">508</td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- SECTION -->
+    <h2 class="bk-h2 doc-h2">Next steps.</h2>
+    <ol class="doc-actions">
+      <li class="bk-body doc-actions-item"><span class="doc-actions-n">1</span><span>Dispatch staffs one dispatcher on the ordering page from 07:00 to 10:00.</span></li>
+      <li class="bk-body doc-actions-item"><span class="doc-actions-n">2</span><span>Every partner hospital books by 10:00 from 1 December.</span></li>
+      <li class="bk-body doc-actions-item"><span class="doc-actions-n">3</span><span>Dispatch logs any ride confirmed late, with the reason.</span></li>
+      <li class="bk-body doc-actions-item"><span class="doc-actions-n">4</span><span>Royal reviews on-time pickup again on 15 January 2027.</span></li>
+    </ol>
 
-    <!-- STAT CALLOUT -->
-    <div class="doc-stats">
-      <div>
-        <p class="bk-eyebrow stat-kicker">Transports</p>
-        <div class="bk-stat stat-value">4,182</div>
-        <p class="bk-caption stat-unit">interfacility, nine partners</p>
-      </div>
-      <div>
-        <p class="bk-eyebrow stat-kicker">Median bed to wheels</p>
-        <div class="bk-stat stat-value">38.6</div>
-        <p class="bk-caption stat-unit">minutes, order to departure</p>
-      </div>
-      <div>
-        <p class="bk-eyebrow stat-kicker">Window met</p>
-        <div class="bk-stat stat-value">94.1%</div>
-        <p class="bk-caption stat-unit">of confirmed pickups</p>
-      </div>
+    <!-- SECTION -->
+    <h2 class="bk-h2 doc-h2">Method.</h2>
+    <p class="bk-body doc-p">A ride is on time when the unit arrives at the nursing station inside the confirmed pickup window. Arrival is the time the crew marks on scene. The window is the one named in the confirmation.</p>
+    <p class="bk-body doc-p">The figures before the test cover the six weeks to 30 September at the same two hospitals. Rides cancelled by the hospital before the window opened are left out of both periods.</p>
+    <h3 class="bk-h3 doc-h3">Limits.</h3>
+    <p class="bk-body doc-p">Two hospitals is a small group. The January review covers every partner hospital for the first full month under the rule.</p>
+
+    <!-- LOCKUP · the last block of the body, once -->
+    <div class="ce-powered ce-powered-light doc-lockup">
+      <span>Powered by</span>
+      <img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg" alt="Collective Edge" width="204" height="34">
     </div>
 
   </main>
 
-  <!-- FOOTER -->
+  <!-- FOOTER · screen only. In print the page margin boxes carry it on every page. -->
   <footer class="doc-footer">
-    <span class="bk-caption">Royal Ambulance · Interfacility transport</span>
-    <span class="bk-caption bk-caps doc-rev">Rev.&nbsp;<span class="bk-code">08.26</span></span>
+    <p class="bk-caption">Royal Ambulance · Dispatch report</p>
+    <p class="bk-caption">Page 1 of 2</p>
   </footer>
-
-  <!-- CO-BRAND · light ground, so the black lockup and the --border-1
-       hairline. Label is --fg-3 #6D6D77 on #FFFFFF, 5.12:1. -->
-  <div class="ce-powered ce-powered-light doc-cobrand">
-    <span>Powered by</span>
-    <img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg"
-         alt="CE · Collective Edge" width="204" height="34">
-  </div>
 
 </article>
 

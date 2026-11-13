@@ -13,6 +13,7 @@
     "_comment": "POWERED BY COLLECTIVE EDGE. Identical in every kit. The shipped co-brand lockup, captured from apex-website/src/components/Footer.astro, web-apex-internal-dashboard/src/components/Sidebar.astro and apex-customer-dashboard/src/components/Sidebar.astro. An agent resolves the lockup, the width and the placement rules from here rather than reinventing a treatment. CSS: snippets/cobrand.css, identical in every kit and served from the parent brand.",
     "label": "Powered by",
     "phrase": "Powered by Collective Edge",
+    "documents": "documents.json cobrand.placement holds the placement for each document type",
     "css": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css",
     "classes": {
       "dark": "ce-powered",
@@ -22,8 +23,12 @@
     "lockup": {
       "on-dark": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg",
       "on-light": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg",
+      "on-dark-png": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/for-humans/logos/png/Collective-Edge-horizontal-white-1200w.png",
+      "on-light-png": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/for-humans/logos/png/Collective-Edge-horizontal-black-1200w.png",
       "width": "204px",
       "height": "34px",
+      "widthPrint": "2.125in",
+      "heightPrint": "0.354in",
       "aspect": "450 x 75, 6:1, so 204px wide renders 34px tall",
       "widthNote": "204px is the shipped width in both the Apex website footer and the Apex internal dashboard sidebar. It is sized to read at a glance rather than sit quietly in a corner, which is why it runs wider than the partner mark above it. The 120px minimum in the Collective Edge kit is a floor, not a target. max-width:100% is the only thing that takes it below 204px, and only where the rail is narrower.",
       "fileRule": "Match the file to the background. White on dark, black on light. Never CSS-filter a logo to invert it."
@@ -54,10 +59,10 @@
       "surfaceNote": "The light lockup belongs on --bg-canvas, not on --bg-surface. On the tinted surface the same gray measures 4.53:1 for Collective Edge, 4.64:1 for Apex and 4.76:1 for Royal. On --bg-surface-2 it falls to 4.10:1, 4.27:1 and 4.12:1, under 4.5:1."
     },
     "placement": [
-      "The footer of any site or printed document",
+      "The footer of a site",
       "The sidebar header of any dashboard",
       "The closing slide of any deck",
-      "The foot of a report",
+      "The last block of a report body",
       "A data page or a methodology page",
       "Anywhere a number was computed rather than typed"
     ],
@@ -66,7 +71,7 @@
       "Merge, nest or recolor either mark to match the other",
       "Put it on a clinical instruction",
       "Put it on a patient-facing consent or safety document",
-      "Use it twice on one surface",
+      "Use it twice in one document or on one surface",
       "Set the phrase as type where the mark fits",
       "Design the lockup down to the 120px floor"
     ],
@@ -78,14 +83,16 @@
     ]
   },
   "logoRoles": {
-    "_comment": "Every brand maps the first five roles. Ask for a role, never for a filename. `-on-light` means the version to place ON a light background; `-on-dark` the version to place ON a dark background. The compact pair is optional and present only where a brand ships a short lockup; absent when it does not.",
+    "_comment": "Every brand maps the horizontal and mark roles. Ask for a role, never for a filename. `-on-light` means the version to place ON a light background; `-on-dark` the version to place ON a dark background. The compact pair, the stacked pair and the app icon are optional: present where a brand ships one, null or absent where it does not. logosPng in each brand holds the same roles as PNG.",
     "horizontal-on-light": "primary lockup, light backgrounds",
     "horizontal-on-dark": "primary lockup, dark backgrounds",
     "compact-on-light": "the short lockup, for smaller places, decks, or a corner, light backgrounds",
     "compact-on-dark": "the short lockup, for smaller places, decks, or a corner, dark backgrounds",
     "mark-on-light": "icon only, light backgrounds",
     "mark-on-dark": "icon only, dark backgrounds",
-    "stacked-on-dark": "optional vertical lockup; null when the brand has none"
+    "stacked-on-light": "optional vertical lockup, light backgrounds; null when the brand has none",
+    "stacked-on-dark": "optional vertical lockup, dark backgrounds; null when the brand has none",
+    "app-icon": "the mark on its own square, for favicons and app tiles; null when the brand has none"
   },
   "brands": {
     "collective-edge": {
@@ -113,7 +120,22 @@
         "horizontal-on-dark": "assets/logos/horizontal-white.svg",
         "mark-on-light": "assets/logos/mark-black.svg",
         "mark-on-dark": "assets/logos/mark-white.svg",
+        "stacked-on-light": null,
         "stacked-on-dark": null
+      },
+      "logosPng": {
+        "_comment": "The same roles as transparent PNG, for Word, PowerPoint and Google files. Each also ships at double width: 2400w for 1200w, 1024w for 512w.",
+        "horizontal-on-light": "for-humans/logos/png/Collective-Edge-horizontal-black-1200w.png",
+        "horizontal-on-dark": "for-humans/logos/png/Collective-Edge-horizontal-white-1200w.png",
+        "mark-on-light": "for-humans/logos/png/Collective-Edge-mark-black-512w.png",
+        "mark-on-dark": "for-humans/logos/png/Collective-Edge-mark-white-512w.png"
+      },
+      "minWidth": {
+        "horizontal": "120px",
+        "mark": "28px"
+      },
+      "minWidthPrint": {
+        "horizontal": "1in"
       },
       "cobrandMarks": {
         "_comment": "The Edge wedge carries the partner's hue. Every combination ships as a file. Never hand-recolor a mark.",
@@ -127,7 +149,7 @@
         }
       },
       "heroTreatment": {
-        "_comment": "Collective Edge signature. Apex and Royal do not use it; their dark bands are flat brand color. Title slides, section dividers and the marketing hero only, once per surface. Never behind body copy, never on an internal document.",
+        "_comment": "Collective Edge signature. Apex and Royal do not use it; their dark bands are flat brand color. Title slides, section dividers and the marketing hero only, once per surface. Never behind body copy, never on an internal document. Not used in a document or a deck built from reference/layout.md. Those slides are flat #000000.",
         "css": "snippets/hero-dark.css",
         "class": "bk-hero-dark",
         "master": "assets/imagery/CE_Background.jpeg",
@@ -187,7 +209,18 @@
         "mark-on-light": "assets/logos/mark-on-light.svg",
         "mark-on-dark": "assets/logos/mark-on-dark.svg",
         "app-icon": "assets/logos/app-icon.svg",
+        "stacked-on-light": null,
         "stacked-on-dark": null
+      },
+      "logosPng": {
+        "_comment": "The same roles as transparent PNG, for Word, PowerPoint and Google files. Each also ships at double width: 2400w for 1200w, 1024w for 512w.",
+        "horizontal-on-light": "for-humans/logos/png/Apex-Paramedics-horizontal-blue-1200w.png",
+        "horizontal-on-dark": "for-humans/logos/png/Apex-Paramedics-horizontal-white-1200w.png",
+        "compact-on-light": "for-humans/logos/png/Apex-Paramedics-compact-blue-1200w.png",
+        "compact-on-dark": "for-humans/logos/png/Apex-Paramedics-compact-white-1200w.png",
+        "mark-on-light": "for-humans/logos/png/Apex-Paramedics-mark-blue-512w.png",
+        "mark-on-dark": "for-humans/logos/png/Apex-Paramedics-mark-white-512w.png",
+        "app-icon": "for-humans/logos/png/Apex-Paramedics-app-icon-512w.png"
       },
       "logoNote": "The main logo is APEX PARAMEDICS, the horizontal lockup. The compact lockup is APEX alone, for smaller places, decks, or a corner. The mark is the A with the gold arc running through it, for favicons, avatars and any space too small for the compact lockup; app-icon.svg is the same mark on a navy square. The gold arc never appears without a letter: the arc-only files mark-color.svg and mark-white.svg are deleted, and scripts/validate.py fails on any reference to them. The delivered compact files carried #000F9F and #FFB71B; both are normalised to the primary lockup so the house ships one blue and one gold. The delivered originals are in the git history, at the commit that adopted the set.",
       "logoSource": "assets/logos/source/apex-paramedics-PMS123-PMS072.eps",
@@ -195,6 +228,10 @@
         "horizontal": "110px",
         "compact": "80px",
         "mark": "16px"
+      },
+      "minWidthPrint": {
+        "horizontal": "1in",
+        "compact": "0.75in"
       }
     },
     "royal": {
@@ -225,11 +262,25 @@
         "horizontal-on-dark": "assets/logos/horizontal-white.svg",
         "mark-on-light": "assets/logos/crown-purple.svg",
         "mark-on-dark": "assets/logos/crown-white.svg",
+        "stacked-on-light": "assets/logos/stacked-purple.svg",
         "stacked-on-dark": "assets/logos/stacked-white.svg"
+      },
+      "logosPng": {
+        "_comment": "The same roles as transparent PNG, for Word, PowerPoint and Google files. Each also ships at double width: 2400w for 1200w, 1024w for 512w.",
+        "horizontal-on-light": "for-humans/logos/png/Royal-Ambulance-horizontal-purple-1200w.png",
+        "horizontal-on-dark": "for-humans/logos/png/Royal-Ambulance-horizontal-white-1200w.png",
+        "mark-on-light": "for-humans/logos/png/Royal-Ambulance-crown-purple-512w.png",
+        "mark-on-dark": "for-humans/logos/png/Royal-Ambulance-crown-white-512w.png",
+        "stacked-on-light": "for-humans/logos/png/Royal-Ambulance-stacked-purple-1200w.png",
+        "stacked-on-dark": "for-humans/logos/png/Royal-Ambulance-stacked-white-1200w.png"
       },
       "minWidth": {
         "horizontal": "110px",
         "mark": "32px"
+      },
+      "minWidthPrint": {
+        "horizontal": "1in",
+        "mark": "0.33in"
       }
     }
   },

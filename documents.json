@@ -1,0 +1,1923 @@
+{
+  "_comment": "DOCUMENT TYPES v1.0. Identical in every brand kit. The page geometry, the parts in order, the type step and the content budget for each slot, as data. reference/layout.md states the same values in prose and tables, and the two agree exactly. Brand-neutral: a color is a token name from tokens.json and snippets/palette.css, never a hex. A type step is a token from snippets/type-tokens.json.",
+  "version": "1.0",
+  "units": {
+    "page": "in",
+    "type": "pt",
+    "space": "pt",
+    "screen": "px at 96 per inch. px = pt x 4/3"
+  },
+  "typeSource": "snippets/type-tokens.json",
+  "colorSource": "tokens.json",
+  "steps": {
+    "display-lg": {
+      "pt": 54,
+      "px": 72,
+      "leadingPt": 58.3
+    },
+    "display-md": {
+      "pt": 42,
+      "px": 56,
+      "leadingPt": 46.2
+    },
+    "h1": {
+      "pt": 30,
+      "px": 40,
+      "leadingPt": 35.4
+    },
+    "h2": {
+      "pt": 24,
+      "px": 32,
+      "leadingPt": 30
+    },
+    "h3": {
+      "pt": 18,
+      "px": 24,
+      "leadingPt": 24.3
+    },
+    "h4": {
+      "pt": 15,
+      "px": 20,
+      "leadingPt": 21.8
+    },
+    "body-lg": {
+      "pt": 15,
+      "px": 20,
+      "leadingPt": 23.3
+    },
+    "body": {
+      "pt": 12,
+      "px": 16,
+      "leadingPt": 19.2
+    },
+    "body-sm": {
+      "pt": 10.5,
+      "px": 14,
+      "leadingPt": 16.3
+    },
+    "caption": {
+      "pt": 9,
+      "px": 12,
+      "leadingPt": 13.1
+    },
+    "eyebrow": {
+      "pt": 9,
+      "px": 12,
+      "leadingPt": 13.1
+    }
+  },
+  "choose": {
+    "order": [
+      "memo",
+      "one-pager",
+      "deck",
+      "report",
+      "generic"
+    ],
+    "rules": [
+      {
+        "type": "memo",
+        "when": "A message from one named sender to named readers, with a date and a subject. Words: memo, note to staff, announcement, notice, update."
+      },
+      {
+        "type": "one-pager",
+        "when": "One finding or one offer on exactly one page. Words: one-pager, summary sheet, brief, fact sheet, flyer, case study, handout."
+      },
+      {
+        "type": "deck",
+        "when": "Anything presented on a screen. Words: deck, slides, presentation, pitch."
+      },
+      {
+        "type": "report",
+        "when": "Three pages or more with sections. Words: report, review, proposal, plan, analysis, white paper."
+      },
+      {
+        "type": "generic",
+        "when": "Anything that matches none of the four. Agenda, letter, policy, checklist, form, job description."
+      }
+    ],
+    "existingFile": "Editing an existing file keeps its layout and its brand. Change only what was asked.",
+    "spreadsheet": "A spreadsheet is not a layout type. Apply the table rules to its header row and cells."
+  },
+  "parts": {
+    "band": {
+      "where": "Top of page 1, edge to edge. No band on later pages",
+      "widthIn": 8.5,
+      "heightIn": 1.11,
+      "fill": "--bg-band",
+      "rule": {
+        "color": "--border-band-rule",
+        "heightIn": 0.03,
+        "heightPt": 2.25,
+        "position": "the bottom 0.03in of the band",
+        "note": "A brand with no band rule fills the same 0.03in with --bg-band"
+      },
+      "paddingLeftRight": "the page margin",
+      "title": {
+        "slot": "band-title",
+        "align": "left, on the left margin, centered vertically"
+      },
+      "logo": {
+        "role": "horizontal-on-dark",
+        "align": "right, on the right margin, centered vertically",
+        "widthIn": "brandFacts.<brand>.bandLogoWidthIn",
+        "count": 1
+      }
+    },
+    "to-block": {
+      "where": "Memo only. 18pt under the band",
+      "rows": [
+        "To",
+        "From",
+        "Date",
+        "Re"
+      ],
+      "labelColumnIn": 1.0,
+      "step": "body",
+      "labelColor": "--fg-3",
+      "valueColor": "--fg-1",
+      "valueWeight": 400,
+      "reWeight": 700,
+      "rowPaddingPt": 6,
+      "rule": {
+        "color": "--border-1",
+        "weightPt": 0.75,
+        "position": "above the first row and under every row"
+      },
+      "maxCharsPerValue": 60,
+      "spaceAfterPt": 18,
+      "widthIn": "the text block",
+      "dateFormat": "Day, month, year: 13 November 2026"
+    },
+    "title-block": {
+      "where": "18pt under the band",
+      "headline": {
+        "slot": "headline"
+      },
+      "lead": {
+        "slot": "lead",
+        "spaceBeforePt": 12
+      }
+    },
+    "meta-row": {
+      "where": "12pt under the lead",
+      "columns": 3,
+      "maxItems": 3,
+      "columnGapIn": 0.25,
+      "paddingPt": 6,
+      "rule": {
+        "color": "--border-1",
+        "weightPt": 0.75,
+        "position": "above and under the row"
+      },
+      "label": {
+        "slot": "meta-label"
+      },
+      "value": {
+        "slot": "meta-value"
+      }
+    },
+    "section-heading": {
+      "where": "Report and generic only",
+      "step": "h2",
+      "weight": 700,
+      "color": "--fg-1",
+      "spaceBeforePt": 36,
+      "spaceAfterPt": 12,
+      "maxChars": 40,
+      "maxLines": 1,
+      "keepWithNext": true
+    },
+    "subhead": {
+      "slot": "subhead",
+      "spaceBeforePt": 18,
+      "spaceAfterPt": 6,
+      "keepWithNext": true
+    },
+    "body": {
+      "slot": "body",
+      "paragraphSpacePt": 12,
+      "align": "left, ragged right",
+      "measureIn": 5.96,
+      "measureChars": 70
+    },
+    "table": {
+      "widthIn": "the text block",
+      "caption": {
+        "slot": "caption",
+        "position": "above the table",
+        "spaceAfterPt": 6
+      },
+      "header": {
+        "fill": "brandFacts.<brand>.tableHeader.fill",
+        "text": "brandFacts.<brand>.tableHeader.text",
+        "rule": "brandFacts.<brand>.tableHeader.rule",
+        "weight": 600,
+        "case": "sentence case",
+        "paddingTopBottomPt": 6,
+        "paddingLeftRightPt": 9,
+        "trackingOnDarkFillEm": 0.005
+      },
+      "cell": {
+        "slot": "table-text",
+        "paddingTopBottomPt": 6,
+        "paddingLeftRightPt": 9
+      },
+      "rowRule": {
+        "color": "--border-1",
+        "weightPt": 0.75,
+        "position": "under every body row"
+      },
+      "verticalRules": false,
+      "outerFrame": false,
+      "zebra": false,
+      "textAlign": "left",
+      "numberAlign": "right, tabular lining figures. The header of a number column is right-aligned too",
+      "totalsRow": {
+        "weight": 700,
+        "ruleAbove": {
+          "color": "--border-2",
+          "weightPt": 0.75
+        }
+      },
+      "status": {
+        "mark": "6pt square",
+        "weight": 600,
+        "colors": {
+          "go": "--alert-go-text",
+          "warn": "--alert-warn-text",
+          "stop": "--alert-stop-text",
+          "info": "--alert-info-text"
+        },
+        "note": "The word carries the meaning. Green means good only. A brand color is never a status color",
+        "office": "U+25A0 in Montserrat SemiBold, in the alert text color, at 9pt in a document and 12pt on a slide, followed by one no-break space",
+        "neutral": "A status that is neither good, caution nor bad takes --alert-info-text"
+      },
+      "spaceBeforePt": {
+        "underSubhead": 6,
+        "underParagraph": 12
+      },
+      "columns": "Column widths follow the content and sum to the text block. The first column is the widest. A status column is 1.2in in a document and 1.9in on a slide. Fixed layout, autofit off"
+    },
+    "callout": {
+      "slot": "callout",
+      "widthIn": "the text block",
+      "fill": "--bg-surface",
+      "rule": {
+        "color": "--fg-accent",
+        "weightPt": 1.5,
+        "position": "top edge"
+      },
+      "paddingTopBottomPt": 12,
+      "paddingLeftRightPt": 15,
+      "spaceBeforePt": 12,
+      "radius": 0,
+      "border": false,
+      "icon": false,
+      "maxPerPage": 1
+    },
+    "actions": {
+      "slot": "action",
+      "widthIn": 5.96,
+      "numberColumnIn": 0.33,
+      "numberWeight": 600,
+      "numberColor": "--fg-accent",
+      "rowPaddingPt": 6,
+      "rule": {
+        "color": "--border-1",
+        "weightPt": 0.75,
+        "position": "above every row and under the last"
+      }
+    },
+    "sign-off": {
+      "where": "Memo only. 24pt under the last block",
+      "name": {
+        "step": "body",
+        "weight": 600,
+        "color": "--fg-1"
+      },
+      "contact": {
+        "step": "body-sm",
+        "weight": 400,
+        "color": "--fg-3"
+      }
+    },
+    "footer": {
+      "where": "Bottom of every page, inside the margins. The last line sits on the bottom margin",
+      "rule": {
+        "color": "--border-1",
+        "weightPt": 0.75,
+        "position": "top edge, the width of the text block"
+      },
+      "paddingTopPt": 9,
+      "minSpaceAbovePt": 12,
+      "left": "Brand name, a middle dot, then Internal when every reader is staff. Otherwise the document title, 40 characters at most",
+      "right": "Page X of Y",
+      "withLockup": "The lockup takes the left. The signature and the page number share the right, joined by a middle dot",
+      "slot": "footer"
+    },
+    "lockup": {
+      "phrase": "Powered by Collective Edge",
+      "appliesTo": "brandFacts.<brand>.lockup. Operating companies only. Never on a Collective Edge document",
+      "count": "Exactly once per document",
+      "label": {
+        "slot": "lockup-label",
+        "text": "POWERED BY"
+      },
+      "logo": {
+        "brand": "collective-edge",
+        "role": "horizontal-on-light on white, horizontal-on-dark on a dark slide",
+        "widthIn": 2.125,
+        "heightIn": 0.354,
+        "png": {
+          "onLight": "brands.json cobrand.lockup.on-light-png",
+          "onDark": "brands.json cobrand.lockup.on-dark-png"
+        }
+      },
+      "gapLabelToLogoPt": 9
+    }
+  },
+  "types": {
+    "memo": {
+      "name": "memo",
+      "purpose": "A message from a named sender to named readers",
+      "pages": {
+        "target": 1,
+        "max": 2
+      },
+      "page": {
+        "size": "Letter",
+        "widthIn": 8.5,
+        "heightIn": 11,
+        "orientation": "portrait"
+      },
+      "margins": {
+        "topIn": 0.75,
+        "rightIn": 0.75,
+        "bottomIn": 0.75,
+        "leftIn": 0.75
+      },
+      "textBlock": {
+        "widthIn": 7.0,
+        "columns": 1,
+        "measureIn": 5.96,
+        "measureChars": 70
+      },
+      "template": "templates/memo.html",
+      "parts": [
+        "band",
+        "to-block",
+        "body",
+        "table",
+        "subhead",
+        "actions",
+        "sign-off",
+        "footer"
+      ],
+      "slots": [
+        {
+          "name": "band-title",
+          "role": "Names the document kind or the topic",
+          "step": "h2",
+          "weight": 600,
+          "color": "--fg-on-dark-1",
+          "floorStep": "h3",
+          "case": "uppercase",
+          "trackingEm": 0.045,
+          "maxChars": 18,
+          "maxWords": 4,
+          "maxLines": 1
+        },
+        {
+          "name": "to-value",
+          "role": "To, From, Date and Re values",
+          "step": "body",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "body",
+          "maxChars": 60,
+          "maxLines": 1
+        },
+        {
+          "name": "body",
+          "role": "Running text",
+          "step": "body",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "body-sm",
+          "measureChars": 70,
+          "measureIn": 5.96,
+          "maxChars": 520,
+          "maxItems": 4,
+          "note": "Four paragraphs and 520 characters in all on one page"
+        },
+        {
+          "name": "table-text",
+          "role": "Table cells. Header cells take weight 600. Optional",
+          "step": "body-sm",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "caption",
+          "maxItems": 4,
+          "maxColumns": 4,
+          "note": "One table under the last paragraph. Four body rows and four columns"
+        },
+        {
+          "name": "subhead",
+          "role": "Heading inside the body",
+          "step": "h3",
+          "weight": 600,
+          "color": "--fg-accent",
+          "floorStep": "h3",
+          "maxChars": 32,
+          "maxLines": 1
+        },
+        {
+          "name": "action",
+          "role": "One numbered action per row. The number is weight 600 in --fg-accent",
+          "step": "body",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "body-sm",
+          "maxItems": 3,
+          "maxChars": 90,
+          "note": "Three actions on one page"
+        },
+        {
+          "name": "sign-name",
+          "role": "Sender name",
+          "step": "body",
+          "weight": 600,
+          "color": "--fg-1",
+          "floorStep": "body",
+          "maxChars": 40
+        },
+        {
+          "name": "sign-contact",
+          "role": "Sender address or extension",
+          "step": "body-sm",
+          "weight": 400,
+          "color": "--fg-3",
+          "floorStep": "body-sm",
+          "maxChars": 48
+        },
+        {
+          "name": "footer",
+          "role": "Signature at left, page number at right",
+          "step": "caption",
+          "weight": 400,
+          "color": "--fg-3",
+          "floorStep": "caption",
+          "maxChars": 60,
+          "maxLines": 1
+        },
+        {
+          "name": "lockup-label",
+          "role": "The words POWERED BY above the lockup",
+          "step": "eyebrow",
+          "weight": 600,
+          "color": "--fg-3",
+          "floorStep": "eyebrow",
+          "case": "uppercase",
+          "trackingEm": 0.08
+        }
+      ],
+      "denserSibling": "report",
+      "rules": [
+        "No headline. The Re row is the subject.",
+        "Band, To block, body, sign-off and footer are required. Table, subhead and actions are optional. A closing line is the last body paragraph.",
+        "One table at most, 4 body rows and 4 columns, under the last paragraph. On one page it takes the place of three paragraphs and 390 characters of the body budget. A memo that needs more is a report."
+      ],
+      "lockupPlacement": "Footer row, left. Signature and page number at right, on the bottom line",
+      "required": [
+        "band",
+        "to-block",
+        "body",
+        "sign-off",
+        "footer"
+      ]
+    },
+    "one-pager": {
+      "name": "one-pager",
+      "purpose": "One finding on exactly one page",
+      "pages": {
+        "target": 1,
+        "max": 1
+      },
+      "page": {
+        "size": "Letter",
+        "widthIn": 8.5,
+        "heightIn": 11,
+        "orientation": "portrait"
+      },
+      "margins": {
+        "topIn": 0.6,
+        "rightIn": 0.6,
+        "bottomIn": 0.6,
+        "leftIn": 0.6
+      },
+      "textBlock": {
+        "widthIn": 7.3,
+        "columns": 1,
+        "measureIn": 5.96,
+        "measureChars": 70
+      },
+      "template": "templates/one-pager.html",
+      "parts": [
+        "band",
+        "title-block",
+        "meta-row",
+        "subhead",
+        "body",
+        "table",
+        "callout",
+        "footer"
+      ],
+      "slots": [
+        {
+          "name": "band-title",
+          "role": "Names the document kind or the topic",
+          "step": "h2",
+          "weight": 600,
+          "color": "--fg-on-dark-1",
+          "floorStep": "h3",
+          "case": "uppercase",
+          "trackingEm": 0.045,
+          "maxChars": 18,
+          "maxWords": 4,
+          "maxLines": 1
+        },
+        {
+          "name": "headline",
+          "role": "States the finding in one sentence",
+          "step": "h1",
+          "weight": 700,
+          "color": "--fg-1",
+          "floorStep": "h2",
+          "maxChars": 56,
+          "maxLines": 2
+        },
+        {
+          "name": "lead",
+          "role": "One or two sentences under the headline",
+          "step": "body-lg",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "body",
+          "maxChars": 110,
+          "maxLines": 2,
+          "measureIn": 6.67
+        },
+        {
+          "name": "meta-label",
+          "role": "Label in the meta row",
+          "step": "caption",
+          "weight": 400,
+          "color": "--fg-3",
+          "floorStep": "caption",
+          "maxChars": 12
+        },
+        {
+          "name": "meta-value",
+          "role": "Value in the meta row",
+          "step": "body-sm",
+          "weight": 600,
+          "color": "--fg-1",
+          "floorStep": "body-sm",
+          "maxChars": 24,
+          "maxLines": 1
+        },
+        {
+          "name": "subhead",
+          "role": "Heading inside the body",
+          "step": "h3",
+          "weight": 600,
+          "color": "--fg-accent",
+          "floorStep": "h3",
+          "maxChars": 32,
+          "maxLines": 1,
+          "maxItems": 2
+        },
+        {
+          "name": "body",
+          "role": "Running text",
+          "step": "body",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "body-sm",
+          "measureChars": 70,
+          "measureIn": 5.96,
+          "maxChars": 210,
+          "maxItems": 1,
+          "note": "One paragraph of three lines under the first subhead"
+        },
+        {
+          "name": "table-text",
+          "role": "Table cells. Header cells take weight 600",
+          "step": "body-sm",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "caption",
+          "maxItems": 4,
+          "maxColumns": 5,
+          "note": "One table under the second subhead. Four body rows and five columns. Six rows when the page has no callout"
+        },
+        {
+          "name": "callout",
+          "role": "The one instruction the reader must act on",
+          "step": "body",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "body-sm",
+          "maxChars": 140,
+          "maxItems": 1
+        },
+        {
+          "name": "footer",
+          "role": "Signature at left, page number at right",
+          "step": "caption",
+          "weight": 400,
+          "color": "--fg-3",
+          "floorStep": "caption",
+          "maxChars": 60,
+          "maxLines": 1
+        },
+        {
+          "name": "lockup-label",
+          "role": "The words POWERED BY above the lockup",
+          "step": "eyebrow",
+          "weight": 600,
+          "color": "--fg-3",
+          "floorStep": "eyebrow",
+          "case": "uppercase",
+          "trackingEm": 0.08
+        }
+      ],
+      "denserSibling": "report",
+      "rules": [
+        "Exactly one page. Never a second.",
+        "One table or one chart, never both.",
+        "One callout at most."
+      ],
+      "lockupPlacement": "Footer row, left. Signature and page number at right, on the bottom line"
+    },
+    "deck": {
+      "name": "deck",
+      "purpose": "Slides for a screen",
+      "pages": {
+        "target": null,
+        "max": null
+      },
+      "page": {
+        "size": "16:9",
+        "widthIn": 13.333,
+        "heightIn": 7.5,
+        "widthEmu": 12192000,
+        "heightEmu": 6858000,
+        "orientation": "landscape"
+      },
+      "margins": {
+        "topIn": 0.67,
+        "rightIn": 0.83,
+        "bottomIn": 0.42,
+        "leftIn": 0.83
+      },
+      "textBlock": {
+        "widthIn": 11.67,
+        "columns": "1 or 2. Two columns are 5.5in each with a 0.67in gap",
+        "measureIn": 7.45,
+        "measureChars": 70
+      },
+      "template": "templates/deck.html",
+      "parts": [
+        "headline",
+        "body-zone",
+        "footer"
+      ],
+      "zones": {
+        "headline": {
+          "xIn": 0.83,
+          "yIn": 0.67,
+          "wIn": 10.0,
+          "hIn": 1.28
+        },
+        "body": {
+          "xIn": 0.83,
+          "yIn": 2.53,
+          "wIn": 11.67,
+          "hIn": 3.78
+        },
+        "leftColumn": {
+          "xIn": 0.83,
+          "yIn": 2.53,
+          "wIn": 5.5,
+          "hIn": 3.78
+        },
+        "rightColumn": {
+          "xIn": 7.0,
+          "yIn": 2.53,
+          "wIn": 5.5,
+          "hIn": 3.78
+        },
+        "footerRule": {
+          "xIn": 0.83,
+          "yIn": 6.55,
+          "wIn": 11.67,
+          "weightPt": 0.75,
+          "color": "--border-1 on white, --border-on-dark on dark"
+        },
+        "footer": {
+          "xIn": 0.83,
+          "yIn": 6.73,
+          "wIn": 11.67,
+          "hIn": 0.35
+        },
+        "bandRule": {
+          "xIn": 0,
+          "yIn": 7.45,
+          "wIn": 13.333,
+          "hIn": 0.05,
+          "color": "--border-band-rule",
+          "note": "Dark slides only. A brand with no band rule draws nothing"
+        }
+      },
+      "slots": [
+        {
+          "name": "headline",
+          "role": "The one message of the slide, as a sentence",
+          "step": "display-md",
+          "weight": 800,
+          "color": "--fg-accent",
+          "floorStep": "h1",
+          "maxChars": 60,
+          "maxLines": 2,
+          "case": "sentence case"
+        },
+        {
+          "name": "body",
+          "role": "Paragraphs and bullets",
+          "step": "body-lg",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "body"
+        },
+        {
+          "name": "key-point",
+          "role": "A short statement between hairlines",
+          "step": "h3",
+          "weight": 600,
+          "color": "--fg-1",
+          "floorStep": "h4",
+          "maxChars": 60,
+          "maxLines": 2
+        },
+        {
+          "name": "table-text",
+          "role": "Table cells. Header cells take weight 600",
+          "step": "body-lg",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "body"
+        },
+        {
+          "name": "caption",
+          "role": "Line above a table or chart, and the source line",
+          "step": "body",
+          "weight": 400,
+          "color": "--fg-3",
+          "floorStep": "body",
+          "maxChars": 60,
+          "maxLines": 1
+        },
+        {
+          "name": "footer",
+          "role": "Page number, and the meta row on dark slides",
+          "step": "body",
+          "weight": 400,
+          "color": "--fg-3",
+          "floorStep": "body"
+        }
+      ],
+      "footer": {
+        "logo": {
+          "role": "brandFacts.<brand>.slideFooterLogoRole",
+          "widthIn": "brandFacts.<brand>.slideFooterLogoWidthIn",
+          "position": "left, x 0.83in, centered on the footer row"
+        },
+        "pageNumber": {
+          "slot": "footer",
+          "position": "right, ending at x 12.5in",
+          "box": {
+            "xIn": 10.5,
+            "yIn": 6.73,
+            "wIn": 2.0,
+            "hIn": 0.35
+          },
+          "align": "right",
+          "anchor": "middle",
+          "content": "The slide position in the deck as a bare numeral. The title slide is 1 and shows no number"
+        },
+        "appliesTo": "Every white slide. Dark slides carry no footer logo"
+      },
+      "grounds": {
+        "white": {
+          "fill": "--bg-canvas",
+          "layouts": [
+            "statement",
+            "text",
+            "two-column",
+            "chart",
+            "table",
+            "comparison",
+            "timeline",
+            "quote",
+            "summary"
+          ]
+        },
+        "dark": {
+          "fill": "--bg-inverse",
+          "layouts": [
+            "title",
+            "divider",
+            "closing"
+          ]
+        }
+      },
+      "bodyPt": 15,
+      "floorPt": 12,
+      "table": {
+        "header": {
+          "weight": 600,
+          "case": "sentence case",
+          "paddingTopBottomPt": 6,
+          "paddingLeftRightPt": 12,
+          "fill": "brandFacts.<brand>.tableHeader.fill",
+          "text": "brandFacts.<brand>.tableHeader.text",
+          "rule": "brandFacts.<brand>.tableHeader.rule",
+          "trackingOnDarkFillEm": 0.005
+        },
+        "cell": {
+          "slot": "table-text",
+          "paddingTopBottomPt": 9,
+          "paddingLeftRightPt": 12
+        },
+        "rowRule": {
+          "color": "--border-1",
+          "weightPt": 0.75,
+          "position": "under every body row"
+        },
+        "status": {
+          "mark": "9pt square",
+          "weight": 600,
+          "office": "U+25A0 set at 12pt"
+        },
+        "numberAlign": "right, tabular lining figures"
+      },
+      "bullets": {
+        "marker": "a round bullet in --fg-accent",
+        "indentIn": 0.33,
+        "spaceBetweenPt": 9
+      },
+      "keyPoints": {
+        "paddingTopBottomPt": 12,
+        "rule": {
+          "color": "--border-1",
+          "weightPt": 0.75,
+          "position": "above every point and under the last"
+        }
+      },
+      "rules": [
+        "One message per slide. The headline states it as a sentence.",
+        "Body text is 15pt. Nothing on a slide is under 12pt, except the POWERED BY label at 9pt on an operating company closing slide.",
+        "Content slides are white. Only title, divider and closing are dark.",
+        "Dark slides are a flat fill. No picture background.",
+        "Uppercase is for the title slide title only. Four words at most.",
+        "A headline that takes one line still reserves two. The body zone starts at y 2.53in on every white slide.",
+        "One chart or one table per slide.",
+        "No logo on a dark slide except title and closing."
+      ],
+      "layouts": [
+        {
+          "name": "title",
+          "ground": "dark",
+          "purpose": "Opens the deck",
+          "slots": [
+            {
+              "name": "logo",
+              "role": "horizontal-on-dark",
+              "box": {
+                "xIn": 0.83,
+                "yIn": 0.67,
+                "wIn": "brandFacts.<brand>.titleSlideLogoWidthIn",
+                "hIn": null
+              }
+            },
+            {
+              "name": "title",
+              "step": "display-lg",
+              "weight": 700,
+              "color": "--fg-on-dark-1",
+              "case": "uppercase",
+              "trackingEm": 0.025,
+              "floorStep": "display-md",
+              "maxWords": 4,
+              "maxChars": 28,
+              "maxLines": 2,
+              "box": {
+                "xIn": 0.83,
+                "yIn": 3.85,
+                "wIn": 11.67,
+                "hIn": 1.62
+              },
+              "anchor": "bottom"
+            },
+            {
+              "name": "subtitle",
+              "step": "h3",
+              "weight": 600,
+              "color": "--fg-on-dark-2",
+              "floorStep": "h4",
+              "maxChars": 60,
+              "maxLines": 1,
+              "box": {
+                "xIn": 0.83,
+                "yIn": 5.64,
+                "wIn": 11.67,
+                "hIn": 0.34
+              }
+            },
+            {
+              "name": "rule",
+              "weightPt": 0.75,
+              "color": "--border-on-dark",
+              "box": {
+                "xIn": 0.83,
+                "yIn": 6.55,
+                "wIn": 11.67,
+                "hIn": null
+              },
+              "content": "Above the meta row"
+            },
+            {
+              "name": "meta-left",
+              "step": "body",
+              "weight": 400,
+              "color": "--fg-on-dark-3",
+              "floorStep": "body",
+              "maxChars": 40,
+              "box": {
+                "xIn": 0.83,
+                "yIn": 6.73,
+                "wIn": 5.5,
+                "hIn": 0.35
+              },
+              "content": "Brand or presenter"
+            },
+            {
+              "name": "meta-right",
+              "step": "body",
+              "weight": 400,
+              "color": "--fg-on-dark-3",
+              "floorStep": "body",
+              "maxChars": 24,
+              "box": {
+                "xIn": 7.0,
+                "yIn": 6.73,
+                "wIn": 5.5,
+                "hIn": 0.35
+              },
+              "align": "right",
+              "content": "Date"
+            }
+          ]
+        },
+        {
+          "name": "divider",
+          "ground": "dark",
+          "purpose": "Opens a section",
+          "slots": [
+            {
+              "name": "number",
+              "step": "h3",
+              "weight": 600,
+              "color": "--fg-on-dark-3",
+              "floorStep": "h3",
+              "maxChars": 2,
+              "box": {
+                "xIn": 0.83,
+                "yIn": 4.19,
+                "wIn": 11.67,
+                "hIn": 0.34
+              },
+              "content": "Two digits, tabular figures"
+            },
+            {
+              "name": "title",
+              "step": "display-md",
+              "weight": 700,
+              "color": "--fg-on-dark-1",
+              "case": "sentence case",
+              "floorStep": "h1",
+              "maxChars": 40,
+              "maxLines": 2,
+              "box": {
+                "xIn": 0.83,
+                "yIn": 4.7,
+                "wIn": 10.0,
+                "hIn": 1.28
+              },
+              "anchor": "bottom"
+            },
+            {
+              "name": "rule",
+              "weightPt": 0.75,
+              "color": "--border-on-dark",
+              "box": {
+                "xIn": 0.83,
+                "yIn": 6.55,
+                "wIn": 11.67,
+                "hIn": null
+              },
+              "content": "Above the meta row"
+            },
+            {
+              "name": "meta-left",
+              "step": "body",
+              "weight": 400,
+              "color": "--fg-on-dark-3",
+              "floorStep": "body",
+              "maxChars": 40,
+              "box": {
+                "xIn": 0.83,
+                "yIn": 6.73,
+                "wIn": 5.5,
+                "hIn": 0.35
+              },
+              "content": "Brand name"
+            },
+            {
+              "name": "page-number",
+              "step": "body",
+              "weight": 400,
+              "color": "--fg-on-dark-3",
+              "floorStep": "body",
+              "box": {
+                "xIn": 7.0,
+                "yIn": 6.73,
+                "wIn": 5.5,
+                "hIn": 0.35
+              },
+              "align": "right"
+            }
+          ]
+        },
+        {
+          "name": "statement",
+          "ground": "white",
+          "purpose": "One sentence that stands alone",
+          "slots": [
+            {
+              "name": "statement",
+              "step": "display-md",
+              "weight": 800,
+              "color": "--fg-accent",
+              "floorStep": "h1",
+              "maxChars": 120,
+              "maxLines": 4,
+              "box": {
+                "xIn": 0.83,
+                "yIn": 0.67,
+                "wIn": 10.0,
+                "hIn": 2.57
+              }
+            },
+            {
+              "name": "support",
+              "step": "body-lg",
+              "weight": 400,
+              "color": "--fg-1",
+              "floorStep": "body",
+              "maxChars": 140,
+              "maxLines": 2,
+              "box": {
+                "xIn": 0.83,
+                "yIn": 3.57,
+                "wIn": 7.45,
+                "hIn": 0.65
+              },
+              "content": "Optional"
+            },
+            "footer"
+          ]
+        },
+        {
+          "name": "text",
+          "ground": "white",
+          "purpose": "A headline and one column of text",
+          "slots": [
+            "headline",
+            {
+              "name": "body",
+              "step": "body-lg",
+              "weight": 400,
+              "color": "--fg-1",
+              "floorStep": "body",
+              "maxItems": 5,
+              "maxChars": 80,
+              "box": {
+                "xIn": 0.83,
+                "yIn": 2.53,
+                "wIn": 7.45,
+                "hIn": 3.78
+              },
+              "content": "Up to five bullets of 80 characters, or up to three paragraphs of 420 characters in all"
+            },
+            "footer"
+          ]
+        },
+        {
+          "name": "two-column",
+          "ground": "white",
+          "purpose": "Key points beside one table, image or block of text",
+          "slots": [
+            "headline",
+            {
+              "name": "key-points",
+              "step": "h3",
+              "weight": 600,
+              "color": "--fg-1",
+              "floorStep": "h4",
+              "maxItems": 3,
+              "maxChars": 60,
+              "box": {
+                "xIn": 0.83,
+                "yIn": 2.53,
+                "wIn": 5.5,
+                "hIn": 3.78
+              },
+              "content": "Each point sits between 0.75pt --border-1 rules with 12pt above and under the text"
+            },
+            {
+              "name": "right",
+              "step": "body-lg",
+              "weight": 400,
+              "color": "--fg-1",
+              "floorStep": "body",
+              "box": {
+                "xIn": 7.0,
+                "yIn": 2.53,
+                "wIn": 5.5,
+                "hIn": 3.78
+              },
+              "content": "One table of four rows by three columns at most, or three bullets, or one image. A caption may sit above it"
+            },
+            "footer"
+          ]
+        },
+        {
+          "name": "chart",
+          "ground": "white",
+          "purpose": "One chart",
+          "slots": [
+            "headline",
+            {
+              "name": "chart",
+              "box": {
+                "xIn": 0.83,
+                "yIn": 2.53,
+                "wIn": 7.5,
+                "hIn": 3.78
+              },
+              "maxItems": 1,
+              "maxSeries": 4,
+              "content": "One chart. Colors from reference/data-color.md. Caption above, source line under, both in the caption slot. A bar chart holds four categories by two series"
+            },
+            {
+              "name": "notes",
+              "step": "body-lg",
+              "weight": 400,
+              "color": "--fg-1",
+              "floorStep": "body",
+              "maxItems": 3,
+              "maxChars": 60,
+              "box": {
+                "xIn": 8.67,
+                "yIn": 2.53,
+                "wIn": 3.83,
+                "hIn": 3.78
+              },
+              "content": "Optional. Without notes the chart takes the full 11.67in"
+            },
+            "footer"
+          ]
+        },
+        {
+          "name": "table",
+          "ground": "white",
+          "purpose": "One table",
+          "slots": [
+            "headline",
+            {
+              "name": "table",
+              "step": "body-lg",
+              "weight": 400,
+              "color": "--fg-1",
+              "floorStep": "body",
+              "maxItems": 5,
+              "maxColumns": 6,
+              "box": {
+                "xIn": 0.83,
+                "yIn": 2.53,
+                "wIn": 11.67,
+                "hIn": 3.78
+              },
+              "content": "Five body rows at 15pt. Six at the 12pt floor. Cell padding 9pt top and bottom, 12pt left and right"
+            },
+            "footer"
+          ]
+        },
+        {
+          "name": "comparison",
+          "ground": "white",
+          "purpose": "Two options or two states side by side",
+          "slots": [
+            "headline",
+            {
+              "name": "left",
+              "step": "body-lg",
+              "weight": 400,
+              "color": "--fg-1",
+              "floorStep": "body",
+              "maxItems": 4,
+              "maxChars": 60,
+              "box": {
+                "xIn": 0.83,
+                "yIn": 2.53,
+                "wIn": 5.5,
+                "hIn": 3.78
+              },
+              "content": "A label in the key-point slot, 24 characters at most, over a 1.5pt --fg-accent rule, then up to four bullets"
+            },
+            {
+              "name": "right",
+              "step": "body-lg",
+              "weight": 400,
+              "color": "--fg-1",
+              "floorStep": "body",
+              "maxItems": 4,
+              "maxChars": 60,
+              "box": {
+                "xIn": 7.0,
+                "yIn": 2.53,
+                "wIn": 5.5,
+                "hIn": 3.78
+              },
+              "content": "The same as the left column"
+            },
+            "footer"
+          ]
+        },
+        {
+          "name": "timeline",
+          "ground": "white",
+          "purpose": "Three to five dated steps in a row",
+          "slots": [
+            "headline",
+            {
+              "name": "steps",
+              "step": "body-lg",
+              "weight": 400,
+              "color": "--fg-1",
+              "floorStep": "body",
+              "minItems": 3,
+              "maxItems": 5,
+              "box": {
+                "xIn": 0.83,
+                "yIn": 2.53,
+                "wIn": 11.67,
+                "hIn": 3.78
+              },
+              "content": "Equal columns, 0.33in apart. Each step: a 1.5pt --fg-accent rule, the date at 15pt weight 600 in --fg-accent and 14 characters at most, a title in the key-point slot and 24 characters at most, a description at 15pt and 60 characters at most"
+            },
+            "footer"
+          ]
+        },
+        {
+          "name": "quote",
+          "ground": "white",
+          "purpose": "One quotation with its source",
+          "slots": [
+            {
+              "name": "quote",
+              "step": "display-md",
+              "weight": 800,
+              "color": "--fg-1",
+              "floorStep": "h1",
+              "maxChars": 120,
+              "maxLines": 4,
+              "box": {
+                "xIn": 0.83,
+                "yIn": 0.67,
+                "wIn": 10.0,
+                "hIn": 2.57
+              },
+              "content": "Curly quotation marks"
+            },
+            {
+              "name": "attribution",
+              "step": "body-lg",
+              "weight": 400,
+              "color": "--fg-2",
+              "floorStep": "body",
+              "maxChars": 80,
+              "maxLines": 1,
+              "box": {
+                "xIn": 0.83,
+                "yIn": 3.57,
+                "wIn": 10.0,
+                "hIn": 0.33
+              },
+              "content": "Name at weight 700 in --fg-1, a comma, then the role"
+            },
+            "footer"
+          ]
+        },
+        {
+          "name": "summary",
+          "ground": "white",
+          "purpose": "The takeaways, numbered",
+          "slots": [
+            "headline",
+            {
+              "name": "takeaways",
+              "step": "h3",
+              "weight": 600,
+              "color": "--fg-1",
+              "floorStep": "h4",
+              "maxItems": 4,
+              "maxChars": 70,
+              "box": {
+                "xIn": 0.83,
+                "yIn": 2.53,
+                "wIn": 11.67,
+                "hIn": 3.78
+              },
+              "content": "One row each between 0.75pt --border-1 rules. The number sits in a 0.5in column at weight 600 in --fg-accent"
+            },
+            "footer"
+          ]
+        },
+        {
+          "name": "closing",
+          "ground": "dark",
+          "purpose": "Ends the deck",
+          "slots": [
+            {
+              "name": "logo",
+              "role": "horizontal-on-dark",
+              "box": {
+                "xIn": 0.83,
+                "yIn": 0.67,
+                "wIn": "brandFacts.<brand>.titleSlideLogoWidthIn",
+                "hIn": null
+              }
+            },
+            {
+              "name": "closing-line",
+              "step": "display-md",
+              "weight": 700,
+              "color": "--fg-on-dark-1",
+              "case": "sentence case",
+              "floorStep": "h1",
+              "maxChars": 60,
+              "maxLines": 2,
+              "box": {
+                "xIn": 0.83,
+                "yIn": 3.14,
+                "wIn": 10.0,
+                "hIn": 1.28
+              },
+              "anchor": "bottom"
+            },
+            {
+              "name": "contact",
+              "step": "body-lg",
+              "weight": 400,
+              "color": "--fg-on-dark-2",
+              "floorStep": "body",
+              "maxItems": 3,
+              "maxChars": 48,
+              "box": {
+                "xIn": 0.83,
+                "yIn": 4.59,
+                "wIn": 10.0,
+                "hIn": 1.0
+              }
+            },
+            {
+              "name": "lockup",
+              "box": {
+                "xIn": 0.83,
+                "yIn": 6.42,
+                "wIn": 2.125,
+                "hIn": 0.66
+              },
+              "content": "Operating companies only. A 0.75pt --border-on-dark rule at y 6.17in, 11.67in wide. The label POWERED BY at y 6.42in in --fg-on-dark-3: 9pt, weight 600, uppercase, tracking 0.08em, in a box 2.125in by 0.18in. The Collective Edge horizontal-on-dark logo at y 6.72in, 2.125in wide, 0.354in tall. The lockup takes the place of the brand and date row. A Collective Edge deck carries the title slide meta row here instead, under a 0.75pt --border-on-dark rule at y 6.55in"
+            }
+          ]
+        }
+      ],
+      "lockupPlacement": "Closing slide, bottom left. Nowhere else in the deck",
+      "denserSibling": null,
+      "denserLayouts": {
+        "text": "two-column",
+        "two-column": "table",
+        "statement": "text",
+        "quote": "text",
+        "summary": "text",
+        "comparison": "table",
+        "timeline": "table"
+      }
+    },
+    "report": {
+      "name": "report",
+      "purpose": "A multi-page document with sections",
+      "pages": {
+        "target": 3,
+        "max": null
+      },
+      "page": {
+        "size": "Letter",
+        "widthIn": 8.5,
+        "heightIn": 11,
+        "orientation": "portrait"
+      },
+      "margins": {
+        "topIn": 0.75,
+        "rightIn": 0.75,
+        "bottomIn": 0.75,
+        "leftIn": 0.75
+      },
+      "textBlock": {
+        "widthIn": 7.0,
+        "columns": 1,
+        "measureIn": 5.96,
+        "measureChars": 70
+      },
+      "template": "templates/document.html",
+      "parts": [
+        "band",
+        "title-block",
+        "meta-row",
+        "section-heading",
+        "subhead",
+        "body",
+        "table",
+        "callout",
+        "actions",
+        "lockup",
+        "footer"
+      ],
+      "slots": [
+        {
+          "name": "band-title",
+          "role": "Names the document kind or the topic",
+          "step": "h2",
+          "weight": 600,
+          "color": "--fg-on-dark-1",
+          "floorStep": "h3",
+          "case": "uppercase",
+          "trackingEm": 0.045,
+          "maxChars": 18,
+          "maxWords": 4,
+          "maxLines": 1
+        },
+        {
+          "name": "headline",
+          "role": "States the finding in one sentence",
+          "step": "h1",
+          "weight": 700,
+          "color": "--fg-1",
+          "floorStep": "h2",
+          "maxChars": 56,
+          "maxLines": 2
+        },
+        {
+          "name": "lead",
+          "role": "Two or three sentences under the headline",
+          "step": "body-lg",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "body",
+          "maxChars": 180,
+          "maxLines": 3,
+          "measureIn": 6.67
+        },
+        {
+          "name": "meta-label",
+          "role": "Label in the meta row",
+          "step": "caption",
+          "weight": 400,
+          "color": "--fg-3",
+          "floorStep": "caption",
+          "maxChars": 12
+        },
+        {
+          "name": "meta-value",
+          "role": "Value in the meta row",
+          "step": "body-sm",
+          "weight": 600,
+          "color": "--fg-1",
+          "floorStep": "body-sm",
+          "maxChars": 24,
+          "maxLines": 1
+        },
+        {
+          "name": "section-heading",
+          "role": "Opens a section",
+          "step": "h2",
+          "weight": 700,
+          "color": "--fg-1",
+          "floorStep": "h2",
+          "maxChars": 40,
+          "maxLines": 1
+        },
+        {
+          "name": "subhead",
+          "role": "Heading inside the body",
+          "step": "h3",
+          "weight": 600,
+          "color": "--fg-accent",
+          "floorStep": "h3",
+          "maxChars": 32,
+          "maxLines": 1
+        },
+        {
+          "name": "body",
+          "role": "Running text",
+          "step": "body",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "body-sm",
+          "measureChars": 70,
+          "measureIn": 5.96
+        },
+        {
+          "name": "table-text",
+          "role": "Table cells. Header cells take weight 600",
+          "step": "body-sm",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "caption",
+          "maxItems": 12,
+          "maxColumns": 6,
+          "note": "Twelve body rows and six columns at most per table"
+        },
+        {
+          "name": "caption",
+          "role": "Line above a table or figure",
+          "step": "caption",
+          "weight": 400,
+          "color": "--fg-3",
+          "floorStep": "caption",
+          "maxChars": 80,
+          "maxLines": 1
+        },
+        {
+          "name": "callout",
+          "role": "The one instruction the reader must act on",
+          "step": "body",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "body-sm",
+          "maxChars": 200,
+          "maxItems": 1
+        },
+        {
+          "name": "action",
+          "role": "One numbered action per row. The number is weight 600 in --fg-accent",
+          "step": "body",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "body-sm",
+          "maxItems": 7,
+          "maxChars": 90
+        },
+        {
+          "name": "footer",
+          "role": "Signature at left, page number at right",
+          "step": "caption",
+          "weight": 400,
+          "color": "--fg-3",
+          "floorStep": "caption",
+          "maxChars": 60,
+          "maxLines": 1
+        },
+        {
+          "name": "lockup-label",
+          "role": "The words POWERED BY above the lockup",
+          "step": "eyebrow",
+          "weight": 600,
+          "color": "--fg-3",
+          "floorStep": "eyebrow",
+          "case": "uppercase",
+          "trackingEm": 0.08
+        }
+      ],
+      "denserSibling": null,
+      "rules": [
+        "The band is on page 1 only.",
+        "Every page carries the footer.",
+        "A heading never sits on the last line of a page."
+      ],
+      "lockupPlacement": "Last block of the body on the last page, left, under a 0.75pt --border-1 rule with 18pt above the rule and 18pt under it"
+    },
+    "generic": {
+      "name": "generic",
+      "purpose": "The fallback for any document that is not a memo, one-pager, deck or report",
+      "pages": {
+        "target": 1,
+        "max": null
+      },
+      "page": {
+        "size": "Letter",
+        "widthIn": 8.5,
+        "heightIn": 11,
+        "orientation": "portrait"
+      },
+      "margins": {
+        "topIn": 0.75,
+        "rightIn": 0.75,
+        "bottomIn": 0.75,
+        "leftIn": 0.75
+      },
+      "textBlock": {
+        "widthIn": 7.0,
+        "columns": 1,
+        "measureIn": 5.96,
+        "measureChars": 70
+      },
+      "template": "templates/document.html",
+      "parts": [
+        "band",
+        "title-block",
+        "section-heading",
+        "subhead",
+        "body",
+        "table",
+        "callout",
+        "actions",
+        "lockup",
+        "footer"
+      ],
+      "slots": [
+        {
+          "name": "band-title",
+          "role": "Names the document kind or the topic",
+          "step": "h2",
+          "weight": 600,
+          "color": "--fg-on-dark-1",
+          "floorStep": "h3",
+          "case": "uppercase",
+          "trackingEm": 0.045,
+          "maxChars": 18,
+          "maxWords": 4,
+          "maxLines": 1
+        },
+        {
+          "name": "headline",
+          "role": "Names the document",
+          "step": "h1",
+          "weight": 700,
+          "color": "--fg-1",
+          "floorStep": "h2",
+          "maxChars": 56,
+          "maxLines": 2
+        },
+        {
+          "name": "lead",
+          "role": "Optional. One or two sentences",
+          "step": "body-lg",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "body",
+          "maxChars": 180,
+          "maxLines": 3,
+          "measureIn": 6.67
+        },
+        {
+          "name": "section-heading",
+          "role": "Opens a section",
+          "step": "h2",
+          "weight": 700,
+          "color": "--fg-1",
+          "floorStep": "h2",
+          "maxChars": 40,
+          "maxLines": 1
+        },
+        {
+          "name": "subhead",
+          "role": "Heading inside the body",
+          "step": "h3",
+          "weight": 600,
+          "color": "--fg-accent",
+          "floorStep": "h3",
+          "maxChars": 32,
+          "maxLines": 1
+        },
+        {
+          "name": "body",
+          "role": "Running text",
+          "step": "body",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "body-sm",
+          "measureChars": 70,
+          "measureIn": 5.96
+        },
+        {
+          "name": "table-text",
+          "role": "Table cells. Header cells take weight 600",
+          "step": "body-sm",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "caption",
+          "maxItems": 12,
+          "maxColumns": 6,
+          "note": "Twelve body rows and six columns at most per table"
+        },
+        {
+          "name": "caption",
+          "role": "Line above a table or figure",
+          "step": "caption",
+          "weight": 400,
+          "color": "--fg-3",
+          "floorStep": "caption",
+          "maxChars": 80,
+          "maxLines": 1
+        },
+        {
+          "name": "callout",
+          "role": "The one instruction the reader must act on",
+          "step": "body",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "body-sm",
+          "maxChars": 200,
+          "maxItems": 1
+        },
+        {
+          "name": "action",
+          "role": "One numbered action per row. The number is weight 600 in --fg-accent",
+          "step": "body",
+          "weight": 400,
+          "color": "--fg-1",
+          "floorStep": "body-sm",
+          "maxItems": 7,
+          "maxChars": 90
+        },
+        {
+          "name": "footer",
+          "role": "Signature at left, page number at right",
+          "step": "caption",
+          "weight": 400,
+          "color": "--fg-3",
+          "floorStep": "caption",
+          "maxChars": 60,
+          "maxLines": 1
+        },
+        {
+          "name": "lockup-label",
+          "role": "The words POWERED BY above the lockup",
+          "step": "eyebrow",
+          "weight": 600,
+          "color": "--fg-3",
+          "floorStep": "eyebrow",
+          "case": "uppercase",
+          "trackingEm": 0.08
+        }
+      ],
+      "denserSibling": null,
+      "rules": [
+        "Build it as a report without the meta row.",
+        "Use only the parts the content needs. Keep their order."
+      ],
+      "lockupPlacement": "Last block of the body on the last page, left, under a 0.75pt --border-1 rule with 18pt above the rule and 18pt under it"
+    }
+  },
+  "cobrand": {
+    "phrase": "Powered by Collective Edge",
+    "appliesTo": [
+      "apex",
+      "royal"
+    ],
+    "count": 1,
+    "placement": {
+      "memo": "Footer row, left. Signature and page number at right, on the bottom line",
+      "one-pager": "Footer row, left. Signature and page number at right, on the bottom line",
+      "deck": "Closing slide, bottom left. Nowhere else in the deck",
+      "report": "Last block of the body on the last page, left, under a 0.75pt --border-1 rule with 18pt above the rule and 18pt under it",
+      "generic": "Last block of the body on the last page, left, under a 0.75pt --border-1 rule with 18pt above the rule and 18pt under it"
+    },
+    "lockup": {
+      "label": "POWERED BY",
+      "labelSlot": "lockup-label",
+      "widthIn": 2.125,
+      "heightIn": 0.354,
+      "widthPx": 204,
+      "heightPx": 34,
+      "gapLabelToLogoPt": 9,
+      "onLight": "brands.json cobrand.lockup.on-light",
+      "onDark": "brands.json cobrand.lockup.on-dark",
+      "onLightPng": "brands.json cobrand.lockup.on-light-png",
+      "onDarkPng": "brands.json cobrand.lockup.on-dark-png"
+    },
+    "never": [
+      "Twice in one document",
+      "On a Collective Edge document",
+      "Inside or touching the operating company logo",
+      "Set as type where the logo fits"
+    ]
+  },
+  "fitLadder": [
+    {
+      "step": 1,
+      "action": "tighten",
+      "rule": "Set the overflowing slot one step down the scale, to its floor and no further."
+    },
+    {
+      "step": 2,
+      "action": "shorten",
+      "rule": "Cut the text to the limit of the slot."
+    },
+    {
+      "step": 3,
+      "action": "split",
+      "rule": "Move the overflow to another page or slide. A one-pager cannot split."
+    },
+    {
+      "step": 4,
+      "action": "switch",
+      "rule": "Rebuild in the denser sibling type or layout."
+    }
+  ],
+  "fitNever": [
+    "Never set type under its floor.",
+    "Never rely on auto-fit or shrink-on-overflow.",
+    "Never narrow a margin.",
+    "Never tighten leading or tracking to make text fit."
+  ],
+  "brandFacts": {
+    "_comment": "The only facts that differ by brand, besides the color values behind each token. Logo files resolve by role from brands.json.",
+    "collective-edge": {
+      "lockup": false,
+      "bandRule": true,
+      "bandLogoWidthIn": 2.125,
+      "titleSlideLogoWidthIn": 2.7,
+      "slideFooterLogoRole": "horizontal-on-light",
+      "slideFooterLogoWidthIn": 2.1,
+      "tableHeader": {
+        "fill": "--bg-surface-2",
+        "text": "--fg-1",
+        "rule": {
+          "color": "--fg-accent",
+          "weightPt": 1.5,
+          "position": "under the header row"
+        }
+      }
+    },
+    "apex": {
+      "lockup": true,
+      "bandRule": true,
+      "bandLogoWidthIn": 1.6,
+      "titleSlideLogoWidthIn": 2.1,
+      "slideFooterLogoRole": "compact-on-light",
+      "slideFooterLogoWidthIn": 1.0,
+      "tableHeader": {
+        "fill": "--bg-band",
+        "text": "--fg-on-dark-1",
+        "rule": null
+      }
+    },
+    "royal": {
+      "lockup": true,
+      "bandRule": false,
+      "bandLogoWidthIn": 1.6,
+      "titleSlideLogoWidthIn": 2.1,
+      "slideFooterLogoRole": "horizontal-on-light",
+      "slideFooterLogoWidthIn": 1.43,
+      "tableHeader": {
+        "fill": "--bg-band",
+        "text": "--fg-on-dark-1",
+        "rule": null
+      }
+    }
+  },
+  "templates": {
+    "memo": "templates/memo.html",
+    "one-pager": "templates/one-pager.html",
+    "deck": "templates/deck.html",
+    "report": "templates/document.html",
+    "generic": "templates/document.html"
+  }
+}

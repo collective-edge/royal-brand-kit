@@ -88,8 +88,8 @@
   --fg-on-dark-3: var(--neutral-on-dark-caption);   /* 6.40:1 */
 
   /* ---- SEMANTIC BACKGROUND ---------------------------------
-     --bg-surface-2 is the stronger tint, for a table header or
-     a second step under --bg-surface. --bg-mid is a filled block
+     --bg-surface-2 is the stronger tint, a second step under
+     --bg-surface. A table header sits on --bg-band, not here. --bg-mid is a filled block
      in the brand color; white on it measures 10.30:1. --fg-3
      measures 4.12:1 on --bg-surface-2; set --fg-2 there. --fg-on-dark-3
      measures 4.15:1 on --bg-mid; set --fg-on-dark-2 there,

@@ -17,7 +17,7 @@ Use the exact values below. Do not paraphrase them, round them, or substitute a 
 
 `type-system.css` is identical in every kit and is served from the Collective Edge kit, because the type layer belongs to the parent brand. `palette.css` is the only stylesheet that differs.
 
-Style through the `.bk-*` classes and the semantic `--fg-*` / `--bg-*` / `--border-*` variables. Reach for a raw brand color only where the brand color is the point: a logo band, an accent rule, a chart series.
+Style through the `.bk-*` classes and the semantic `--fg-*` / `--bg-*` / `--border-*` variables. Reach for a raw brand color only where the brand color is the point: a logo band or an accent rule. Never a chart series. Chart color comes from `data-color.css`.
 
 For non-CSS output (PowerPoint, Word, matplotlib, reportlab) read `type-tokens.json` instead of reimplementing these values.
 
@@ -251,7 +251,7 @@ Run the validator on any HTML you produce:
 python3 scripts/validate.py path/to/output.html
 ```
 
-It checks rules 1, 2, 5, 9, 10, 13 and 14 mechanically and exits non-zero on a violation. It cannot check the rest, so also confirm by eye:
+It checks rules 1, 2, 5, 9, 10, 13 and 14 mechanically, and check L1, retired logo artwork. It exits non-zero on a violation. It cannot check the rest, so also confirm by eye:
 
 - [ ] Rendered, not just written. Open it and look. Overlap, clipping and overflow are invisible in source.
 - [ ] Montserrat actually rendered, not a fallback. For PDF, actually embedded.

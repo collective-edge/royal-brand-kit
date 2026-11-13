@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Royal Ambulance · One-pager template</title>
+
+<!-- ONE-PAGER. The spec is reference/layout.md section 5 and documents.json types.one-pager.
+     US Letter, 0.6in margins, text block 7.3in, exactly one page.
+     Parts in order: band, title block, meta row, subhead and body, table, callout, footer.
+
+     Load order. type-system.css and cobrand.css are identical in every kit and
+     are served from the Collective Edge kit. palette.css is the only stylesheet
+     that differs by brand. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/palette.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css">
+
+<style>
+/* ---------- FONT ------------------------------------------------
+   type-system.css binds Montserrat through --font-sans. A print
+   engine that resolves no network stylesheet leaves that token
+   undefined, so this block names the face. */
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.woff2") format("woff2-variations"),
+       url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf")   format("truetype-variations");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+html, body { font-family: var(--font-sans, "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif); }
+
+/* ---------- BRAND VALUES ----------------------------------------
+   With the palette link and the logo URLs, these are the only lines
+   that differ between the three kits. reference/layout.md section 2
+   lists them. */
+
+:root {
+  --doc-logo-band: 1.6in;
+  --doc-th-fill: var(--bg-band);
+  --doc-th-text: var(--fg-on-dark-1);
+  --doc-th-rule: var(--bg-band);
+  --doc-th-tracking: 0.005em;
+}
+
+/* ---------- PAGE ------------------------------------------------
+   US Letter, portrait. 1px is 1/96in on screen and in print, so
+   every value below prints at its stated size. 4px = 3pt. */
+
+@page { size: letter; margin: 0; }
+
+:root {
+  --page-margin: 0.6in;
+  --fs-h1: 40px;
+  --fs-h2: 32px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { background: var(--bg-surface); margin: 0; padding: 0; }
+
+.sheet {
+  width: 8.5in;
+  min-height: 11in;
+  margin: 32px auto;
+  background: var(--bg-canvas);
+  box-shadow: 0 0 0 1px var(--border-1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- BAND ------------------------------------------------
+   Edge to edge, 1.11in tall. The bottom 0.03in is the band rule. */
+
+.doc-band {
+  height: 107px;
+  flex: none;
+  background: var(--bg-band);
+  border-bottom: 3px solid var(--border-band-rule);
+  padding: 0 var(--page-margin);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+.doc-band-title { margin: 0; max-width: none; white-space: nowrap; }
+.doc-band-logo { width: var(--doc-logo-band); height: auto; display: block; flex: none; }
+
+/* ---------- BODY ------------------------------------------------ */
+
+.doc-body { flex: 1; padding: 24px var(--page-margin) 0; }
+
+.doc-headline { margin: 0; max-width: none; }
+.doc-lead { margin: 16px 0 0; max-width: 640px; }
+
+.doc-meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 24px;
+  margin: 16px 0 0;
+  padding: 8px 0;
+  border-top: 1px solid var(--border-1);
+  border-bottom: 1px solid var(--border-1);
+}
+.doc-meta p { margin: 0; }
+.doc-meta-value { font-weight: var(--weight-semibold, 600); color: var(--fg-1); max-width: 54ch; text-wrap: pretty; }
+
+.doc-to { margin: 0 0 24px; border-top: 1px solid var(--border-1); }
+.doc-to-row {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-1);
+}
+.doc-to-cell { margin: 0; }
+.doc-to-label { color: var(--fg-3); }
+
+.doc-h2 { margin: 48px 0 16px; }
+.doc-h3 { margin: 24px 0 8px; color: var(--fg-accent); text-wrap: balance; }
+.doc-p { margin: 0; }
+.doc-p + .doc-p { margin-top: 16px; }
+
+/* ---------- TABLE -----------------------------------------------
+   Header fill by brand. Hairline under every row. No frame, no
+   vertical rule, no zebra. Text left, numbers right. */
+
+.doc-table-wrap { margin: 8px 0 0; }
+.doc-caption { margin: 0 0 8px; max-width: none; }
+.doc-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums lining-nums; }
+.doc-table th,
+.doc-table td {
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body-sm);
+  letter-spacing: var(--tr-body-sm);
+  text-align: left;
+  vertical-align: top;
+}
+.doc-table th {
+  font-weight: var(--weight-semibold, 600);
+  letter-spacing: calc(var(--tr-body-sm) + var(--doc-th-tracking));
+  padding: 8px 12px;
+  background: var(--doc-th-fill);
+  color: var(--doc-th-text);
+  border-bottom: 2px solid var(--doc-th-rule);
+}
+.doc-table td { font-weight: var(--weight-regular, 400); padding: 8px 12px; color: var(--fg-1); border-bottom: 1px solid var(--border-1); }
+.doc-table .num { text-align: right; }
+.doc-table .total td { font-weight: var(--weight-bold, 700); border-top: 1px solid var(--border-2); }
+
+/* Status. An 8px square and the word, in the alert text color.
+   The word carries the meaning. */
+.doc-status { display: inline-flex; align-items: center; gap: 8px; font-weight: var(--weight-semibold, 600); white-space: nowrap; }
+.doc-status::before { content: ""; width: 8px; height: 8px; background: currentColor; flex: none; }
+.doc-status.is-go   { color: var(--alert-go-text); }
+.doc-status.is-warn { color: var(--alert-warn-text); }
+.doc-status.is-stop { color: var(--alert-stop-text); }
+.doc-status.is-info { color: var(--alert-info-text); }
+
+/* ---------- CALLOUT --------------------------------------------- */
+
+.doc-callout {
+  margin: 16px 0 0;
+  padding: 16px 20px;
+  background: var(--bg-surface);
+  border-top: 2px solid var(--fg-accent);
+}
+.doc-callout p { margin: 0; }
+
+/* ---------- ACTIONS --------------------------------------------- */
+
+.doc-actions { list-style: none; margin: 0; padding: 0; }
+.doc-actions-item {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  margin: 0;
+  padding: 8px 0;
+  border-top: 1px solid var(--border-1);
+}
+.doc-actions-item:last-child { border-bottom: 1px solid var(--border-1); }
+.doc-actions-n { font-weight: var(--weight-semibold, 600); color: var(--fg-accent); font-variant-numeric: tabular-nums lining-nums; }
+
+/* ---------- SIGN-OFF -------------------------------------------- */
+
+.doc-sign { margin: 32px 0 0; }
+.doc-sign p { margin: 0; }
+.doc-sign-name { font-weight: var(--weight-semibold, 600); max-width: 54ch; text-wrap: pretty; }
+.doc-sign-contact { color: var(--fg-3); max-width: 54ch; text-wrap: pretty; }
+
+/* ---------- FOOTER ----------------------------------------------
+   Inside the margins. The last line sits on the bottom margin. */
+
+.doc-footer {
+  flex: none;
+  margin: 16px var(--page-margin) var(--page-margin);
+  padding: 12px 0 0;
+  border-top: 1px solid var(--border-1);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+.doc-footer p { margin: 0; }
+
+/* ---------- LOCKUP ----------------------------------------------
+   Powered by Collective Edge. Once per document, operating
+   companies only. cobrand.css owns the label and the 204px logo. */
+
+.doc-footer .ce-powered { margin: 0; padding: 0; border: 0; }
+.doc-lockup { margin: 24px 0 0; padding: 24px 0 0; }
+
+/* ---------- NARROW SCREEN ---------------------------------------
+   Under 880px the sheet is fluid. Print never takes this block. */
+
+@media screen and (max-width: 879px) {
+  :root {
+    --page-margin: 24px;
+    --fs-h1: clamp(28px, 3.2vw, 40px);
+    --fs-h2: clamp(24px, 2.4vw, 32px);
+  }
+  .sheet { width: auto; min-height: 0; margin: 0; box-shadow: none; }
+  .doc-band { height: auto; flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px var(--page-margin); }
+  .doc-band-title { white-space: normal; }
+  .doc-band-logo { max-width: 100%; }
+  .doc-meta { grid-template-columns: 1fr; row-gap: 8px; }
+  .doc-table-wrap { overflow-x: auto; }
+  .doc-footer { flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+
+/* ---------- PRINT -----------------------------------------------
+   One sheet is one page. Content that runs past 11in falls onto a
+   second page, which the page count check catches. */
+
+@media print {
+  *, *::before, *::after { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { background: #FFFFFF; }
+  .sheet { margin: 0; box-shadow: none; }
+  .sheet + .sheet { break-before: page; page-break-before: always; }
+  p, li { orphans: 3; widows: 3; }
+  h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+  table, .doc-callout, .doc-footer, .ce-powered { break-inside: avoid; page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<article class="sheet">
+
+  <!-- BAND · 8.5in by 1.11in · logo role horizontal-on-dark -->
+  <header class="doc-band bk-on-dark">
+    <p class="bk-h2 bk-caps doc-band-title">Discharge transport</p>
+    <img class="doc-band-logo" src="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-white.svg" alt="Royal Ambulance">
+  </header>
+
+  <main class="doc-body">
+
+    <!-- TITLE BLOCK · headline 30pt, two lines at most · lead 15pt -->
+    <h1 class="bk-h1 doc-headline">Discharge rides are booked by 10:00.</h1>
+    <p class="bk-body-lg doc-lead">From 1 December, book next-day discharge transport before 10:00. Royal confirms each ride within 15&nbsp;minutes.</p>
+
+    <!-- META ROW · three items at most -->
+    <div class="doc-meta">
+      <div><p class="bk-caption">For</p><p class="bk-body-sm doc-meta-value">Case management</p></div>
+      <div><p class="bk-caption">From</p><p class="bk-body-sm doc-meta-value">Royal Dispatch</p></div>
+      <div><p class="bk-caption">Date</p><p class="bk-body-sm doc-meta-value">13 November 2026</p></div>
+    </div>
+
+    <h2 class="bk-h3 doc-h3">How it works.</h2>
+    <p class="bk-body doc-p">The case manager sends the request through the ordering page. Dispatch assigns a unit and replies with a pickup window. The crew calls the nursing station 20&nbsp;minutes before arrival.</p>
+
+    <!-- TABLE · one per page · five body rows at most -->
+    <h2 class="bk-h3 doc-h3">Pickup windows.</h2>
+    <div class="doc-table-wrap">
+      <table class="doc-table">
+        <thead>
+          <tr><th>Level of service</th><th>Request by</th><th>Pickup window</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Wheelchair</td><td>10:00</td><td>11:00 to 15:00</td><td><span class="doc-status is-go">Open</span></td></tr>
+          <tr><td>Gurney</td><td>10:00</td><td>11:00 to 16:00</td><td><span class="doc-status is-go">Open</span></td></tr>
+          <tr><td>Basic life support</td><td>10:00</td><td>12:00 to 17:00</td><td><span class="doc-status is-warn">Limited</span></td></tr>
+          <tr><td>Critical care</td><td>Call dispatch</td><td>By arrangement</td><td><span class="doc-status is-info">By phone</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CALLOUT · one per page -->
+    <aside class="doc-callout"><p class="bk-body">If a discharge moves, call dispatch. The unit holds for 15&nbsp;minutes past the window, then returns to service.</p></aside>
+
+  </main>
+
+  <!-- FOOTER · the lockup sits here once, at left -->
+  <footer class="doc-footer">
+    <div class="ce-powered ce-powered-light">
+      <span>Powered by</span>
+      <img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg" alt="Collective Edge" width="204" height="34">
+    </div>
+    <p class="bk-caption">Royal Ambulance · Discharge transport · Page 1 of 1</p>
+  </footer>
+
+</article>
+
+</body>
+</html>

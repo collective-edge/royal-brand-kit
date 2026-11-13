@@ -1,23 +1,19 @@
-<!-- Royal Ambulance header band · house type system v1.0.
-     Drop this at the top of any one-pager, report or letterhead.
-     Edit the title text. Both stylesheets must load first.
-     .bk-on-dark drops the title one weight and opens its tracking. -->
-
+<!-- Royal Ambulance header band · reference/layout.md section 3.1
+     Opens page 1 of every memo, one-pager, report and generic document.
+     8.5in wide, 1.11in tall. No rule. The band is solid --bg-band to its bottom edge.
+     Title: .bk-h2 .bk-caps, one line, four words and 18 characters at most.
+     Logo: role horizontal-on-dark, 1.6in wide, once.
+     Left and right padding is the page margin: 0.75in, or 0.6in on a one-pager.
+     Move the two link tags into <head> if the host document has one. type-system.css is
+     identical in every kit. palette.css is the only stylesheet that differs by brand.
+     .bk-on-dark sets the title at 600 and adds 0.005em of tracking. Never restate either inline. -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/palette.css">
 
-<header class="bk-on-dark" style="background:var(--bg-band); display:flex; align-items:center; justify-content:space-between; gap:var(--space-6); padding:var(--space-6) 0.5in;">
-  <div class="bk-h2 bk-caps" style="margin:0;">
-    Document title
-  </div>
-  <img
-    src="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-white.svg"
-    alt="Royal Ambulance"
-    style="width:1.6in; height:auto; display:block; flex:none;"
-  />
+<header class="bk-on-dark"
+        style="height:107px; background:var(--bg-band); border-bottom:3px solid var(--border-band-rule); padding:0 0.75in; display:flex; align-items:center; justify-content:space-between; gap:48px; box-sizing:border-box;">
+  <div class="bk-h2 bk-caps" style="margin:0; max-width:none; white-space:nowrap;">Memo</div>
+  <img src="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-white.svg"
+       alt="Royal Ambulance"
+       style="width:1.6in; height:auto; display:block; flex:none;">
 </header>
-
-<!-- Slide or title surface: swap class="bk-h2" for class="bk-display-md".
-     .bk-caps carries the uppercase and the caps tracking at whatever step it
-     sits on, and .bk-on-dark adds the 0.005em bonus through --tr-dark.
-     Display resolves to 700 on a dark ground, never 800. -->

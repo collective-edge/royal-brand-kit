@@ -12,7 +12,9 @@ Reads for-humans/pack.json in the kit this script sits in and writes:
   logos/png/        transparent PNG exports at the widths the pack lists
   previews/         each logo on the ground it is for, as shown in the README
   previews/swatches one chip per brand color
-  previews/data     one chip per house data color, read from snippets/data-color.css
+  previews/data     one chip per house data color, read from snippets/data-color.css:
+                    the eight series on light and on a dark band, and the four
+                    direction colors
   fonts/            the variable font, copied from assets/fonts/
 
 The prose in for-humans/README.md is written by hand. Nothing here touches it.
@@ -140,7 +142,7 @@ def chip(hex_value, path):
     # A pale chip disappears into a white page. Give it an edge.
     lum = (0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]) / 255
     if lum > 0.80:
-        ImageDraw.Draw(im).rectangle([0, 0, 63, 63], outline=(203, 213, 225), width=2)
+        ImageDraw.Draw(im).rectangle([0, 0, 63, 63], outline=(208, 208, 214), width=2)
     im.save(path)
 
 
@@ -157,18 +159,24 @@ def build_data(out):
     css_path = os.path.join(KIT, "snippets", "data-color.css")
     with open(css_path, encoding="utf-8") as fh:
         css = fh.read()
-    light = css.split("{", 1)[1]
+    # The first block is :root, the light ground. The .bk-on-dark block carries
+    # the dark-band step of every series.
+    light = css.split(":root {", 1)[1].split("\n}", 1)[0]
+    dark = css.split("\n.bk-on-dark {", 1)[1].split("\n}", 1)[0]
     d = os.path.join(out, "previews", "data")
     os.makedirs(d, exist_ok=True)
     n = 0
-    for i in range(1, 9):
-        m = re.search(r"--series-%d:\s*(#[0-9a-fA-F]{6})" % i, light)
-        if not m:
-            fail("no --series-%d in %s" % (i, css_path))
-        chip(m.group(1), os.path.join(d, "series-%d.png" % i))
-        n += 1
+    for block, suffix in ((light, ""), (dark, "-dark")):
+        for i in range(1, 9):
+            m = re.search(r"--series-%d:\s*(#[0-9a-fA-F]{6})" % i, block)
+            if not m:
+                fail("no --series-%d%s in %s" % (i, suffix, css_path))
+            chip(m.group(1), os.path.join(d, "series-%d%s.png" % (i, suffix)))
+            n += 1
     for role in ("favorable", "unfavorable", "caution", "neutral"):
-        m = re.search(r"--dir-%s:\s*(#[0-9a-fA-F]{6})" % role, light)
+        # A direction color is an alias of the alert family and carries the
+        # value as its fallback: var(--alert-go-text, #1E7A4D). Read either form.
+        m = re.search(r"--dir-%s:\s*(?:var\([^,)]+,\s*)?(#[0-9a-fA-F]{6})" % role, light)
         if not m:
             fail("no --dir-%s in %s" % (role, css_path))
         chip(m.group(1), os.path.join(d, "dir-%s.png" % role))

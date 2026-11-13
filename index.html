@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Royal Ambulance · Brand standards</title>
+<meta name="description" content="Royal Ambulance is a Bay Area medical transportation company under Collective Edge. Logo, color, type, document examples and rules, with every value an agent reads.">
+<link rel="canonical" href="https://collective-edge.github.io/royal-brand-kit/">
+<link rel="icon" href="assets/logos/crown-purple.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Royal Ambulance">
+<meta property="og:title" content="Royal Ambulance · Brand standards">
+<meta property="og:description" content="Royal Ambulance is a Bay Area medical transportation company under Collective Edge. Logo, color, type, document examples and rules, with every value an agent reads.">
+<meta property="og:url" content="https://collective-edge.github.io/royal-brand-kit/">
+<meta property="og:image" content="https://collective-edge.github.io/royal-brand-kit/guidelines/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Royal Ambulance logo on the brand band">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+/* ==========================================================
+   THE GUIDELINES PAGE · one layout, three brands
+   Identical in all three kits. guidelines/build.py inlines this
+   file into index.html and fills the marked blocks from the kit.
+   Grid     12 columns · 24px gutter · 96px margin at 1440
+            rail = columns 1 to 4 · figures = columns 5 to 12
+            machine column = columns 10 to 12, everywhere
+   Type     Montserrat 400 600 700 · 12 14 16 20 40
+   Space    4px base · 96 above a section · 64 above a subsection
+   Theme    the block marked THEME is all that differs per brand,
+            and it is written from tokens.json
+   Macros   E(n) is n pixels of a drawn document, scaled to its
+            frame. TYPE(step) is a step of snippets/type-tokens.json
+   ========================================================== */
+@font-face { font-family: "Montserrat"; src: url("for-humans/fonts/static/Montserrat-Regular.ttf") format("truetype"), url("https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/for-humans/fonts/static/Montserrat-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Montserrat"; src: url("for-humans/fonts/static/Montserrat-SemiBold.ttf") format("truetype"), url("https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/for-humans/fonts/static/Montserrat-SemiBold.ttf") format("truetype"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Montserrat"; src: url("for-humans/fonts/static/Montserrat-Bold.ttf") format("truetype"), url("https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/for-humans/fonts/static/Montserrat-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Montserrat"; src: url("for-humans/fonts/static/Montserrat-ExtraBold.ttf") format("truetype"), url("https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/for-humans/fonts/static/Montserrat-ExtraBold.ttf") format("truetype"); font-weight: 800; font-style: normal; font-display: swap; }
+
+:root {
+  /* theme, neutrals and alert text · from tokens.json */
+  --accent: #572E72;
+  --band: #2F193B;
+  --band-rule: transparent;
+  --surface: #FAF5FD;
+  --inverse: #2F193B;
+  --th: #2F193B;
+  --th-fg: #FFFFFF;
+  --th-rule: #2F193B;
+  --ink: #23232A;
+  --sec: #565860;
+  --ter: #6D6D77;
+  --dim: #8A8B93;
+  --hair: #E4E4E9;
+  --border: #D0D0D6;
+  --od1: #FFFFFF;
+  --od2: #DDDDE3;
+  --od3: #A3A4AC;
+  --odb: rgba(255,255,255,0.12);
+  --go: #1E7A4D;
+  --warn: #926603;
+  --stop: #B0322B;
+  --info: #2A5A8C;
+  /* grid */
+  --m: 96px; --g: 24px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+html { font-synthesis: none; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px; line-height: 1.6; font-weight: 400; font-style: normal;
+  color: var(--ink); background: #FFFFFF; overflow-x: clip;
+  font-variant-numeric: tabular-nums lining-nums;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+b, th, h1, h2, h3, h4, h5 { font-weight: inherit; font-size: inherit; }
+ol, ul { list-style: none; }
+img { display: block; height: auto; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.band :focus-visible { outline-color: var(--od1); }
+.skip { position: absolute; left: -9999px; top: 0; z-index: 2; padding: 8px 16px; background: #FFFFFF; color: var(--ink); font-size: 14px; line-height: 22px; font-weight: 600; }
+.skip:focus { left: 0; }
+a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--dim); }
+table { border-collapse: collapse; width: 100%; }
+h1, h2, h3, h4, h5 { text-wrap: balance; }
+p { text-wrap: pretty; }
+
+/* ---------- grid ---------- */
+.wrap { max-width: 1440px; margin: 0 auto; padding: 0 var(--m); }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--g); }
+.rail { grid-column: 1 / span 4; }
+.main { grid-column: 5 / span 8; min-width: 0; }
+.full { grid-column: 1 / -1; min-width: 0; margin-top: 32px; }
+.g8 { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); column-gap: var(--g); }
+.c2 { grid-column: span 2; min-width: 0; } .c3 { grid-column: span 3; min-width: 0; } .c5 { grid-column: span 5; min-width: 0; }
+
+/* ---------- machine values · selectable, copy on click ---------- */
+.nb { white-space: nowrap; }
+.mc { display: grid; grid-template-columns: 60px minmax(0, 1fr); column-gap: 12px; align-content: start; font-size: 14px; line-height: 20px; letter-spacing: 0.005em; }
+.mc .k { color: var(--ter); }
+.mc .v { overflow-wrap: anywhere; }
+.mc .v.none { color: var(--ter); }
+.mc .v a { margin-right: 12px; }
+[data-c] { cursor: copy; }
+[data-c]:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--dim); }
+[data-c].ok::after { content: "  Copied"; font-weight: 600; color: var(--ter); white-space: pre; }
+.band [data-c].ok::after { color: var(--od3); }
+
+/* ---------- opening band ---------- */
+/* the band fills the 900px fold exactly, rule included, on all three pages */
+.band { background: var(--band); color: var(--od1); border-bottom: 3px solid var(--band-rule); letter-spacing: 0.005em; min-height: 900px; display: flex; }
+.band .wrap { flex: 1; width: 100%; display: flex; flex-direction: column; padding-top: 32px; padding-bottom: 44px; }
+.band .top { font-size: 14px; line-height: 22px; }
+.band .top .rail { font-weight: 600; }
+.band nav .c5 { display: flex; gap: 32px; }
+.band nav a { color: var(--od2); text-decoration: none; }
+.band nav a[aria-current] { color: var(--od1); font-weight: 600; }
+.band nav a.dl { color: var(--od1); font-weight: 600; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.45); justify-self: start; }
+.band .id { margin-top: 88px; }
+.band .meta { font-size: 14px; line-height: 22px; color: var(--od3); align-self: start; }
+.band .meta p { max-width: 260px; }
+.band .meta p + p { margin-top: 12px; }
+.band .meta b { display: block; color: var(--od1); font-weight: 600; }
+.say { text-wrap: pretty; margin-top: 48px; font-size: 40px; line-height: 1.18; font-weight: 600; letter-spacing: -0.012em; }
+.band .toc { margin-top: auto; padding-top: 48px; font-size: 14px; line-height: 22px; }
+.band .toc .rail { font-weight: 600; }
+.toc li { border-top: 1px solid var(--odb); padding: 9px 0; align-items: baseline; text-wrap: pretty; }
+.toc li.hd { border-top: 0; padding-top: 0; font-size: 12px; line-height: 22px; color: var(--od3); }
+.toc a { text-decoration: none; }
+.toc .t { display: grid; grid-template-columns: 40px minmax(0, 1fr); font-weight: 600; white-space: nowrap; }
+.toc .t span { font-weight: 400; color: var(--od3); }
+.toc .d { color: var(--od2); }
+.toc .f { text-decoration: underline; text-decoration-color: rgba(255,255,255,0.35); justify-self: start; }
+
+/* ---------- sections ---------- */
+.sec { margin-top: 96px; border-top: 1px solid var(--ink); padding-top: 24px; }
+.sec-head .num, .sec-head h2 { font-size: 40px; line-height: 1.18; letter-spacing: -0.012em; }
+.sec-head .num { font-weight: 400; color: var(--accent); }
+.sec-head h2 { font-weight: 700; }
+.lead { margin-top: 16px; font-size: 20px; line-height: 1.55; max-width: 612px; }
+
+.sub { margin-top: 64px; border-top: 1px solid var(--hair); padding-top: 24px; }
+.sub > .rail { display: grid; grid-template-columns: 56px minmax(0, 1fr); align-content: start; align-items: baseline; }
+.sub .n { font-size: 14px; line-height: 29px; font-weight: 600; }
+.sub h3 { font-size: 20px; line-height: 29px; font-weight: 600; }
+.sub .note a.blk { display: block; width: fit-content; margin-top: 8px; color: var(--ink); }
+.sub .note { margin-top: 8px; font-size: 14px; line-height: 1.55; color: var(--sec); max-width: 320px; }
+.sub .main > .note { margin-top: 3px; max-width: 506px; }
+.used { display: block; margin-top: 16px; }
+.used > span { display: grid; grid-template-columns: 144px minmax(0, 1fr); padding-top: 6px; margin-top: 6px; border-top: 1px solid var(--hair); font-size: 14px; line-height: 20px; }
+.used > span:first-child { margin-top: 0; }
+.used b { font-weight: 600; color: var(--ink); }
+.used.wide { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--g); max-width: 612px; margin-top: 20px; }
+.used.wide > span:nth-child(2) { margin-top: 0; }
+.used + .stack, .used + .pair { margin-top: 32px; }
+
+/* ---------- figures ---------- */
+figure + figure, .tbl + figure, figure + .tbl { margin-top: 32px; }
+figcaption { margin-top: 12px; max-width: 100%; text-wrap: pretty; display: flex; justify-content: space-between; gap: 24px; font-size: 12px; line-height: 1.45; letter-spacing: 0.01em; color: var(--ter); }
+figcaption > span:first-child { max-width: 54ch; }
+figcaption b { font-weight: 600; color: var(--ink); margin-right: 12px; }
+figcaption .cap-r { flex: none; color: var(--ink); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 32px var(--g); }
+.pair figure + figure { margin-top: 0; }
+.stack figure + figure { margin-top: 48px; }
+.plate { display: grid; place-items: center; }
+.plate.dark { background: var(--band); }
+.plate img { max-width: 84%; }
+.field { background: var(--surface); }
+
+/* the one large plate */
+.bigplate { height: 320px; }
+.bigplate.ruled { border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+.sec-head + .grid > .full { margin-top: 40px; }
+
+/* ---------- schedules: thing · meaning · machine value ---------- */
+.tbl .hd { font-size: 12px; line-height: 1.45; font-weight: 600; color: var(--ter); padding-bottom: 10px; border-bottom: 1px solid var(--ink); }
+.tbl .row { border-top: 1px solid var(--hair); padding: 12px 0; }
+.tbl .hd + .row { border-top: 0; }
+.tbl .row:last-child { border-bottom: 1px solid var(--hair); }
+.tx { font-size: 14px; line-height: 20px; color: var(--sec); }
+.tx b { display: block; font-size: 16px; line-height: 22px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.tx .rl { font-size: 12px; font-weight: 400; color: var(--ter); margin-left: 8px; letter-spacing: 0.01em; }
+.tx .nv { color: var(--ink); font-weight: 600; }
+.logos .plate { height: 112px; }
+.logos .tx, .logos .mc { padding-top: 4px; }
+
+/* ---------- lists of lines ---------- */
+.lines li { display: grid; grid-template-columns: 58px minmax(0, 1fr); padding: 9px 0; border-top: 1px solid var(--hair); font-size: 14px; line-height: 22px; }
+.lines .i { font-size: 12px; font-weight: 600; color: var(--ter); letter-spacing: 0.01em; }
+.lines.cols2 { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--g); }
+.lines.cols2 li:nth-child(-n+2), .lines:not(.cols2) li:first-child { border-top: 1px solid var(--ink); }
+.pair.rules { row-gap: 48px; }
+.tbl + .pair.rules { margin-top: 48px; }
+.rules h4 { font-size: 14px; line-height: 22px; font-weight: 600; padding-bottom: 10px; }
+.rules .lines li:first-child { border-top: 2px solid var(--ink); }
+figure + .lines, .pair + .lines { margin-top: 32px; }
+
+/* ---------- 01 logo ---------- */
+.cl { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); column-gap: var(--g); }
+.cl .field { grid-column: span 5; height: 280px; display: grid; place-items: center; }
+.cs { --u: 1px; display: grid; gap: 1px; background: var(--border); padding: 1px; }
+.cs span { background: var(--surface); display: grid; place-items: center; font-size: 12px; line-height: 1; color: var(--ter); position: relative; }
+.cs .art { z-index: 1; background: #FFFFFF; }
+.cs .art img { position: absolute; max-width: none; }
+.mins { grid-column: span 3; align-self: start; }
+.mins li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; column-gap: 12px; padding: 16px 0 12px; border-top: 1px solid var(--hair); font-size: 14px; line-height: 20px; }
+.mins li:first-child { border-top: 1px solid var(--ink); }
+.mins li:last-child { border-bottom: 1px solid var(--hair); }
+.mins img { max-width: none; margin-bottom: 10px; }
+.mins b { display: block; font-weight: 600; }
+.mins .d { color: var(--ter); text-align: right; }
+
+/* ---------- 02 color ---------- */
+.pal .row { display: grid; grid-template-columns: 188px minmax(0, 1fr); column-gap: var(--g); padding: 0; border: 0 !important; min-height: 92px; }
+.pal .sw.edge { box-shadow: inset 0 0 0 1px var(--border); }
+.pal .info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--g); align-content: start; padding: 14px 0; border-top: 1px solid var(--hair); }
+.pal .hd + .row .info { border-top: 0; }
+.pal .row:last-child .info { border-bottom: 1px solid var(--hair); }
+
+.neu .row { padding: 10px 0; align-items: center; font-size: 14px; line-height: 22px; }
+.neu .nm { display: grid; grid-template-columns: 40px minmax(0, 1fr); column-gap: 18px; align-items: center; font-weight: 600; }
+.neu .chip { height: 24px; }
+.neu .chip.edge { box-shadow: inset 0 0 0 1px var(--border); }
+.neu .u { color: var(--sec); }
+.mci { display: grid; grid-template-columns: 82px minmax(0, 1fr); column-gap: var(--g); font-size: 14px; line-height: 20px; letter-spacing: 0.005em; }
+.hd .mci { font-size: 12px; line-height: 1.45; letter-spacing: 0; }
+
+.alert { table-layout: fixed; }
+.alert th, .alert td { text-align: left; vertical-align: top; padding: 14px 24px 14px 0; border-top: 1px solid var(--hair); }
+.alert td:last-child { padding-right: 0; }
+.alert thead th { border-top: 0; padding-top: 0; padding-bottom: 10px; border-bottom: 1px solid var(--ink); font-size: 12px; line-height: 1.45; font-weight: 600; color: var(--ter); }
+.alert thead th:first-child { width: 212px; }
+.alert tbody tr:first-child > * { border-top: 0; }
+.alert tbody tr:last-child > * { border-bottom: 1px solid var(--hair); }
+.alert b { display: block; font-weight: 600; line-height: 22px; }
+.alert .s { display: block; font-size: 14px; line-height: 20px; letter-spacing: 0.005em; }
+.alert th .s:first-of-type { color: var(--sec); margin-bottom: 4px; }
+.alert .tk { font-size: 12px; line-height: 18px; letter-spacing: 0.01em; color: var(--ter); overflow-wrap: anywhere; }
+.alert .sw { display: flex; align-items: center; height: 40px; margin-bottom: 8px; }
+.alert .sw.txt { padding: 0 12px; font-size: 14px; font-weight: 600; }
+.alert .sw.bare { padding: 0; }
+.alert .sw.dk { background: var(--band); letter-spacing: 0.005em; }
+.alert .sw .dot { width: 8px; height: 8px; margin-right: 8px; }
+
+.series { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); }
+.series + .series { margin-top: 20px; }
+.series.seq { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.series .c { display: block; height: 44px; margin-bottom: 8px; }
+.series.two .c { margin-bottom: 0; }
+.series.two .c.dk { height: 44px; border: 10px solid var(--band); margin-bottom: 8px; }
+.series li > span { display: block; font-size: 14px; line-height: 20px; letter-spacing: 0.005em; }
+.series .nn { font-weight: 600; }
+.series .tk { font-size: 12px; line-height: 18px; letter-spacing: 0.01em; color: var(--ter); }
+.series-h { font-size: 12px; line-height: 1.45; font-weight: 600; color: var(--ter); padding-bottom: 10px; margin-bottom: 0; border-bottom: 1px solid var(--ink); }
+.series-h + .series { margin-top: 0; }
+.series + .series-h { margin-top: 28px; }
+
+/* ---------- 03 type ---------- */
+.fam { border-top: 1px solid var(--ink); padding-top: 24px; }
+.fam .w { font-size: 72px; line-height: 1.08; font-weight: 800; letter-spacing: -0.018em; margin-left: -4px; }
+.fam .a { margin-top: 20px; font-size: 20px; line-height: 1.55; }
+.fam .mc { padding-top: 14px; }
+.wts { margin-top: 40px; border-top: 1px solid var(--hair); }
+.wts li { padding-top: 16px; }
+.wts .s { display: block; font-size: 40px; line-height: 1.18; letter-spacing: -0.012em; }
+.wts b { display: block; margin-top: 12px; font-size: 14px; line-height: 22px; font-weight: 600; }
+.wts .u { display: block; font-size: 12px; line-height: 1.45; letter-spacing: 0.01em; color: var(--ter); }
+
+.scale th, .scale td { vertical-align: baseline; text-align: right; padding: 8px 0; border-top: 1px solid var(--hair); font-size: 14px; line-height: 1.55; }
+.scale th { width: 424px; text-align: left; padding-left: 56px; padding-right: 24px; }
+.scale th b { display: inline-block; font-weight: 600; }
+.scale th .u { display: block; font-size: 12px; line-height: 1.45; letter-spacing: 0.01em; color: var(--ter); }
+.scale td.s { text-align: left; white-space: nowrap; }
+.scale td.s span { display: block; font-size: var(--fs); }
+.scale td:nth-child(3), .scale td:nth-child(4) { width: 58px; }
+.scale td:nth-child(5), .scale td:nth-child(6) { width: 82px; }
+.scale td:nth-child(7) { width: 106px; }
+.scale thead th, .scale thead td { border-top: 0; padding-top: 0; padding-bottom: 10px; border-bottom: 1px solid var(--ink); font-size: 12px; line-height: 1.45; font-weight: 600; color: var(--ter); }
+.scale tbody tr:first-child > * { border-top: 0; }
+.scale tbody tr:last-child > * { border-bottom: 1px solid var(--hair); }
+
+.space { padding: 32px 32px 24px; }
+.space ol { display: flex; align-items: flex-end; justify-content: space-between; }
+.space li { min-width: 60px; }
+.space .q { display: block; background: var(--ink); }
+.space b { display: block; margin-top: 12px; font-size: 14px; line-height: 20px; font-weight: 600; }
+.space .tk { display: block; font-size: 11px; line-height: 18px; color: var(--ter); white-space: nowrap; }
+.meas .row { padding: 10px 0; font-size: 14px; line-height: 22px; align-items: baseline; }
+.meas .row b { font-weight: 600; }
+.meas .u { color: var(--sec); }
+
+/* ---------- 04 in use · every length is E(real px) so the piece scales with its frame ---------- */
+.frame { container-type: inline-size; box-shadow: 0 0 0 1px var(--border); }
+.x-doc { --e: calc(100cqw / 51); aspect-ratio: 8.5 / 11; background: #FFFFFF; display: flex; flex-direction: column; overflow: hidden; }
+.x-band { background: var(--band); border-bottom: calc(var(--e)*0.1875) solid var(--band-rule); color: #FFFFFF; padding: calc(var(--e)*2) calc(var(--e)*var(--mx)); display: flex; justify-content: space-between; align-items: center; }
+.x-bt { font-size: calc(var(--e)*2); line-height: 1.25; font-weight: 700; letter-spacing: -0.008em; font-weight: 600; letter-spacing: 0.045em; text-transform: uppercase; }
+.x-body { padding: calc(var(--e)*2.25) calc(var(--e)*var(--mx)) calc(var(--e)*1); flex: 1; }
+.x-h1 { font-size: calc(var(--e)*2.5); line-height: 1.18; font-weight: 700; letter-spacing: -0.012em; }
+.x-lead { font-size: calc(var(--e)*1.25); line-height: 1.55; font-weight: 400; letter-spacing: 0em; margin-top: calc(var(--e)*1); max-width: calc(var(--e)*40); }
+.x-meta { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: calc(var(--e)*1.5); margin-top: calc(var(--e)*1.25); padding: calc(var(--e)*0.625) 0; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+.x-meta span { display: block; font-size: calc(var(--e)*0.75); line-height: 1.45; letter-spacing: 0.01em; color: var(--ter); }
+.x-meta b { display: block; font-size: calc(var(--e)*0.875); line-height: 1.55; font-weight: 600; }
+.x-h3 { font-size: calc(var(--e)*1.5); line-height: 1.35; font-weight: 600; letter-spacing: -0.004em; color: var(--accent); margin: calc(var(--e)*1.625) 0 calc(var(--e)*0.625); }
+.x-p { font-size: calc(var(--e)*1); line-height: 1.6; font-weight: 400; letter-spacing: 0em; max-width: calc(var(--e)*35.75); }
+.x-p + .x-p { margin-top: calc(var(--e)*1); }
+.x-call { margin-top: calc(var(--e)*1.375); padding: calc(var(--e)*0.875) calc(var(--e)*1.25); background: var(--surface); border-top: calc(var(--e)*0.125) solid var(--accent); font-size: calc(var(--e)*1); line-height: 1.6; }
+.x-table { font-size: calc(var(--e)*0.875); line-height: 1.55; font-weight: 400; letter-spacing: 0.005em; }
+.x-table th { text-align: left; font-weight: 600; padding: calc(var(--e)*0.5) calc(var(--e)*0.75); background: var(--th); color: var(--th-fg); border-bottom: calc(var(--e)*0.125) solid var(--th-rule); }
+.x-table td { padding: calc(var(--e)*0.5625) calc(var(--e)*0.75); border-bottom: 1px solid var(--hair); }
+.x-table th, .x-table td { white-space: nowrap; }
+.st { display: inline-flex; align-items: center; gap: calc(var(--e)*0.5); font-weight: 600; }
+.st .dot { width: calc(var(--e)*0.5); height: calc(var(--e)*0.5); background: currentColor; }
+.st.go { color: var(--go); } .st.warn { color: var(--warn); } .st.stop { color: var(--stop); } .st.info { color: var(--info); }
+.x-foot { margin: 0 calc(var(--e)*var(--mx)); padding: calc(var(--e)*0.875) 0 calc(var(--e)*var(--mx)*0.62); border-top: 1px solid var(--hair); display: flex; justify-content: space-between; align-items: flex-end; font-size: calc(var(--e)*0.75); line-height: 1.45; letter-spacing: 0.01em; color: var(--ter); }
+.x-foot .pw { gap: calc(var(--e)*0.625); }
+.x-foot .pw span { font-size: calc(var(--e)*0.75); }
+.x-foot .pw img { width: calc(var(--e)*12.75); }
+.x-foot .pw + span { margin-bottom: calc(var(--e)*0.4375); }
+/* memo */
+.x-to { display: grid; grid-template-columns: calc(var(--e)*6) minmax(0, 1fr); font-size: calc(var(--e)*1); line-height: 1.6; border-top: 1px solid var(--hair); }
+.x-to > * { padding: calc(var(--e)*0.5) 0; border-bottom: 1px solid var(--hair); }
+.x-to span { color: var(--ter); }
+.x-to b { font-weight: 400; }
+.x-to b.re { font-weight: 700; }
+.x-to + .x-p { margin-top: calc(var(--e)*2); }
+.x-ol li { display: grid; grid-template-columns: calc(var(--e)*2) minmax(0, 1fr); font-size: calc(var(--e)*1); line-height: 1.6; padding: calc(var(--e)*0.5) 0; border-top: 1px solid var(--hair); max-width: calc(var(--e)*37.75); }
+.x-ol li:last-child { border-bottom: 1px solid var(--hair); }
+.x-ol span { font-weight: 600; color: var(--accent); }
+.x-sign { margin-top: calc(var(--e)*2.5); font-size: calc(var(--e)*1); line-height: 1.6; }
+.x-sign b { display: block; font-weight: 600; }
+.x-sign span { color: var(--ter); font-size: calc(var(--e)*0.875); }
+
+.pw { display: grid; gap: 12px; justify-items: start; }
+.pw span { font-size: 12px; line-height: 1.45; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ter); }
+.pw img { width: 204px; max-width: 100%; }
+
+.x-slide { --e: calc(100cqw / 80); aspect-ratio: 16 / 9; display: flex; flex-direction: column; padding: calc(var(--e)*var(--mt)) calc(var(--e)*var(--mx)) calc(var(--e)*var(--mb)); overflow: hidden; }
+.x-slide.title { background: var(--inverse); color: #FFFFFF; border-bottom: calc(var(--e)*0.3125) solid var(--band-rule); }
+.x-slide .mid { margin-top: auto; }
+.x-dt { font-size: calc(var(--e)*4.5); line-height: 1.08; font-weight: 800; letter-spacing: -0.018em; font-weight: 700; letter-spacing: 0.025em; text-transform: uppercase; }
+.x-ds { font-size: calc(var(--e)*1.5); line-height: 1.35; font-weight: 600; letter-spacing: -0.004em; letter-spacing: 0.001em; color: var(--od2); margin-top: calc(var(--e)*1); }
+.x-slide .ft { margin-top: calc(var(--e)*3.5); padding-top: calc(var(--e)*1); border-top: 1px solid var(--odb); display: flex; justify-content: space-between; align-items: center; font-size: calc(var(--e)*1); line-height: 1.6; font-weight: 400; letter-spacing: 0em; color: var(--od3); }
+.x-slide.body { background: #FFFFFF; }
+.x-st { font-size: calc(var(--e)*3.5); line-height: 1.1; font-weight: 800; letter-spacing: -0.015em; color: var(--accent); max-width: calc(var(--e)*60); }
+.x-slide .cols { display: grid; grid-template-columns: 1fr 1fr; column-gap: calc(var(--e)*4); margin-top: calc(var(--e)*3); }
+.x-pts li { font-size: calc(var(--e)*1.5); line-height: 1.35; font-weight: 600; letter-spacing: -0.004em; padding: calc(var(--e)*1) 0; border-top: 1px solid var(--hair); }
+.x-pts li:last-child { border-bottom: 1px solid var(--hair); }
+.x-tc { font-size: calc(var(--e)*1); line-height: 1.6; font-weight: 400; letter-spacing: 0em; color: var(--ter); margin-bottom: calc(var(--e)*0.5); }
+.x-table.big { font-size: calc(var(--e)*1.25); line-height: 1.55; font-weight: 400; letter-spacing: 0em; }
+.x-table.big th { padding: calc(var(--e)*0.625) calc(var(--e)*1); font-weight: 600; }
+.x-table.big td { padding: calc(var(--e)*0.75) calc(var(--e)*1); }
+.x-slide.body .ft { margin-top: auto; border-top-color: var(--hair); color: var(--ter); }
+
+/* ---------- 06 co-brand ---------- */
+.lockrow .plate { height: 184px; }
+.lockrow .lk { width: 232px; }
+.lockrow .lk > img { max-width: none; }
+.lockrow .plate .pw { width: 100%; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--hair); }
+.lockrow .plate.dark .pw { border-top-color: var(--odb); }
+.lockrow .plate.dark .pw span { color: var(--od3); }
+.wedge .duo { display: grid; grid-template-columns: 1fr 1fr; }
+.wedge .plate { height: 112px; }
+.wedge .plate img { width: 72px; }
+.lockrow .tx, .lockrow .mc, .wedge .tx, .wedge .mc { padding-top: 6px; }
+
+/* ---------- 07 agents ---------- */
+.urls { margin-top: 24px; }
+.urls li { padding: 6px 0; border-top: 1px solid var(--hair); align-items: baseline; }
+.urls li:first-child { border-top: 1px solid var(--ink); }
+.urls li:last-child { border-bottom: 1px solid var(--hair); }
+.urls .rail { display: grid; grid-template-columns: 56px minmax(0, 1fr); align-items: baseline; }
+.urls .i { font-size: 12px; line-height: 22px; font-weight: 600; color: var(--ter); }
+.urls b { display: block; font-size: 14px; line-height: 22px; font-weight: 600; overflow-wrap: anywhere; }
+.urls .d { display: block; font-size: 12px; line-height: 18px; color: var(--ter); letter-spacing: 0.01em; }
+.urls .main { font-size: 14px; line-height: 22px; letter-spacing: 0.005em; overflow-wrap: anywhere; }
+
+/* ---------- colophon ---------- */
+.colophon { margin-top: 80px; border-top: 1px solid var(--ink); padding: 24px 0 72px; align-items: start; }
+.colophon .main { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+.colophon .pw a { font-size: 12px; line-height: 1.6; letter-spacing: 0.01em; }
+.colophon p { font-size: 12px; line-height: 1.6; letter-spacing: 0.01em; color: var(--ter); }
+
+/* ---------- narrow ---------- */
+@media (max-width: 960px) {
+  :root { --m: 16px; }
+  .rail, .main { grid-column: 1 / -1; }
+  .g8, .cl { grid-template-columns: minmax(0, 1fr); row-gap: 12px; }
+  .c2, .c3, .c5, .cl .field, .mins { grid-column: 1 / -1; }
+  .band { min-height: 0; }
+  .band nav { margin-top: 8px; }
+  .band nav .c5 { flex-wrap: wrap; gap: 4px 16px; }
+  .band .id { margin-top: 48px; }
+  .band .id .main { margin-top: 32px; }
+  .band .id img { max-width: 100%; margin-left: 0 !important; }
+  .say { font-size: 28px; margin-top: 32px; }
+  .band .toc { margin-top: 48px; }
+  .toc li.hd { display: none; }
+  .toc li { row-gap: 2px; }
+  .sec-head .num, .sec-head h2 { font-size: 28px; }
+  .sub > .rail { margin-bottom: 20px; }
+  .sub .note { max-width: none; }
+  .pair, .lines.cols2, .used.wide { grid-template-columns: minmax(0, 1fr); }
+  .lines.cols2 li:nth-child(2) { border-top-color: var(--hair); }
+  .used.wide > span:nth-child(2) { margin-top: 6px; }
+  .bigplate { height: 220px; }
+  .tbl .hd { display: none; }
+  .tbl .hd + .row { border-top: 1px solid var(--ink); }
+  .plate:not(.dark):not(.bigplate) { box-shadow: inset 0 0 0 1px var(--hair); }
+  .pal .row { grid-template-columns: 56px minmax(0, 1fr); column-gap: 16px; }
+  .pal .info { grid-template-columns: minmax(0, 1fr); row-gap: 8px; }
+  .pal .hd + .row .info { border-top: 1px solid var(--ink); }
+  .neu .row { row-gap: 4px; }
+  .cl .field { height: auto; padding: 24px 0; }
+  .cs { --u: min(1px, calc((100vw - 32px) / var(--w))); }
+  .mins { margin-top: 12px; }
+  /* the alert table and the type scale restack: one block per row, labelled cells */
+  .alert, .alert tbody, .alert tr, .alert th, .alert td, .scale, .scale tbody, .scale tr, .scale th, .scale td { display: block; }
+  .alert thead, .scale thead { display: none; }
+  .alert tbody tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; padding: 14px 0 6px; border-top: 1px solid var(--hair); }
+  .alert tbody tr:first-child { border-top: 1px solid var(--ink); }
+  .alert tbody tr:last-child { border-bottom: 1px solid var(--hair); }
+  .alert tbody th, .alert tbody td { border: 0 !important; padding: 0 0 12px; }
+  .alert tbody th { grid-column: 1 / -1; }
+  .alert td::before, .scale td[data-l]::before { content: attr(data-l); display: block; font-size: 12px; line-height: 18px; font-weight: 600; color: var(--ter); }
+  .alert td::before { margin-bottom: 6px; }
+  .scale tbody tr { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 8px; padding: 12px 0; border-top: 1px solid var(--hair); }
+  .scale tbody tr:first-child { border-top: 1px solid var(--ink); }
+  .scale tbody tr:last-child { border-bottom: 1px solid var(--hair); }
+  .scale tbody th, .scale tbody td { border: 0 !important; padding: 0; width: auto; text-align: left; }
+  .scale td:nth-child(n) { width: auto; }
+  .scale tbody th, .scale tbody td.s { grid-column: 1 / -1; }
+  .scale tbody td.s { padding: 10px 0 12px; white-space: normal; }
+  .scale td.s span { font-size: var(--fl, var(--fs)); }
+  .series, .series.seq { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 16px; }
+  .fam .w { font-size: 44px; }
+  .fam .a { font-size: 17px; }
+  .wts { row-gap: 0; }
+  .wts .s { font-size: 28px; }
+  .space { padding: 24px 16px 16px; }
+  .space ol { flex-wrap: wrap; gap: 20px 16px; justify-content: flex-start; }
+  .colophon .main { flex-direction: column; margin-top: 24px; }
+  figcaption { flex-wrap: wrap; gap: 4px 24px; }
+  .urls .main { margin-top: 4px; padding-left: 56px; }
+  .urls li { padding: 10px 0; }
+}
+
+</style>
+</head>
+<body class="b-royal">
+<a class="skip" href="#content">Skip to the standards</a>
+
+<header class="band">
+  <div class="wrap">
+    <div class="grid top">
+      <p class="rail">Brand standards</p>
+      <nav class="main g8" aria-label="Brands"><span class="c5"><a href="https://collective-edge.github.io/collective-edge-brand-kit/">Collective Edge</a><a href="https://collective-edge.github.io/apex-brand-kit/">Apex Paramedics</a><a href="https://collective-edge.github.io/royal-brand-kit/" aria-current=page>Royal Ambulance</a></span><a class="c3 dl" href="https://github.com/collective-edge/royal-brand-kit/archive/refs/heads/main.zip">Download the kit, ZIP</a></nav>
+    </div>
+    <div class="grid id">
+      <div class="rail meta">
+        <p><b>Operating company</b>Version 2.0</p>
+        <p>Every value in the right-hand column is text. Click one to copy it.</p>
+      </div>
+      <div class="main">
+        <img src="assets/logos/horizontal-white.svg" alt="Royal Ambulance" style="width:470px;margin-left:0px">
+        <h1 class="say">Royal Ambulance is a Bay Area medical transportation company under Collective Edge.</h1>
+      </div>
+    </div>
+    <nav class="grid toc" aria-label="Contents">
+      <p class="rail">Contents</p>
+      <ol class="main"><li class="g8 hd"><span class="c2">Section</span><span class="c3">What is there</span><span class="c3">What an agent reads</span></li><li class="g8"><a class="c2 t" href="#s01"><span>01</span>Logo</a><span class="c3 d">Lockups, grounds, clear space</span><a class="c3 f" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/brands.json">brands.json</a></li><li class="g8"><a class="c2 t" href="#s02"><span>02</span>Color</a><span class="c3 d">Palette, neutrals, alerts, charts</span><a class="c3 f" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/tokens.json">tokens.json</a></li><li class="g8"><a class="c2 t" href="#s03"><span>03</span>Type</a><span class="c3 d">Montserrat, the scale, spacing</span><a class="c3 f" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-tokens.json">snippets/type-tokens.json</a></li><li class="g8"><a class="c2 t" href="#s04"><span>04</span>In use</a><span class="c3 d">A memo, a one-pager, a deck</span><a class="c3 f" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/documents.json">documents.json</a></li><li class="g8"><a class="c2 t" href="#s05"><span>05</span>Rules</a><span class="c3 d">Use, avoid, voice</span><a class="c3 f" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/SKILL.md">SKILL.md</a></li><li class="g8"><a class="c2 t" href="#s06"><span>06</span>With Collective Edge</a><span class="c3 d">The Powered by lockup, the wedge</span><a class="c3 f" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css">snippets/cobrand.css</a></li><li class="g8"><a class="c2 t" href="#s07"><span>07</span>For agents</a><span class="c3 d">Every file an agent reads, as a URL</span><a class="c3 f" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/for-agents/README.md">for-agents/README.md</a></li></ol>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="content">
+<section class="sec" id="s01" aria-labelledby="s01-h">
+  <div class="grid sec-head">
+    <p class="rail num" aria-hidden="true">01</p>
+    <div class="main">
+      <h2 id="s01-h">Logo</h2>
+      <p class="lead">Every lockup, on its correct ground. The file named for a ground goes on that ground.</p>
+    </div>
+  </div>
+  <div class="grid"><figure class="full">
+    <div class="bigplate plate ruled" style="background:#FFFFFF"><img src="assets/logos/horizontal-purple.svg" alt="Royal Ambulance logo, the primary lockup" style="width:660px"></div>
+    <figcaption><span><b>Fig. 01</b>The primary lockup on white. Crown and wordmark travel together.</span><span class="cap-r"><span class="v" data-c>horizontal-on-light</span> on <span class="v" data-c>#FFFFFF</span></span></figcaption>
+  </figure></div>
+  <div class="grid sub">
+    <div class="rail"><p class="n">1.1</p><div><h3>Lockups</h3><p class="note">One row per shipped file. Ask for the role. The file is what the role resolves to. <a class="blk" href="https://github.com/collective-edge/royal-brand-kit/archive/refs/heads/main.zip">Download every logo, ZIP</a></p></div></div>
+    <div class="main"><div class="tbl logos">
+        <div class="g8 hd"><span class="c3">Lockup, on its ground</span><span class="c2">Use</span><span class="c3">Role, file, minimum</span></div>
+        <div class="g8 row">
+          <div class="c3 plate"><img src="assets/logos/horizontal-purple.svg" alt="Royal Ambulance horizontal, on light" style="width:196px"></div>
+          <div class="c2 tx"><b>Horizontal</b>Primary lockup. Default anywhere with horizontal room.</div>
+          <div class="c3 mc"><span class="k">role</span><span class="v" data-c>horizontal-on-light</span><span class="k">file</span><span class="v" data-c="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-purple.svg">assets/<wbr>logos/<wbr>horizontal-<wbr>purple.svg</span><span class="k">min</span><span class="v"><span class="bk-code">110px</span> · 1in</span><span class="k">get</span><span class="v"><a href="assets/logos/horizontal-purple.svg">SVG</a><a href="for-humans/logos/png/Royal-Ambulance-horizontal-purple-1200w.png">PNG</a></span></div>
+        </div>
+        <div class="g8 row">
+          <div class="c3 plate dark"><img src="assets/logos/horizontal-white.svg" alt="Royal Ambulance horizontal, on dark" style="width:196px"></div>
+          <div class="c2 tx"><b>Horizontal</b>Primary lockup on dark purple grounds.</div>
+          <div class="c3 mc"><span class="k">role</span><span class="v" data-c>horizontal-on-dark</span><span class="k">file</span><span class="v" data-c="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-white.svg">assets/<wbr>logos/<wbr>horizontal-<wbr>white.svg</span><span class="k">min</span><span class="v"><span class="bk-code">110px</span> · 1in</span><span class="k">get</span><span class="v"><a href="assets/logos/horizontal-white.svg">SVG</a><a href="for-humans/logos/png/Royal-Ambulance-horizontal-white-1200w.png">PNG</a></span></div>
+        </div>
+        <div class="g8 row">
+          <div class="c3 plate"><img src="assets/logos/crown-purple.svg" alt="Royal Ambulance crown, on light" style="width:56px"></div>
+          <div class="c2 tx"><b>Crown</b>Icon only. Favicons, badges, avatars, table corners.</div>
+          <div class="c3 mc"><span class="k">role</span><span class="v" data-c>mark-on-light</span><span class="k">file</span><span class="v" data-c="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/crown-purple.svg">assets/<wbr>logos/<wbr>crown-<wbr>purple.svg</span><span class="k">min</span><span class="v">32px · <span class="bk-code">0.33in</span></span><span class="k">get</span><span class="v"><a href="assets/logos/crown-purple.svg">SVG</a><a href="for-humans/logos/png/Royal-Ambulance-crown-purple-512w.png">PNG</a></span></div>
+        </div>
+        <div class="g8 row">
+          <div class="c3 plate dark"><img src="assets/logos/crown-white.svg" alt="Royal Ambulance crown, on dark" style="width:56px"></div>
+          <div class="c2 tx"><b>Crown</b>Icon only on dark purple grounds.</div>
+          <div class="c3 mc"><span class="k">role</span><span class="v" data-c>mark-on-dark</span><span class="k">file</span><span class="v" data-c="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/crown-white.svg">assets/<wbr>logos/<wbr>crown-<wbr>white.svg</span><span class="k">min</span><span class="v">32px · <span class="bk-code">0.33in</span></span><span class="k">get</span><span class="v"><a href="assets/logos/crown-white.svg">SVG</a><a href="for-humans/logos/png/Royal-Ambulance-crown-white-512w.png">PNG</a></span></div>
+        </div>
+        <div class="g8 row">
+          <div class="c3 plate"><img src="assets/logos/stacked-purple.svg" alt="Royal Ambulance stacked, on light" style="width:112px"></div>
+          <div class="c2 tx"><b>Stacked</b>Vertical lockup for portrait and square formats on light.</div>
+          <div class="c3 mc"><span class="k">role</span><span class="v" data-c>stacked-on-light</span><span class="k">file</span><span class="v" data-c="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/stacked-purple.svg">assets/<wbr>logos/<wbr>stacked-<wbr>purple.svg</span><span class="k">min</span><span class="v">use horizontal under 1.5in</span><span class="k">get</span><span class="v"><a href="assets/logos/stacked-purple.svg">SVG</a><a href="for-humans/logos/png/Royal-Ambulance-stacked-purple-1200w.png">PNG</a></span></div>
+        </div>
+        <div class="g8 row">
+          <div class="c3 plate dark"><img src="assets/logos/stacked-white.svg" alt="Royal Ambulance stacked, on dark" style="width:112px"></div>
+          <div class="c2 tx"><b>Stacked</b>Vertical lockup for portrait and square formats on dark.</div>
+          <div class="c3 mc"><span class="k">role</span><span class="v" data-c>stacked-on-dark</span><span class="k">file</span><span class="v" data-c="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/stacked-white.svg">assets/<wbr>logos/<wbr>stacked-<wbr>white.svg</span><span class="k">min</span><span class="v">use horizontal under 1.5in</span><span class="k">get</span><span class="v"><a href="assets/logos/stacked-white.svg">SVG</a><a href="for-humans/logos/png/Royal-Ambulance-stacked-white-1200w.png">PNG</a></span></div>
+        </div>
+      </div></div>
+  </div>
+  <div class="grid sub">
+    <div class="rail"><p class="n">1.2</p><div><h3>Space and size</h3><p class="note">Keep x clear on all four sides. Nothing enters it: no type, no rule, no edge. Minimums are screen width in pixels and print width in inches.</p></div></div>
+    <div class="main"><figure>
+        <div class="cl">
+          <div class="field"><div class="cs" role="img" aria-label="Clear space diagram: the logo with x of empty space on every side" style="--w:442;grid-template-columns:calc(var(--u)*71.8) calc(var(--u)*294.3) calc(var(--u)*71.8);grid-template-rows:calc(var(--u)*71.8) calc(var(--u)*71.8) calc(var(--u)*71.8)"><span>x</span><span></span><span>x</span><span></span><span class="art"><img src="assets/logos/horizontal-purple.svg" alt="" style="width:calc(var(--u)*294.3);left:calc(var(--u)*0.0);top:calc(var(--u)*0.0)"></span><span></span><span>x</span><span></span><span>x</span></div></div>
+          <ul class="mins"><li><span><img src="assets/logos/horizontal-purple.svg" alt="" style="width:110px"><b>Horizontal</b></span><span class="d"><span class="bk-code">110px</span> · 1in</span></li><li><span><img src="assets/logos/crown-purple.svg" alt="" style="width:32px"><b>Crown</b></span><span class="d">32px · <span class="bk-code">0.33in</span></span></li></ul>
+        </div>
+        <figcaption><span><b>Fig. 02</b>Clear space, where x is the height of the crown mark. Minimum sizes, drawn at actual size.</span></figcaption>
+      </figure>
+      <ol class="lines cols2"><li><span class="i"><span class="bk-code">R01</span></span><span>The fill on light is #<span class="bk-code">43205B</span> in every lockup. The fill on dark is #FFFFFF.</span></li><li><span class="i"><span class="bk-code">R02</span></span><span>On a header band the logo is 1.6in wide.</span></li><li><span class="i"><span class="bk-code">R03</span></span><span>If the clear space is short, shrink the logo.</span></li><li><span class="i"><span class="bk-code">R04</span></span><span>Under 1.5in wide, use the horizontal lockup in place of the stacked one.</span></li></ol></div>
+  </div>
+</section>
+<section class="sec" id="s02" aria-labelledby="s02-h">
+  <div class="grid sec-head">
+    <p class="rail num" aria-hidden="true">02</p>
+    <div class="main">
+      <h2 id="s02-h">Color</h2>
+      <p class="lead">Purple is the whole palette. Text and rules come from the shared neutrals.</p>
+    </div>
+  </div>
+  <div class="grid sub">
+    <div class="rail"><p class="n">2.1</p><div><h3>Palette</h3><p class="note">Three purples do the work. Dark Purple opens every document, Purple marks, Royal Purple is the logo.</p></div></div>
+    <div class="main"><div class="tbl pal">
+        <div class="g8 hd"><span class="c2">Color</span><span class="c3">Name and use</span><span class="c3">Hex, RGB, token</span></div>
+        <div class="row">
+          <div class="sw" style="background:#2F193B"></div>
+          <div class="info">
+            <div class="tx"><b>Dark Purple<span class="rl">Band</span></b>The dominant color. Header bands, title slides, table header rows. The band carries no rule.</div>
+            <div class="mc"><span class="k">hex</span><span class="v" data-c>#<span class="bk-code">2F193B</span></span><span class="k">rgb</span><span class="v" data-c>47 25 59</span><span class="k">token</span><span class="v" data-c>--royal-dark-purple</span></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="sw" style="background:#572E72"></div>
+          <div class="info">
+            <div class="tx"><b>Purple<span class="rl">Primary</span></b>The working accent. Bars, buttons, links and brand-colored text on white.</div>
+            <div class="mc"><span class="k">hex</span><span class="v" data-c>#<span class="bk-code">572E72</span></span><span class="k">rgb</span><span class="v" data-c>87 46 114</span><span class="k">token</span><span class="v" data-c>--royal-purple</span></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="sw" style="background:#43205B"></div>
+          <div class="info">
+            <div class="tx"><b>Royal Purple<span class="rl">Logo</span></b>The logo fill on light.</div>
+            <div class="mc"><span class="k">hex</span><span class="v" data-c>#<span class="bk-code">43205B</span></span><span class="k">rgb</span><span class="v" data-c>67 32 91</span><span class="k">token</span><span class="v" data-c>--royal-royal-purple</span></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="sw" style="background:#8260A2"></div>
+          <div class="info">
+            <div class="tx"><b>Light Purple<span class="rl">Tertiary</span></b>Tertiary accents and hover only. <span class="nv">Never body text. Never a large background. Never on #<span class="bk-code">2F193B</span>.</span></div>
+            <div class="mc"><span class="k">hex</span><span class="v" data-c>#<span class="bk-code">8260A2</span></span><span class="k">rgb</span><span class="v" data-c>130 96 162</span><span class="k">token</span><span class="v" data-c>--royal-light-purple</span></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="sw" style="background:#F0E1FD"></div>
+          <div class="info">
+            <div class="tx"><b>Surface 2<span class="rl">Stronger tint</span></b>The second tint, a step under Surface. Step 100 of the purple ramp. <span class="nv">Never carries white text.</span></div>
+            <div class="mc"><span class="k">hex</span><span class="v" data-c>#F0E1FD</span><span class="k">rgb</span><span class="v" data-c>240 225 253</span><span class="k">token</span><span class="v" data-c>--bg-surface-2</span></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="sw edge" style="background:#FAF5FD"></div>
+          <div class="info">
+            <div class="tx"><b>Surface<span class="rl">Tint</span></b>Callout fill. <span class="nv">Never carries white text.</span></div>
+            <div class="mc"><span class="k">hex</span><span class="v" data-c>#FAF5FD</span><span class="k">rgb</span><span class="v" data-c>250 245 253</span><span class="k">token</span><span class="v" data-c>--royal-surface</span></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="sw edge" style="background:#FFFFFF"></div>
+          <div class="info">
+            <div class="tx"><b>White<span class="rl">Canvas</span></b>The page background. Text on any dark purple. <span class="nv">Never white text on Light Purple.</span></div>
+            <div class="mc"><span class="k">hex</span><span class="v" data-c>#FFFFFF</span><span class="k">rgb</span><span class="v" data-c>255 255 255</span><span class="k">token</span><span class="v" data-c>--royal-white</span></div>
+          </div>
+        </div>
+      </div></div>
+  </div>
+  <div class="grid sub">
+    <div class="rail"><p class="n">2.2</p><div><h3>Neutrals</h3><p class="note">One neutral family for all three brands. It leans neither blue nor purple, so it sits beside every brand color.</p></div></div>
+    <div class="main"><div class="tbl neu">
+        <div class="g8 hd"><span class="c2">Neutral</span><span class="c3">Use. Ratios are on white</span><span class="c3 mci"><span>Hex</span><span>Token</span></span></div>
+        <div class="g8 row">
+          <div class="c2 nm"><span class="chip" style="background:#23232A"></span>Ink</div>
+          <div class="c3 u">Primary text on light. 15.61:1.</div>
+          <div class="c3 mci"><span class="v" data-c>#<span class="bk-code">23232A</span></span><span class="v" data-c>--fg-1</span></div>
+        </div>
+        <div class="g8 row">
+          <div class="c2 nm"><span class="chip" style="background:#565860"></span>Secondary</div>
+          <div class="c3 u">Secondary text. 7.09:1.</div>
+          <div class="c3 mci"><span class="v" data-c>#565860</span><span class="v" data-c>--fg-2</span></div>
+        </div>
+        <div class="g8 row">
+          <div class="c2 nm"><span class="chip" style="background:#6D6D77"></span>Tertiary</div>
+          <div class="c3 u">Tertiary text, metadata. 5.12:1. The dimmest text.</div>
+          <div class="c3 mci"><span class="v" data-c>#<span class="bk-code">6D6D77</span></span><span class="v" data-c>--fg-3</span></div>
+        </div>
+        <div class="g8 row">
+          <div class="c2 nm"><span class="chip" style="background:#8A8B93"></span>Dimmed</div>
+          <div class="c3 u">Dimmed non-text marks. 3.39:1, so never text.</div>
+          <div class="c3 mci"><span class="v" data-c>#<span class="bk-code">8A8B93</span></span><span class="v" data-c>--fg-4</span></div>
+        </div>
+        <div class="g8 row">
+          <div class="c2 nm"><span class="chip" style="background:#D0D0D6"></span>Border</div>
+          <div class="c3 u">Stronger rule, table header underline. 1.54:1.</div>
+          <div class="c3 mci"><span class="v" data-c>#D0D0D6</span><span class="v" data-c>--border-2</span></div>
+        </div>
+        <div class="g8 row">
+          <div class="c2 nm"><span class="chip edge" style="background:#E4E4E9"></span>Hairline</div>
+          <div class="c3 u">Hairlines and dividers. 1.27:1.</div>
+          <div class="c3 mci"><span class="v" data-c>#E4E4E9</span><span class="v" data-c>--border-1</span></div>
+        </div>
+        <div class="g8 row">
+          <div class="c2 nm"><span class="chip edge" style="background:#DDDDE3"></span>On-dark body</div>
+          <div class="c3 u">Body text on a band.</div>
+          <div class="c3 mci"><span class="v" data-c>#DDDDE3</span><span class="v" data-c>--fg-on-dark-2</span></div>
+        </div>
+        <div class="g8 row">
+          <div class="c2 nm"><span class="chip" style="background:#A3A4AC"></span>On-dark caption</div>
+          <div class="c3 u">Captions and eyebrows on a band.</div>
+          <div class="c3 mci"><span class="v" data-c>#A3A4AC</span><span class="v" data-c>--fg-on-dark-3</span></div>
+        </div>
+      </div></div>
+  </div>
+  <div class="grid sub">
+    <div class="rail"><p class="n">2.3</p><div><h3>Alerts</h3><p class="note">Four meanings, one family. Green means good and nothing else. A brand color is never a status. The word always travels with the color.</p></div></div>
+    <div class="main"><figure>
+        <table class="alert"><thead><tr><th scope="col">Meaning and alias</th><th scope="col">Base</th><th scope="col">Text on white</th><th scope="col">Tint</th><th scope="col">On the band</th></tr></thead><tbody><tr>
+            <th scope="row"><b>Go</b><span class="s">Cleared, on time, in service, favorable</span><span class="s" data-c>--status-go</span></th>
+            <td data-l="Base"><span class="sw" style="background:#1E7A4D"></span><span class="s" data-c>#1E7A4D</span><span class="s tk" data-c>--alert-go</span></td>
+            <td data-l="Text on white"><span class="sw txt bare" style="color:#1E7A4D"><span class="dot" style="background:#1E7A4D"></span>Cleared</span><span class="s" data-c>#1E7A4D</span><span class="s tk" data-c>--alert-go-text</span></td>
+            <td data-l="Tint"><span class="sw txt" style="background:#DAF8DF;color:#1E7A4D"><span class="dot" style="background:#1E7A4D"></span>Cleared</span><span class="s" data-c>#DAF8DF</span><span class="s tk" data-c>--alert-go-tint</span></td>
+            <td data-l="On the band"><span class="sw txt dk" style="color:#56B580"><span class="dot" style="background:#56B580"></span>Cleared</span><span class="s" data-c>#<span class="bk-code">56B580</span></span><span class="s tk" data-c>--alert-go-on-dark</span></td>
+          </tr><tr>
+            <th scope="row"><b>Warn</b><span class="s">At risk, pending, watch, caution</span><span class="s" data-c>--status-warn</span></th>
+            <td data-l="Base"><span class="sw" style="background:#B5821A"></span><span class="s" data-c>#<span class="bk-code">B5821A</span></span><span class="s tk" data-c>--alert-warn</span></td>
+            <td data-l="Text on white"><span class="sw txt bare" style="color:#926603"><span class="dot" style="background:#926603"></span>At risk</span><span class="s" data-c>#926603</span><span class="s tk" data-c>--alert-warn-text</span></td>
+            <td data-l="Tint"><span class="sw txt" style="background:#FFEFDD;color:#926603"><span class="dot" style="background:#926603"></span>At risk</span><span class="s" data-c>#FFEFDD</span><span class="s tk" data-c>--alert-warn-tint</span></td>
+            <td data-l="On the band"><span class="sw txt dk" style="color:#E9B457"><span class="dot" style="background:#E9B457"></span>At risk</span><span class="s" data-c>#<span class="bk-code">E9B457</span></span><span class="s tk" data-c>--alert-warn-on-dark</span></td>
+          </tr><tr>
+            <th scope="row"><b>Stop</b><span class="s">Failed, out of service, blocked, unfavorable</span><span class="s" data-c>--status-stop</span></th>
+            <td data-l="Base"><span class="sw" style="background:#B0322B"></span><span class="s" data-c>#<span class="bk-code">B0322B</span></span><span class="s tk" data-c>--alert-stop</span></td>
+            <td data-l="Text on white"><span class="sw txt bare" style="color:#B0322B"><span class="dot" style="background:#B0322B"></span>Blocked</span><span class="s" data-c>#<span class="bk-code">B0322B</span></span><span class="s tk" data-c>--alert-stop-text</span></td>
+            <td data-l="Tint"><span class="sw txt" style="background:#FDE9E6;color:#B0322B"><span class="dot" style="background:#B0322B"></span>Blocked</span><span class="s" data-c>#FDE9E6</span><span class="s tk" data-c>--alert-stop-tint</span></td>
+            <td data-l="On the band"><span class="sw txt dk" style="color:#EB685C"><span class="dot" style="background:#EB685C"></span>Blocked</span><span class="s" data-c>#<span class="bk-code">EB685C</span></span><span class="s tk" data-c>--alert-stop-on-dark</span></td>
+          </tr><tr>
+            <th scope="row"><b>Info</b><span class="s">Neutral notice</span><span class="s" data-c>--status-info</span></th>
+            <td data-l="Base"><span class="sw" style="background:#2A5A8C"></span><span class="s" data-c>#2A5A8C</span><span class="s tk" data-c>--alert-info</span></td>
+            <td data-l="Text on white"><span class="sw txt bare" style="color:#2A5A8C"><span class="dot" style="background:#2A5A8C"></span>Notice</span><span class="s" data-c>#2A5A8C</span><span class="s tk" data-c>--alert-info-text</span></td>
+            <td data-l="Tint"><span class="sw txt" style="background:#E3F0FF;color:#2A5A8C"><span class="dot" style="background:#2A5A8C"></span>Notice</span><span class="s" data-c>#E3F0FF</span><span class="s tk" data-c>--alert-info-tint</span></td>
+            <td data-l="On the band"><span class="sw txt dk" style="color:#5796D9"><span class="dot" style="background:#5796D9"></span>Notice</span><span class="s" data-c>#<span class="bk-code">5796D9</span></span><span class="s tk" data-c>--alert-info-on-dark</span></td>
+          </tr></tbody></table>
+        <figcaption><span><b>Fig. 03</b>The alert family. Shared by all three brands. Each step carries its token. The status alias resolves to the base.</span></figcaption>
+      </figure></div>
+  </div>
+  <div class="grid sub">
+    <div class="rail"><p class="n">2.4</p><div><h3>Charts</h3><p class="note">Chart color is a separate house set of eight. A brand color is never a series color. Assign in order. Never cycle. In a scatter, four series at most on light and three on dark. Darker means more, so the ramp can carry the brand.</p></div></div>
+    <div class="main"><figure>
+        <p class="series-h">Series. Top chip on light, lower chip on the band. Hex in the same order.</p>
+        <ol class="series two"><li><span class="c" style="background:#2063E6"></span><span class="c dk" style="background:#0986E4"></span><span class="nn">1</span><span class="v" data-c>#<span class="bk-code">2063E6</span></span><span class="v" data-c>#<span class="bk-code">0986E4</span></span><span class="tk" data-c>--series-1</span></li><li><span class="c" style="background:#EB6F32"></span><span class="c dk" style="background:#FC803E"></span><span class="nn">2</span><span class="v" data-c>#<span class="bk-code">EB6F32</span></span><span class="v" data-c>#<span class="bk-code">FC803E</span></span><span class="tk" data-c>--series-2</span></li><li><span class="c" style="background:#0F9B89"></span><span class="c dk" style="background:#06BFA8"></span><span class="nn">3</span><span class="v" data-c>#<span class="bk-code">0F9B89</span></span><span class="v" data-c>#06BFA8</span><span class="tk" data-c>--series-3</span></li><li><span class="c" style="background:#7F3810"></span><span class="c dk" style="background:#AC772E"></span><span class="nn">4</span><span class="v" data-c>#<span class="bk-code">7F3810</span></span><span class="v" data-c>#<span class="bk-code">AC772E</span></span><span class="tk" data-c>--series-4</span></li><li><span class="c" style="background:#8A72F7"></span><span class="c dk" style="background:#AC94FD"></span><span class="nn">5</span><span class="v" data-c>#<span class="bk-code">8A72F7</span></span><span class="v" data-c>#<span class="bk-code">AC94FD</span></span><span class="tk" data-c>--series-5</span></li><li><span class="c" style="background:#819808"></span><span class="c dk" style="background:#B1D454"></span><span class="nn">6</span><span class="v" data-c>#819808</span><span class="v" data-c>#<span class="bk-code">B1D454</span></span><span class="tk" data-c>--series-6</span></li><li><span class="c" style="background:#259CDE"></span><span class="c dk" style="background:#74C8FC"></span><span class="nn">7</span><span class="v" data-c>#<span class="bk-code">259CDE</span></span><span class="v" data-c>#74C8FC</span><span class="tk" data-c>--series-7</span></li><li><span class="c" style="background:#B93388"></span><span class="c dk" style="background:#C4588D"></span><span class="nn">8</span><span class="v" data-c>#<span class="bk-code">B93388</span></span><span class="v" data-c>#<span class="bk-code">C4588D</span></span><span class="tk" data-c>--series-8</span></li></ol>
+        <p class="series-h">Sequential ramp, Royal Ambulance</p>
+        <ol class="series seq"><li><span class="c" style="background:#F0E1FD"></span><span class="v" data-c>#F0E1FD</span><span class="tk" data-c>--<span class="bk-code">seq-100</span></span></li><li><span class="c" style="background:#E2C2FB"></span><span class="v" data-c>#E2C2FB</span><span class="tk" data-c>--<span class="bk-code">seq-200</span></span></li><li><span class="c" style="background:#D29EF8"></span><span class="v" data-c>#<span class="bk-code">D29EF8</span></span><span class="tk" data-c>--<span class="bk-code">seq-300</span></span></li><li><span class="c" style="background:#BA7CE4"></span><span class="v" data-c>#BA7CE4</span><span class="tk" data-c>--<span class="bk-code">seq-400</span></span></li><li><span class="c" style="background:#9D60C6"></span><span class="v" data-c>#<span class="bk-code">9D60C6</span></span><span class="tk" data-c>--<span class="bk-code">seq-500</span></span></li><li><span class="c" style="background:#7F42A6"></span><span class="v" data-c>#<span class="bk-code">7F42A6</span></span><span class="tk" data-c>--<span class="bk-code">seq-600</span></span></li><li><span class="c" style="background:#572E72"></span><span class="v" data-c>#<span class="bk-code">572E72</span></span><span class="tk" data-c>--<span class="bk-code">seq-700</span></span></li></ol>
+        <figcaption><span><b>Fig. 04</b>Chart series in fixed order, one to eight, and the sequential ramp. The ramp ends on the brand.</span></figcaption>
+      </figure></div>
+  </div>
+</section>
+<section class="sec" id="s03" aria-labelledby="s03-h">
+  <div class="grid sec-head">
+    <p class="rail num" aria-hidden="true">03</p>
+    <div class="main">
+      <h2 id="s03-h">Type</h2>
+      <p class="lead">Montserrat for every word. Weights 400, 600, 700 and 800. No italic, ever.</p>
+    </div>
+  </div>
+  <div class="grid sub">
+    <div class="rail"><p class="n">3.1</p><div><h3>Family</h3><p class="note">One typeface for every word in the house. Four weights and nothing else. Three at most in one piece. 800 is for hero and title bands only. The kit also defines a mono face, <span class="nb">.bk-code</span>, for hex values, paths and code. This page marks those strings with the class and sets them in Montserrat.</p></div></div>
+    <div class="main"><figure>
+        <div class="g8 fam">
+          <div class="c5"><p class="w">Montserrat</p><p class="a">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 &nbsp;.,:;·?&amp;%#()</p></div>
+          <div class="c3 mc"><span class="k">family</span><span class="v" data-c>Montserrat</span><span class="k">weights</span><span class="v" data-c>400 600 700 800</span><span class="k">italic</span><span class="v">none, at any weight</span><span class="k">stack</span><span class="v" data-c>Montserrat, Helvetica Neue, Helvetica, Arial, sans-serif</span><span class="k">file</span><span class="v" data-c="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.woff2">assets/<wbr>fonts/<wbr>Montserrat-<wbr>VariableFont_<wbr>wght.woff2</span></div>
+        </div>
+        <ul class="g8 wts"><li class="c2"><span class="s" style="font-weight:400"><span class="bk-code">Unit 12</span></span><b>400 Regular</b><span class="u">Body, captions, footers, table cells</span></li><li class="c2"><span class="s" style="font-weight:600"><span class="bk-code">Unit 12</span></span><b>600 SemiBold</b><span class="u">Bk-h3, bk-h4, eyebrows, uppercase labels, table headers</span></li><li class="c2"><span class="s" style="font-weight:700"><span class="bk-code">Unit 12</span></span><b>700 Bold</b><span class="u">Bk-h1, bk-h2, emphasis in body, stat numerals</span></li><li class="c2"><span class="s" style="font-weight:800"><span class="bk-code">Unit 12</span></span><b>800 ExtraBold</b><span class="u">Hero and title bands only</span></li></ul>
+        <figcaption><span><b>Fig. 05</b>Montserrat. One family, three brands, four weights.</span></figcaption>
+      </figure></div>
+  </div>
+  <div class="grid sub">
+    <div class="rail"><p class="n">3.2</p><div><h3>Scale</h3></div></div>
+    <div class="main"><p class="note">Twelve steps. Three sizes above body at most in one piece. This page sets its text at 12, 14, 16, 20 and 40.</p></div>
+    <div class="full"><figure>
+        <table class="scale"><thead><tr><th scope="col">Token, the class name</th><td class="s">Specimen, at real size</td><td>px</td><td>pt</td><td>Weight</td><td>Leading</td><td>Tracking, em</td></tr></thead><tbody><tr>
+            <th scope="row"><span class="tok" data-c>bk-display-xl</span><span class="u">Hero and title bands only</span></th>
+            <td class="s"><span style="--fs:96px;line-height:1.05;font-weight:800;letter-spacing:-0.02em;--fl:clamp(44px, 7.6vw, 96px)"><span class="bk-code">Unit 12</span></span></td>
+            <td data-l="px">96</td><td data-l="pt">72</td><td data-l="Weight">800</td><td data-l="Leading">1.05</td><td data-l="Tracking">−0.020</td>
+          </tr><tr>
+            <th scope="row"><span class="tok" data-c>bk-display-lg</span><span class="u">Hero and title bands only</span></th>
+            <td class="s"><span style="--fs:72px;line-height:1.08;font-weight:800;letter-spacing:-0.018em;--fl:clamp(38px, 6.0vw, 72px)">On scene</span></td>
+            <td data-l="px">72</td><td data-l="pt">54</td><td data-l="Weight">800</td><td data-l="Leading">1.08</td><td data-l="Tracking">−0.018</td>
+          </tr><tr>
+            <th scope="row"><span class="tok" data-c>bk-display-md</span><span class="u">Slide headlines</span></th>
+            <td class="s"><span style="--fs:56px;line-height:1.1;font-weight:800;letter-spacing:-0.015em;--fl:clamp(32px, 4.6vw, 56px)">Shift report</span></td>
+            <td data-l="px">56</td><td data-l="pt">42</td><td data-l="Weight">800</td><td data-l="Leading">1.10</td><td data-l="Tracking">−0.015</td>
+          </tr><tr>
+            <th scope="row"><span class="tok" data-c>bk-h1</span><span class="u">Page title</span></th>
+            <td class="s"><span style="--fs:40px;line-height:1.18;font-weight:700;letter-spacing:-0.012em;--fl:clamp(28px, 3.2vw, 40px)">Night coverage</span></td>
+            <td data-l="px">40</td><td data-l="pt">30</td><td data-l="Weight">700</td><td data-l="Leading">1.18</td><td data-l="Tracking">−0.012</td>
+          </tr><tr>
+            <th scope="row"><span class="tok" data-c>bk-h2</span><span class="u">Section heading</span></th>
+            <td class="s"><span style="--fs:32px;line-height:1.25;font-weight:700;letter-spacing:-0.008em;--fl:clamp(24px, 2.4vw, 32px)">Fleet readiness</span></td>
+            <td data-l="px">32</td><td data-l="pt">24</td><td data-l="Weight">700</td><td data-l="Leading">1.25</td><td data-l="Tracking">−0.008</td>
+          </tr><tr>
+            <th scope="row"><span class="tok" data-c>bk-h3</span><span class="u">Subhead</span></th>
+            <td class="s"><span style="--fs:24px;line-height:1.35;font-weight:600;letter-spacing:-0.004em">Crew handoff at 06:00</span></td>
+            <td data-l="px">24</td><td data-l="pt">18</td><td data-l="Weight">600</td><td data-l="Leading">1.35</td><td data-l="Tracking">−0.004</td>
+          </tr><tr>
+            <th scope="row"><span class="tok" data-c>bk-h4</span><span class="u">Subhead</span></th>
+            <td class="s"><span style="--fs:20px;line-height:1.45;font-weight:600;letter-spacing:0em">Station 4, north county</span></td>
+            <td data-l="px">20</td><td data-l="pt">15</td><td data-l="Weight">600</td><td data-l="Leading">1.45</td><td data-l="Tracking">0</td>
+          </tr><tr>
+            <th scope="row"><span class="tok" data-c>bk-body-lg</span><span class="u">Lead paragraph, deck body</span></th>
+            <td class="s"><span style="--fs:20px;line-height:1.55;font-weight:400;letter-spacing:0em">Every crew hands off on one page.</span></td>
+            <td data-l="px">20</td><td data-l="pt">15</td><td data-l="Weight">400</td><td data-l="Leading">1.55</td><td data-l="Tracking">0</td>
+          </tr><tr>
+            <th scope="row"><span class="tok" data-c>bk-body</span><span class="u">Body</span></th>
+            <td class="s"><span style="--fs:16px;line-height:1.6;font-weight:400;letter-spacing:0em"><span class="bk-code">Unit 12</span> cleared the scene at 06:42.</span></td>
+            <td data-l="px">16</td><td data-l="pt">12</td><td data-l="Weight">400</td><td data-l="Leading">1.60</td><td data-l="Tracking">0</td>
+          </tr><tr>
+            <th scope="row"><span class="tok" data-c>bk-body-sm</span><span class="u">Table cells, secondary body. 10.5pt is the print body floor</span></th>
+            <td class="s"><span style="--fs:14px;line-height:1.55;font-weight:400;letter-spacing:0.005em">Mileage 48,210. Next service at 50,000.</span></td>
+            <td data-l="px">14</td><td data-l="pt">10.5</td><td data-l="Weight">400</td><td data-l="Leading">1.55</td><td data-l="Tracking">+0.005</td>
+          </tr><tr>
+            <th scope="row"><span class="tok" data-c>bk-caption</span><span class="u">Captions, footers. 9pt is the print floor</span></th>
+            <td class="s"><span style="--fs:12px;line-height:1.45;font-weight:400;letter-spacing:0.01em">Handoff form, page one.</span></td>
+            <td data-l="px">12</td><td data-l="pt">9</td><td data-l="Weight">400</td><td data-l="Leading">1.45</td><td data-l="Tracking">+0.010</td>
+          </tr><tr>
+            <th scope="row"><span class="tok" data-c>bk-eyebrow</span><span class="u">Uppercase labels, always tracked</span></th>
+            <td class="s"><span style="--fs:12px;line-height:1.45;font-weight:600;letter-spacing:0.08em;text-transform:uppercase">Shift summary</span></td>
+            <td data-l="px">12</td><td data-l="pt">9</td><td data-l="Weight">600</td><td data-l="Leading">1.45</td><td data-l="Tracking">+0.080</td>
+          </tr></tbody></table>
+        <div class="grid"><div class="main"><figcaption><span><b>Fig. 06</b>The type scale. Twelve steps, identical in all three kits.</span></figcaption></div></div>
+      </figure></div>
+  </div>
+  <div class="grid sub">
+    <div class="rail"><p class="n">3.3</p><div><h3>Setting and space</h3><p class="note">Ten spacing steps on a base of 4, and the six rules that decide most pages.</p></div></div>
+    <div class="main"><figure>
+        <div class="field space"><ol><li><span class="q" style="width:4px;height:4px"></span><b>4</b><span class="tk" data-c>--space-1</span></li><li><span class="q" style="width:8px;height:8px"></span><b>8</b><span class="tk" data-c>--space-2</span></li><li><span class="q" style="width:12px;height:12px"></span><b>12</b><span class="tk" data-c>--space-3</span></li><li><span class="q" style="width:16px;height:16px"></span><b>16</b><span class="tk" data-c>--space-4</span></li><li><span class="q" style="width:24px;height:24px"></span><b>24</b><span class="tk" data-c>--space-5</span></li><li><span class="q" style="width:32px;height:32px"></span><b>32</b><span class="tk" data-c>--space-6</span></li><li><span class="q" style="width:48px;height:48px"></span><b>48</b><span class="tk" data-c>--space-7</span></li><li><span class="q" style="width:64px;height:64px"></span><b>64</b><span class="tk" data-c>--space-8</span></li><li><span class="q" style="width:96px;height:96px"></span><b>96</b><span class="tk" data-c>--space-9</span></li><li><span class="q" style="width:128px;height:128px"></span><b>128</b><span class="tk" data-c>--<span class="bk-code">space-10</span></span></li></ol></div>
+        <figcaption><span><b>Fig. 07</b>The spacing scale in pixels, drawn at actual size. Every vertical value is a multiple of 4.</span></figcaption>
+      </figure>
+      <ol class="lines cols2"><li><span class="i"><span class="bk-code">R05</span></span><span>Uppercase is always tracked and never longer than four words.</span></li><li><span class="i"><span class="bk-code">R06</span></span><span>Flush left, ragged right. Never justify. Never center past three lines.</span></li><li><span class="i"><span class="bk-code">R07</span></span><span>On a dark ground, add <span class="bk-code">0.005em</span> tracking and drop one weight at 700 or heavier. 600 is the floor.</span></li><li><span class="i"><span class="bk-code">R08</span></span><span>Space above a heading is three times the space below it. 48 above, 16 below.</span></li><li><span class="i"><span class="bk-code">R09</span></span><span>A body line stops at 70 characters, 54ch. Captions 40ch. Headings 28ch.</span></li><li><span class="i"><span class="bk-code">R10</span></span><span>Corners are square. Diagram nodes take 6px. Shadow signals elevation only.</span></li></ol></div>
+  </div>
+</section>
+<section class="sec" id="s04" aria-labelledby="s04-h">
+  <div class="grid sec-head">
+    <p class="rail num" aria-hidden="true">04</p>
+    <div class="main">
+      <h2 id="s04-h">In use</h2>
+      <p class="lead">What on brand looks like. A memo, a one-pager and a deck, built from the scale in section 03 and the colors in section 02.</p>
+    </div>
+  </div>
+  <div class="grid sub">
+    <div class="rail"><p class="n">4.1</p><div><h3>Memo and one-pager</h3></div></div>
+    <div class="main"><p class="note">Both open on the band. The logo sits once, in the band. Body runs on white at a 70 character measure. The memo carries no headline. The one-pager states its finding in one.</p><span class="used wide"><span><b>Band title</b><span class="v" data-c>bk-h2</span></span><span><b>Headline</b><span class="v" data-c>bk-h1</span></span><span><b>Lead</b><span class="v" data-c>bk-body-lg</span></span><span><b>Subhead</b><span class="v" data-c>bk-h3</span></span><span><b>Body</b><span class="v" data-c>bk-body</span></span><span><b>Table</b><span class="v" data-c>bk-body-sm</span></span><span><b>Footer</b><span class="v" data-c>bk-caption</span></span><span><b>Memo margin</b><span class="v" data-c><span class="bk-code">0.75in</span></span></span><span><b>One-pager margin</b><span class="v" data-c>0.6in</span></span><span><b>Memo template</b><span class="v" data-c>templates/<wbr>memo.html</span></span><span><b>One-pager template</b><span class="v" data-c>templates/<wbr>one-<wbr>pager.html</span></span></span></div>
+    <div class="full"><div class="pair"><figure>
+        <div class="frame"><article class="x-doc" style="--mx:4.5">
+          <header class="x-band"><p class="x-bt">Memo</p><img src="assets/logos/horizontal-white.svg" alt="Royal Ambulance" style="width:calc(var(--e)*9.625)"></header>
+          <div class="x-body">
+            <div class="x-to"><span>To</span><b>Dispatch supervisors</b><span>From</span><b>Royal Dispatch</b><span>Date</span><b>13 November 2026</b><span>Re</span><b class="re">Confirming discharge rides</b></div>
+            <p class="x-p">From 1 December, case managers book next-day discharge rides before 10:00. Dispatch confirms each one within 15 minutes.</p><p class="x-p">A confirmation names the unit and the pickup window. If no unit is free in the window, call the case manager before the 15 minutes run out.</p><p class="x-p">The crew calls the nursing station 20 minutes before arrival. Dispatch does not make that call.</p><p class="x-p">Requests after 10:00 are still taken. Confirm them in the order received, after the morning requests, and give the case manager the earliest open window.</p>
+            <h4 class="x-h3">Actions.</h4>
+            <ol class="x-ol"><li><span>1</span>Staff one dispatcher on the ordering page from 07:00 to 10:00.</li><li><span>2</span>Reply to every request with a unit and a window.</li><li><span>3</span>Log any ride confirmed late, with the reason.</li></ol>
+            <p class="x-sign"><b>Royal Dispatch</b><span>dispatch@royal.example</span></p>
+          </div>
+          <div class="x-foot"><div class="pw"><span>Powered by</span><img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg" alt="Collective Edge"></div><span>Royal Ambulance · Internal · Page 1 of 1</span></div>
+        </article></div>
+        <figcaption><span><b>Fig. 08</b>Memo, US Letter, <span class="bk-code">0.75in</span> margins. Drawn at 816 by 1056, scaled to fit. Sample content. The Powered by lockup sits once, in the footer.</span></figcaption>
+      </figure><figure>
+        <div class="frame"><article class="x-doc" style="--mx:3.6">
+          <header class="x-band"><p class="x-bt">Discharge transport</p><img src="assets/logos/horizontal-white.svg" alt="Royal Ambulance" style="width:calc(var(--e)*9.625)"></header>
+          <div class="x-body">
+            <h4 class="x-h1">Discharge rides are booked by 10:00.</h4>
+            <p class="x-lead">From 1 December, book next-day discharge transport before 10:00. Royal confirms each ride within 15 minutes.</p>
+            <div class="x-meta"><div><span>For</span><b>Case management</b></div><div><span>From</span><b>Royal Dispatch</b></div><div><span>Date</span><b>13 November 2026</b></div></div>
+            <h5 class="x-h3">How it works.</h5>
+            <p class="x-p">The case manager sends the request through the ordering page. Dispatch assigns a unit and replies with a pickup window. The crew calls the nursing station 20 minutes before arrival.</p>
+            <h5 class="x-h3">Pickup windows.</h5>
+            <table class="x-table"><thead><tr><th scope="col">Level of service</th><th scope="col">Request by</th><th scope="col">Pickup window</th><th scope="col">Status</th></tr></thead><tbody><tr><td>Wheelchair</td><td>10:00</td><td>11:00 to 15:00</td><td><span class="st go"><span class="dot"></span>Open</span></td></tr><tr><td>Gurney</td><td>10:00</td><td>11:00 to 16:00</td><td><span class="st go"><span class="dot"></span>Open</span></td></tr><tr><td>Basic life support</td><td>10:00</td><td>12:00 to 17:00</td><td><span class="st warn"><span class="dot"></span>Limited</span></td></tr><tr><td>Critical care</td><td>Call dispatch</td><td>By arrangement</td><td><span class="st info"><span class="dot"></span>By phone</span></td></tr></tbody></table>
+            <p class="x-call">If a discharge moves, call dispatch. The unit holds for 15 minutes past the window, then returns to service.</p>
+          </div>
+          <div class="x-foot"><div class="pw"><span>Powered by</span><img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg" alt="Collective Edge"></div><span>Royal Ambulance · Discharge transport · Page 1 of 1</span></div>
+        </article></div>
+        <figcaption><span><b>Fig. 09</b>One-pager, US Letter, 0.6in margins. Drawn at 816 by 1056, scaled to fit. Sample content. The Powered by lockup sits once, in the footer.</span></figcaption>
+      </figure></div></div>
+  </div>
+  <div class="grid sub">
+    <div class="rail"><p class="n">4.2</p><div><h3>Deck</h3></div></div>
+    <div class="main"><p class="note">Content slides are white. The dark ground is for the title, divider and closing slides. Body is 15pt in every brand. Uppercase is for the title slide only, four words at most, always tracked. A content slide states its finding in sentence case, with one table and no decoration. The Powered by lockup sits once, on the closing slide.</p><span class="used wide"><span><b>Title</b><span class="v" data-c>bk-display-lg</span></span><span><b>Subtitle</b><span class="v" data-c>bk-h3</span></span><span><b>Finding</b><span class="v" data-c>bk-display-md</span></span><span><b>Key point</b><span class="v" data-c>bk-h3</span></span><span><b>Body</b><span class="v" data-c>bk-body-lg</span></span><span><b>Table</b><span class="v" data-c>bk-body-lg</span></span><span><b>Footer</b><span class="v" data-c>bk-body</span></span><span><b>Slide</b><span class="v" data-c><span class="bk-code">13.333in</span> by 7.5in</span></span><span><b>Margin</b><span class="v" data-c><span class="bk-code">0.67in</span> top, <span class="bk-code">0.83in</span> left and right, <span class="bk-code">0.42in</span> bottom</span></span><span><b>Template</b><span class="v" data-c>templates/<wbr>deck.html</span></span></span></div>
+    <div class="full"><div class="stack"><figure>
+        <div class="frame"><article class="x-slide title" style="--mx:4.98;--mt:4.02;--mb:2.52">
+          <img class="lg" src="assets/logos/horizontal-white.svg" alt="Royal Ambulance" style="width:calc(var(--e)*12.5)">
+          <div class="mid"><p class="x-dt">Discharge transport</p><p class="x-ds">Booking guide for case managers</p></div>
+          <div class="ft"><span>Royal Ambulance</span><span>13 November 2026</span></div>
+        </article></div>
+        <figcaption><span><b>Fig. 10</b>Title slide, 16:9. Drawn at 1280 by 720, scaled to fit. Sample content.</span></figcaption>
+      </figure><figure>
+        <div class="frame"><article class="x-slide body" style="--mx:4.98;--mt:4.02;--mb:2.52">
+          <h4 class="x-st">Book by 10:00. Royal confirms in 15 minutes.</h4>
+          <div class="cols">
+            <ul class="x-pts"><li>Request through the ordering page.</li><li>Dispatch replies with a pickup window.</li><li>The crew calls 20 minutes before arrival.</li></ul>
+            <div><p class="x-tc">Request by 10:00 for these windows</p><table class="x-table big"><thead><tr><th scope="col">Level of service</th><th scope="col">Pickup window</th></tr></thead><tbody><tr><td>Wheelchair</td><td>11:00 to 15:00</td></tr><tr><td>Gurney</td><td>11:00 to 16:00</td></tr></tbody></table></div>
+          </div>
+          <div class="ft"><img src="assets/logos/horizontal-purple.svg" alt="Royal Ambulance" style="width:calc(var(--e)*8.5625)"><span>2</span></div>
+        </article></div>
+        <figcaption><span><b>Fig. 11</b>Content slide, 16:9, on white. Body at 15pt. Sample content.</span></figcaption>
+      </figure></div></div>
+  </div>
+</section>
+<section class="sec" id="s05" aria-labelledby="s05-h">
+  <div class="grid sec-head">
+    <p class="rail num" aria-hidden="true">05</p>
+    <div class="main">
+      <h2 id="s05-h">Rules</h2>
+      <p class="lead">The short list. Use, avoid, and how the brand writes.</p>
+    </div>
+  </div>
+  <div class="grid sub">
+    <div class="rail"><p class="n">5.1</p><div><h3>Use and avoid</h3><p class="note">Every rule on this page carries one number, <span class="bk-code">R01</span> onward. Cite the number.</p></div></div>
+    <div class="main"><div class="pair rules"><div><h4>Use</h4><ol class="lines"><li><span class="i"><span class="bk-code">R11</span></span><span>Open every document on the Dark Purple #<span class="bk-code">2F193B</span> band.</span></li><li><span class="i"><span class="bk-code">R12</span></span><span>Use Purple #<span class="bk-code">572E72</span> for accents and brand-colored text on white.</span></li><li><span class="i"><span class="bk-code">R13</span></span><span>Set body text in #<span class="bk-code">23232A</span>.</span></li><li><span class="i"><span class="bk-code">R14</span></span><span>Keep white text on Dark Purple, Purple or Royal Purple only.</span></li><li><span class="i"><span class="bk-code">R15</span></span><span>Use the horizontal lockup wherever it fits.</span></li><li><span class="i"><span class="bk-code">R16</span></span><span>Add Powered by Collective Edge once, beside the Royal mark.</span></li></ol></div><div><h4>Avoid</h4><ol class="lines"><li><span class="i"><span class="bk-code">R17</span></span><span>Do not set Light Purple #<span class="bk-code">8260A2</span> as body text.</span></li><li><span class="i"><span class="bk-code">R18</span></span><span>Do not use Light Purple as a large background.</span></li><li><span class="i"><span class="bk-code">R19</span></span><span>Do not put #<span class="bk-code">8260A2</span> on #<span class="bk-code">2F193B</span>.</span></li><li><span class="i"><span class="bk-code">R20</span></span><span>Do not use a brand purple as a status color.</span></li><li><span class="i"><span class="bk-code">R21</span></span><span>Do not recolor a logo or invert it with a CSS filter.</span></li><li><span class="i"><span class="bk-code">R22</span></span><span>Do not separate the crown from the wordmark in the horizontal lockup.</span></li><li><span class="i"><span class="bk-code">R23</span></span><span>Do not use a background tint stronger than #F0E1FD.</span></li><li><span class="i"><span class="bk-code">R24</span></span><span>Do not sample a partner facility color from a logo.</span></li></ol></div></div></div>
+  </div>
+  <div class="grid sub">
+    <div class="rail"><p class="n">5.2</p><div><h3>Voice</h3><p class="note">Written for the reader who is between calls. Short declarative sentences.</p></div></div>
+    <div class="main"><ol class="lines cols2"><li><span class="i"><span class="bk-code">R25</span></span><span>Write for the reader who is between calls.</span></li><li><span class="i"><span class="bk-code">R26</span></span><span>Short declarative sentences, active verbs.</span></li><li><span class="i"><span class="bk-code">R27</span></span><span>Name partners and facilities exactly as they write themselves.</span></li><li><span class="i"><span class="bk-code">R28</span></span><span>No em dashes. A period, a comma or a middot.</span></li></ol></div>
+  </div>
+</section>
+<section class="sec" id="s06" aria-labelledby="s06-h">
+  <div class="grid sec-head">
+    <p class="rail num" aria-hidden="true">06</p>
+    <div class="main">
+      <h2 id="s06-h">With Collective Edge</h2>
+      <p class="lead">Royal is an operating company under Collective Edge and the reader should be able to see it.</p>
+    </div>
+  </div>
+  <div class="grid sub">
+    <div class="rail"><p class="n">6.1</p><div><h3>The lockup</h3><p class="note">The Powered by Collective Edge lockup rides beside the Royal mark, never inside it, under a hairline. It appears once per surface.</p></div></div>
+    <div class="main"><div class="tbl lockrow">
+        <div class="g8 hd"><span class="c3">The lockup, beside the brand mark</span><span class="c2">Ground</span><span class="c3">Class, file, size</span></div>
+        <div class="g8 row">
+          <div class="c3 plate">
+            <div class="lk"><img src="assets/logos/horizontal-purple.svg" alt="Royal Ambulance" style="width:190px">
+            <div class="pw"><span>Powered by</span><img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg" alt="Collective Edge"></div></div>
+          </div>
+          <div class="c2 tx"><b>On white</b>The black Collective Edge file, under a hairline.</div>
+          <div class="c3 mc"><span class="k">class</span><span class="v" data-c>ce-powered ce-powered-light</span><span class="k">file</span><span class="v" data-c="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg">assets/<wbr>logos/<wbr>horizontal-<wbr>black.svg</span><span class="k">width</span><span class="v" data-c><span class="bk-code">204px</span></span><span class="k">floor</span><span class="v"><span class="bk-code">120px</span>, not a target</span><span class="k">label</span><span class="v">600, caps, 12px, <span class="bk-code">0.08em</span></span></div>
+        </div>
+        <div class="g8 row">
+          <div class="c3 plate dark" style="background:#2F193B">
+            <div class="lk"><img src="assets/logos/horizontal-white.svg" alt="Royal Ambulance" style="width:190px">
+            <div class="pw"><span>Powered by</span><img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg" alt="Collective Edge"></div></div>
+          </div>
+          <div class="c2 tx"><b>On the band</b>The white Collective Edge file, never a filter.</div>
+          <div class="c3 mc"><span class="k">class</span><span class="v" data-c>ce-powered</span><span class="k">file</span><span class="v" data-c="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg">assets/<wbr>logos/<wbr>horizontal-<wbr>white.svg</span><span class="k">width</span><span class="v" data-c><span class="bk-code">204px</span></span><span class="k">floor</span><span class="v"><span class="bk-code">120px</span>, not a target</span><span class="k">label</span><span class="v">600, caps, 12px, <span class="bk-code">0.08em</span></span></div>
+        </div>
+      </div><div class="pair rules"><div><h4>Where it goes</h4><ol class="lines"><li><span class="i"><span class="bk-code">R29</span></span><span>The footer of a site</span></li><li><span class="i"><span class="bk-code">R30</span></span><span>The sidebar header of any dashboard</span></li><li><span class="i"><span class="bk-code">R31</span></span><span>The closing slide of any deck</span></li><li><span class="i"><span class="bk-code">R32</span></span><span>The last block of a report body</span></li><li><span class="i"><span class="bk-code">R33</span></span><span>A data page or a methodology page</span></li><li><span class="i"><span class="bk-code">R34</span></span><span>Anywhere a number was computed rather than typed</span></li></ol></div><div><h4>Do not</h4><ol class="lines"><li><span class="i"><span class="bk-code">R35</span></span><span>Put it on the partner’s own mark or inside their lockup</span></li><li><span class="i"><span class="bk-code">R36</span></span><span>Merge, nest or recolor either mark to match the other</span></li><li><span class="i"><span class="bk-code">R37</span></span><span>Put it on a clinical instruction</span></li><li><span class="i"><span class="bk-code">R38</span></span><span>Put it on a patient-facing consent or safety document</span></li><li><span class="i"><span class="bk-code">R39</span></span><span>Use it twice in one document or on one surface</span></li><li><span class="i"><span class="bk-code">R40</span></span><span>Set the phrase as type where the mark fits</span></li><li><span class="i"><span class="bk-code">R41</span></span><span>Design the lockup down to the <span class="bk-code">120px</span> floor</span></li></ol></div></div></div>
+  </div>
+  <div class="grid sub">
+    <div class="rail"><p class="n">6.2</p><div><h3>The wedge</h3><p class="note">When the Collective Edge block mark stands on a Royal surface, its wedge is Royal purple. Use the shipped file from the Collective Edge kit.</p></div></div>
+    <div class="main"><div class="tbl wedge">
+        <div class="g8 hd"><span class="c3">Block mark, on light and on dark</span><span class="c2">Wedge</span><span class="c3">Role and file</span></div>
+        <div class="g8 row">
+          <div class="c3 duo"><div class="plate"><img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/mark-black-royal.svg" alt="Collective Edge block mark, on light"></div><div class="plate dark" style="background:#2F193B"><img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/mark-white-royal.svg" alt="Collective Edge block mark, on dark"></div></div>
+          <div class="c2 tx"><b>On a Royal surface</b>The wedge is <span class="v" data-c>#<span class="bk-code">572E72</span></span>.</div>
+          <div class="c3 mc"><span class="k">light</span><span class="v" data-c>cobrandMarks.royal.on-light</span><span class="k">file</span><span class="v" data-c="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/mark-black-royal.svg">assets/<wbr>logos/<wbr>mark-<wbr>black-<wbr>royal.svg</span><span class="k">dark</span><span class="v" data-c>cobrandMarks.royal.on-dark</span><span class="k">file</span><span class="v" data-c="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/mark-white-royal.svg">assets/<wbr>logos/<wbr>mark-<wbr>white-<wbr>royal.svg</span></div>
+        </div>
+      </div></div>
+  </div>
+</section>
+<section class="sec" id="s07" aria-labelledby="s07-h">
+  <div class="grid sec-head">
+    <p class="rail num" aria-hidden="true">07</p>
+    <div class="main">
+      <h2 id="s07-h">For agents</h2>
+      <p class="lead">An agent that makes documents for the company reads the kit, not this page. These are the files it reads, as full URLs.</p>
+    </div>
+  </div>
+  <div class="grid sub">
+    <div class="rail"><p class="n">7.1</p><div><h3>What an agent reads</h3></div></div>
+    <div class="main"><p class="note">Royal Ambulance is an operating company under Collective Edge. Purple palette, the crown lockup, the house type system. An agent reads these live, in this order, on every request. Public on jsDelivr. No auth, no install.</p></div>
+    <ol class="full urls"><li class="grid"><div class="rail"><span class="i">1</span><div><b>Registry</b><span class="d">All three brands in one file.</span></div></div><div class="main"><span class="v" data-c>https://cdn.jsdelivr.net/<wbr>gh/<wbr>collective-edge/<wbr>royal-brand-kit@main/<wbr>brands.json</span></div></li><li class="grid"><div class="rail"><span class="i">2</span><div><b>Agent page</b><span class="d">The shortest correct path. With Layout, it wins on documents.</span></div></div><div class="main"><span class="v" data-c>https://cdn.jsdelivr.net/<wbr>gh/<wbr>collective-edge/<wbr>royal-brand-kit@main/<wbr>for-agents/<wbr>README.md</span></div></li><li class="grid"><div class="rail"><span class="i">3</span><div><b>Skill</b><span class="d">The full standard. It wins on logo, color and voice.</span></div></div><div class="main"><span class="v" data-c>https://cdn.jsdelivr.net/<wbr>gh/<wbr>collective-edge/<wbr>royal-brand-kit@main/<wbr>SKILL.md</span></div></li><li class="grid"><div class="rail"><span class="i">4</span><div><b>Documents</b><span class="d">Every document type, as data.</span></div></div><div class="main"><span class="v" data-c>https://cdn.jsdelivr.net/<wbr>gh/<wbr>collective-edge/<wbr>royal-brand-kit@main/<wbr>documents.json</span></div></li><li class="grid"><div class="rail"><span class="i">5</span><div><b>Layout</b><span class="d">Page sizes, margins and what goes where.</span></div></div><div class="main"><span class="v" data-c>https://cdn.jsdelivr.net/<wbr>gh/<wbr>collective-edge/<wbr>royal-brand-kit@main/<wbr>reference/<wbr>layout.md</span></div></li><li class="grid"><div class="rail"><span class="i">6</span><div><b>Data color</b><span class="d">Chart and status color, with the reasoning.</span></div></div><div class="main"><span class="v" data-c>https://cdn.jsdelivr.net/<wbr>gh/<wbr>collective-edge/<wbr>royal-brand-kit@main/<wbr>reference/<wbr>data-color.md</span></div></li><li class="grid"><div class="rail"><span class="i">7</span><div><b>Tokens</b><span class="d">Palette, semantic colors and radius, as data.</span></div></div><div class="main"><span class="v" data-c>https://cdn.jsdelivr.net/<wbr>gh/<wbr>collective-edge/<wbr>royal-brand-kit@main/<wbr>tokens.json</span></div></li><li class="grid"><div class="rail"><span class="i">8</span><div><b>Type tokens</b><span class="d">The type scale as data.</span></div></div><div class="main"><span class="v" data-c>https://cdn.jsdelivr.net/<wbr>gh/<wbr>collective-edge/<wbr>collective-edge-brand-kit@main/<wbr>snippets/<wbr>type-tokens.json</span></div></li></ol>
+  </div>
+  <div class="grid sub">
+    <div class="rail"><p class="n">7.2</p><div><h3>Load order</h3></div></div>
+    <div class="main"><p class="note">Four stylesheets, in this order, for anything built as HTML. Style through the bk classes and the fg, bg and border variables. The names are identical in all three brands.</p></div>
+    <ol class="full urls"><li class="grid"><div class="rail"><span class="i">1</span><div><b>type-system.css</b><span class="d">House type system. Identical for all three brands.</span></div></div><div class="main"><span class="v" data-c>https://cdn.jsdelivr.net/<wbr>gh/<wbr>collective-edge/<wbr>collective-edge-brand-kit@main/<wbr>snippets/<wbr>type-system.css</span></div></li><li class="grid"><div class="rail"><span class="i">2</span><div><b>palette.css</b><span class="d">The only stylesheet that differs by brand.</span></div></div><div class="main"><span class="v" data-c>https://cdn.jsdelivr.net/<wbr>gh/<wbr>collective-edge/<wbr>royal-brand-kit@main/<wbr>snippets/<wbr>palette.css</span></div></li><li class="grid"><div class="rail"><span class="i">3</span><div><b>cobrand.css</b><span class="d">The Powered by lockup.</span></div></div><div class="main"><span class="v" data-c>https://cdn.jsdelivr.net/<wbr>gh/<wbr>collective-edge/<wbr>collective-edge-brand-kit@main/<wbr>snippets/<wbr>cobrand.css</span></div></li><li class="grid"><div class="rail"><span class="i">4</span><div><b>data-color.css</b><span class="d">Only when the page has a chart or a reported number.</span></div></div><div class="main"><span class="v" data-c>https://cdn.jsdelivr.net/<wbr>gh/<wbr>collective-edge/<wbr>collective-edge-brand-kit@main/<wbr>snippets/<wbr>data-color.css</span></div></li></ol>
+  </div>
+  <div class="grid sub">
+    <div class="rail"><p class="n">7.3</p><div><h3>Logos by role</h3></div></div>
+    <div class="main"><p class="note">Ask for a role, never a filename. Filenames differ between brands. The role names its ground: on-light goes on a light background, on-dark on a dark one. Place the file as it ships. Never recolor it.</p></div>
+    <ol class="full urls"><li class="grid"><div class="rail"><span class="i"></span><div><b><span class="nm" data-c>horizontal-on-light</span></b></div></div><div class="main"><span class="v" data-c>https://cdn.jsdelivr.net/<wbr>gh/<wbr>collective-edge/<wbr>royal-brand-kit@main/<wbr>assets/<wbr>logos/<wbr>horizontal-purple.svg</span></div></li><li class="grid"><div class="rail"><span class="i"></span><div><b><span class="nm" data-c>horizontal-on-dark</span></b></div></div><div class="main"><span class="v" data-c>https://cdn.jsdelivr.net/<wbr>gh/<wbr>collective-edge/<wbr>royal-brand-kit@main/<wbr>assets/<wbr>logos/<wbr>horizontal-white.svg</span></div></li><li class="grid"><div class="rail"><span class="i"></span><div><b><span class="nm" data-c>mark-on-light</span></b></div></div><div class="main"><span class="v" data-c>https://cdn.jsdelivr.net/<wbr>gh/<wbr>collective-edge/<wbr>royal-brand-kit@main/<wbr>assets/<wbr>logos/<wbr>crown-purple.svg</span></div></li><li class="grid"><div class="rail"><span class="i"></span><div><b><span class="nm" data-c>mark-on-dark</span></b></div></div><div class="main"><span class="v" data-c>https://cdn.jsdelivr.net/<wbr>gh/<wbr>collective-edge/<wbr>royal-brand-kit@main/<wbr>assets/<wbr>logos/<wbr>crown-white.svg</span></div></li><li class="grid"><div class="rail"><span class="i"></span><div><b><span class="nm" data-c>stacked-on-light</span></b></div></div><div class="main"><span class="v" data-c>https://cdn.jsdelivr.net/<wbr>gh/<wbr>collective-edge/<wbr>royal-brand-kit@main/<wbr>assets/<wbr>logos/<wbr>stacked-purple.svg</span></div></li><li class="grid"><div class="rail"><span class="i"></span><div><b><span class="nm" data-c>stacked-on-dark</span></b></div></div><div class="main"><span class="v" data-c>https://cdn.jsdelivr.net/<wbr>gh/<wbr>collective-edge/<wbr>royal-brand-kit@main/<wbr>assets/<wbr>logos/<wbr>stacked-white.svg</span></div></li></ol>
+  </div>
+</section>
+</main>
+
+<footer class="wrap">
+  <div class="grid colophon">
+    <div class="rail"><img src="assets/logos/horizontal-purple.svg" alt="Royal Ambulance" style="width:180px;margin-left:0.0px"></div>
+    <div class="main">
+      <p>Version 2.0. Built from tokens.json, brands.json and the snippets by guidelines/build.py.<br>Set in Montserrat 400, 600 and 700. 800 appears in specimens only.<br>Twelve columns, 24px gutters, 96px margins.</p>
+      <div class="pw"><span>Powered by</span><img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg" alt="Collective Edge"></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('click',function(e){var t=e.target.closest('[data-c]');if(!t)return;
+var s=t.getAttribute('data-c')||t.textContent.trim(),done=function(){t.classList.add('ok');setTimeout(function(){t.classList.remove('ok')},900)};
+if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(s).then(done)}
+else{var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(x){}a.remove()}});
+</script>
+</body>
+</html>
