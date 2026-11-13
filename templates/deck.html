@@ -207,11 +207,15 @@ html, body { background: var(--bg-surface); margin: 0; padding: 0; }
 .slide-closing .slide-foot { margin-top: 92px; }
 
 /* ---------- LOCKUP ----------------------------------------------
-   Powered by Collective Edge. Closing slide only, bottom left,
-   operating companies only. cobrand.css owns the rule, the label
-   and the 204px logo. */
+   Powered by Collective Edge. Closing slide only, in the footer
+   row at left, operating companies only. Small and quiet: the
+   words at 12pt, then the Collective Edge logo at its 120px
+   minimum, on one line. cobrand.css draws the 204px site lockup.
+   These rules set the slide lockup over it. */
 
-.slide-closing .ce-powered { margin-top: 56px; }
+.slide-foot .ce-powered { display: flex; align-items: center; gap: 12px; margin: 0; padding: 0; border: 0; }
+.slide-foot .ce-powered span { font-size: var(--fs-body); line-height: var(--lh-body); font-weight: var(--weight-regular, 400); letter-spacing: var(--tr-body, 0); text-transform: none; }
+.slide-foot .ce-powered img { width: 120px; }
 
 /* ---------- NARROW SCREEN ---------------------------------------
    Under 1344px a slide is fluid. Print never takes this block. */
@@ -232,7 +236,6 @@ html, body { background: var(--bg-surface); margin: 0; padding: 0; }
   .slide-table-wrap { overflow-x: auto; }
   .slide-bars { grid-template-columns: minmax(0, 1fr); row-gap: 8px; }
   .slide-foot, .slide-dark .slide-foot, .slide-closing .slide-foot { margin-top: 32px; }
-  .slide-closing .ce-powered { margin-top: 32px; }
 }
 
 /* ---------- PRINT -----------------------------------------------
@@ -497,10 +500,13 @@ html, body { background: var(--bg-surface); margin: 0; padding: 0; }
         <p class="bk-body-lg">royalambulance.example</p>
       </div>
     </div>
-    <!-- LOCKUP · the one place in the deck it appears -->
-    <div class="ce-powered">
-      <span>Powered by</span>
-      <img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg" alt="Collective Edge" width="204" height="34">
+    <!-- LOCKUP · the one place in the deck it appears · footer row, left, small -->
+    <div class="slide-foot">
+      <div class="ce-powered">
+        <span>Powered by</span>
+        <img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg" alt="Collective Edge" width="120" height="20">
+      </div>
+      <p class="bk-body">13 November 2026</p>
     </div>
   </section>
 

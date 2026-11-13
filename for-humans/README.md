@@ -4,7 +4,7 @@ Everything needed to put the Royal Ambulance brand on something. No install, no 
 
 If you only read one line: use the SVG files, set type in Montserrat, the band is Dark Purple `#2f193b` and the accent is Purple `#572e72`.
 
-Every Royal Ambulance document carries **Powered by Collective Edge** once. Read [Powered by Collective Edge](#powered-by-collective-edge).
+Every Royal Ambulance PDF, deck and image carries **Powered by Collective Edge** once, small. A working document or a sheet never carries it. Read [Powered by Collective Edge](#powered-by-collective-edge).
 
 If you are building anything with a **chart, a table of numbers or a dashboard**, read [Color for data](#color-for-data) below as well. Chart colors are a separate set. A brand color is never a chart color.
 
@@ -54,7 +54,7 @@ https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/for-humans/logo
 | Smallest the crown may go | 32 px on screen |
 | Smallest the stacked lockup may go | Use the horizontal lockup under 1.5in wide |
 | Logo width in a header band | 1.6 inches |
-| Width of the Powered by lockup | 204 px on screen, 2.125 inches in print |
+| Width of the Powered by lockup | 204 px on a site or a dashboard. 1.25 inches in a PDF, a deck or an image |
 
 If the clear space is short, shrink the logo. Do not crop the space.
 
@@ -74,27 +74,29 @@ If the clear space is short, shrink the logo. Do not crop the space.
 
 ## Powered by Collective Edge
 
-Royal Ambulance is an operating company under Collective Edge, and the reader should be able to see it. The phrase **Powered by Collective Edge** appears once on every Royal Ambulance document.
+Royal Ambulance is an operating company under Collective Edge, and the reader should be able to see it. The phrase **Powered by Collective Edge** appears once on everything Royal Ambulance delivers as a PDF, a deck or an image: a one-pager, a report, a memo, a proposal, a deck. A working document, the kind people keep editing in Google Docs or Word, never carries it. Neither does a sheet. That holds even when a working document is later saved as a PDF.
 
-It is a small lockup: the words POWERED BY above the Collective Edge logo, under a thin rule. It sits beside the operating company's logo and never inside it.
+On a site or a dashboard it is a lockup: the words POWERED BY above the Collective Edge logo, under a thin rule. In a PDF, a deck or an image it is smaller and quieter: the words Powered by, then the Collective Edge logo on the same line, 1.25 inches wide. It sits beside the operating company's logo and never inside it.
 
 | Part | Value |
 |---|---|
-| The words | `POWERED BY`. Montserrat SemiBold 600, uppercase, letter-spaced 0.08em. 9pt in print, 12 px on screen |
+| The words, on a site | `POWERED BY`. Montserrat SemiBold 600, uppercase, letter-spaced 0.08em, 12 px |
+| The words, in a PDF, a deck or an image | `Powered by`. Montserrat Regular 400, 9pt. 12pt on a closing slide |
 | Color of the words | `#6D6D77` on white. `#A3A4AC` on a dark band |
 | The logo on white | The black Collective Edge horizontal lockup · [SVG](https://github.com/collective-edge/collective-edge-brand-kit/blob/main/for-humans/logos/svg/Collective-Edge-horizontal-black.svg) · [PNG](https://github.com/collective-edge/collective-edge-brand-kit/blob/main/for-humans/logos/png/Collective-Edge-horizontal-black-1200w.png) |
 | The logo on a dark band | The white Collective Edge horizontal lockup · [SVG](https://github.com/collective-edge/collective-edge-brand-kit/blob/main/for-humans/logos/svg/Collective-Edge-horizontal-white.svg) · [PNG](https://github.com/collective-edge/collective-edge-brand-kit/blob/main/for-humans/logos/png/Collective-Edge-horizontal-white-1200w.png) |
-| Logo width | 204 px on screen, 2.125 inches in print. Never below 120 px |
-| Gap between the words and the logo | 12 px, 0.125 in |
-| The rule above it | 1px. `#E4E4E9` on white. White at 12 percent opacity on a dark band. 24 px, 0.25 in, of space above the rule and below it |
-| How often | Once per document |
+| Logo width | 204 px on a site or a dashboard. 1.25 inches, which is 120 px, in a PDF, a deck or an image. Never below 120 px |
+| Gap between the words and the logo | 12 px on a site, the logo under the words. 6pt in a document, the logo beside the words |
+| The rule above it | 1px. `#E4E4E9` on white. White at 12 percent opacity on a dark band. 24 px, 0.25 in, of space above the rule and below it. On a site only. In a document the footer rule does this job |
+| How often | Once per PDF, deck or image. Never on a working document or a sheet |
 
 Where it goes:
 
 - The footer of a site.
-- The footer row of a memo or a one-pager, at left.
-- The last block of a report body.
-- The closing slide of a deck.
+- The footer row of a memo or a one-pager, at left, on page 1.
+- The last line of a report body.
+- The footer row of the closing slide of a deck.
+- A chart or data graphic made on its own: one line of words at bottom right, `Powered by Collective Edge`, and no logo.
 - The sidebar header of a dashboard.
 - A data page or a methodology page.
 
@@ -104,7 +106,9 @@ Do not:
 - Merge, nest or recolor either logo to match the other.
 - Use it twice on one document.
 - Type the phrase as plain text where the logo fits.
-- Shrink it to the 120 px minimum by design. 204 px is the size.
+- Shrink it to the 120 px minimum on a site or a dashboard. 204 px is the size there.
+- Set it larger than 1.25 inches in a PDF, a deck or an image.
+- Put it on a working document or a sheet, as a logo or as words.
 - Put it on a clinical instruction, or on a patient-facing consent or safety document. Those carry the operating company's logo alone.
 
 ### Whose page it is
@@ -315,7 +319,7 @@ The four weights the brand uses are in [`fonts/static/`](fonts/static/), one fil
 | Bold 700 | [`Montserrat-Bold.ttf`](fonts/static/Montserrat-Bold.ttf) | Page titles, section headings, emphasis inside body text |
 | ExtraBold 800 | [`Montserrat-ExtraBold.ttf`](fonts/static/Montserrat-ExtraBold.ttf) | Title slides and hero bands only |
 
-Use three weights at most in one piece. Do not set italic, at any weight, and do not let software fake one.
+Use three weights at most in one document. A deck is the one piece that uses all four. Do not set italic, at any weight, and do not let software fake one.
 
 The single variable font file in [`fonts/`](fonts/) carries every weight in one file, for web and design tools that read a weight axis. Montserrat is also free from Google Fonts at https://fonts.google.com/specimen/Montserrat.
 
@@ -328,7 +332,7 @@ The single variable font file in [`fonts/`](fonts/) carries every weight in one 
 | Caption, footer | 9pt. Nothing smaller | Regular 400 |
 | Uppercase label | 9pt, letter-spaced 0.08em | SemiBold 600 |
 
-Headings inside a document are sentence case. Uppercase is for the band title, the title slide title and the POWERED BY label. It is always letter-spaced and never runs past four words. Text is flush left. Never justified. A line of body text stops at about 70 characters.
+Headings inside a document are sentence case. Uppercase is for the band title and the title slide title. It is always letter-spaced and never runs past four words. Text is flush left. Never justified. A line of body text stops at about 70 characters.
 
 ## Documents and decks
 
@@ -337,15 +341,17 @@ The same in every brand. Only the colors and the logo change.
 | Item | Value |
 |---|---|
 | Page | US Letter, 8.5 × 11 in |
-| Margins, memo and report | 0.75 in on all four sides |
+| Working document | The default for anything people keep editing in Google Docs or Word. The logo at top left, a title, plain headings, 10.5pt text, a one-line footer. No header band |
+| Sheet | One table per tab, starting at A1. Montserrat 10pt. A frozen header row with a light fill |
+| Margins, working document, memo and report | 0.75 in on all four sides |
 | Margins, one-pager | 0.6 in on all four sides |
 | Page color | White `#FFFFFF`. Body text `#23232A` |
-| Logo | Once per document, in the header band on page 1. Once per slide at most |
+| Logo | Once per document: in the header band of a one-pager, a report or a memo, at top left of a working document. Once per slide at most |
 | Slide | 16:9, 13.333 × 7.5 in |
 | Slide body text | 15pt |
 | Content slides | White `#FFFFFF` |
 | Title, divider and closing slides | The dark band, Dark Purple `#2f193b` |
-| Powered by Collective Edge | Once per document. See [Powered by Collective Edge](#powered-by-collective-edge) |
+| Powered by Collective Edge | Once per PDF, deck or image, small. Never on a working document or a sheet. See [Powered by Collective Edge](#powered-by-collective-edge) |
 
 ## Writing, if you are setting copy
 

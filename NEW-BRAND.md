@@ -20,7 +20,7 @@ Every kit has the same file set. A reader who knows one kit knows all of them.
 | `for-agents/README.md` | Brand facts only | The shortest correct path for an agent |
 | `for-humans/` | Yes | Logos as SVG and PNG, static fonts, previews. Built from `for-humans/pack.json` |
 | `reference/brand.md` | Brand facts only | Full color tables, contrast, logo specifications, co-brand, voice |
-| `reference/layout.md` | Brand facts only | The memo, the one-pager and the deck |
+| `reference/layout.md` | Brand facts only | The working document, the sheet, the deck, the one-pager, the report and the memo |
 | `reference/type-system.md` | No | The type standard |
 | `reference/data-color.md` | No | Chart color |
 | `reference/ui.md` | No | Buttons, links and form controls |
@@ -171,7 +171,7 @@ prefix  hasColor  color  colorNote  logos  minWidth
 
 Add the new kit’s folder name to `SISTER_KITS` in `scripts/check-sync.py`, and copy that file to every kit too.
 
-Every operating company carries “Powered by Collective Edge” once on every document, and the Edge wedge takes its color. So also:
+Every operating company carries “Powered by Collective Edge” once, small, on every PDF, deck and image, and never on a working document or a sheet. The Edge wedge takes its color. So also:
 
 1. Add `wedgeHue` to the brand’s entry.
 2. Draw the two co-brand marks in the Collective Edge kit: `assets/logos/mark-black-<brand>.svg` and `assets/logos/mark-white-<brand>.svg`.
@@ -215,7 +215,7 @@ Then, by hand:
 - [ ] Every logo role in `tokens.json` resolves to a file or is `null`, and each `-on-dark` file is legible on `--bg-band`.
 - [ ] `brands.json` is identical in every kit, including the new entry.
 - [ ] `SKILL.md`, `reference/brand.md`, `reference/layout.md` and `for-agents/README.md` differ from the source kit only in brand facts.
-- [ ] A rendered memo, one-pager and deck show Montserrat, not a fallback.
+- [ ] A rendered working document, one-pager and deck show Montserrat, not a fallback.
 - [ ] The kit is public and the CDN URLs return 200.
 
 ### 9. Tag
@@ -234,7 +234,7 @@ Changing any of these forks the house.
 
 - The typeface, the scale, the weight ladder, tracking, leading and measure.
 - The fifteen rules in `reference/type-system.md`.
-- The layout of the memo, the one-pager and the deck: margins, sizes and what goes where.
+- The layout of the working document, the sheet, the deck, the one-pager, the report and the memo: margins, sizes and what goes where.
 - The neutral family, the alert family and the diagram roles.
 - The chart colors. The sequential ramp is the one value that follows the brand.
 - The `--fg-*`, `--bg-*` and `--border-*` names, and the six grounds.

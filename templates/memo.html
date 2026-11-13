@@ -206,10 +206,16 @@ html, body { background: var(--bg-surface); margin: 0; padding: 0; }
 
 /* ---------- LOCKUP ----------------------------------------------
    Powered by Collective Edge. Once per document, operating
-   companies only. cobrand.css owns the label and the 204px logo. */
+   companies only. Small and quiet: the words at caption size, then
+   the Collective Edge logo at its 120px minimum, on one line.
+   cobrand.css draws the 204px site lockup. These rules set the
+   document lockup over it. */
 
+.ce-powered { display: flex; align-items: center; gap: 8px; }
+.ce-powered span { font-weight: var(--weight-regular, 400); letter-spacing: var(--tr-caption, 0.01em); text-transform: none; }
+.ce-powered img { width: 120px; }
 .doc-footer .ce-powered { margin: 0; padding: 0; border: 0; }
-.doc-lockup { margin: 24px 0 0; padding: 24px 0 0; }
+.doc-lockup { margin: 24px 0 0; padding: 12px 0 0; }
 
 /* ---------- NARROW SCREEN ---------------------------------------
    Under 880px the sheet is fluid. Print never takes this block. */
@@ -285,11 +291,11 @@ html, body { background: var(--bg-surface); margin: 0; padding: 0; }
 
   </main>
 
-  <!-- FOOTER · the lockup sits here once, at left -->
+  <!-- FOOTER · the lockup sits here once, at left, small -->
   <footer class="doc-footer">
     <div class="ce-powered ce-powered-light">
       <span>Powered by</span>
-      <img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg" alt="Collective Edge" width="204" height="34">
+      <img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg" alt="Collective Edge" width="120" height="20">
     </div>
     <p class="bk-caption">Royal Ambulance · Internal · Page 1 of 1</p>
   </footer>

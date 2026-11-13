@@ -1,6 +1,6 @@
 ---
 name: royal-brand-guidelines
-description: Applies the Royal Ambulance brand standard to any document, deck, sheet, PDF or page that carries the Royal name. Royal Ambulance is an operating company under Collective Edge. It runs purple over the shared house neutrals, with the crown wordmark. Type is Montserrat at 400, 600, 700 and 800 with no italic. Covers how to load the kit, logos by role, color, the alert family, chart color, type, the memo, one-pager and deck layouts, the “Powered by Collective Edge” lockup that appears once on every document, voice, and a pre-ship check. Use when producing or reviewing any Royal Ambulance material.
+description: Applies the Royal Ambulance brand standard to any document, deck, sheet, PDF or page that carries the Royal name. Royal Ambulance is an operating company under Collective Edge. It runs purple over the shared house neutrals, with the crown wordmark. Type is Montserrat at 400, 600, 700 and 800 with no italic. Covers how to load the kit, logos by role, color, the alert family, chart color, type, the rules for editing an existing file, the working document, sheet, deck, one-pager, report and memo layouts, the “Powered by Collective Edge” lockup that appears once, small, on every PDF, deck and image and never on a working document or a sheet, voice, and a pre-ship check. Use when producing or reviewing any Royal Ambulance material.
 ---
 
 # Royal Ambulance · brand standard
@@ -9,7 +9,7 @@ Royal Ambulance is a Bay Area medical transportation company and an operating co
 
 Collective Edge, Apex Paramedics and Royal Ambulance share one standard. The sections, the order and the rules are the same in all three kits. Color, logo and brand facts differ. Type, layout, alert color, chart color and the co-brand lockup are shared and never forked for one brand.
 
-This file is the whole standard in brief. The references carry the full tables: [reference/brand.md](reference/brand.md) for color, logo, co-brand and voice, [reference/layout.md](reference/layout.md) for the memo, the one-pager and the deck in inches and points, [reference/type-system.md](reference/type-system.md) for type, [reference/data-color.md](reference/data-color.md) for charts, [reference/ui.md](reference/ui.md) for controls. [reference/partner-colors.md](reference/partner-colors.md) holds partner facility colors.
+This file is the whole standard in brief. The references carry the full tables: [reference/brand.md](reference/brand.md) for color, logo, co-brand and voice, [reference/layout.md](reference/layout.md) for every document type in inches and points, [reference/type-system.md](reference/type-system.md) for type, [reference/data-color.md](reference/data-color.md) for charts, [reference/ui.md](reference/ui.md) for controls. [reference/partner-colors.md](reference/partner-colors.md) holds partner facility colors.
 
 ## 1. Brand
 
@@ -55,7 +55,7 @@ Ask for a role, never a filename. Filenames differ between brands. `-on-light` i
 
 Minimum width: horizontal 110px on screen and 1in in print, mark 32px and 0.33in. Clear space on all four sides: the height of the crown. Each PNG also ships at double width: replace `1200w` with `2400w`, or `512w` with `1024w`.
 
-1. The brand’s logo appears once in a document, in the band on page 1, and at most once on a slide.
+1. The brand’s logo appears once in a document and at most once on a slide: in the band of a memo, a one-pager or a report, top left of page 1 on a working-doc.
 2. Match the file to the ground. Never recolor a logo and never invert one with a filter.
 3. Never stretch, skew, rotate, outline or shadow a logo.
 4. Hold the clear space. If it is short, shrink the logo, down to the minimum.
@@ -155,41 +155,40 @@ Montserrat for every word, in every brand. Full standard: [reference/type-system
 | `bk-eyebrow` | 9 | 12 | 600 | 1.45 | Uppercase labels, tracked 0.080em |
 
 1. No italic, at any weight. Never synthesize one.
-2. Weights 400, 600, 700 and 800 only. Three at most in one piece.
+2. Weights 400, 600, 700 and 800 only. Three at most in a document. A deck is the one piece that uses all four.
 3. On a dark ground, drop one weight where the step is 700 or heavier and add 0.005em tracking. 600 is the floor.
 4. Tracking is in em, never px or pt. Uppercase is always tracked and never longer than four words.
-5. Sentence case for every heading. Uppercase for the band title, the title slide title and the lockup label only.
+5. Sentence case for every heading. Uppercase for the band title and the title slide title only.
 6. Flush left, ragged right. Never justify. Never center past three lines. A body line stops at 70 characters, which is 54ch. Captions 40ch. Headings 28ch.
 7. Space above a heading is three times the space under it. Subhead 18pt above, 6pt under. Section heading 36pt above, 12pt under.
 8. The mono face is for color values, paths and filenames, code, and record identifiers. Everything else is Montserrat.
 
 ## 6. Layout
 
-Three document types. A report takes the memo page and margins. Full specification, with every position in inches and points: [reference/layout.md](reference/layout.md).
+Six types. Take the first that fits: sheet, deck, working-doc, one-pager, report, memo. The working-doc is the default for anything in Google Docs or Word. A memo is only for a request that asks for one by name. Every value, the wording budget and the build for Word, PowerPoint and Google files: [for-agents/README.md](for-agents/README.md) section 5 and [reference/layout.md](reference/layout.md).
 
-| | Memo | One-pager | Deck |
-|---|---|---|---|
-| Page | US Letter, 8.5 by 11in, portrait | US Letter, 8.5 by 11in, portrait. Exactly one page | 13.333 by 7.5in, 16:9 |
-| Margins | 0.75in | 0.6in | 0.67in top, 0.83in left and right, 0.42in bottom |
-| Opens on | The band, with the logo | The band, with the logo | A title slide on the dark ground |
-| Headline | None. The Re line states the subject | One finding, `bk-h1`, 30pt | One finding per slide, sentence case |
-| Body | `bk-body`, 12pt, on white | `bk-body`, 12pt, on white | 15pt, on white |
+1. Editing an existing file comes first. Keep its layout, styles, fonts, sizes, colors, column order and wording. Change only what was asked, in the same file.
+2. New content takes the style of its neighbors. A document the person points to is the template, and this kit does not override it.
+3. Restyle, shorten or rewrite only when asked. Never delete someone else’s content. Never change spacing, sizes or margins to make an edit fit a page. All eight rules: `for-agents/README.md` section 5.
 
-A report and a generic document take the memo page and margins. They open with a headline, `bk-h1`, 30pt, and a lead.
+| | Working-doc | Sheet | Deck | One-pager, report, memo |
+|---|---|---|---|---|
+| Page | US Letter, portrait, 0.75in margins | One table per tab, from A1 | 13.333 by 7.5in, 16:9 | US Letter, portrait. 0.75in margins, 0.6in on a one-pager |
+| Opens on | The logo, top left, then the title at 24pt. No band | The header row, frozen, filter on | A title slide on the dark ground | The band, with the logo |
+| Body | 10.5pt, weights 400 and 700 | Montserrat 10pt | 15pt, on white | `bk-body`, 12pt, 70 characters a line |
 
-1. Content slides are white. The dark band is for the title, divider and closing slides.
-2. A document opens on one band. The band title is `bk-h2`, 24pt, uppercase, four words at most. Everything under it runs on white.
-3. Body text holds the 70 character measure. A table or a figure may run the full width.
-4. Lead paragraph `bk-body-lg`, 15pt. Subheads `bk-h3`, 18pt. Table cells `bk-body-sm`, 10.5pt. Footer `bk-caption`, 9pt.
+1. The band is for PDF, print and slides. A document that will live in Google Docs is a working-doc unless the person asks for a designed one-pager. A working-doc is plain: no band, callout, card, icon, uppercase label or stat numeral. A light table header, a hairline under every row, a one-line footer.
+2. In a file that becomes a Google file, line spacing is a multiple, 1.15 for headings and 1.35 for body, never an exact point value. Table indent is 0. An empty paragraph sits between two tables.
+3. Keep it short. The first line states the decision, the ask or the status. No restated title, no closing summary. A sentence runs 20 words at most.
 
 ## 7. Co-brand
 
 Apex Paramedics and Royal Ambulance are operating companies under Collective Edge, and the reader should be able to see it.
 
-1. “Powered by Collective Edge” appears once on every Apex Paramedics and Royal Ambulance document. Never twice.
+1. “Powered by Collective Edge” appears once on everything Apex Paramedics and Royal Ambulance deliver as a PDF, a deck or an image: memo, one-pager, report, proposal, deck. Never twice. A working-doc and a sheet never carry it, as a lockup or as words. The rule follows the type, not the file format: a working-doc exported to PDF stays as it is.
 2. A Collective Edge document carries the Collective Edge logo and no lockup. Where the Collective Edge mark shares a surface with another brand, the lockup is on that surface, once.
-3. The lockup is the label `POWERED BY` over the Collective Edge horizontal lockup, under a 0.75pt (1px) hairline. Label: 600, uppercase, 9pt, tracking 0.080em, `#6D6D77` on white and `#A3A4AC` on a dark ground. Lockup: 2.125in (204px) wide, 0.354in (34px) tall, never under 120px, the Collective Edge `horizontal-on-light` file on white and `horizontal-on-dark` on a dark ground. Every value is in `cobrand` in `brands.json`.
-4. A memo and a one-pager carry it in the footer row, at left. A report carries it as the last block of the body on the last page. A deck carries it on the closing slide.
+3. In a document, a deck or an image the lockup is small and quiet: the words `Powered by` at caption size, 9pt, 400, `#6D6D77`, then on the same line the Collective Edge horizontal logo at its minimum width, 1.25in (120px) wide and 0.208in (20px) tall. On the closing slide the words are 12pt, `#A3A4AC`. The `horizontal-on-light` file on white, `horizontal-on-dark` on a dark ground. On a site or a dashboard it is the 204px lockup in `cobrand` in `brands.json`.
+4. A memo and a one-pager carry it in the footer row of page 1, at left. A report carries it as the last line of the body on the last page. A deck carries it in the footer row of the closing slide. A chart or data graphic made on its own carries no logo: one line of words, `Powered by Collective Edge`, bottom right, caption size, `#6D6D77`.
 5. It sits beside the brand’s own logo, never inside it. Never merge, nest or recolor either mark.
 6. Two exceptions, from `brands.json`: a clinical instruction and a patient-facing consent or safety document carry no lockup.
 7. On an Apex Paramedics or Royal Ambulance surface, that company leads. Its logo heads the page and its palette runs the band. Collective Edge adds no hue.
@@ -211,13 +210,14 @@ Royal writes for the reader who is between calls. Short declarative sentences.
 
 Check the finished file, not the code that made it.
 
-- [ ] Every text run names Montserrat. No run is italic. Every weight is 400, 600, 700 or 800, three at most.
+- [ ] Every text run names Montserrat. No run is italic. Every weight is 400, 600, 700 or 800. Three at most in a document. Only a deck uses all four.
 - [ ] Every size is a step in section 5 and nothing is under 9pt. Every color is a hex from `tokens.json`. No text is set in `#8A8B93`, `#D0D0D6` or `#E4E4E9`.
 - [ ] Body text is `#23232A` on white. On a dark ground headings are `#FFFFFF` and body is `#DDDDE3`.
-- [ ] Margins are 0.75in on a memo or a report and 0.6in on a one-pager. A one-pager is one page.
+- [ ] An edited file changed only where asked. A Google file has no exact line spacing, table indent 0 and a paragraph between two tables.
+- [ ] Margins are 0.75in on a working-doc, a memo or a report and 0.6in on a one-pager. A one-pager, an agenda and a status report are one page.
 - [ ] Slides are 13.333 by 7.5in with 15pt body. Only the title, divider and closing slides are dark.
 - [ ] The brand’s logo appears once in a document and at most once on a slide, in the role for its ground, at or above the minimum, clear space held, aspect ratio unchanged.
-- [ ] “Powered by Collective Edge” appears exactly once in the document.
+- [ ] On a PDF, a deck or an image, “Powered by Collective Edge” appears exactly once, small. A working-doc and a sheet carry none.
 - [ ] Every status color is an alert step for its ground and carries a word or an icon. Green marks good only. Every chart color is from the house data set, with series in order.
 - [ ] No em dash in any text. No uppercase run is longer than four words. Body lines hold 70 characters. No text is justified.
 - [ ] No text is `#8260a2`. White text sits only on `#2f193b`, `#572e72` or `#43205b`.

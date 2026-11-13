@@ -4,9 +4,9 @@ This repository is the brand standard for Royal Ambulance. It is public. Shipped
 
 ## Making or reviewing something that carries this brand
 
-1. Read [`for-agents/README.md`](for-agents/README.md). Fonts, logos by role, color, and the memo, one-pager and deck specifications in inches, points and hex, on one page.
+1. Read [`for-agents/README.md`](for-agents/README.md). Fonts, logos by role, color, the rules for editing an existing file, and the working document, sheet, deck, one-pager, report and memo specifications in inches, points and hex, on one page.
 2. Read [`SKILL.md`](SKILL.md). The full standard and the pre-ship check.
-3. For a report, a slide layout, or a Word, PowerPoint or Google build, read [`reference/layout.md`](reference/layout.md). [`documents.json`](documents.json) holds the same values as data.
+3. For a report, a slide layout, or a Word, PowerPoint, Google or spreadsheet build, read [`reference/layout.md`](reference/layout.md). [`documents.json`](documents.json) holds the same values as data.
 4. Run the check in `for-agents/README.md` section 7 on the finished file. If you could not render it, say so.
 
 ## Changing this repository

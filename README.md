@@ -64,15 +64,18 @@ Every rule: [`reference/type-system.md`](reference/type-system.md). Every value:
 
 ### Documents
 
-Three document types. A report takes the memo page and margins and starts from [`templates/document.html`](templates/document.html).
+Six types. Most requests change a file that already exists: keep its layout, styles and wording, and change only what was asked.
 
-| Type | Page | Margins | Body | Template |
+| Type | For | Page | Body | Template |
 |---|---|---|---|---|
-| Memo | US Letter, 8.5 x 11in, portrait | 0.75in | 12pt | [`templates/memo.html`](templates/memo.html) |
-| One-pager | US Letter, 8.5 x 11in, portrait, exactly one page | 0.6in | 12pt | [`templates/one-pager.html`](templates/one-pager.html) |
-| Deck | 13.333 x 7.5in | 0.67in top, 0.83in left and right, 0.42in bottom | 15pt | [`templates/deck.html`](templates/deck.html) |
+| Working document | The default. Anything people keep editing in Google Docs or Word: agendas, plans, status reports, notes | US Letter, portrait, 0.75in margins | 10.5pt | [`templates/working-doc.html`](templates/working-doc.html) |
+| Sheet | Trackers and lists in Google Sheets or Excel | One table per tab, from A1 | 10pt | None |
+| Deck | Anything on a screen | 13.333 x 7.5in. 0.67in top, 0.83in left and right, 0.42in bottom | 15pt | [`templates/deck.html`](templates/deck.html) |
+| One-pager | A designed single page for an outside reader, as a PDF | US Letter, portrait, 0.6in margins, exactly one page | 12pt | [`templates/one-pager.html`](templates/one-pager.html) |
+| Report | A designed document of three pages or more, as a PDF | US Letter, portrait, 0.75in margins | 12pt | [`templates/document.html`](templates/document.html) |
+| Memo | Only when asked for by name | US Letter, portrait, 0.75in margins | 12pt | [`templates/memo.html`](templates/memo.html) |
 
-A document opens on one band with the logo. Content slides are white. The dark band is for the title, divider and closing slides. “Powered by Collective Edge” appears once on every Apex Paramedics and Royal Ambulance document.
+A working document is plain: the logo at top left, a title, no band. The band opens a one-pager, a report and a memo, which are made for PDF and print. Content slides are white. The dark ground is for the title, divider and closing slides. “Powered by Collective Edge” appears once, small, on every Apex Paramedics and Royal Ambulance PDF, deck and image. A working document and a sheet never carry it.
 
 Every rule: [`reference/layout.md`](reference/layout.md). The same values as data: [`documents.json`](documents.json).
 
@@ -101,7 +104,7 @@ royal-brand-kit/
 ├── documents.json    The document types as data
 ├── tokens.json       This brand's colors as hex and RGB
 ├── snippets/         Stylesheets, type tokens and the header band
-├── templates/        Memo, one-pager, document and deck
+├── templates/        Working document, deck, one-pager, report and memo
 ├── Examples/         Filled references
 ├── assets/           Logo masters and fonts. Live CDN paths
 ├── scripts/          The checks and the builders

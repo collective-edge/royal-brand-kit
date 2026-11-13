@@ -13,7 +13,7 @@
     "_comment": "POWERED BY COLLECTIVE EDGE. Identical in every kit. The shipped co-brand lockup, captured from apex-website/src/components/Footer.astro, web-apex-internal-dashboard/src/components/Sidebar.astro and apex-customer-dashboard/src/components/Sidebar.astro. An agent resolves the lockup, the width and the placement rules from here rather than reinventing a treatment. CSS: snippets/cobrand.css, identical in every kit and served from the parent brand.",
     "label": "Powered by",
     "phrase": "Powered by Collective Edge",
-    "documents": "documents.json cobrand.placement holds the placement for each document type",
+    "documents": "documents.json cobrand holds the document lockup and the placement for each document type. In a PDF, a deck or an image the lockup is small: the words Powered by at caption size, then the Collective Edge horizontal logo at its 120px minimum, 1.25in, on one line. A working-doc and a sheet never carry it. The 204px values below are for sites and dashboards",
     "css": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css",
     "classes": {
       "dark": "ce-powered",
@@ -61,8 +61,9 @@
     "placement": [
       "The footer of a site",
       "The sidebar header of any dashboard",
-      "The closing slide of any deck",
-      "The last block of a report body",
+      "The footer row of the closing slide of a deck, small",
+      "The footer row of a memo or a one-pager, on page 1, small",
+      "The last line of a report body, small",
       "A data page or a methodology page",
       "Anywhere a number was computed rather than typed"
     ],
@@ -72,8 +73,10 @@
       "Put it on a clinical instruction",
       "Put it on a patient-facing consent or safety document",
       "Use it twice in one document or on one surface",
-      "Set the phrase as type where the mark fits",
-      "Design the lockup down to the 120px floor"
+      "Set the phrase as type where the mark fits. A chart or data graphic made on its own is the one place the words stand alone",
+      "Design the lockup down to the 120px floor on a site or a dashboard",
+      "Set it larger than 1.25in in a PDF, a deck or an image",
+      "Put it on a working document or a sheet, as a lockup or as words"
     ],
     "shippedIn": [
       "apex-website/src/components/Footer.astro",

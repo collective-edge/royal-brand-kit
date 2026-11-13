@@ -259,18 +259,20 @@ Apex Paramedics and Royal Ambulance are operating companies under Collective Edg
 
 ### 3.1 The lockup
 
-“Powered by Collective Edge” is one lockup. It is the label `POWERED BY` over the Collective Edge horizontal lockup, under a hairline. `cobrand` in `brands.json` carries every value below, and `snippets/cobrand.css` is the HTML implementation.
+“Powered by Collective Edge” is one lockup in two sizes. On a site or a dashboard it is the label `POWERED BY` over the Collective Edge horizontal lockup, under a hairline. In a PDF, a deck or an image it is small and quiet: the words `Powered by`, then the logo on the same line at its minimum width. The table gives the site lockup, then the document lockup. `cobrand` in `brands.json` carries every value below, and `snippets/cobrand.css` is the HTML implementation.
 
 | Part | Value |
 |---|---|
-| Label | `POWERED BY`. Weight 600, uppercase, 9pt in print and 12px on screen, tracking 0.080em |
+| Label | `POWERED BY`. Weight 600, uppercase, 12px, tracking 0.080em |
 | Label color | `#6D6D77` on white, 5.12:1. `#A3A4AC` on a dark ground |
 | Lockup on white | The Collective Edge `horizontal-on-light` file, `assets/logos/horizontal-black.svg` in the Collective Edge kit |
 | Lockup on a dark ground | The Collective Edge `horizontal-on-dark` file, `assets/logos/horizontal-white.svg` in the Collective Edge kit |
-| Width | 2.125in (204px) wide, 0.354in (34px) tall. The artwork is 6:1 |
-| Floor | 120px. A floor, not a target |
+| Width | 204px wide, 34px tall. The artwork is 6:1 |
+| Floor | 120px. On a site, a floor and not a target |
 | Hairline | 0.75pt (1px) above the label. `#E4E4E9` on white. White at 12 percent on a dark ground |
-| Spacing | On a site: 18pt (24px) above the hairline, 18pt (24px) between hairline and label, 9pt (12px) between label and lockup. In a document: `reference/layout.md` section 3.12 |
+| Spacing | On a site: 18pt (24px) above the hairline, 18pt (24px) between hairline and label, 9pt (12px) between label and lockup |
+| Document lockup | In a PDF, a deck or an image. One line: the words `Powered by`, weight 400, 9pt, `#6D6D77`, then 6pt to the right the Collective Edge horizontal logo, 1.25in (120px) wide, 0.208in (20px) tall. No hairline of its own. On a closing slide the words are 12pt, `#A3A4AC`. Never larger. `reference/layout.md` section 3.12 |
+| Figure line | On a chart or data graphic made on its own. No logo. The words `Powered by Collective Edge`, bottom right, weight 400, 9pt, `#6D6D77` |
 | Ground | The light lockup sits on white, not on a tint |
 | CSS classes | `.ce-powered` on a dark ground. `.ce-powered ce-powered-light` on white. `.ce-powered-text` where no mark fits |
 
@@ -278,15 +280,17 @@ The label measures 6.40:1 on this brand’s band.
 
 ### 3.2 Where it goes
 
-1. “Powered by Collective Edge” appears once on every Apex Paramedics and Royal Ambulance document.
+1. “Powered by Collective Edge” appears once on everything Apex Paramedics and Royal Ambulance deliver as a PDF, a deck or an image: memo, one-pager, report, proposal, deck, and a chart or data graphic made on its own. A working-doc and a sheet never carry it, as a lockup or as words. The rule follows the type, not the file format: a working-doc exported to PDF stays as it is.
 2. A Collective Edge document carries the Collective Edge logo in its band and no lockup.
 3. Where the Collective Edge mark shares a surface with another brand, the lockup is on that surface, once.
 
 | Surface | Place |
 |---|---|
-| Memo, one-pager | The footer row, at left |
-| Report | The last block of the body on the last page |
-| Deck | The closing slide |
+| Memo, one-pager | The footer row of page 1, at left |
+| Report | The last line of the body on the last page |
+| Deck | The footer row of the closing slide, at left |
+| Chart or data graphic made on its own | One line of words, bottom right. No logo |
+| Working-doc, sheet | None |
 | Site | The footer |
 | Dashboard | The sidebar header |
 | Data page or methodology page | Anywhere a number was computed and not typed |
@@ -296,12 +300,14 @@ The label measures 6.40:1 on this brand’s band.
 - Never put the lockup on the partner’s own mark or inside its lockup.
 - Never merge, nest or recolor either mark to match the other.
 - Never use it twice in one document or on one surface.
-- Never set the phrase as type where the mark fits.
-- Never design the lockup down to the 120px floor.
+- Never set the phrase as type where the mark fits. A chart or data graphic made on its own is the one place the words stand alone.
+- Never design the lockup down to the 120px floor on a site or a dashboard.
+- Never set it larger than 1.25in in a PDF, a deck or an image.
+- Never put it on a working-doc or a sheet.
 - Never put it on a clinical instruction.
 - Never put it on a patient-facing consent or safety document.
 
-The last two are the only documents that carry no lockup.
+The last two, the working-doc and the sheet are the only documents that carry no lockup.
 
 ### 3.4 Who leads
 
@@ -343,7 +349,7 @@ Royal writes for the reader who is between calls. Short declarative sentences.
 - Exact values. The real number, never a rounded one. The hex, never a description of the color.
 - A label, a value, and nothing between them. No helper text under a field, no caption restating the thing above it, no parenthetical after a heading.
 - Write a caption only when it carries information the thing above it does not.
-- Sentence case for every heading. Uppercase for the band title, the title slide title and the lockup label only. Always tracked, never past four words.
+- Sentence case for every heading. Uppercase for the band title, the title slide title and the site lockup label only. Always tracked, never past four words.
 - No emoji, no exclamation points, no rhetorical questions.
 - Clinical and operational terms stay precise. Never soften a protocol term.
 - Name people, partners and facilities exactly as they write themselves.

@@ -271,10 +271,11 @@ figure + .lines, .pair + .lines { margin-top: 32px; }
 .st .dot { width: E(8); height: E(8); background: currentColor; }
 .st.go { color: var(--go); } .st.warn { color: var(--warn); } .st.stop { color: var(--stop); } .st.info { color: var(--info); }
 .x-foot { margin: 0 calc(var(--e)*var(--mx)); padding: E(14) 0 calc(var(--e)*var(--mx)*0.62); border-top: 1px solid var(--hair); display: flex; justify-content: space-between; align-items: flex-end; font-size: E(12); line-height: 1.45; letter-spacing: 0.01em; color: var(--ter); }
-.x-foot .pw { gap: E(10); }
-.x-foot .pw span { font-size: E(12); }
-.x-foot .pw img { width: E(204); }
-.x-foot .pw + span { margin-bottom: E(7); }
+/* The document lockup: one line, the words at caption size, the logo at its 120px minimum. */
+.x-foot .pw { display: flex; align-items: center; gap: E(8); }
+.x-foot .pw span { font-size: E(12); font-weight: 400; letter-spacing: 0.01em; text-transform: none; }
+.x-foot .pw img { width: E(120); }
+.x-foot { align-items: center; }
 /* memo */
 .x-to { display: grid; grid-template-columns: E(96) minmax(0, 1fr); font-size: E(16); line-height: 1.6; border-top: 1px solid var(--hair); }
 .x-to > * { padding: E(8) 0; border-bottom: 1px solid var(--hair); }
