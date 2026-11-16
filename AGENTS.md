@@ -4,16 +4,16 @@ This repository is the brand standard for Royal Ambulance. It is public. Shipped
 
 ## Making or reviewing something that carries this brand
 
-1. Read [`for-agents/README.md`](for-agents/README.md). Fonts, logos by role, color, the rules for editing an existing file, and the working document, sheet, deck, one-pager, report and memo specifications in inches, points and hex, on one page.
+1. Read [`for-agents/README.md`](for-agents/README.md). Fonts, logos by role, color, the rules for editing an existing file, and the working document, sheet, deck, letter, one-pager, report and memo specifications in inches, points and hex, on one page.
 2. Read [`SKILL.md`](SKILL.md). The full standard and the pre-ship check.
 3. For a report, a slide layout, or a Word, PowerPoint, Google or spreadsheet build, read [`reference/layout.md`](reference/layout.md). [`documents.json`](documents.json) holds the same values as data.
 4. Run the check in `for-agents/README.md` section 7 on the finished file. If you could not render it, say so.
 
 ## Changing this repository
 
-1. **Shared files.** Seventeen files are identical byte for byte in the three kits. `scripts/check-sync.py` lists them and fails when one drifts. Edit a shared file in `collective-edge-brand-kit`, copy it to the other two, and run `python3 scripts/check-sync.py` in all three.
-2. **Live paths.** `brands.json`, `tokens.json`, `documents.json`, `SKILL.md`, `for-agents/README.md`, `reference/layout.md`, `reference/data-color.md` and everything under `assets/`, `snippets/`, `for-humans/logos/` and `for-humans/fonts/` are fetched by URL. Add files. Never move, rename or delete one.
-3. **Generated files.** `for-humans/logos/` and `for-humans/previews/` are built by `scripts/build-handoff.py` from `for-humans/pack.json`. `index.html` is built by `guidelines/build.py` from the kit's data files and `guidelines/page.json`. Edit the source and rerun. Never edit the output by hand.
+1. **Shared files.** Eighteen files are identical byte for byte in the three kits. `scripts/check-sync.py` lists them and fails when one drifts. Edit a shared file in `collective-edge-brand-kit`, copy it to the other two, and run `python3 scripts/check-sync.py` in all three.
+2. **Live paths.** `brands.json`, `tokens.json`, `documents.json`, `SKILL.md`, `for-agents/README.md`, `reference/layout.md`, `reference/data-color.md` and everything under `assets/`, `snippets/`, `for-humans/logos/`, `for-humans/fonts/` and `for-humans/letterhead/` are fetched by URL. Add files. Never move, rename or delete one.
+3. **Generated files.** `for-humans/logos/` and `for-humans/previews/` are built by `scripts/build-handoff.py` from `for-humans/pack.json`. `for-humans/letterhead/` is built by `scripts/build-letterhead.py` from `documents.json`. `index.html` is built by `guidelines/build.py` from the kit's data files and `guidelines/page.json`. Edit the source and rerun. Never edit the output by hand.
 
 The rules, the sections and the wording are the same in all three kits. Only color, logo and brand facts differ. [`CONTRIBUTING.md`](CONTRIBUTING.md) covers the rest. Do not push to `main` until the checks pass.
 

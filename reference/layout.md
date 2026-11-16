@@ -1,6 +1,6 @@
 # Royal Ambulance · layout standard
 
-How to build a working document, a sheet, a deck, a one-pager, a report or a memo for Royal Ambulance. The rules are the same in the Collective Edge, Apex Paramedics and Royal Ambulance kits. Only the values in section 2 differ.
+How to build a working document, a sheet, a deck, a one-pager, a report, a memo or a letter for Royal Ambulance. The rules are the same in the Collective Edge, Apex Paramedics and Royal Ambulance kits. Only the values in section 2 differ.
 
 This file is written so a page can be built from it without seeing one. [`documents.json`](../documents.json) holds the same values as data, and the two agree exactly. Type steps come from [`snippets/type-tokens.json`](../snippets/type-tokens.json). Colors come from [`tokens.json`](../tokens.json).
 
@@ -36,13 +36,14 @@ Most requests change a file that already exists. These eight rules come before e
 |---|---|---|
 | sheet | Rows and columns people will sort, filter or fill in, in Google Sheets or Excel. Words: tracker, list, log, roster, budget, workbook, spreadsheet. | 14 |
 | deck | Anything presented on a screen, in Google Slides or PowerPoint. One slide and a graphic for a slide count. Words: deck, slides, slide, presentation, pitch. | 8 |
+| letter | Correspondence on the company letterhead, from a named sender to a named reader, in Google Docs, Word or PDF. Words: letter, letterhead, cover letter, offer letter, reference letter, letter of support. | 15 |
 | working-doc | The default. Anything in Google Docs or Word that people will keep editing. Words: agenda, meeting guide, prep packet, status report, plan, charter, brief, notes, job description, scorecard, policy draft, proposal draft. | 7 |
 | one-pager | A designed single page for an outside reader, delivered as a PDF. Words: one-pager, fact sheet, flyer, leave-behind, case study, handout. | 5 |
 | report | A designed document of three pages or more for an outside reader, delivered as a PDF. Words: report, proposal, review, analysis, white paper. | 6 |
 | memo | Only when the request asks for a memo by name. | 4 |
 
 - **Default.** A request that matches nothing is a working-doc. The earlier generic type is now working-doc.
-- **The band.** The band is for PDF, print and slides. A document that will live in Google Docs is a working-doc unless the person asks for a designed one-pager.
+- **The band.** The band is for PDF, print and slides. A document that will live in Google Docs is a working-doc, or a letter, unless the person asks for a designed one-pager.
 - **Wording budget.** It applies to every type. The first line states the decision, the ask or the status. In an agenda it states what the meeting is for. No paragraph restates the title. No closing summary. No sentence about the document itself. A sentence runs 20 words at most. Items that share the same fields go in a table. Parallel items go in bullets.
 
 ### Page setup
@@ -53,6 +54,7 @@ Most requests change a file that already exists. These eight rules come before e
 | one-pager | US Letter, 8.5 x 11in | portrait | 0.6in on all four sides | 7.3in wide | 5.96in, 70 characters | 1 | exactly 1 |
 | report | US Letter, 8.5 x 11in | portrait | 0.75in on all four sides | 7.0in wide | 5.96in, 70 characters | 1 | 3 or more |
 | working-doc | US Letter, 8.5 x 11in | portrait | 0.75in on all four sides | 7.0in wide | 7.0in, the text block | 1 | 1 for an agenda or a status report. Otherwise as short as the content allows |
+| letter | US Letter, 8.5 x 11in | portrait | 0.75in top, 1.0in bottom, 1.25in left and right | 6.0in wide | 6.0in, 70 characters | 1 | 1, 2 at most |
 | deck | 16:9, 13.333 x 7.5in | landscape | 0.67in top, 0.83in left and right, 0.42in bottom | 11.67in wide | 7.45in, 70 characters | 1 or 2 | any |
 
 Body text never runs wider than the body measure, even where the text block is wider. A working-doc is the exception: its body runs the full text block. A sheet has no page: section 14. Tables, callouts, the meta row and the footer span the full text block.
@@ -78,7 +80,9 @@ The values that belong to Royal Ambulance. Every other value in this file is sha
 | Working-doc logo | Role `horizontal-on-light`, 1.3in wide. Section 7 |
 | Working-doc and sheet table header | Fill `--bg-surface-2` #f0e1fd. Text `--fg-1` #23232A |
 | Working-doc footer line | `Royal Ambulance · Page N` |
-| Powered by Collective Edge lockup | Once on every PDF, deck and image, small. Never on a working-doc or a sheet. Section 3.12 |
+| Letter logo | Role `horizontal-on-light`, 1.6in wide. Section 15 |
+| Letter footer line | `14472 Wicks Blvd, San Leandro, CA 94577 · 877-995-6161 · royalambulance.com` |
+| Powered by Collective Edge lockup | Once on every PDF, deck and image, small. Never on a working-doc, a letter or a sheet. Section 3.12 |
 
 Shared by every brand: text `--fg-1` #23232A, secondary text `--fg-2` #565860, captions and footers `--fg-3` #6D6D77, hairline `--border-1` #E4E4E9, stronger rule `--border-2` #D0D0D6, page `--bg-canvas` #FFFFFF. On a dark ground: `--fg-on-dark-1` #FFFFFF, `--fg-on-dark-2` #DDDDE3, `--fg-on-dark-3` #A3A4AC, and the rule `--border-on-dark`, white at 12 percent, which is #483553 on #2f193b.
 
@@ -104,7 +108,7 @@ Every document is built from these parts. Sections 4 to 7 say which parts a type
 
 - The band title names the document kind or the topic: Memo, Coverage plan, Operations report.
 - The logo appears once in a document, in the band. Never repeat it in the body or the footer.
-- The band is for PDF, print and slides: the memo, the one-pager and the report. A working-doc has no band and carries its logo top left of page 1. Section 7.
+- The band is for PDF, print and slides: the memo, the one-pager and the report. A working-doc and a letter have no band and carry the logo top left of page 1. Section 7.
 - The body starts 18pt under the band.
 
 ### 3.2 To block
@@ -217,16 +221,16 @@ Memo only. 24pt under the last block. The sender name in body, 12pt, weight 600,
 | Text | caption, 9pt, `--fg-3` #6D6D77. One line |
 | Space above | At least 12pt between the last body block and the rule |
 
-Nothing sits under the footer. Nothing but the band crosses a margin. A working-doc footer is one left-aligned line with no rule. Section 7.
+Nothing sits under the footer. Nothing but the band crosses a margin. A working-doc footer is one left-aligned line with no rule. Section 7. A letter footer is the company line, with no page number. Section 15.
 
 ### 3.12 Powered by Collective Edge
 
-Every Royal Ambulance PDF, deck and image carries “Powered by Collective Edge” exactly once, small and quiet. A working-doc and a sheet never carry it.
+Every Royal Ambulance PDF, deck and image carries “Powered by Collective Edge” exactly once, small and quiet. A working-doc, a letter and a sheet never carry it.
 
 | | |
 |---|---|
 | Carries it | Everything delivered as a PDF, a deck or an image: memo, one-pager, report, proposal, deck, and a chart or data graphic made on its own |
-| Never carries it | A working-doc and a sheet, as a lockup or as words. The rule follows the type, not the file format: a working-doc exported to PDF stays as it is. A Collective Edge document. A clinical instruction. A patient-facing consent or safety document |
+| Never carries it | A working-doc, a letter and a sheet, as a lockup or as words. The rule follows the type, not the file format: a working-doc exported to PDF stays as it is. A Collective Edge document. A clinical instruction. A patient-facing consent or safety document |
 | Lockup | One line. The words, then the logo to their right, 6pt apart, centered on the line. No rule of its own |
 | Words | `Powered by`. caption, 9pt, weight 400, `--fg-3` #6D6D77. On the closing slide: body, 12pt, `--fg-on-dark-3` #A3A4AC |
 | Logo | The Collective Edge `horizontal-on-light` logo on white, `horizontal-on-dark` on a dark slide, at its minimum width: 1.25in (120px) wide, 0.208in (20px) tall. Never larger in a document. Never smaller anywhere |
@@ -595,7 +599,7 @@ One face, Montserrat. Four weights: 400, 600, 700, 800. No italic. Sizes come fr
 | caption | 9pt | 12px | 13.1pt | Caption, meta label, footer, the words Powered by | Not used |
 | eyebrow | 9pt | 12px | 13.1pt | Not used | Not used |
 
-- **Weights.** 400 for running text. 600 for subheads, table headers, labels and key points. 700 for headlines, section headings and emphasis. 800 for a slide headline on white only. Three weights at most in a document. A deck is the one piece that uses all four. A working-doc uses 400 and 700.
+- **Weights.** 400 for running text. 600 for subheads, table headers, labels and key points. 700 for headlines, section headings and emphasis. 800 for a slide headline on white only. Three weights at most in a document. A deck is the one piece that uses all four. A working-doc and a letter use 400 and 700.
 - **On a dark ground.** A step at 700 or 800 drops one weight: the band title is 600, a dark slide title is 700. Every step gains 0.005em of tracking. In Word and PowerPoint, skip that gain under 24pt.
 - **Tracking.** Band title 0.045em. Title slide title 0.025em. Document headline -0.012em. Slide headline -0.015em. Subhead -0.004em. No other slot is tracked. Section 11 gives each in points.
 - **Color.** Text is `--fg-1` #23232A. `--fg-accent` #572e72 is for subheads, slide headlines, action numbers and bullets. `--fg-3` #6D6D77 is the lightest text color.
@@ -775,6 +779,7 @@ The templates carry every rule as a class. Load `type-system.css`, then this kit
 | Footer | `.doc-footer` |
 | Lockup | `.ce-powered .ce-powered-light`, plus `.doc-lockup` in a report. `.ce-powered` alone on the closing slide. Each template sets the small document lockup over `cobrand.css` |
 | Working-doc | `.wdoc-logo`, `.wdoc-title`, `.wdoc-meta`, `.wdoc-h1`, `.wdoc-h2`, `.wdoc-p`, `.wdoc-list`, `.wdoc-li`, `.wdoc-table`, `.doc-status`, `.wdoc-footer`, `.wdoc-foot` |
+| Letter | `.letter-logo`, `.letter-line`, `.letter-date`, `.letter-to`, `.letter-subject`, `.letter-salutation`, `.letter-p`, `.letter-closing`, `.letter-sign-name`, `.letter-sign-title`, `.letter-footer`, `.letter-foot` |
 | Slide | `.slide`, plus `.slide-dark .bk-on-dark` on a dark slide |
 | Slide layouts | `.slide-title`, `.slide-divider`, `.slide-statement`, `.slide-text`, `.slide-two-column`, `.slide-chart-slide`, `.slide-table-slide`, `.slide-comparison`, `.slide-timeline`, `.slide-quote`, `.slide-summary`, `.slide-closing` |
 | Slide parts | `.slide-headline`, `.slide-body`, `.slide-cols`, `.slide-points`, `.slide-bullets`, `.slide-table`, `.slide-chart`, `.slide-steps`, `.slide-foot` |
@@ -782,6 +787,7 @@ The templates carry every rule as a class. Load `type-system.css`, then this kit
 | Template | Type |
 |---|---|
 | [`templates/working-doc.html`](../templates/working-doc.html) | working-doc |
+| [`templates/letter.html`](../templates/letter.html) | letter |
 | [`templates/memo.html`](../templates/memo.html) | memo |
 | [`templates/one-pager.html`](../templates/one-pager.html) | one-pager |
 | [`templates/document.html`](../templates/document.html) | report |
@@ -796,10 +802,10 @@ The templates carry every rule as a class. Load `type-system.css`, then this kit
 
 Each line can be measured. A document that fails one is not finished.
 
-Lines 7, 8, 9, 12 and 13 describe a memo, a one-pager and a report. For a working-doc or a sheet, check its own section instead, 7 or 14, and these seven things: no band, the logo once at top left, a light table header, the one-line footer, no Powered by Collective Edge, no exact line spacing, and no two tables without a paragraph between them. For an edited file, check that nothing changed but what was asked.
+Lines 7, 8, 9, 12 and 13 describe a memo, a one-pager and a report. For a working-doc or a sheet, check its own section instead, 7 or 14, and these seven things: no band, the logo once at top left, a light table header, the one-line footer, no Powered by Collective Edge, no exact line spacing, and no two tables without a paragraph between them. For a letter, check the Check line at the end of section 15. For an edited file, check that nothing changed but what was asked.
 
-1. **Page count.** A one-pager is exactly 1 page. A memo is 1 page, 2 at most. An agenda and a status report are 1 page. A deck has one message per slide.
-2. **Page size and margins.** Letter, portrait, 0.75in margins, or 0.6in on a one-pager. Slides are 13.333 x 7.5in.
+1. **Page count.** A one-pager is exactly 1 page. A memo is 1 page, 2 at most. A letter is 1 page, 2 at most. An agenda and a status report are 1 page. A deck has one message per slide.
+2. **Page size and margins.** Letter, portrait, 0.75in margins, or 0.6in on a one-pager. A letter is 0.75in top, 1.0in bottom and 1.25in left and right. Slides are 13.333 x 7.5in.
 3. **Nothing past the margins.** Only the band crosses a margin. No text box, table or picture ends outside the text block or the slide padding.
 4. **Fonts.** Every run is Montserrat, at 400, 600, 700 or 800. No italic. No fallback face in the file.
 5. **Sizes.** Every size is a step in section 9. Nothing in a document is under 9pt. Nothing on a slide is under 12pt. Slide body text is 15pt.
@@ -809,7 +815,7 @@ Lines 7, 8, 9, 12 and 13 describe a memo, a one-pager and a report. For a workin
 9. **Tables.** Header fill #2f193b, text #FFFFFF. Hairline under every row. No frame, no vertical rules, no zebra. Numbers right-aligned.
 10. **Color.** Status colors are the four alert colors and nothing else. Chart colors are the house data set. No brand color stands for a status.
 11. **Slides.** Content slides are white. Only title, divider and closing are #2f193b.
-12. **Lockup.** On a PDF, a deck or an image, Powered by Collective Edge appears exactly once, the logo 1.25in wide, in the place section 3.12 names. A working-doc and a sheet carry none.
+12. **Lockup.** On a PDF, a deck or an image, Powered by Collective Edge appears exactly once, the logo 1.25in wide, in the place section 3.12 names. A working-doc, a letter and a sheet carry none.
 13. **Footer.** On every page. Signature left, Page X of Y right, 9pt, the last line on the bottom margin.
 14. **Copy.** No em dash. Curly quotation marks. Headings in sentence case.
 
@@ -872,3 +878,48 @@ Use the default words when the request names no statuses.
 - A sheet that already has its own colors and layout keeps them.
 
 The build is in section 11, Google Sheets and Excel.
+
+---
+
+## 15. Letter
+
+The `letter` type. Correspondence on the company letterhead, from a named sender to a named reader: a letter, a cover letter, an offer letter, a reference letter, a letter of support. It is plain, like the working-doc, so it survives Google Docs, a printer and a scanner. The letterhead is two things: the logo at the top of page 1 and the company line in the footer.
+
+| | |
+|---|---|
+| Page | US Letter, 8.5 x 11in, portrait |
+| Margins | 0.75in top, 1.0in bottom, 1.25in left and right |
+| Text block | 6.0in wide, one column. Body text runs the full width, 70 characters |
+| Pages | 1. 2 at most |
+| Parts, top to bottom | logo, date, recipient, subject, salutation, body, closing, signature, footer |
+| Weights | 400 and 700 only. Bold off and bold on |
+| Never | Band, title, heading, table, callout box, card, tinted panel, icon, emoji, uppercase label, justified text, text box, floating image, section break, rule, page number |
+| Logo | Role `horizontal-on-light`, PNG, 1.6in wide. Once, top left of page 1, inline, as its own paragraph on line spacing 1.0, 36pt after. No logo on page 2 |
+| Footer | The document footer, on every page, 0.5in from the bottom edge. One left-aligned line: `14472 Wicks Blvd, San Leandro, CA 94577 · 877-995-6161 · royalambulance.com`. No page number, no rule, no logo, no table |
+| Lockup | None. A letter never carries “Powered by Collective Edge”, as words or as a lockup |
+| Template | [`templates/letter.html`](../templates/letter.html) |
+| Ready file | [`for-humans/letterhead/Royal-Ambulance-Letterhead.docx`](../for-humans/letterhead/Royal-Ambulance-Letterhead.docx). Opens in Word and Google Docs |
+
+Every slot is the named style `Normal`, on line spacing 1.35.
+
+| Slot | What it holds | Step | Print | Screen | Weight | Color | Space after | Limit |
+|---|---|---|---|---|---|---|---|---|
+| date | The date the letter is sent, as 16 November 2026 | body | 12pt | 16px | 400 | `--fg-1` #23232A | 24pt | 1 line |
+| recipient | Name, title, organization, street, then city, state and ZIP. One line each | body | 12pt | 16px | 400 | `--fg-1` #23232A | 0 between lines, 24pt after the last | 6 lines, 44 characters each |
+| subject | Optional. `Re:` and the subject | body | 12pt | 16px | 700 | `--fg-1` #23232A | 12pt | 60 characters, 1 line |
+| salutation | `Dear` and the name, then a comma | body | 12pt | 16px | 400 | `--fg-1` #23232A | 12pt | 1 line |
+| body | Running text. Flush left, never justified | body | 12pt | 16px | 400 | `--fg-1` #23232A | 12pt | 400 characters and 3 paragraphs on one page |
+| closing | `Sincerely,` | body | 12pt | 16px | 400 | `--fg-1` #23232A | 48pt, the room for a signature | 1 line |
+| sign-name | Sender name | body | 12pt | 16px | 700 | `--fg-1` #23232A | 0 | 40 characters |
+| sign-title | Sender title. A second line for one direct phone or email, if needed | body-sm | 10.5pt | 14px | 400 | `--fg-3` #6D6D77 | 0 | 48 characters, 2 lines |
+| footer | The footer line | caption | 9pt | 12px | 400 | `--fg-3` #6D6D77 | 0 | 1 line, 84 characters |
+
+- **The footer line is a company fact.** Use it exactly as written above. Never add, drop or reword an address, a phone number or a web address. It is `brandFacts.royal.letterFooter` in [`documents.json`](../documents.json).
+- **No band, no title, no heading.** The subject line, if there is one, is the only bold line above the signature.
+- **Body size.** 12pt in a letter. The 10.5pt body belongs to the working-doc.
+- **First paragraph.** It states why the letter is written. The wording budget of section 1 applies.
+- **Signature.** No company name under it: the letterhead says it. An enclosure or a copy is one more 10.5pt line each, 12pt under the signature: `Enclosure:` or `cc:` and the item, in `--fg-3` #6D6D77.
+- **Second page.** The same margins and footer, and no logo. Past two pages, write a report and send it under a one-page letter.
+- **Start from the ready file.** Open `Royal-Ambulance-Letterhead.docx`, replace the bracketed text and change nothing else. Delete the subject line if the letter has none. In python-docx, set the text of the run, never of the paragraph: `paragraph.runs[0].text`.
+- **Build, python-docx.** One section. Margins `Inches(0.75)` top, `Inches(1.0)` bottom, `Inches(1.25)` left and right. Footer distance `Inches(0.5)`. `Normal`: Montserrat 12pt, #23232A, `line_spacing = 1.35` with the rule `MULTIPLE`, 12pt after. Name `Montserrat` in `w:ascii`, `w:hAnsi`, `w:eastAsia` and `w:cs` and remove every theme font attribute. The logo is the first paragraph: `run.add_picture(path, width=Inches(1.6))`, line spacing 1.0, 36pt after. The closing and the sender name keep with next. Set the space after on each paragraph where the table says otherwise. The footer is `section.footer.paragraphs[0]`, left-aligned, 9pt, #6D6D77, the text only: no `PAGE` field, no table, no tab stop, no border. No header, text box, floating image, section break, column, tab stop or exact line spacing. `scripts/build-letterhead.py` is this build.
+- **Check.** Nine things. No band. The logo once, top left of page 1, 1.6in wide. Margins 1.25in left and right. Every run Montserrat at 400 or 700. Body 12pt. The footer line exact, on every page. No page number. No “Powered by Collective Edge”. No exact line spacing.

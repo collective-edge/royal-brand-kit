@@ -4,8 +4,8 @@ This repository is public and live. `main` is what readers see, what the CDN ser
 
 ## Three rules
 
-1. **Add files. Do not move or rename one.** Paths under `assets/`, `snippets/`, `for-humans/logos/` and `for-humans/fonts/` are public URLs. So are `brands.json`, `documents.json`, `tokens.json`, `SKILL.md`, `for-agents/README.md`, `reference/layout.md` and `reference/data-color.md`, which the agent fetches by path.
-2. **Shared files change in all three kits or not at all.** Seventeen files are byte for byte identical across `collective-edge-brand-kit`, `apex-brand-kit` and `royal-brand-kit`. `scripts/check-sync.py` fails when one drifts.
+1. **Add files. Do not move or rename one.** Paths under `assets/`, `snippets/`, `for-humans/logos/`, `for-humans/fonts/` and `for-humans/letterhead/` are public URLs. So are `brands.json`, `documents.json`, `tokens.json`, `SKILL.md`, `for-agents/README.md`, `reference/layout.md` and `reference/data-color.md`, which the agent fetches by path.
+2. **Shared files change in all three kits or not at all.** Eighteen files are byte for byte identical across `collective-edge-brand-kit`, `apex-brand-kit` and `royal-brand-kit`. `scripts/check-sync.py` fails when one drifts.
 3. **Nothing reaches `main` until the checks pass.** `main` is the branch the CDN serves.
 
 ## The shared files
@@ -28,6 +28,7 @@ scripts/validate.py
 scripts/validate-palette.py
 scripts/check-sync.py
 scripts/ui-audit.py
+scripts/build-letterhead.py
 ```
 
 Edit a shared file in the Collective Edge kit, copy it into the other two, then run `check-sync.py` in all three.
@@ -78,6 +79,16 @@ python3 scripts/build-handoff.py --only swatches
 ```
 
 It reads `for-humans/pack.json`. Edit the list, rerun, commit the output. `--only` takes `logos`, `swatches`, `data` or `fonts`. It needs Chrome or Chromium and Pillow. The prose in `for-humans/README.md` is written by hand and follows the same outline in all three kits.
+
+## Rebuild the letterhead
+
+The Word file in `for-humans/letterhead/` is built, not hand-edited.
+
+```bash
+python3 scripts/build-letterhead.py
+```
+
+It reads `types.letter` and `brandFacts` in `documents.json` and writes the file named in `letterFile`. It needs python-docx. Run it after any change to the letter type, the logo or the footer line.
 
 ## Publish
 
