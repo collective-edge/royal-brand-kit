@@ -58,7 +58,7 @@ Ask for a role, never a filename. Filenames differ between brands. `-on-light` i
 
 - A full URL is the base plus the path: `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/for-humans/logos/png/Royal-Ambulance-horizontal-white-1200w.png`. Each PNG also ships at double width: replace `1200w` with `2400w`, or `512w` with `1024w`.
 - `compact-on-light`, `compact-on-dark` and `app-icon` do not exist for this brand. Use `horizontal-on-light` or `horizontal-on-dark`.
-- The logo appears once in a document and at most once on a slide. A memo, a one-pager and a report carry it in the band. A working-doc carries it top left of page 1. A sheet carries none. Never recolor, invert, stretch, rotate, outline or shadow a logo.
+- The logo appears once in a document and at most once on a slide. A memo, a one-pager and a report carry it in the band. A working-doc and a letter carry it top left of page 1. A sheet carries none. Never recolor, invert, stretch, rotate, outline or shadow a logo.
 
 ## 4. Color
 
@@ -127,12 +127,13 @@ Most requests change a file that already exists. These eight rules come before e
 |---|---|
 | sheet | Rows and columns people will sort, filter or fill in. Tracker, list, log, roster, budget, workbook. Google Sheets or Excel |
 | deck | Anything presented on a screen, in Google Slides or PowerPoint. One slide and a graphic for a slide count |
+| letter | Correspondence on the company letterhead, from a named sender to a named reader. Letter, letterhead, cover letter, offer letter, reference letter, letter of support. In Google Docs, Word or PDF |
 | working-doc | The default. Anything in Google Docs or Word that people will keep editing. Agenda, meeting guide, prep packet, status report, plan, charter, brief, notes, job description, scorecard, policy draft, proposal draft |
 | one-pager | A designed single page for an outside reader, delivered as a PDF. Fact sheet, flyer, leave-behind, case study |
 | report | A designed document of three pages or more for an outside reader, delivered as a PDF. Proposal, review, analysis |
 | memo | Only when the request asks for a memo by name |
 
-The band is for PDF, print and slides. A document that will live in Google Docs is a working-doc unless the person asks for a designed one-pager. The earlier `generic` type is now working-doc.
+The band is for PDF, print and slides. A document that will live in Google Docs is a working-doc, or a letter, unless the person asks for a designed one-pager. The earlier `generic` type is now working-doc.
 
 **Wording budget.** It applies to every type. The first line states the decision, the ask or the status. In an agenda it states what the meeting is for. No paragraph restates the title. No closing summary. No sentence about the document itself. A sentence runs 20 words at most. Items that share the same fields go in a table. Parallel items go in bullets. An agenda and a status report fit 1 page. Every other working-doc is as short as the content allows.
 
@@ -154,6 +155,26 @@ Plain on purpose, so it survives Google Docs untouched. US Letter, portrait, 0.7
 | Patterns | Agenda: a 3-column table of Time or minutes, Topic, Owner. Or a numbered list with the owner and the minutes at the end of each line. Never both. Status report: one line of overall status, then a table of Item, Owner, Due, Status, then bullets under the heading Needs a decision, if any |
 | Footer | The document footer, on every page. One left-aligned line, 9pt, 400, #6D6D77: `Royal Ambulance · Page N`, where N is the page number field. No rule, no logo, no table. No “Powered by Collective Edge”, as words or as a lockup |
 | Build, python-docx | Set `Title`, `Heading 1`, `Heading 2` and `Normal` to the values above and use them. Line spacing is a float multiple: `paragraph_format.line_spacing = 1.35`, rule `WD_LINE_SPACING.MULTIPLE`. Never `EXACTLY`, never a point value. Name `Montserrat` on every style and every run, in `w:ascii`, `w:hAnsi`, `w:eastAsia` and `w:cs`. 700 is bold on. Do not name `Montserrat SemiBold`. Logo inline with `add_picture`. Footer: one plain paragraph with a `PAGE` field. No text boxes, floating images, section breaks, columns or tab stops |
+
+### Letter
+
+Correspondence on the company letterhead. Plain, like the working-doc, so it survives Google Docs, a printer and a scanner. US Letter, portrait, margins 0.75in top, 1.0in bottom and 1.25in left and right, text block 6.0in, 70 characters. Montserrat at 400 and 700 only. 1 page, 2 at most. No band, title, heading, table, rule or page number. Every line is named style `Normal`, 12pt, `--fg-1` #23232A, line spacing 1.35.
+
+**Start from the ready file:** `https://raw.githubusercontent.com/collective-edge/royal-brand-kit/main/for-humans/letterhead/Royal-Ambulance-Letterhead.docx`. Fetch it from that host: jsDelivr does not serve Word files. Open it with python-docx and change nothing but the text. Each bracketed line is one paragraph holding one run: set `paragraph.runs[0].text`, never `paragraph.text`, which drops the bold, the size and the font. To add a body paragraph, copy the last one: `new = copy.deepcopy(p._p); p._p.addnext(new)`. To drop the subject line or an unused recipient line: `p._p.getparent().remove(p._p)`. The last recipient line keeps its 24pt after. For a Google Doc, upload the finished file with conversion.
+
+| Part | Specification |
+|---|---|
+| Logo | Role `horizontal-on-light`, PNG, 1.6in wide. Once, top left of page 1, inline, as its own paragraph on line spacing 1.0, 36pt after. No logo on page 2 |
+| Date | As `16 November 2026`. 24pt after |
+| Recipient | Name, title, organization, street, then city, state and ZIP. One line each, 44 characters, 6 at most. A sixth line is a second street line. 0 between lines, 24pt after the last |
+| Subject | Optional. `Re:` and the subject, 700, one line, 60 characters. 12pt after. The only bold line above the signature |
+| Salutation | `Dear` and the name, then a comma. 12pt after |
+| Body | 12pt, 400, flush left. 12pt after a paragraph. The first paragraph states why the letter is written. One page holds 3 paragraphs and 400 characters in all, with a 5-line recipient and a subject line. A longer letter runs to a second page |
+| Closing | `Sincerely,` then 48pt after, the room for a signature |
+| Signature | The sender name, 12pt, 700, 40 characters. Under it the title, 10.5pt, 400, `--fg-3` #6D6D77, 48 characters. A second 10.5pt line for one direct phone or email, if needed. No company name under it: the letterhead says it. An enclosure or a copy is one more 10.5pt line each, 12pt under the signature: `Enclosure:` or `cc:` and the item |
+| Footer | The document footer, on every page. One left-aligned line, 9pt, 400, #6D6D77: `14472 Wicks Blvd, San Leandro, CA 94577 · 877-995-6161 · royalambulance.com`. Use it exactly. Never add, drop or reword an address, a phone number or a web address. No page number, no rule, no logo, no table. No “Powered by Collective Edge”, as words or as a lockup |
+| Second page | The same margins and footer, no logo. Past two pages, write a report and send it under a one-page letter |
+| Build, python-docx | One section, margins as above. `Normal`: `Montserrat` 12pt in `w:ascii`, `w:hAnsi`, `w:eastAsia` and `w:cs`, `line_spacing = 1.35` with the rule `MULTIPLE`, 12pt after. Logo inline with `add_picture`, its paragraph on line spacing 1.0. Footer: `section.footer.paragraphs[0]`, style `Normal`, the text only, no `PAGE` field, footer distance `Inches(0.5)`. The closing and the sender name keep with next. No header, text box, floating image, section break, column, tab stop or exact line spacing |
 
 ### Sheet
 
@@ -215,7 +236,7 @@ Designed documents for an outside reader, delivered as a PDF. Each opens on the 
 | Actions, memo | Numbered rows, 5.96in wide. Number in a 0.33in column, 12pt, 600, #572e72. Text 12pt, #23232A, 90 characters. A 0.75pt #E4E4E9 rule above every row and under the last. 6pt above and under the text |
 | Sign-off, memo | 24pt under the last block. Name 12pt, 600, #23232A. Under it the contact, 10.5pt, #6D6D77 |
 | Footer | Every page. The last line sits on the bottom margin. A 0.75pt #E4E4E9 rule, the width of the text block, 9pt above the text. Left, the signature: `Royal Ambulance · Internal` when every reader is staff. Otherwise the document title after the dot, 40 characters at most. Right: `Page X of Y`. 9pt, #6D6D77, one line. At least 12pt between the last block and the rule |
-| Powered by Collective Edge | Apex Paramedics and Royal Ambulance carry it once, small, on everything delivered as a PDF, a deck or an image. Never on a working-doc or a sheet, even when one is exported to PDF. Never on a Collective Edge document, a clinical instruction, or a patient-facing consent or safety document. **The lockup** is one line: the words `Powered by`, 9pt, 400, #6D6D77, then 6pt to the right the Collective Edge logo, 1.25in wide and never larger: `https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/for-humans/logos/png/Collective-Edge-horizontal-black-1200w.png`. **Where:** memo and one-pager, at the left of the page 1 footer row, with the footer text and page number at the right. Report, the last line of the body, under a 0.75pt #E4E4E9 rule. Deck, the footer row of the closing slide, with the words at 12pt #A3A4AC and the file `Collective-Edge-horizontal-white-1200w.png`. A chart or data graphic made on its own, the words only, no logo |
+| Powered by Collective Edge | Apex Paramedics and Royal Ambulance carry it once, small, on everything delivered as a PDF, a deck or an image. Never on a working-doc, a letter or a sheet, even when one is exported to PDF. Never on a Collective Edge document, a clinical instruction, or a patient-facing consent or safety document. **The lockup** is one line: the words `Powered by`, 9pt, 400, #6D6D77, then 6pt to the right the Collective Edge logo, 1.25in wide and never larger: `https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/for-humans/logos/png/Collective-Edge-horizontal-black-1200w.png`. **Where:** memo and one-pager, at the left of the page 1 footer row, with the footer text and page number at the right. Report, the last line of the body, under a 0.75pt #E4E4E9 rule. Deck, the footer row of the closing slide, with the words at 12pt #A3A4AC and the file `Collective-Edge-horizontal-white-1200w.png`. A chart or data graphic made on its own, the words only, no logo |
 
 - **Budgets.** Memo on one page, no table: 4 paragraphs of 520 characters in all, plus 3 actions. Memo on one page with a table of 4 rows by 4 columns at most: 1 paragraph of 130 characters, the table, plus 3 actions. Actions never count as paragraphs. One-pager: 1 paragraph of 210 characters, 1 table of 4 rows by 5 columns, 6 rows when there is no callout, 1 callout of 140 characters. A chart replaces the table, 2.2in tall at most. Text slide: 5 bullets of 80 characters. Two-column slide: 3 key points of 60 characters. Summary slide: 4 takeaways of 70 characters.
 - **Tracking and capitals.** In Word and PowerPoint, tracking in points is em times the size: band title 1.08pt, title slide title 1.35pt, document headline -0.36pt, slide headline -0.63pt, subhead -0.07pt. Set no other tracking. Type the capitals. Do not use the all-caps attribute. The attributes are in `reference/layout.md` section 11.
@@ -240,26 +261,26 @@ The full standard, with the Word, PowerPoint, Google and spreadsheet mapping in 
 1. Light Purple #8260a2 is never text and never a large background.
 2. White text sits on #2f193b, #572e72 or #43205b only. The band has no rule under it.
 3. Never separate the crown from the wordmark in the horizontal or stacked lockup. The logo fill is #43205b or white, and nothing else.
-4. “Powered by Collective Edge” appears exactly once on every Royal Ambulance PDF, deck and image, small, in the footer row. Never twice. Never on a working-doc or a sheet. Never inside or touching the Royal Ambulance logo.
+4. “Powered by Collective Edge” appears exactly once on every Royal Ambulance PDF, deck and image, small, in the footer row. Never twice. Never on a working-doc, a letter or a sheet. Never inside or touching the Royal Ambulance logo.
 5. Partner facility colors are gated. Without [`reference/partner-colors.md`](../reference/partner-colors.md) in hand, use the house series order. Never sample a color from a logo.
-6. White is the page. The band opens page 1 of a memo, a one-pager and a report, and is never the reading surface. A working-doc and a sheet have no band. Content slides are white. Only the title, divider and closing slides are dark.
+6. White is the page. The band opens page 1 of a memo, a one-pager and a report, and is never the reading surface. A working-doc, a letter and a sheet have no band. Content slides are white. Only the title, divider and closing slides are dark.
 7. Green means good and nothing else. A brand color is never a status color. Status takes the alert family, with a word.
 8. Chart colors come from the house data set, in series order. A brand color is never a chart series. Every color is an exact hex from this page or `tokens.json`. Never invent one and never tint one.
-9. Montserrat only, at 400, 600, 700 and 800. Three weights at most in a document. A deck is the one piece that uses all four. A working-doc uses 400 and 700. No italic. Set the font on every style and every run.
+9. Montserrat only, at 400, 600, 700 and 800. Three weights at most in a document. A deck is the one piece that uses all four. A working-doc and a letter use 400 and 700. No italic. Set the font on every style and every run.
 10. Every size is a step on the scale: 9, 10.5, 12, 15, 18, 24, 30, 42, 54pt. Nothing in a document is under 9pt. Nothing on a slide is under 12pt. Slide body is 15pt. A sheet is 10pt, the one size outside the scale.
 11. Never narrow a margin. Never switch on auto-fit or shrink-on-overflow. Never tighten leading or tracking to make text fit.
 12. Uppercase is for the band title and the title slide title only. Four words at most. Every heading is sentence case.
-13. The logo appears once in a document, in the band or top left of a working-doc, and at most once on a slide, in the role for its ground. Never rebuild a logo or the lockup as type. The words “Powered by Collective Edge” stand alone as type only on a chart or data graphic.
+13. The logo appears once in a document, in the band or top left of a working-doc or a letter, and at most once on a slide, in the role for its ground. Never rebuild a logo or the lockup as type. The words “Powered by Collective Edge” stand alone as type only on a chart or data graphic.
 14. No em dashes in copy. Use a period, a comma or `·`. No row of large stat numerals, no stat card or big-number panel on a page or slide, no label above a heading, no rule under a heading, no sub-banner under the band.
 
 ## 7. Check before you deliver
 
 Measure the finished file, not the code that made it. A file that fails one line is not finished.
 
-Lines 5, 6, 7, 10 and 11 describe a memo, a one-pager and a report. For a working-doc or a sheet, check its table in section 5 instead, and these seven things: no band, the logo once at top left, a light table header, the one-line footer, no “Powered by Collective Edge”, no exact line spacing, and no two tables without a paragraph between them. For an edited file, check that nothing changed but what was asked.
+Lines 5, 6, 7, 10 and 11 describe a memo, a one-pager and a report. For a working-doc or a sheet, check its table in section 5 instead, and these seven things: no band, the logo once at top left, a light table header, the one-line footer, no “Powered by Collective Edge”, no exact line spacing, and no two tables without a paragraph between them. For a letter, check its table in section 5 instead, and these nine things: no band, the logo once at top left at its stated width, 1.25in left and right margins, every run Montserrat at 400 or 700, 12pt body, the exact footer line on every page, no page number, no “Powered by Collective Edge”, and no exact line spacing. For an edited file, check that nothing changed but what was asked.
 
-1. **Page count.** A one-pager is exactly 1 page. A memo is 1 page, 2 at most. An agenda and a status report are 1 page.
-2. **Page size and margins.** Letter, portrait, 0.75in margins, or 0.6in on a one-pager. Slides are 13.333 x 7.5in.
+1. **Page count.** A one-pager is exactly 1 page. A memo is 1 page, 2 at most. A letter is 1 page, 2 at most. An agenda and a status report are 1 page.
+2. **Page size and margins.** Letter, portrait, 0.75in margins, or 0.6in on a one-pager. A letter is 0.75in top, 1.0in bottom and 1.25in left and right. Slides are 13.333 x 7.5in.
 3. **Nothing past the margin.** Only the band crosses a margin. No text box, table or picture ends outside the text block or the slide padding.
 4. **Fonts present.** Every run names Montserrat, Montserrat SemiBold or Montserrat ExtraBold. No italic. No fallback face in the file. Every size is a step in rule 10. No box has auto-fit switched on.
 5. **Band.** On page 1 only, 1.11in tall. Fill #2f193b. No rule. Title on one line.
@@ -267,7 +288,7 @@ Lines 5, 6, 7, 10 and 11 describe a memo, a one-pager and a report. For a workin
 7. **Tables.** Header fill #2f193b, text #FFFFFF, no rule. A hairline under every row. No frame, no vertical rules, no zebra.
 8. **Slides.** Body text is 15pt. Content slides are #FFFFFF. Only title, divider and closing are #2f193b.
 9. **Color.** Status colors are alert steps and nothing else. Chart colors are the house series, in order.
-10. **Lockup.** On a PDF, a deck or an image, “Powered by Collective Edge” appears exactly once, the logo 1.25in wide, in the place section 5 names. A working-doc and a sheet carry none.
+10. **Lockup.** On a PDF, a deck or an image, “Powered by Collective Edge” appears exactly once, the logo 1.25in wide, in the place section 5 names. A working-doc, a letter and a sheet carry none.
 11. **Footer.** On every page. `Page X of Y` at right, 9pt, the last line on the bottom margin.
 
 For HTML output, also run `python3 scripts/validate.py FILE.html` and `python3 scripts/ui-audit.py FILE.html`. For a chart palette, run `python3 scripts/validate-palette.py --series`. `validate.py` exits non-zero on a violation. No script sees overlap, clipping or a fallback font.
@@ -283,7 +304,7 @@ If you could not render the file, say so. When you hand the work back, state the
 | A chart, dashboard or scorecard | [`reference/data-color.md`](../reference/data-color.md) |
 | A type, color, contrast, logo or voice question | [`reference/type-system.md`](../reference/type-system.md) and [`reference/brand.md`](../reference/brand.md) |
 | Buttons, inputs, product UI | [`reference/ui.md`](../reference/ui.md) |
-| An HTML page | [`templates/`](../templates/): `working-doc.html`, `deck.html`, `one-pager.html`, `document.html`, `memo.html`. [`Examples/royal-one-pager.html`](../Examples/royal-one-pager.html) is a filled reference. `Examples/HPSM_Ordering_Workflow_Manager.html` predates this standard. It carries no lockup and its own layout. Do not copy it. |
+| An HTML page | [`templates/`](../templates/): `working-doc.html`, `letter.html`, `deck.html`, `one-pager.html`, `document.html`, `memo.html`. [`Examples/royal-one-pager.html`](../Examples/royal-one-pager.html) is a filled reference. `Examples/HPSM_Ordering_Workflow_Manager.html` predates this standard. It carries no lockup and its own layout. Do not copy it. |
 | The Collective Edge mark on a Royal surface | [`reference/brand.md`](../reference/brand.md) section 3. Files, in the Collective Edge kit: `https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/mark-black-royal.svg` and `mark-white-royal.svg` |
 | A partner facility color | [`reference/partner-colors.md`](../reference/partner-colors.md) |
 | A photograph | [`for-humans/photos/`](../for-humans/photos/). Use it unfiltered |

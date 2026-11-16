@@ -4,7 +4,7 @@ Everything needed to put the Royal Ambulance brand on something. No install, no 
 
 If you only read one line: use the SVG files, set type in Montserrat, the band is Dark Purple `#2f193b` and the accent is Purple `#572e72`.
 
-Every Royal Ambulance PDF, deck and image carries **Powered by Collective Edge** once, small. A working document or a sheet never carries it. Read [Powered by Collective Edge](#powered-by-collective-edge).
+Every Royal Ambulance PDF, deck and image carries **Powered by Collective Edge** once, small. A working document, a letter or a sheet never carries it. Read [Powered by Collective Edge](#powered-by-collective-edge).
 
 If you are building anything with a **chart, a table of numbers or a dashboard**, read [Color for data](#color-for-data) below as well. Chart colors are a separate set. A brand color is never a chart color.
 
@@ -74,7 +74,7 @@ If the clear space is short, shrink the logo. Do not crop the space.
 
 ## Powered by Collective Edge
 
-Royal Ambulance is an operating company under Collective Edge, and the reader should be able to see it. The phrase **Powered by Collective Edge** appears once on everything Royal Ambulance delivers as a PDF, a deck or an image: a one-pager, a report, a memo, a proposal, a deck. A working document, the kind people keep editing in Google Docs or Word, never carries it. Neither does a sheet. That holds even when a working document is later saved as a PDF.
+Royal Ambulance is an operating company under Collective Edge, and the reader should be able to see it. The phrase **Powered by Collective Edge** appears once on everything Royal Ambulance delivers as a PDF, a deck or an image: a one-pager, a report, a memo, a proposal, a deck. A working document, the kind people keep editing in Google Docs or Word, never carries it. Neither does a letter or a sheet. That holds even when a working document is later saved as a PDF.
 
 On a site or a dashboard it is a lockup: the words POWERED BY above the Collective Edge logo, under a thin rule. In a PDF, a deck or an image it is smaller and quieter: the words Powered by, then the Collective Edge logo on the same line, 1.25 inches wide. It sits beside the operating company's logo and never inside it.
 
@@ -88,7 +88,7 @@ On a site or a dashboard it is a lockup: the words POWERED BY above the Collecti
 | Logo width | 204 px on a site or a dashboard. 1.25 inches, which is 120 px, in a PDF, a deck or an image. Never below 120 px |
 | Gap between the words and the logo | 12 px on a site, the logo under the words. 6pt in a document, the logo beside the words |
 | The rule above it | 1px. `#E4E4E9` on white. White at 12 percent opacity on a dark band. 24 px, 0.25 in, of space above the rule and below it. On a site only. In a document the footer rule does this job |
-| How often | Once per PDF, deck or image. Never on a working document or a sheet |
+| How often | Once per PDF, deck or image. Never on a working document, a letter or a sheet |
 
 Where it goes:
 
@@ -108,7 +108,7 @@ Do not:
 - Type the phrase as plain text where the logo fits.
 - Shrink it to the 120 px minimum on a site or a dashboard. 204 px is the size there.
 - Set it larger than 1.25 inches in a PDF, a deck or an image.
-- Put it on a working document or a sheet, as a logo or as words.
+- Put it on a working document, a letter or a sheet, as a logo or as words.
 - Put it on a clinical instruction, or on a patient-facing consent or safety document. Those carry the operating company's logo alone.
 
 ### Whose page it is
@@ -341,16 +341,17 @@ The same in every brand. Only the colors and the logo change.
 |---|---|
 | Page | US Letter, 8.5 × 11 in |
 | Working document | The default for anything people keep editing in Google Docs or Word. The logo at top left, a title, plain headings, 10.5pt text, a one-line footer. No header band |
+| Letterhead | For a letter. The logo at top left, 12pt text, margins 0.75 in top, 1 in bottom and 1.25 in left and right, the company line in the footer. Start from [`Royal-Ambulance-Letterhead.docx`](letterhead/Royal-Ambulance-Letterhead.docx): it opens in Word and Google Docs |
 | Sheet | One table per tab, starting at A1. Montserrat 10pt. A frozen header row with a light fill |
 | Margins, working document, memo and report | 0.75 in on all four sides |
 | Margins, one-pager | 0.6 in on all four sides |
 | Page color | White `#FFFFFF`. Body text `#23232A` |
-| Logo | Once per document: in the header band of a one-pager, a report or a memo, at top left of a working document. Once per slide at most |
+| Logo | Once per document: in the header band of a one-pager, a report or a memo, at top left of a working document or a letter. Once per slide at most |
 | Slide | 16:9, 13.333 × 7.5 in |
 | Slide body text | 15pt |
 | Content slides | White `#FFFFFF` |
 | Title, divider and closing slides | The dark band, Dark Purple `#2f193b` |
-| Powered by Collective Edge | Once per PDF, deck or image, small. Never on a working document or a sheet. See [Powered by Collective Edge](#powered-by-collective-edge) |
+| Powered by Collective Edge | Once per PDF, deck or image, small. Never on a working document, a letter or a sheet. See [Powered by Collective Edge](#powered-by-collective-edge) |
 
 ## Writing, if you are setting copy
 
@@ -404,6 +405,7 @@ for-humans/
 ├── logos/png/                         Raster, transparent background
 ├── previews/                          The images shown above
 ├── photos/                            Twenty photographs for handbooks and culture pieces, with manifest.csv
+├── letterhead/                        The letterhead, as a Word file. Opens in Google Docs
 ├── fonts/                             The brand typeface, variable file
 │   └── static/                        Regular, SemiBold, Bold, ExtraBold as single files
 └── pack.json                          The list this folder is built from. Ignore it

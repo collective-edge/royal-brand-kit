@@ -20,7 +20,7 @@ Every kit has the same file set. A reader who knows one kit knows all of them.
 | `for-agents/README.md` | Brand facts only | The shortest correct path for an agent |
 | `for-humans/` | Yes | Logos as SVG and PNG, static fonts, previews. Built from `for-humans/pack.json` |
 | `reference/brand.md` | Brand facts only | Full color tables, contrast, logo specifications, co-brand, voice |
-| `reference/layout.md` | Brand facts only | The working document, the sheet, the deck, the one-pager, the report and the memo |
+| `reference/layout.md` | Brand facts only | The working document, the sheet, the deck, the one-pager, the report, the memo and the letter |
 | `reference/type-system.md` | No | The type standard |
 | `reference/data-color.md` | No | Chart color |
 | `reference/ui.md` | No | Buttons, links and form controls |
@@ -32,6 +32,7 @@ Every kit has the same file set. A reader who knows one kit knows all of them.
 | `snippets/header-band.html`, `templates/` | Yes | The band and the document templates, with this brand’s root and logo |
 | `Examples/ui-controls.html`, `Examples/data-color.html` | No | Every control and every data color, rendered |
 | `scripts/validate.py`, `scripts/validate-palette.py`, `scripts/check-sync.py`, `scripts/ui-audit.py` | No | The checks |
+| `scripts/build-letterhead.py` | No | Builds the Word letterhead in `for-humans/letterhead/` from `documents.json` |
 | `scripts/build-handoff.py` | Yes | Renders `for-humans/` from `pack.json` |
 | `assets/logos/` | Yes | The marks, as SVG |
 
@@ -51,7 +52,7 @@ gh repo create collective-edge/<brand>-brand-kit --public
 
 ### 2. Copy the shared files, unchanged
 
-Seventeen files, byte for byte, from the Collective Edge kit. Do not edit any of them.
+Eighteen files, byte for byte, from the Collective Edge kit. Do not edit any of them.
 
 ```
 reference/type-system.md
@@ -71,6 +72,7 @@ scripts/validate.py
 scripts/validate-palette.py
 scripts/check-sync.py
 scripts/ui-audit.py
+scripts/build-letterhead.py
 ```
 
 `scripts/check-sync.py` holds this list as `SHARED_FILES` and fails when one drifts.
@@ -171,7 +173,7 @@ prefix  hasColor  color  colorNote  logos  minWidth
 
 Add the new kit’s folder name to `SISTER_KITS` in `scripts/check-sync.py`, and copy that file to every kit too.
 
-Every operating company carries “Powered by Collective Edge” once, small, on every PDF, deck and image, and never on a working document or a sheet. The Edge wedge takes its color. So also:
+Every operating company carries “Powered by Collective Edge” once, small, on every PDF, deck and image, and never on a working document, a letter or a sheet. The Edge wedge takes its color. So also:
 
 1. Add `wedgeHue` to the brand’s entry.
 2. Draw the two co-brand marks in the Collective Edge kit: `assets/logos/mark-black-<brand>.svg` and `assets/logos/mark-white-<brand>.svg`.
@@ -193,6 +195,8 @@ CONTRIBUTING.md
 snippets/header-band.html
 templates/
 ```
+
+Add the brand to `brandFacts` in `documents.json`, in every kit: the logo widths, the working-doc footer and the letter facts. `letterFooter` is the company line on the letterhead: the street address, the office phone and the web address, as the company’s own site states them. Then build the Word letterhead with `python3 scripts/build-letterhead.py`.
 
 Keep every heading, the order, the numbering and every shared sentence. Change only the brand rows and the brand facts: names, hex values, logo files, minimum sizes, the clear-space unit and the voice. Then diff each file against the kit you copied from. Every differing line must be a brand fact.
 
@@ -234,7 +238,7 @@ Changing any of these forks the house.
 
 - The typeface, the scale, the weight ladder, tracking, leading and measure.
 - The fifteen rules in `reference/type-system.md`.
-- The layout of the working document, the sheet, the deck, the one-pager, the report and the memo: margins, sizes and what goes where.
+- The layout of the working document, the sheet, the deck, the one-pager, the report, the memo and the letter: margins, sizes and what goes where.
 - The neutral family, the alert family and the diagram roles.
 - The chart colors. The sequential ramp is the one value that follows the brand.
 - The `--fg-*`, `--bg-*` and `--border-*` names, and the six grounds.

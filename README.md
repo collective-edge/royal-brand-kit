@@ -64,7 +64,7 @@ Every rule: [`reference/type-system.md`](reference/type-system.md). Every value:
 
 ### Documents
 
-Six types. Most requests change a file that already exists: keep its layout, styles and wording, and change only what was asked.
+Seven types. Most requests change a file that already exists: keep its layout, styles and wording, and change only what was asked.
 
 | Type | For | Page | Body | Template |
 |---|---|---|---|---|
@@ -74,8 +74,9 @@ Six types. Most requests change a file that already exists: keep its layout, sty
 | One-pager | A designed single page for an outside reader, as a PDF | US Letter, portrait, 0.6in margins, exactly one page | 12pt | [`templates/one-pager.html`](templates/one-pager.html) |
 | Report | A designed document of three pages or more, as a PDF | US Letter, portrait, 0.75in margins | 12pt | [`templates/document.html`](templates/document.html) |
 | Memo | Only when asked for by name | US Letter, portrait, 0.75in margins | 12pt | [`templates/memo.html`](templates/memo.html) |
+| Letter | Correspondence on the company letterhead | US Letter, portrait, 0.75in top, 1.0in bottom, 1.25in left and right | 12pt | [`templates/letter.html`](templates/letter.html) · [`Royal-Ambulance-Letterhead.docx`](for-humans/letterhead/Royal-Ambulance-Letterhead.docx) |
 
-A working document is plain: the logo at top left, a title, no band. The band opens a one-pager, a report and a memo, which are made for PDF and print. Content slides are white. The dark ground is for the title, divider and closing slides. “Powered by Collective Edge” appears once, small, on every Apex Paramedics and Royal Ambulance PDF, deck and image. A working document and a sheet never carry it.
+A working document is plain: the logo at top left, a title, no band. The band opens a one-pager, a report and a memo, which are made for PDF and print. Content slides are white. The dark ground is for the title, divider and closing slides. “Powered by Collective Edge” appears once, small, on every Apex Paramedics and Royal Ambulance PDF, deck and image. A working document, a letter and a sheet never carry it.
 
 Every rule: [`reference/layout.md`](reference/layout.md). The same values as data: [`documents.json`](documents.json).
 
@@ -104,7 +105,7 @@ royal-brand-kit/
 ├── documents.json    The document types as data
 ├── tokens.json       This brand's colors as hex and RGB
 ├── snippets/         Stylesheets, type tokens and the header band
-├── templates/        Working document, deck, one-pager, report and memo
+├── templates/        Working document, letter, deck, one-pager, report and memo
 ├── Examples/         Filled references
 ├── assets/           Logo masters and fonts. Live CDN paths
 ├── scripts/          The checks and the builders

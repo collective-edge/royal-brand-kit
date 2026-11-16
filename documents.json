@@ -1,6 +1,6 @@
 {
-  "_comment": "DOCUMENT TYPES v1.1. Identical in every brand kit. The page geometry, the parts in order, the type step and the content budget for each slot, as data. reference/layout.md states the same values in prose and tables, and the two agree exactly. Brand-neutral: a color is a token name from tokens.json and snippets/palette.css, never a hex. A type step is a token from snippets/type-tokens.json. v1.1 adds the working-doc and sheet types, the editing rules and the Google conversion rules. types.generic is an alias of types.working-doc.",
-  "version": "1.1",
+  "_comment": "DOCUMENT TYPES v1.2. Identical in every brand kit. The page geometry, the parts in order, the type step and the content budget for each slot, as data. reference/layout.md states the same values in prose and tables, and the two agree exactly. Brand-neutral: a color is a token name from tokens.json and snippets/palette.css, never a hex. A type step is a token from snippets/type-tokens.json. v1.1 adds the working-doc and sheet types, the editing rules and the Google conversion rules. types.generic is an alias of types.working-doc. v1.2 adds the letter type: correspondence on the company letterhead.",
+  "version": "1.2",
   "units": {
     "page": "in",
     "type": "pt",
@@ -76,6 +76,7 @@
     "order": [
       "sheet",
       "deck",
+      "letter",
       "working-doc",
       "one-pager",
       "report",
@@ -89,6 +90,10 @@
       {
         "type": "deck",
         "when": "Anything presented on a screen, in Google Slides or PowerPoint. One slide and a graphic for a slide count. Words: deck, slides, slide, presentation, pitch."
+      },
+      {
+        "type": "letter",
+        "when": "Correspondence on the company letterhead, from a named sender to a named reader, in Google Docs, Word or PDF. Words: letter, letterhead, cover letter, offer letter, reference letter, letter of support."
       },
       {
         "type": "working-doc",
@@ -111,7 +116,7 @@
     "aliases": {
       "generic": "working-doc"
     },
-    "band": "The band is for PDF, print and slides. A document that will live in Google Docs is a working-doc unless the person asks for a designed one-pager.",
+    "band": "The band is for PDF, print and slides. A document that will live in Google Docs is a working-doc, or a letter, unless the person asks for a designed one-pager.",
     "existingFile": "Follow the editing rules in editing. Keep the layout, the styles and the wording of the file. Change only what was asked.",
     "spreadsheet": "A spreadsheet is the sheet type. types.sheet."
   },
@@ -387,11 +392,12 @@
       "right": "Page X of Y",
       "withLockup": "The lockup takes the left, on page 1 only. The signature and the page number share the right, joined by a middle dot",
       "slot": "footer",
-      "workingDoc": "A working-doc footer is one left-aligned line with no rule. types.working-doc.footer"
+      "workingDoc": "A working-doc footer is one left-aligned line with no rule. types.working-doc.footer",
+      "letter": "A letter footer is the company line, with no page number. types.letter.footer"
     },
     "lockup": {
       "phrase": "Powered by Collective Edge",
-      "appliesTo": "brandFacts.<brand>.lockup. Operating companies only, on a memo, a one-pager, a report and a deck. Never on a working-doc or a sheet. Never on a Collective Edge document",
+      "appliesTo": "brandFacts.<brand>.lockup. Operating companies only, on a memo, a one-pager, a report and a deck. Never on a working-doc, a letter or a sheet. Never on a Collective Edge document",
       "count": "Exactly once per document",
       "label": {
         "slot": "lockup-label",
@@ -1330,6 +1336,228 @@
         "minTextPx": 48,
         "note": "The same type rules as a slide. 48px in the image is 24pt on the slide. No text under it but the co-brand line.",
         "cobrand": "Operating companies only. One line of words, Powered by Collective Edge, bottom right, 24px, weight 400, --fg-3. No logo"
+      }
+    },
+    "letter": {
+      "name": "letter",
+      "purpose": "Correspondence on the company letterhead, from a named sender to a named reader. Plain on purpose, so it survives Google Docs, a printer and a scanner. The letterhead is the logo at the top of page 1 and the company line in the footer",
+      "examples": [
+        "letter",
+        "cover letter",
+        "offer letter",
+        "reference letter",
+        "letter of support"
+      ],
+      "pages": {
+        "target": 1,
+        "max": 2,
+        "note": "One page holds 3 paragraphs and 400 characters of body, with a 5-line recipient block and a subject line. That is 90 percent of a page, the budget for a Google file. A longer letter runs to a second page. Past two pages, write a report and send it under a one-page letter"
+      },
+      "page": {
+        "size": "Letter",
+        "widthIn": 8.5,
+        "heightIn": 11,
+        "orientation": "portrait"
+      },
+      "margins": {
+        "topIn": 0.75,
+        "rightIn": 1.25,
+        "bottomIn": 1.0,
+        "leftIn": 1.25,
+        "footerDistanceIn": 0.5
+      },
+      "textBlock": {
+        "widthIn": 6.0,
+        "columns": 1,
+        "measureIn": 6.0,
+        "measureChars": 70
+      },
+      "template": "templates/letter.html",
+      "file": "brandFacts.<brand>.letterFile",
+      "parts": [
+        "logo",
+        "date",
+        "recipient",
+        "subject",
+        "salutation",
+        "body",
+        "closing",
+        "signature",
+        "footer"
+      ],
+      "weights": [
+        400,
+        700
+      ],
+      "weightsNote": "Bold off and bold on. Montserrat SemiBold is not needed",
+      "never": [
+        "band",
+        "title",
+        "heading",
+        "table",
+        "callout box",
+        "card",
+        "tinted panel",
+        "icon",
+        "emoji",
+        "uppercase label",
+        "justified text",
+        "text box",
+        "floating image",
+        "section break",
+        "rule",
+        "page number",
+        "Powered by Collective Edge"
+      ],
+      "logo": {
+        "role": "brandFacts.<brand>.letterLogoRole",
+        "widthIn": "brandFacts.<brand>.letterLogoWidthIn",
+        "format": "PNG",
+        "position": "Once, top left of page 1, inline, as its own paragraph. No logo on page 2",
+        "lineSpacing": 1.0,
+        "spaceAfterPt": 36
+      },
+      "slots": [
+        {
+          "name": "date",
+          "role": "The date the letter is sent. Day, month, year: 16 November 2026",
+          "namedStyle": "Normal",
+          "step": "body",
+          "weight": 400,
+          "color": "--fg-1",
+          "lineSpacing": 1.35,
+          "spaceBeforePt": 0,
+          "spaceAfterPt": 24,
+          "maxLines": 1
+        },
+        {
+          "name": "recipient",
+          "role": "Name, title, organization, street, then city, state and ZIP. One line each, each its own paragraph with 0 after. The last line takes 24pt after. A sixth line is a second street line",
+          "namedStyle": "Normal",
+          "step": "body",
+          "weight": 400,
+          "color": "--fg-1",
+          "lineSpacing": 1.35,
+          "spaceBeforePt": 0,
+          "spaceAfterPt": 0,
+          "lastLineSpaceAfterPt": 24,
+          "maxLines": 6,
+          "maxChars": 44
+        },
+        {
+          "name": "subject",
+          "role": "Optional. Re: and the subject, in one line",
+          "namedStyle": "Normal",
+          "step": "body",
+          "weight": 700,
+          "color": "--fg-1",
+          "lineSpacing": 1.35,
+          "spaceBeforePt": 0,
+          "spaceAfterPt": 12,
+          "maxLines": 1,
+          "maxChars": 60,
+          "optional": true
+        },
+        {
+          "name": "salutation",
+          "role": "Dear and the name, then a comma",
+          "namedStyle": "Normal",
+          "step": "body",
+          "weight": 400,
+          "color": "--fg-1",
+          "lineSpacing": 1.35,
+          "spaceBeforePt": 0,
+          "spaceAfterPt": 12,
+          "maxLines": 1
+        },
+        {
+          "name": "body",
+          "role": "Running text. Flush left, never justified. The first paragraph states why the letter is written",
+          "namedStyle": "Normal",
+          "step": "body",
+          "weight": 400,
+          "color": "--fg-1",
+          "lineSpacing": 1.35,
+          "spaceBeforePt": 0,
+          "spaceAfterPt": 12,
+          "measureChars": 70,
+          "maxChars": 400,
+          "maxItems": 3,
+          "maxWordsPerSentence": 20,
+          "note": "Three paragraphs and 400 characters in all on one page"
+        },
+        {
+          "name": "closing",
+          "role": "The word Sincerely and a comma. 48pt after, the room for a signature",
+          "namedStyle": "Normal",
+          "step": "body",
+          "weight": 400,
+          "color": "--fg-1",
+          "lineSpacing": 1.35,
+          "spaceBeforePt": 0,
+          "spaceAfterPt": 48,
+          "maxLines": 1
+        },
+        {
+          "name": "sign-name",
+          "role": "Sender name",
+          "namedStyle": "Normal",
+          "step": "body",
+          "weight": 700,
+          "color": "--fg-1",
+          "lineSpacing": 1.35,
+          "spaceBeforePt": 0,
+          "spaceAfterPt": 0,
+          "maxChars": 40
+        },
+        {
+          "name": "sign-title",
+          "role": "Sender title. A second line for one direct phone or email, if needed",
+          "namedStyle": "Normal",
+          "step": "body-sm",
+          "weight": 400,
+          "color": "--fg-3",
+          "lineSpacing": 1.35,
+          "spaceBeforePt": 0,
+          "spaceAfterPt": 0,
+          "maxChars": 48,
+          "maxLines": 2
+        },
+        {
+          "name": "footer",
+          "role": "The document footer on every page. One left-aligned line. brandFacts.<brand>.letterFooter. No page number, no rule, no logo, no table",
+          "namedStyle": "Normal",
+          "step": "caption",
+          "weight": 400,
+          "color": "--fg-3",
+          "lineSpacing": 1.35,
+          "spaceBeforePt": 0,
+          "spaceAfterPt": 0,
+          "maxLines": 1,
+          "maxChars": 84
+        }
+      ],
+      "footer": "brandFacts.<brand>.letterFooter",
+      "cobrand": "None, as words or as a lockup",
+      "denserSibling": "report",
+      "rules": [
+        "The letterhead is two things: the logo at the top of page 1 and the footer line. Nothing else is printed on it.",
+        "The footer line is a company fact. Use brandFacts.<brand>.letterFooter exactly. Never add, drop or reword an address, a phone number or a web address.",
+        "No band, no title and no heading. The subject line, if there is one, is the only bold line above the signature.",
+        "The date is day, month, year: 16 November 2026.",
+        "A second page keeps the margins and the footer and carries no logo. Past two pages, write a report and send it under a one-page letter.",
+        "Start from the ready file, brandFacts.<brand>.letterFile: replace the bracketed text and change nothing else. Or build it with python-docx to these values.",
+        "Body text is 12pt in a letter, not the 10.5pt of a working-doc.",
+        "No company name under the signature. An enclosure or a copy is one more body-sm line each, 12pt under the signature: Enclosure: or cc: and the item, in --fg-3.",
+        "In the ready file each bracketed line is one paragraph holding one run. Set the text of the run, never of the paragraph."
+      ],
+      "build": {
+        "page": "Letter, portrait. Margins 0.75in top, 1.0in bottom, 1.25in left and right. Footer distance 0.5in. One section",
+        "style": "Normal: Montserrat 12pt, 400, --fg-1, line spacing 1.35 as a MULTIPLE, 12pt after. Set the space after on each paragraph where the slot says otherwise",
+        "logo": "The first paragraph. add_picture at brandFacts.<brand>.letterLogoWidthIn, inline, line spacing 1.0, 36pt after",
+        "footer": "section.footer.paragraphs[0], left-aligned, 9pt, --fg-3. The text only: no PAGE field, no table, no tab stop, no border",
+        "keep": "The closing and the sender name keep with next",
+        "never": "A header, text box, floating image, section break, column, tab stop or exact line spacing"
       }
     },
     "working-doc": {
@@ -2395,6 +2623,7 @@
     "count": 1,
     "placement": {
       "working-doc": "None. A working-doc never carries Powered by Collective Edge, as words or as a lockup",
+      "letter": "None. A letter never carries Powered by Collective Edge, as words or as a lockup",
       "sheet": "None",
       "deck": "Closing slide, in the footer row, at left. Nowhere else in the deck",
       "one-pager": "Footer row of page 1, left. Signature and page number at right, on the same line",
@@ -2422,12 +2651,12 @@
     "never": [
       "Twice in one document",
       "On a Collective Edge document",
-      "On a working-doc or a sheet",
+      "On a working-doc, a letter or a sheet",
       "Inside or touching the operating company logo",
       "Set as type where the logo fits. A chart or data graphic made on its own is the one place the words stand alone",
       "Larger than the minimum width in a document, a deck or an image"
     ],
-    "scope": "Apex Paramedics and Royal Ambulance carry it once on everything delivered as a PDF, a deck or an image: memo, one-pager, report, proposal, deck, and a chart or data graphic made on its own. Small and quiet. A working-doc and a sheet never carry it. The rule follows the type, not the file format: a working-doc exported to PDF stays as it is. A Collective Edge document never carries it.",
+    "scope": "Apex Paramedics and Royal Ambulance carry it once on everything delivered as a PDF, a deck or an image: memo, one-pager, report, proposal, deck, and a chart or data graphic made on its own. Small and quiet. A working-doc, a letter and a sheet never carry it. The rule follows the type, not the file format: a working-doc exported to PDF stays as it is. A Collective Edge document never carries it.",
     "figureLine": {
       "text": "Powered by Collective Edge",
       "position": "bottom right",
@@ -2547,7 +2776,11 @@
       "workingDocFooter": "Collective Edge · Page N",
       "sheetLogoRole": "horizontal-on-light",
       "sheetLogoWidthPx": 150,
-      "sheetLogoRowPx": 37
+      "sheetLogoRowPx": 37,
+      "letterLogoRole": "horizontal-on-light",
+      "letterLogoWidthIn": 2.2,
+      "letterFooter": "collective-edge.co",
+      "letterFile": "for-humans/letterhead/Collective-Edge-Letterhead.docx"
     },
     "apex": {
       "lockup": true,
@@ -2566,7 +2799,11 @@
       "workingDocFooter": "Apex Paramedics · Page N",
       "sheetLogoRole": "horizontal-on-light",
       "sheetLogoWidthPx": 110,
-      "sheetLogoRowPx": 58
+      "sheetLogoRowPx": 58,
+      "letterLogoRole": "horizontal-on-light",
+      "letterLogoWidthIn": 1.15,
+      "letterFooter": "1873 W 52nd Ave, Denver, CO 80221 · (720) 486-0601 · apexparamedics.com",
+      "letterFile": "for-humans/letterhead/Apex-Paramedics-Letterhead.docx"
     },
     "royal": {
       "lockup": true,
@@ -2585,11 +2822,16 @@
       "workingDocFooter": "Royal Ambulance · Page N",
       "sheetLogoRole": "horizontal-on-light",
       "sheetLogoWidthPx": 120,
-      "sheetLogoRowPx": 41
+      "sheetLogoRowPx": 41,
+      "letterLogoRole": "horizontal-on-light",
+      "letterLogoWidthIn": 1.6,
+      "letterFooter": "14472 Wicks Blvd, San Leandro, CA 94577 · 877-995-6161 · royalambulance.com",
+      "letterFile": "for-humans/letterhead/Royal-Ambulance-Letterhead.docx"
     }
   },
   "templates": {
     "working-doc": "templates/working-doc.html",
+    "letter": "templates/letter.html",
     "deck": "templates/deck.html",
     "one-pager": "templates/one-pager.html",
     "report": "templates/document.html",

@@ -280,7 +280,7 @@ The label measures 6.40:1 on this brand’s band.
 
 ### 3.2 Where it goes
 
-1. “Powered by Collective Edge” appears once on everything Apex Paramedics and Royal Ambulance deliver as a PDF, a deck or an image: memo, one-pager, report, proposal, deck, and a chart or data graphic made on its own. A working-doc and a sheet never carry it, as a lockup or as words. The rule follows the type, not the file format: a working-doc exported to PDF stays as it is.
+1. “Powered by Collective Edge” appears once on everything Apex Paramedics and Royal Ambulance deliver as a PDF, a deck or an image: memo, one-pager, report, proposal, deck, and a chart or data graphic made on its own. A working-doc, a letter and a sheet never carry it, as a lockup or as words. The rule follows the type, not the file format: a working-doc exported to PDF stays as it is.
 2. A Collective Edge document carries the Collective Edge logo in its band and no lockup.
 3. Where the Collective Edge mark shares a surface with another brand, the lockup is on that surface, once.
 
@@ -303,7 +303,7 @@ The label measures 6.40:1 on this brand’s band.
 - Never set the phrase as type where the mark fits. A chart or data graphic made on its own is the one place the words stand alone.
 - Never design the lockup down to the 120px floor on a site or a dashboard.
 - Never set it larger than 1.25in in a PDF, a deck or an image.
-- Never put it on a working-doc or a sheet.
+- Never put it on a working-doc, a letter or a sheet.
 - Never put it on a clinical instruction.
 - Never put it on a patient-facing consent or safety document.
 

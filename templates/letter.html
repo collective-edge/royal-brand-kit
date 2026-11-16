@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Royal Ambulance · Letter template</title>
+
+<!-- LETTER. The spec is reference/layout.md section 15 and documents.json
+     types.letter. Correspondence on the company letterhead. US Letter,
+     margins 0.75in top, 1.0in bottom, 1.25in left and right, text block 6.0in,
+     70 characters.
+     Parts in order: logo, date, recipient, subject, salutation, body,
+     closing, signature, footer.
+
+     The letterhead is the logo at the top of page 1 and the footer line.
+     Montserrat at 400 and 700 only. No band, no title, no heading, no rule,
+     no page number.
+
+     The ready file for Word and Google Docs is
+     for-humans/letterhead/Royal-Ambulance-Letterhead.docx.
+
+     Load order. type-system.css is identical in every kit and is served
+     from the Collective Edge kit. palette.css is the only stylesheet that
+     differs by brand. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/snippets/palette.css">
+
+<style>
+/* ---------- FONT ------------------------------------------------
+   type-system.css binds Montserrat through --font-sans. A print
+   engine that resolves no network stylesheet leaves that token
+   undefined, so this block names the face. */
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.woff2") format("woff2-variations"),
+       url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf")   format("truetype-variations");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+html, body { font-family: var(--font-sans, "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif); }
+
+/* ---------- BRAND VALUES ----------------------------------------
+   With the palette link, the logo URL and the footer line, this is
+   the only value that differs between the three kits.
+   reference/layout.md section 2 lists them. */
+
+:root {
+  --letter-logo: 1.6in;
+}
+
+/* ---------- PAGE ------------------------------------------------
+   US Letter, portrait. 1px is 1/96in on screen and in print, so
+   every value below prints at its stated size. 4px = 3pt.
+
+   Line spacing. Word and Google Docs state it as a multiple of the
+   natural line of the face, which is 1.219 for Montserrat. 1.35 for
+   body is a line-height of 1.65. */
+
+@page { size: letter; margin: 0; }
+
+:root {
+  --page-margin-top: 0.75in;
+  --page-margin-bottom: 1in;
+  --footer-distance: 0.5in;
+  --page-margin-x: 1.25in;
+  --letter-lh: 1.65;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { background: var(--bg-surface); margin: 0; padding: 0; }
+
+.sheet {
+  width: 8.5in;
+  min-height: 11in;
+  margin: 32px auto;
+  position: relative;
+  padding: var(--page-margin-top) var(--page-margin-x) var(--page-margin-bottom);
+  background: var(--bg-canvas);
+  box-shadow: 0 0 0 1px var(--border-1);
+  display: flex;
+  flex-direction: column;
+}
+
+.letter-body { flex: 1; }
+
+/* ---------- LOGO ------------------------------------------------
+   Role horizontal-on-light. Once, top left of page 1, 36pt after. */
+
+.letter-logo { width: var(--letter-logo); height: auto; display: block; margin: 0 0 48px; }
+
+/* ---------- TEXT ------------------------------------------------
+   Every line is 12pt, 400, ink, on the 1.35 line. Space after:
+   date 24pt, the recipient block 24pt, subject 12pt, salutation
+   12pt, a paragraph 12pt, the closing 48pt. */
+
+.letter-line { margin: 0; max-width: 6in; color: var(--fg-1); line-height: var(--letter-lh); }
+.letter-date { margin-bottom: 32px; }
+.letter-to { margin: 0 0 32px; }
+.letter-subject { margin-bottom: 16px; font-weight: var(--weight-bold, 700); }
+.letter-salutation { margin-bottom: 16px; }
+.letter-p { margin-bottom: 16px; }
+.letter-closing { margin-bottom: 64px; }
+
+/* ---------- SIGNATURE -------------------------------------------
+   Name 12pt, 700. Title 10.5pt, tertiary. */
+
+.letter-sign-name { font-weight: var(--weight-bold, 700); }
+.letter-sign-title { margin: 0; max-width: none; color: var(--fg-3); line-height: var(--letter-lh); }
+
+/* ---------- FOOTER ----------------------------------------------
+   One left-aligned line, 9pt, tertiary, 0.5in from the bottom edge.
+   No rule, no logo, no page number. In a Word or Google file it is
+   the document footer, so it repeats on every page. */
+
+.letter-footer { position: absolute; left: var(--page-margin-x); right: var(--page-margin-x); bottom: var(--footer-distance); margin: 0; }
+.letter-foot { margin: 0; max-width: none; color: var(--fg-3); line-height: var(--letter-lh); }
+
+/* ---------- NARROW SCREEN ---------------------------------------
+   Under 880px the sheet is fluid. Print never takes this block. */
+
+@media screen and (max-width: 879px) {
+  :root { --page-margin-top: 24px; --page-margin-bottom: 24px; --page-margin-x: 24px; }
+  .sheet { width: auto; min-height: 0; margin: 0; box-shadow: none; }
+  .letter-logo { max-width: 100%; }
+  .letter-footer { position: static; margin: 24px 0 0; }
+  .letter-foot { max-width: 36ch; }
+}
+
+/* ---------- PRINT ----------------------------------------------- */
+
+@media print {
+  *, *::before, *::after { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { background: #FFFFFF; }
+  .sheet { margin: 0; box-shadow: none; }
+  p { orphans: 3; widows: 3; }
+}
+</style>
+</head>
+<body>
+<article class="sheet">
+
+  <main class="letter-body">
+
+    <!-- LOGO · role horizontal-on-light · once -->
+    <img class="letter-logo" src="https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/logos/horizontal-purple.svg" alt="Royal Ambulance">
+
+    <!-- DATE · day, month, year -->
+    <p class="bk-body letter-line letter-date">16 November 2026</p>
+
+    <!-- RECIPIENT · one line each · 6 lines at most -->
+    <div class="letter-to">
+      <p class="bk-body letter-line">Jordan Avery</p>
+      <p class="bk-body letter-line">Director of Patient Flow</p>
+      <p class="bk-body letter-line">Northgate Medical Center</p>
+      <p class="bk-body letter-line">100 Example Street</p>
+      <p class="bk-body letter-line">Springfield, CA 90000</p>
+    </div>
+
+    <!-- SUBJECT · optional · the only bold line above the signature -->
+    <p class="bk-body letter-line letter-subject">Re: Start date for the new handoff form</p>
+
+    <!-- SALUTATION -->
+    <p class="bk-body letter-line letter-salutation">Dear Jordan,</p>
+
+    <!-- BODY · 12pt · 70 characters · 3 paragraphs on one page -->
+    <p class="bk-body letter-line letter-p">Thank you for meeting with us on 10 November. This letter confirms what we agreed.</p>
+    <p class="bk-body letter-line letter-p">The new handoff form starts on 1 December. Our team will brief every unit lead the week before, at a time you choose.</p>
+    <p class="bk-body letter-line letter-p">We will send the first monthly summary on 4 January. Please call me with any question before then.</p>
+
+    <!-- CLOSING · 48pt after, the room for a signature -->
+    <p class="bk-body letter-line letter-closing">Sincerely,</p>
+
+    <!-- SIGNATURE · name, then title -->
+    <p class="bk-body letter-line letter-sign-name">Morgan Lee</p>
+    <p class="bk-body-sm letter-sign-title">Director of Operations</p>
+
+  </main>
+
+  <!-- FOOTER · one line · the company line · 0.5in from the bottom edge -->
+  <footer class="letter-footer">
+    <p class="bk-caption letter-foot">14472 Wicks Blvd, San Leandro, CA 94577 · 877-995-6161 · royalambulance.com</p>
+  </footer>
+
+</article>
+
+</body>
+</html>
