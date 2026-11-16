@@ -125,7 +125,11 @@ def build(spec, steps, colors, name, logo, logo_width_in, footer_line, out):
     p.paragraph_format.line_spacing = float(spec["logo"]["lineSpacing"])
     p.paragraph_format.space_before = Pt(0)
     p.paragraph_format.space_after = Pt(spec["logo"]["spaceAfterPt"])
-    p.add_run().add_picture(logo, width=Inches(logo_width_in))
+    picture = p.add_run().add_picture(logo, width=Inches(logo_width_in))
+    # No spacing around the inline picture. Left unset, LibreOffice pads it
+    # and the logo sits about 9pt inside the text edge in a PDF it makes.
+    for side in ("distT", "distB", "distL", "distR"):
+        picture._inline.set(side, "0")
 
     para(doc.add_paragraph(), PLACEHOLDER["date"], slots["date"])
     lines = PLACEHOLDER["recipient"]
